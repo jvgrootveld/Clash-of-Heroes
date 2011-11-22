@@ -106,21 +106,6 @@
     pos.x += (self.map.mapSize.width/2) + (self.map.tileSize.width/2);
     pos.y += (self.map.mapSize.height/2) + (self.map.tileSize.height/2);
     
-    //    int tileGID = [self.metaLayer tileGIDAt:pos];
-    //    if (tileGID)
-    //    {
-    //        NSDictionary *properties = [self.map propertiesForGID:tileGID];
-    //        if (properties)
-    //        {
-    //            NSString *selectable = [properties valueForKey:@"selectable"];
-    //            if ([selectable isEqualToString:@"true"])
-    //            {
-    //                [self.selectedSprite setPosition:pos];
-    //                [self.selectedSprite setVisible:YES];
-    //            }
-    //        }    
-    //    }
-    
     [self.selectedSprite setPosition:pos];
     [self.selectedSprite setVisible:YES];
     
