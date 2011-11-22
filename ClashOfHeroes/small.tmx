@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="16" height="16" tilewidth="64" tileheight="32">
+ <tileset firstgid="1" name="iso-64x64-outside" tilewidth="64" tileheight="64">
+  <image source="iso-64x64-outside.png" width="640" height="1024"/>
+ </tileset>
+ <layer name="Ground" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAcWJCIHaDYkQz9ykBsB9VvgabfhwTshMV+UvSDsBdUP6n6RvWP6qemfm8g9iQDewAxAPfZP+A=
+  </data>
+ </layer>
+ <layer name="Junk" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAfcCdDDp8eagFq2hEFxJFAHE6m/gggTgfiYAr0p1KgPwSIg4A4kEz9IJBGgV5agWIkPBD6BysAAID8CFg=
+  </data>
+ </layer>
+ <layer name="meta" width="16" height="16" opacity="0.53">
+  <properties>
+   <property name="selectable" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYCQTM1Cgd7jqRwYjUT8p4UqsOmrox+Yveuqnlf9JBZJofADETwDo
+  </data>
+ </layer>
+</map>
