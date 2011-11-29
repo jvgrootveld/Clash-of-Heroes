@@ -8,6 +8,7 @@
 
 // Import the interfaces
 #import "GameLayer.h"
+#import "TestPlayer.h"
 
 @interface GameLayer()
 
@@ -43,11 +44,17 @@
         background.anchorPoint = CGPointMake(0, 0);
         [self addChild:background];
         
-		self.isTouchEnabled = YES;
+		self.isTouchEnabled = NO;
         
 		self.map = [CCTMXTiledMap tiledMapWithTMXFile:@"small.tmx"];
         [self.map setPosition:CGPointMake(5,5)];
-		[self addChild:self.map z:0 tag:1];
+		//[self addChild:self.map z:0 tag:1];
+        
+        _mapTest = [CCLayer new];
+        _mapTest.isTouchEnabled = YES;
+        [_mapTest addChild:self.map z:0 tag:1];
+        
+        [self addChild:_mapTest];
         
         self.mapLayer = [self.map layerNamed:@"Ground"];
         self.junkLayer = [self.map layerNamed:@"Junk"];
@@ -61,74 +68,22 @@
         
         [self.selectedSprite setVisible:NO];
         
-//        //TEST
-//        //point is in middle of image.
-//        CGFloat spriteWidth = 85;
-//        CGFloat spriteHeight = 121;
-//        
-//        CCSprite *sprite = [CCSprite spriteWithFile:@"grossini_dance_atlas.png" rect:CGRectMake(0, 0,spriteWidth, spriteHeight)];
-//        
-//        CGFloat offsetX = 8;
-//        CGFloat offsetY = 16;
-//        
-//        CGPoint pos = [[self.metaLayer tileAt:CGPointMake(14, 14)] position];
-//        
-//        CGFloat x = pos.x + (spriteWidth/2) - offsetX;
-//        CGFloat y = pos.y + (spriteHeight/2) + offsetY;
-//        
-//        [sprite setPosition:CGPointMake(x, y)];
-//        [self addChild:sprite];
         
-//        //test
-//        sprite = [CCSprite spriteWithFile:@"grossini_dance_atlas.png" rect:CGRectMake(0, 0, spriteWidth, spriteHeight)];
-//        
-//        pos = [[self.metaLayer tileAt:CGPointMake(13, 14)] position];
-//
-//        x = pos.x + (spriteWidth/2) - offsetX;
-//        y = pos.y + (spriteHeight/2) + offsetY;
-//        
-//        [sprite setPosition:CGPointMake(x, y)];
-//        [self addChild:sprite];
-//        
-//        //test
-//        sprite = [CCSprite spriteWithFile:@"grossini_dance_atlas.png" rect:CGRectMake(0, 0, spriteWidth, spriteHeight)];
-//        
-//        pos = [[self.metaLayer tileAt:CGPointMake(13, 13)] position];
-//        
-//        x = pos.x + (spriteWidth/2) - offsetX;
-//        y = pos.y + (spriteHeight/2) + offsetY;
-//        
-//        [sprite setPosition:CGPointMake(x, y)];
-//        [self addChild:sprite];
-//        
-//        //test
-//        sprite = [CCSprite spriteWithFile:@"grossini_dance_atlas.png" rect:CGRectMake(0, 0, spriteWidth, spriteHeight)];
-//        
-//        pos = [[self.metaLayer tileAt:CGPointMake(14, 13)] position];
-//        
-//        x = pos.x + (spriteWidth/2) - offsetX;
-//        y = pos.y + (spriteHeight/2) + offsetY;
-//        
-//        [sprite setPosition:CGPointMake(x, y)];
-//        [self addChild:sprite];
-        
-        //point is in middle of image.
         CGFloat spriteWidth = 85;
         CGFloat spriteHeight = 121;
         
 
-        
-        
-        CCSprite *sprite = [CCSprite spriteWithFile:@"grossini_dance_atlas.png" rect:CGRectMake(0, 0,spriteWidth, spriteHeight)];
-        
+        CCSprite *sprite = [CCSprite spriteWithFile:@"grossini_dance_atlas.png" rect:CGRectMake(spriteWidth*4, 0,spriteWidth, spriteHeight)];
+        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
         [self setSprite:sprite atPositionPoint:CGPointMake(14, 14) withTag:100];
         
-//        CCSpriteBatchNode *batch = [CCSpriteBatchNode batchNodeWithFile:@"grossini_dance_atlas.png" capacity:14];
-//		[self addChild:batch z:0 tag:2000];
 //        
-//        CCSpriteBatchNode *batch = (CCSpriteBatchNode*) [self getChildByTag:2000];
-//        CCSprite *sprite = [CCSprite spriteWithTexture:batch.texture rect:CGRectMake(0,0,85,121)];
-//        [batch addChild:sprite];
+//        
+//        sprite.position = ccp(100, 100);
+        
+//        TestPlayer *test = [[TestPlayer alloc] initWithSizes:CGSizeMake(spriteWidth, spriteHeight)];
+//        [test setPosition:CGPointMake(200, 100)];
+//        [self addChild:test z:0 tag:5000];
 
 //        for (int row = 0; row <= 14; row++) 
 //        {
@@ -161,19 +116,25 @@
 	return self;
 }
 
-//- (CGPoint)coordinateFromTilePoint:(CGPoint)point
-//{
-//    CGFloat x = point.x;
-//    CGFloat y = point.y;
-//    
-//    CGFloat startX = 480;
-//    CGFloat startY = 480;
-//    
-//    CGFloat returnX = startX + (x * 32) - (y * 32);
-//    CGFloat returnY = startY + (x * 16) - (y * 16);
-//    
-//    return CGPointMake(returnX, returnY);
-//}
+- (void)showSelectionTileAtLocation:(CGPoint)location
+{
+    CGPoint selectedTilePoint = [self tilePosFromLocation:location tileMap:self.map];
+    
+    NSLog(@"Touch at tile: %@", NSStringFromCGPoint(selectedTilePoint));
+    
+    CGPoint pos = [[self.metaLayer tileAt:selectedTilePoint] position];
+    
+    //NSLog(@"real pos: %@", NSStringFromCGPoint(pos));
+    
+    pos.x += (self.map.tileSize.width / 2);
+    pos.y += (self.map.tileSize.height / 2);
+    
+    //pos.x += (self.map.mapSize.width / 2) + (self.map.tileSize.width / 3);
+    //pos.y += (self.map.mapSize.height / 2) + (self.map.tileSize.height / 3);
+    
+    [self.selectedSprite setPosition:pos];
+    [self.selectedSprite setVisible:YES];
+}
 
 - (void)setSprite:(CCSprite *)sprite atPositionPoint:(CGPoint)position withTag:(NSInteger)tag;
 {
@@ -189,68 +150,48 @@
     
     CGPoint pos = [[self.metaLayer tileAt:position] position];
     
-    CGFloat x = pos.x + (spriteWidth / 2) - offsetX;
-    CGFloat y = pos.y + (spriteHeight / 2) + offsetY;
+    pos.x += (self.map.tileSize.width / 2);
+    pos.y += (self.map.tileSize.height / 2);
     
-    [sprite setPosition:CGPointMake(x, y)];
+//    CGFloat x = pos.x + (spriteWidth / 2);
+//    CGFloat y = pos.y + (spriteHeight / 2);
+    
+    [sprite setPosition:pos];
 
     NSLog(@"tag: %d", tag);
     
-    int newZ = (y * -1) + 1000;
+    int newZ = (pos.y * -1) + 1000;
     //[self reorderChild:sprite z:newZ];
     
     [self addChild:sprite z:newZ tag:tag];
 }
 
-- (void)showSelectionTileAtLocation:(CGPoint)location
-{
-    CGPoint selectedTilePoint = [self tilePosFromLocation:location tileMap:self.map];
-    
-    NSLog(@"Touch at tile: %@", NSStringFromCGPoint(selectedTilePoint));
-    
-    CGPoint pos = [[self.metaLayer tileAt:selectedTilePoint] position];
-    
-    //NSLog(@"real pos: %@", NSStringFromCGPoint(pos));
-    
-    pos.x += (self.map.mapSize.width / 2) + (self.map.tileSize.width / 3);
-    pos.y += (self.map.mapSize.height / 2) + (self.map.tileSize.height / 3);
-    
-    [self.selectedSprite setPosition:pos];
-    [self.selectedSprite setVisible:YES];
-}
-
 - (void)moveSprite:(CCSprite *)sprite toTileLocation:(CGPoint)tileLocation
 {
+    //Tile location
     CGPoint selectedTilePoint = [self tilePosFromLocation:tileLocation tileMap:self.map];
     
     NSLog(@"Move sprite to: %@", NSStringFromCGPoint(selectedTilePoint));
     
     CGPoint pos = [[self.metaLayer tileAt:selectedTilePoint] position];
     
-    pos.x += (self.map.mapSize.width / 2) + (self.map.tileSize.width / 2);
-    pos.y += (self.map.mapSize.height / 2) + (self.map.tileSize.height / 2);
+    //pos.x += (self.map.mapSize.width / 2) + (self.map.tileSize.width / 2);
+    //pos.y += (self.map.mapSize.height / 2) + (self.map.tileSize.height / 2);
     
+    //sprite
     ccTime actualDuration = 1.0;
     
-    CGFloat offsetX = 6;
-    CGFloat offsetY = 55;
+    CGFloat offsetX = 8;
+    CGFloat offsetY = 16;
     
-    pos.y -= sprite.position.y - offsetY;
-    pos.x -= sprite.position.x - offsetX;
-    
+    pos.y -= sprite.position.y;
+    pos.x -= sprite.position.x;
+
     // Create the actions
     id actionMove = [CCMoveBy actionWithDuration:actualDuration
                                         position:pos];
     
-    id actionMoveDone = [CCCallFuncN actionWithTarget:self
-                                             selector:@selector(enemyMoveFinished:)];
-    
-    [sprite runAction: [CCSequence actions:actionMove, actionMoveDone, nil]];
-}
-
-- (void)enemyMoveFinished:(id)sender
-{
-    NSLog(@"done");
+    [sprite runAction: [CCSequence actions:actionMove, nil]];
 }
 
 - (CGPoint)tilePosFromLocation:(CGPoint)location tileMap:(CCTMXTiledMap*)tileMap
@@ -283,15 +224,19 @@
 
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    
+    NSLog(@"touch");
     CGPoint touchLocation = [touch locationInView: [touch view]];
     touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
 	touchLocation = [self.map convertToNodeSpace:touchLocation];
     
     [self showSelectionTileAtLocation:touchLocation];
     
+//    TestPlayer *test = (TestPlayer *)[self getChildByTag:5000];
+//    NSLog(@"type: %@", [self getChildByTag:5000].class);
+//    [test animate];
     
-    //CCArray *children = [self children];
-    //CCSprite *sprite = [children objectAtIndex:3];
+    CCSprite *sprite = (CCSprite *)[self getChildByTag:200];
     
     //[self moveSprite:sprite toTileLocation:touchLocation];
     
