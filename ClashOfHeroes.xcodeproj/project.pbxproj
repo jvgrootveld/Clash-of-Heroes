@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		835B639B1483B71B00683025 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B63991483B71B00683025 /* MainMenuViewController.m */; };
+		835B639C1483B71B00683025 /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835B639A1483B71B00683025 /* MainMenuViewController.xib */; };
+		836D207F147E8B3C0022B058 /* GCTurnBasedMatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 836D207E147E8B3C0022B058 /* GCTurnBasedMatchHelper.m */; };
+		836D2081147E8BD70022B058 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 836D2080147E8BD70022B058 /* GameKit.framework */; };
 		83714752147BE0770091C992 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83714751147BE0770091C992 /* QuartzCore.framework */; };
 		83714754147BE0770091C992 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83714753147BE0770091C992 /* OpenGLES.framework */; };
 		83714756147BE0770091C992 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83714755147BE0770091C992 /* OpenAL.framework */; };
@@ -120,7 +124,7 @@
 		837148AD147BE07A0091C992 /* ZFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 837148AC147BE07A0091C992 /* ZFont.m */; };
 		837148B2147BE07A0091C992 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 837148B1147BE07A0091C992 /* main.m */; };
 		837148B5147BE07A0091C992 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 837148B4147BE07A0091C992 /* AppDelegate.m */; };
-		837148B8147BE07A0091C992 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 837148B7147BE07A0091C992 /* RootViewController.m */; };
+		837148B8147BE07A0091C992 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 837148B7147BE07A0091C992 /* GameViewController.m */; };
 		837148BB147BE07A0091C992 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 837148BA147BE07A0091C992 /* GameLayer.m */; };
 		837148C6147BE11D0091C992 /* small.tmx in Resources */ = {isa = PBXBuildFile; fileRef = 837148C3147BE11D0091C992 /* small.tmx */; };
 		837148C7147BE11D0091C992 /* iso-64x64-outside.png in Resources */ = {isa = PBXBuildFile; fileRef = 837148C4147BE11D0091C992 /* iso-64x64-outside.png */; };
@@ -129,6 +133,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		835B63981483B71B00683025 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
+		835B63991483B71B00683025 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
+		835B639A1483B71B00683025 /* MainMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
+		836D207D147E8B3C0022B058 /* GCTurnBasedMatchHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCTurnBasedMatchHelper.h; sourceTree = "<group>"; };
+		836D207E147E8B3C0022B058 /* GCTurnBasedMatchHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCTurnBasedMatchHelper.m; sourceTree = "<group>"; };
+		836D2080147E8BD70022B058 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		8371474D147BE0770091C992 /* ClashOfHeroes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClashOfHeroes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83714751147BE0770091C992 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		83714753147BE0770091C992 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -359,8 +369,8 @@
 		837148B1147BE07A0091C992 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		837148B3147BE07A0091C992 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		837148B4147BE07A0091C992 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		837148B6147BE07A0091C992 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		837148B7147BE07A0091C992 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		837148B6147BE07A0091C992 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		837148B7147BE07A0091C992 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		837148B9147BE07A0091C992 /* GameLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		837148BA147BE07A0091C992 /* GameLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
 		837148BC147BE07A0091C992 /* GameConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameConfig.h; sourceTree = "<group>"; };
@@ -375,6 +385,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				836D2081147E8BD70022B058 /* GameKit.framework in Frameworks */,
 				83714752147BE0770091C992 /* QuartzCore.framework in Frameworks */,
 				83714754147BE0770091C992 /* OpenGLES.framework in Frameworks */,
 				83714756147BE0770091C992 /* OpenAL.framework in Frameworks */,
@@ -389,6 +400,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		836D207C147E8B230022B058 /* GameCenter */ = {
+			isa = PBXGroup;
+			children = (
+				836D207D147E8B3C0022B058 /* GCTurnBasedMatchHelper.h */,
+				836D207E147E8B3C0022B058 /* GCTurnBasedMatchHelper.m */,
+			);
+			name = GameCenter;
+			sourceTree = "<group>";
+		};
 		83714742147BE0760091C992 = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +429,7 @@
 		83714750147BE0770091C992 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				836D2080147E8BD70022B058 /* GameKit.framework */,
 				83714751147BE0770091C992 /* QuartzCore.framework */,
 				83714753147BE0770091C992 /* OpenGLES.framework */,
 				83714755147BE0770091C992 /* OpenAL.framework */,
@@ -424,10 +445,14 @@
 		83714761147BE0770091C992 /* ClashOfHeroes */ = {
 			isa = PBXGroup;
 			children = (
+				836D207C147E8B230022B058 /* GameCenter */,
 				837148B3147BE07A0091C992 /* AppDelegate.h */,
 				837148B4147BE07A0091C992 /* AppDelegate.m */,
-				837148B6147BE07A0091C992 /* RootViewController.h */,
-				837148B7147BE07A0091C992 /* RootViewController.m */,
+				837148B6147BE07A0091C992 /* GameViewController.h */,
+				837148B7147BE07A0091C992 /* GameViewController.m */,
+				835B63981483B71B00683025 /* MainMenuViewController.h */,
+				835B63991483B71B00683025 /* MainMenuViewController.m */,
+				835B639A1483B71B00683025 /* MainMenuViewController.xib */,
 				837148B9147BE07A0091C992 /* GameLayer.h */,
 				837148BA147BE07A0091C992 /* GameLayer.m */,
 				837148BC147BE07A0091C992 /* GameConfig.h */,
@@ -850,6 +875,7 @@
 				837148C7147BE11D0091C992 /* iso-64x64-outside.png in Resources */,
 				837148C8147BE11D0091C992 /* background.jpg in Resources */,
 				837148CB147BE19A0091C992 /* SelectedSprite.png in Resources */,
+				835B639C1483B71B00683025 /* MainMenuViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -956,8 +982,10 @@
 				837148AD147BE07A0091C992 /* ZFont.m in Sources */,
 				837148B2147BE07A0091C992 /* main.m in Sources */,
 				837148B5147BE07A0091C992 /* AppDelegate.m in Sources */,
-				837148B8147BE07A0091C992 /* RootViewController.m in Sources */,
+				837148B8147BE07A0091C992 /* GameViewController.m in Sources */,
 				837148BB147BE07A0091C992 /* GameLayer.m in Sources */,
+				836D207F147E8B3C0022B058 /* GCTurnBasedMatchHelper.m in Sources */,
+				835B639B1483B71B00683025 /* MainMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1055,6 +1083,7 @@
 				837148C1147BE07A0091C992 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
