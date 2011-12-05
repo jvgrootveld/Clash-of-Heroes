@@ -16,6 +16,7 @@
 @synthesize continueButton;
 @synthesize settingsButton;
 @synthesize feedbackButton;
+@synthesize gameViewController = _gameViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -24,6 +25,16 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)presentGameView
+{
+    if (_gameViewController == nil)
+    {
+        self.gameViewController = [[GameViewController new] autorelease];
+    }
+    
+    [self.navigationController pushViewController:self.gameViewController animated:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,10 +64,15 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
-	return YES;
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
 - (void)dealloc {
@@ -69,6 +85,7 @@
 
 - (IBAction)startGameButtonClicked:(id)sender
 {
+    [[GCTurnBasedMatchHelper sharedInstance] setMainMenu:self];
     [[GCTurnBasedMatchHelper sharedInstance] findMatchWithMinPlayers:2 maxPlayers:2 viewController:self];
 }
 @end

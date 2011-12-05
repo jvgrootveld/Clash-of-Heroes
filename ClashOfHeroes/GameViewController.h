@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class EAGLView;
+
 
 @interface GameViewController : UIViewController {
 
 }
+
+@property (retain, nonatomic) IBOutlet UILabel *playerOneLabel;
+@property (retain, nonatomic) IBOutlet UILabel *playerTwoLabel;
+
+- (void)updateLabels;
 
 @end

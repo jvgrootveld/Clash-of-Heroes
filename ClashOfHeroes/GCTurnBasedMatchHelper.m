@@ -8,6 +8,8 @@
 
 #import "GCTurnBasedMatchHelper.h"
 #import "AppDelegate.h"
+#import "MainMenuViewController.h"
+#import "GameViewController.h"
 
 @interface GCTurnBasedMatchHelper()
 
@@ -17,7 +19,7 @@
 
 @implementation GCTurnBasedMatchHelper
 
-@synthesize gameCenterAvailable, currentMatch;
+@synthesize gameCenterAvailable, currentMatch, mainMenu = _mainMenu, gameViewController = _gameViewController, currentPlayers = _currentPlayers;
 
 static GCTurnBasedMatchHelper *sharedHelper = nil;
 
@@ -118,11 +120,13 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 -(void)turnBasedMatchmakerViewController: (GKTurnBasedMatchmakerViewController *)viewController didFindMatch:(GKTurnBasedMatch *)match
 {
     [presentingViewController dismissModalViewControllerAnimated:YES];
-    [((AppDelegate *)[[UIApplication sharedApplication] delegate]) presentGameView];
+    [self.mainMenu presentGameView];
     
     NSLog(@"did find match, %@", match);
     
     self.currentMatch = match;
+    
+    [self loadPlayerData];
 }
 
 -(void)turnBasedMatchmakerViewControllerWasCancelled: (GKTurnBasedMatchmakerViewController *)viewController
@@ -133,14 +137,38 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 
 -(void)turnBasedMatchmakerViewController: (GKTurnBasedMatchmakerViewController *)viewController didFailWithError:(NSError *)error
 {
-    [presentingViewController 
-     dismissModalViewControllerAnimated:YES];
+    [presentingViewController dismissModalViewControllerAnimated:YES];
     NSLog(@"Error finding match: %@", error.localizedDescription);
 }
 
 -(void)turnBasedMatchmakerViewController: (GKTurnBasedMatchmakerViewController *)viewController playerQuitForMatch:(GKTurnBasedMatch *)match
 {
     NSLog(@"playerquitforMatch, %@, %@", match, match.currentParticipant);
+}
+
+#pragma mark - Player data
+
+- (void)loadPlayerData
+{
+    NSMutableArray *identifiers = [[NSMutableArray new] autorelease];
+    
+    for (GKTurnBasedParticipant *participant in self.currentMatch.participants)
+    {
+        [identifiers addObject:participant.playerID];
+    }
+    
+    [GKPlayer loadPlayersForIdentifiers:identifiers withCompletionHandler:^(NSArray *players, NSError *error) {
+        if (error != nil)
+        {
+            NSLog(@"Error: %@", error);
+        }
+        if (players != nil)
+        {
+            self.currentPlayers = players;
+            
+            [self.gameViewController updateLabels];           
+        }
+    }];
 }
 
 @end

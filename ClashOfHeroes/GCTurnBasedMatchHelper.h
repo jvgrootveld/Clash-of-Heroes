@@ -10,6 +10,9 @@
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
 
+@class MainMenuViewController;
+@class GameViewController;
+
 @interface GCTurnBasedMatchHelper : NSObject <GKTurnBasedMatchmakerViewControllerDelegate> {
     BOOL gameCenterAvailable;
     BOOL userAuthenticated;
@@ -18,9 +21,13 @@
 
 @property (assign, readonly) BOOL gameCenterAvailable;
 @property (retain) GKTurnBasedMatch * currentMatch;
+@property (nonatomic, retain) NSArray *currentPlayers;
+@property (nonatomic, retain) MainMenuViewController *mainMenu;
+@property (nonatomic, retain) GameViewController *gameViewController;
 
 - (void)findMatchWithMinPlayers:(int)minPlayers maxPlayers:(int)maxPlayers viewController:(UIViewController *)viewController;
 + (GCTurnBasedMatchHelper *)sharedInstance;
 - (void)authenticateLocalUser;
+- (void)loadPlayerData;
 
 @end

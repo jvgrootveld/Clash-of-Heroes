@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8350E165148D55FA00A8FD55 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8350E164148D55FA00A8FD55 /* MainWindow.xib */; };
 		835B639B1483B71B00683025 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B63991483B71B00683025 /* MainMenuViewController.m */; };
 		835B639C1483B71B00683025 /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835B639A1483B71B00683025 /* MainMenuViewController.xib */; };
 		836D207F147E8B3C0022B058 /* GCTurnBasedMatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 836D207E147E8B3C0022B058 /* GCTurnBasedMatchHelper.m */; };
@@ -130,9 +131,11 @@
 		837148C7147BE11D0091C992 /* iso-64x64-outside.png in Resources */ = {isa = PBXBuildFile; fileRef = 837148C4147BE11D0091C992 /* iso-64x64-outside.png */; };
 		837148C8147BE11D0091C992 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 837148C5147BE11D0091C992 /* background.jpg */; };
 		837148CB147BE19A0091C992 /* SelectedSprite.png in Resources */ = {isa = PBXBuildFile; fileRef = 837148CA147BE19A0091C992 /* SelectedSprite.png */; };
+		83EF3417148D032B0076EBA9 /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83EF3416148D032B0076EBA9 /* GameViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8350E164148D55FA00A8FD55 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		835B63981483B71B00683025 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		835B63991483B71B00683025 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		835B639A1483B71B00683025 /* MainMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
@@ -378,6 +381,7 @@
 		837148C4147BE11D0091C992 /* iso-64x64-outside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iso-64x64-outside.png"; sourceTree = "<group>"; };
 		837148C5147BE11D0091C992 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		837148CA147BE19A0091C992 /* SelectedSprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SelectedSprite.png; sourceTree = "<group>"; };
+		83EF3416148D032B0076EBA9 /* GameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -400,6 +404,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8350E166148D5C6600A8FD55 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				83EF3416148D032B0076EBA9 /* GameViewController.xib */,
+				835B639A1483B71B00683025 /* MainMenuViewController.xib */,
+				8350E164148D55FA00A8FD55 /* MainWindow.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		836D207C147E8B230022B058 /* GameCenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -445,6 +459,7 @@
 		83714761147BE0770091C992 /* ClashOfHeroes */ = {
 			isa = PBXGroup;
 			children = (
+				8350E166148D5C6600A8FD55 /* Views */,
 				836D207C147E8B230022B058 /* GameCenter */,
 				837148B3147BE07A0091C992 /* AppDelegate.h */,
 				837148B4147BE07A0091C992 /* AppDelegate.m */,
@@ -452,7 +467,6 @@
 				837148B7147BE07A0091C992 /* GameViewController.m */,
 				835B63981483B71B00683025 /* MainMenuViewController.h */,
 				835B63991483B71B00683025 /* MainMenuViewController.m */,
-				835B639A1483B71B00683025 /* MainMenuViewController.xib */,
 				837148B9147BE07A0091C992 /* GameLayer.h */,
 				837148BA147BE07A0091C992 /* GameLayer.m */,
 				837148BC147BE07A0091C992 /* GameConfig.h */,
@@ -876,6 +890,8 @@
 				837148C8147BE11D0091C992 /* background.jpg in Resources */,
 				837148CB147BE19A0091C992 /* SelectedSprite.png in Resources */,
 				835B639C1483B71B00683025 /* MainMenuViewController.xib in Resources */,
+				83EF3417148D032B0076EBA9 /* GameViewController.xib in Resources */,
+				8350E165148D55FA00A8FD55 /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

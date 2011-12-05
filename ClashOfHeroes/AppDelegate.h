@@ -8,15 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class MainMenuViewController;
+@class MainMenuViewController, GameViewController;
 
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
 	UIWindow			*window;
 	MainMenuViewController	*viewController;
 }
 
-@property (nonatomic, retain) UIWindow *window;
-
-- (void)presentGameView;
+@property (nonatomic, retain) IBOutlet UIWindow *window;
 
 @end

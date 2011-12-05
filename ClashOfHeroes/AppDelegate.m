@@ -18,28 +18,29 @@
 
 @implementation AppDelegate
 
-@synthesize window;
+@synthesize window = _window;
 
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
-	// Init the window
-	window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+	if( ! [CCDirector setDirectorType:kCCDirectorTypeDisplayLink] )
+		[CCDirector setDirectorType:kCCDirectorTypeDefault];
 	
-	// Init the View Controller
-	viewController = [MainMenuViewController new];
-	viewController.wantsFullScreenLayout = YES;
-		// make the View Controller a child of the main window
-	[window addSubview: viewController.view];
+	CCDirector *director = [CCDirector sharedDirector];
+	
+#if GAME_AUTOROTATION == kGameAutorotationUIViewController
+	[director setDeviceOrientation:kCCDeviceOrientationPortrait];
+#else
+	[director setDeviceOrientation:kCCDeviceOrientationLandscapeLeft];
+#endif
+	
+	[director setAnimationInterval:1.0/60];
+	[director setDisplayFPS:YES];
 	
 	[window makeKeyAndVisible];
     
+	[CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
+    
     [[GCTurnBasedMatchHelper sharedInstance] authenticateLocalUser];
-}
-
-- (void)presentGameView
-{
-    GameViewController *gameViewController = [GameViewController new];
-    [window addSubview:gameViewController.view];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
