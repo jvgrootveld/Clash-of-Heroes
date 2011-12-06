@@ -48,7 +48,7 @@
         
 		self.map = [CCTMXTiledMap tiledMapWithTMXFile:@"small.tmx"];
         [self.map setPosition:CGPointMake(5,5)];
-		[self addChild:self.map z:0 tag:1];
+		[self addChild:self.map z:0 tag:2];
         
 //        _mapTest = [CCLayer new];
 //        _mapTest.isTouchEnabled = YES;
@@ -317,17 +317,17 @@
 {
     //Moving the map across the screen
     
-    //	CGPoint touchLocation = [touch locationInView: [touch view]];	
-    //	CGPoint prevLocation = [touch previousLocationInView: [touch view]];	
-    //	
-    //	touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
-    //	prevLocation = [[CCDirector sharedDirector] convertToGL: prevLocation];
-    //	
-    //	CGPoint diff = ccpSub(touchLocation,prevLocation);
-    //	
-    //	CCNode *node = [self getChildByTag:1];
-    //	CGPoint currentPos = [node position];
-    //	[node setPosition: ccpAdd(currentPos, diff)];
+//    CGPoint touchLocation = [touch locationInView: [touch view]];	
+//    CGPoint prevLocation = [touch previousLocationInView: [touch view]];	
+//    	
+//    touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
+//    prevLocation = [[CCDirector sharedDirector] convertToGL: prevLocation];
+//    	
+//    CGPoint diff = ccpSub(touchLocation,prevLocation);
+//    	
+//    CCNode *node = [self getChildByTag:2];
+//    CGPoint currentPos = [node position];
+//    [node setPosition: ccpAdd(currentPos, diff)];
 }
 
 // on "dealloc" you need to release all your retained objects
