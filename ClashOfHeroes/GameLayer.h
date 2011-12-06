@@ -9,7 +9,8 @@
 // GameLayer
 @interface GameLayer : CCLayer
 {
-    CCLayer *_mapTest;
+    NSMutableArray *_items;
+    CCSprite *_selectedSprite;
 }
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
@@ -23,6 +24,9 @@
 
 /** This function gets the specific tile and move the sprite*/
 - (void)moveSprite:(CCSprite *)sprite toTileLocation:(CGPoint)tileLocation;
+
+
+- (CCSprite *)selectSpriteForTouch:(CGPoint)touchLocation;
 
 @property (nonatomic, retain) CCTMXTiledMap *map;
 @property (nonatomic, retain) CCTMXLayer *mapLayer;

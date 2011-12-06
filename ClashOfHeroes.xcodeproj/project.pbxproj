@@ -130,7 +130,6 @@
 		F23FA7FA147E8C04004AE3A3 /* grossini_dance_01.png in Resources */ = {isa = PBXBuildFile; fileRef = F23FA7F9147E8C04004AE3A3 /* grossini_dance_01.png */; };
 		F28F8A8A147E3BA1009502CC /* TestPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F28F8A89147E3BA1009502CC /* TestPlayer.m */; };
 		F29F4EA71483B6EF00D114D0 /* sprites.png in Resources */ = {isa = PBXBuildFile; fileRef = F29F4EA61483B6EF00D114D0 /* sprites.png */; };
-		F2F66E38148516CE003D7AF5 /* MapLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F66E37148516CE003D7AF5 /* MapLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -378,8 +377,6 @@
 		F28F8A88147E3BA1009502CC /* TestPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestPlayer.h; sourceTree = "<group>"; };
 		F28F8A89147E3BA1009502CC /* TestPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPlayer.m; sourceTree = "<group>"; };
 		F29F4EA61483B6EF00D114D0 /* sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sprites.png; sourceTree = "<group>"; };
-		F2F66E36148516CE003D7AF5 /* MapLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLayer.h; sourceTree = "<group>"; };
-		F2F66E37148516CE003D7AF5 /* MapLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -442,8 +439,6 @@
 				837148B7147BE07A0091C992 /* RootViewController.m */,
 				837148B9147BE07A0091C992 /* GameLayer.h */,
 				837148BA147BE07A0091C992 /* GameLayer.m */,
-				F2F66E36148516CE003D7AF5 /* MapLayer.h */,
-				F2F66E37148516CE003D7AF5 /* MapLayer.m */,
 				837148BC147BE07A0091C992 /* GameConfig.h */,
 				F28F8A88147E3BA1009502CC /* TestPlayer.h */,
 				F28F8A89147E3BA1009502CC /* TestPlayer.m */,
@@ -981,7 +976,6 @@
 				837148B8147BE07A0091C992 /* RootViewController.m in Sources */,
 				837148BB147BE07A0091C992 /* GameLayer.m in Sources */,
 				F28F8A8A147E3BA1009502CC /* TestPlayer.m in Sources */,
-				F2F66E38148516CE003D7AF5 /* MapLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -44,17 +44,17 @@
         background.anchorPoint = CGPointMake(0, 0);
         [self addChild:background];
         
-		self.isTouchEnabled = NO;
+		self.isTouchEnabled = YES;
         
 		self.map = [CCTMXTiledMap tiledMapWithTMXFile:@"small.tmx"];
         [self.map setPosition:CGPointMake(5,5)];
-		//[self addChild:self.map z:0 tag:1];
+		[self addChild:self.map z:0 tag:1];
         
-        _mapTest = [CCLayer new];
-        _mapTest.isTouchEnabled = YES;
-        [_mapTest addChild:self.map z:0 tag:1];
+//        _mapTest = [CCLayer new];
+//        _mapTest.isTouchEnabled = YES;
+//        [_mapTest addChild:self.map z:0 tag:1];
         
-        [self addChild:_mapTest];
+        //[self addChild:_mapTest];
         
         self.mapLayer = [self.map layerNamed:@"Ground"];
         self.junkLayer = [self.map layerNamed:@"Junk"];
@@ -73,10 +73,41 @@
         CGFloat spriteHeight = 121;
         
 
-        CCSprite *sprite = [CCSprite spriteWithFile:@"grossini_dance_atlas.png" rect:CGRectMake(spriteWidth*4, 0,spriteWidth, spriteHeight)];
-        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
-        [self setSprite:sprite atPositionPoint:CGPointMake(14, 14) withTag:100];
+//        CCSprite *sprite = [CCSprite spriteWithFile:@"grossini_dance_atlas.png" rect:CGRectMake(spriteWidth*4, 0,spriteWidth, spriteHeight)];
+//        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
+//        [self setSprite:sprite atPositionPoint:CGPointMake(14, 5) withTag:200];
         
+        spriteWidth = 26;
+        spriteHeight = 62;
+        _items = [NSMutableArray new];
+        
+        CCSprite *sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
+        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
+        [_items addObject:sprite];
+        [self setSprite:sprite atPositionPoint:CGPointMake(14, 5) withTag:200];
+        
+        sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
+        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
+        [_items addObject:sprite];
+        [self setSprite:sprite atPositionPoint:CGPointMake(14, 7) withTag:201];
+        
+        sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
+        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
+        [_items addObject:sprite];
+        [self setSprite:sprite atPositionPoint:CGPointMake(12, 3) withTag:202];
+        
+        sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
+        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
+        [_items addObject:sprite];
+        [self setSprite:sprite atPositionPoint:CGPointMake(11, 5) withTag:203];
+        
+        for(int i = 0; i < 5; i++)
+        {
+            sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
+            [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
+            [_items addObject:sprite];
+            [self setSprite:sprite atPositionPoint:CGPointMake(i, i) withTag:204+i];
+        }
 //        
 //        
 //        sprite.position = ccp(100, 100);
@@ -138,7 +169,7 @@
 
 - (void)setSprite:(CCSprite *)sprite atPositionPoint:(CGPoint)position withTag:(NSInteger)tag;
 {
-    NSLog(@"sprite paint at %@", NSStringFromCGPoint(position));
+    //NSLog(@"sprite paint at %@", NSStringFromCGPoint(position));
     
     CGFloat spriteWidth = sprite.contentSize.width;
     CGFloat spriteHeight = sprite.contentSize.height;
@@ -146,7 +177,7 @@
     CGFloat offsetX = 8;
     CGFloat offsetY = 16;
     
-    NSLog(@"sprite size: %f-%f", spriteWidth, spriteHeight);
+    //NSLog(@"sprite size: %f-%f", spriteWidth, spriteHeight);
     
     CGPoint pos = [[self.metaLayer tileAt:position] position];
     
@@ -158,7 +189,7 @@
     
     [sprite setPosition:pos];
 
-    NSLog(@"tag: %d", tag);
+    //NSLog(@"tag: %d", tag);
     
     int newZ = (pos.y * -1) + 1000;
     //[self reorderChild:sprite z:newZ];
@@ -184,13 +215,16 @@
     CGFloat offsetX = 8;
     CGFloat offsetY = 16;
     
+    pos.x += (self.map.tileSize.width / 2);
+    pos.y += (self.map.tileSize.height / 2);
+    
     pos.y -= sprite.position.y;
     pos.x -= sprite.position.x;
 
     // Create the actions
     id actionMove = [CCMoveBy actionWithDuration:actualDuration
                                         position:pos];
-    
+
     [sprite runAction: [CCSequence actions:actionMove, nil]];
 }
 
@@ -217,6 +251,24 @@
     return CGPointMake(posX, posY);
 }
 
+- (CCSprite *)selectSpriteForTouch:(CGPoint)touchLocation 
+{
+    //NSLog(@"search %d sprites", [_items count]);
+    
+    for (CCSprite *element in _items) 
+    {
+        if (CGRectContainsPoint(element.boundingBox, touchLocation)) 
+        {
+            NSLog(@"sprite was touched");
+            //[element removeFromParentAndCleanup:YES];
+            return element;
+        }
+    }
+    
+    NSLog(@"no sprites found on touch");
+    return nil;
+}
+
 -(void) registerWithTouchDispatcher
 {
 	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
@@ -224,8 +276,6 @@
 
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    
-    NSLog(@"touch");
     CGPoint touchLocation = [touch locationInView: [touch view]];
     touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
 	touchLocation = [self.map convertToNodeSpace:touchLocation];
@@ -236,9 +286,19 @@
 //    NSLog(@"type: %@", [self getChildByTag:5000].class);
 //    [test animate];
     
-    CCSprite *sprite = (CCSprite *)[self getChildByTag:200];
+//    CCSprite *sprite = (CCSprite *)[self getChildByTag:200];
+//    
+//    [self moveSprite:sprite toTileLocation:touchLocation];
     
-    //[self moveSprite:sprite toTileLocation:touchLocation];
+    CCSprite *sprite = [self selectSpriteForTouch:touchLocation];
+    
+    if(!sprite && _selectedSprite) 
+    {
+        NSLog(@"move");
+        [self moveSprite:_selectedSprite toTileLocation:touchLocation];
+        _selectedSprite = nil;
+    }
+    else if (sprite) _selectedSprite = sprite;
     
 	return YES;
 }
