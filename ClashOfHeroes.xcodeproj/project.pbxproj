@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		832A6BF8148E4B4000E075D1 /* warriorpin.png in Resources */ = {isa = PBXBuildFile; fileRef = 832A6BF7148E4B4000E075D1 /* warriorpin.png */; };
 		8350E165148D55FA00A8FD55 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8350E164148D55FA00A8FD55 /* MainWindow.xib */; };
 		835B639B1483B71B00683025 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B63991483B71B00683025 /* MainMenuViewController.m */; };
 		835B639C1483B71B00683025 /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835B639A1483B71B00683025 /* MainMenuViewController.xib */; };
@@ -135,6 +136,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		832A6BF7148E4B4000E075D1 /* warriorpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warriorpin.png; sourceTree = "<group>"; };
 		8350E164148D55FA00A8FD55 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		835B63981483B71B00683025 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		835B63991483B71B00683025 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 				837148C9147BE18A0091C992 /* Sprites */,
 				837148C2147BE10A0091C992 /* TMX */,
 				83714763147BE0770091C992 /* Default.png */,
+				832A6BF7148E4B4000E075D1 /* warriorpin.png */,
 				837148C5147BE11D0091C992 /* background.jpg */,
 				83714765147BE0770091C992 /* fps_images.png */,
 				83714767147BE0770091C992 /* Icon-72.png */,
@@ -892,6 +895,7 @@
 				835B639C1483B71B00683025 /* MainMenuViewController.xib in Resources */,
 				83EF3417148D032B0076EBA9 /* GameViewController.xib in Resources */,
 				8350E165148D55FA00A8FD55 /* MainWindow.xib in Resources */,
+				832A6BF8148E4B4000E075D1 /* warriorpin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

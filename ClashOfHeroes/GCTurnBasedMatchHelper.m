@@ -138,6 +138,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 -(void)turnBasedMatchmakerViewController: (GKTurnBasedMatchmakerViewController *)viewController didFailWithError:(NSError *)error
 {
     [presentingViewController dismissModalViewControllerAnimated:YES];
+    UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Error finding match" message:error.localizedDescription delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+    [alert show];
     NSLog(@"Error finding match: %@", error.localizedDescription);
 }
 
