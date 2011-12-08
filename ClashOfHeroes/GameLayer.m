@@ -62,12 +62,14 @@
         self.metaLayer = [self.map layerNamed:@"meta"];
         [self.metaLayer setVisible:NO];
         
-        self.selectedSprite = [CCSprite spriteWithFile:@"SelectedSprite.png"];
+        self.selectedSprite = [CCSprite spriteWithFile:@"tile_brown.png"];
         [self.selectedSprite setOpacity:128];
         [self.map addChild:self.selectedSprite z: [[self.map children] count]];
         [self.selectedSprite retain];
         
         [self.selectedSprite setVisible:NO];
+        
+        _moveSprites = [NSMutableArray new];
         
         
         CGFloat spriteWidth = 85;
@@ -150,11 +152,16 @@
 
 - (void)showSelectionTileAtLocation:(CGPoint)location
 {
-    CGPoint selectedTilePoint = [self tilePosFromLocation:location tileMap:self.map];
+    CGPoint position = [self tilePosFromLocation:location tileMap:self.map];
     
-    NSLog(@"Touch at tile: %@", NSStringFromCGPoint(selectedTilePoint));
+    [self showSelectionTileAtPositionPoint:position];
+}
+
+- (void)showSelectionTileAtPositionPoint:(CGPoint)position
+{
+    NSLog(@"Touch at tile: %@", NSStringFromCGPoint(position));
     
-    CGPoint pos = [[self.metaLayer tileAt:selectedTilePoint] position];
+    CGPoint pos = [[self.metaLayer tileAt:position] position];
     
     //NSLog(@"real pos: %@", NSStringFromCGPoint(pos));
     
@@ -168,15 +175,32 @@
     [self.selectedSprite setVisible:YES];
 }
 
+- (void)showMoveTileAtPositionPoint:(CGPoint)position
+{
+    NSLog(@"Show move tile at: %@", NSStringFromCGPoint(position));
+    
+    CGPoint pos = [[self.metaLayer tileAt:position] position];
+    
+    pos.x += (self.map.tileSize.width / 2);
+    pos.y += (self.map.tileSize.height / 2);
+    
+    CCSprite *moveSprite = [CCSprite spriteWithFile:@"tile_green.png"];
+    [moveSprite setTag:100];
+    [moveSprite setOpacity:128];
+    [self.map addChild:moveSprite z:1];
+    [_moveSprites addObject:moveSprite];
+    [moveSprite setPosition:pos];
+}
+
 - (void)setSprite:(CCSprite *)sprite atPositionPoint:(CGPoint)position withTag:(NSInteger)tag;
 {
     //NSLog(@"sprite paint at %@", NSStringFromCGPoint(position));
     
-    CGFloat spriteWidth = sprite.contentSize.width;
-    CGFloat spriteHeight = sprite.contentSize.height;
-    
-    CGFloat offsetX = 8;
-    CGFloat offsetY = 16;
+//    CGFloat spriteWidth = sprite.contentSize.width;
+//    CGFloat spriteHeight = sprite.contentSize.height;
+//    
+//    CGFloat offsetX = 8;
+//    CGFloat offsetY = 16;
     
     //NSLog(@"sprite size: %f-%f", spriteWidth, spriteHeight);
     
@@ -213,8 +237,8 @@
     //sprite
     ccTime actualDuration = 1.0;
     
-    CGFloat offsetX = 8;
-    CGFloat offsetY = 16;
+//    CGFloat offsetX = 8;
+//    CGFloat offsetY = 16;
     
     pos.x += (self.map.tileSize.width / 2);
     pos.y += (self.map.tileSize.height / 2);
@@ -281,7 +305,21 @@
     touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
 	touchLocation = [self.map convertToNodeSpace:touchLocation];
     
-    [self showSelectionTileAtLocation:touchLocation];
+    //[self showSelectionTileAtLocation:touchLocation];
+    
+    CGPoint positionPoint = [self tilePosFromLocation:touchLocation tileMap:self.map];
+    [self showSelectionTileAtPositionPoint:positionPoint];
+    
+    //test
+    positionPoint.x += 1;
+    [self showMoveTileAtPositionPoint:positionPoint];
+    positionPoint.x += 1;
+    [self showMoveTileAtPositionPoint:positionPoint];
+    positionPoint.x += 1;
+    [self showMoveTileAtPositionPoint:positionPoint];
+    positionPoint.x += 1;
+    [self showMoveTileAtPositionPoint:positionPoint];
+    //test
     
 //    TestPlayer *test = (TestPlayer *)[self getChildByTag:5000];
 //    NSLog(@"type: %@", [self getChildByTag:5000].class);
@@ -292,14 +330,20 @@
 //    [self moveSprite:sprite toTileLocation:touchLocation];
     
     CCSprite *sprite = [self selectSpriteForTouch:touchLocation];
-    
-    if(!sprite && _selectedSprite)
+
+    if(sprite)
     {
-        NSLog(@"move");
-        [self moveSprite:_selectedSprite toTileLocation:touchLocation];
-        _selectedSprite = nil;
+        NSLog(@"tag: %d", sprite.tag);
     }
-    else if (sprite) _selectedSprite = sprite;
+    
+    //test move
+//    if(!sprite && _selectedSprite)
+//    {
+//        NSLog(@"move");
+//        [self moveSprite:_selectedSprite toTileLocation:touchLocation];
+//        _selectedSprite = nil;
+//    }
+//    else if (sprite) _selectedSprite = sprite;
     
 	return YES;
 }

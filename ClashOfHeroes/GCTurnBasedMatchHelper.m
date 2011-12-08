@@ -125,16 +125,16 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     
     self.currentMatch = match;
     
-    if(match.currentParticipant.lastTurnDate)
+//    if(match.currentParticipant.lastTurnDate)
     {
         [self.mainMenu presentGameView];
 
         [self loadPlayerData];
     }
-    else
-    {
-        [self.mainMenu presentNewGameView];
-    }
+//    else
+//    {
+//        [self.mainMenu presentNewGameView];
+//    }
 }
 
 -(void)turnBasedMatchmakerViewControllerWasCancelled: (GKTurnBasedMatchmakerViewController *)viewController
