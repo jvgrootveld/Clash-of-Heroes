@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "GCTurnBasedMatchHelper.h"
 #import "GameViewController.h"
+#import "NewGameViewController.h"
 
 @implementation MainMenuViewController
 @synthesize startButton;
@@ -25,6 +26,12 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)presentNewGameView
+{
+    NewGameViewController *newGameViewController = [[NewGameViewController new] autorelease];
+    [self.navigationController pushViewController:newGameViewController animated:NO];
 }
 
 - (void)presentGameView

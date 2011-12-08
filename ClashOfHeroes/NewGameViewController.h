@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class MainMenuViewController;
+
 @interface NewGameViewController : UIViewController
+
+@property (nonatomic, retain) MainMenuViewController *mainMenu;
 
 @end

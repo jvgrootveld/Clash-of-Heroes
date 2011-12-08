@@ -918,6 +918,7 @@
 				83EF3417148D032B0076EBA9 /* GameViewController.xib in Resources */,
 				8350E165148D55FA00A8FD55 /* MainWindow.xib in Resources */,
 				832A6BF8148E4B4000E075D1 /* warriorpin.png in Resources */,
+				014AF8621490CF34003FF2EF /* NewGameViewController.xib in Resources */,
 				F20BA746147C2F8600654467 /* grossini_dance_atlas.png in Resources */,
 				F23FA7FA147E8C04004AE3A3 /* grossini_dance_01.png in Resources */,
 				F29F4EA71483B6EF00D114D0 /* sprites.png in Resources */,
@@ -1031,6 +1032,7 @@
 				837148BB147BE07A0091C992 /* GameLayer.m in Sources */,
 				836D207F147E8B3C0022B058 /* GCTurnBasedMatchHelper.m in Sources */,
 				835B639B1483B71B00683025 /* MainMenuViewController.m in Sources */,
+				014AF8611490CF34003FF2EF /* NewGameViewController.m in Sources */,
 				F28F8A8A147E3BA1009502CC /* TestPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
