@@ -17,15 +17,16 @@
 // HelloWorldLayer implementation
 @implementation GameLayer
 
-@synthesize mapLayer = _mapLayer, map = _map, selectedSprite = _selectedSprite, junkLayer = _junkLayer, metaLayer = _metaLayer;
+@synthesize mapLayer = _mapLayer, map = _map, selectedSprite = _selectedSprite, junkLayer = _junkLayer, metaLayer = _metaLayer, gameViewController = _gameViewController;
 
-+(CCScene *) scene
++ (CCScene *)sceneWithDelegate:(GameViewController *)delegate;
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
 	// 'layer' is an autorelease object.
 	GameLayer *layer = [GameLayer node];
+    [layer setGameViewController:delegate];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
@@ -292,7 +293,7 @@
     
     CCSprite *sprite = [self selectSpriteForTouch:touchLocation];
     
-    if(!sprite && _selectedSprite) 
+    if(!sprite && _selectedSprite)
     {
         NSLog(@"move");
         [self moveSprite:_selectedSprite toTileLocation:touchLocation];
