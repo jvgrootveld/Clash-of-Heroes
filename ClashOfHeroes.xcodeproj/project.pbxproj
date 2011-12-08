@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		014AF8611490CF34003FF2EF /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 014AF85F1490CF34003FF2EF /* NewGameViewController.m */; };
+		014AF8621490CF34003FF2EF /* NewGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 014AF8601490CF34003FF2EF /* NewGameViewController.xib */; };
 		832A6BF8148E4B4000E075D1 /* warriorpin.png in Resources */ = {isa = PBXBuildFile; fileRef = 832A6BF7148E4B4000E075D1 /* warriorpin.png */; };
 		8350E165148D55FA00A8FD55 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8350E164148D55FA00A8FD55 /* MainWindow.xib */; };
 		835B639B1483B71B00683025 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B63991483B71B00683025 /* MainMenuViewController.m */; };
@@ -140,6 +142,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		014AF85E1490CF34003FF2EF /* NewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGameViewController.h; sourceTree = "<group>"; };
+		014AF85F1490CF34003FF2EF /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGameViewController.m; sourceTree = "<group>"; };
+		014AF8601490CF34003FF2EF /* NewGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewGameViewController.xib; sourceTree = "<group>"; };
 		832A6BF7148E4B4000E075D1 /* warriorpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warriorpin.png; sourceTree = "<group>"; };
 		8350E164148D55FA00A8FD55 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		835B63981483B71B00683025 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
@@ -418,6 +423,7 @@
 		8350E166148D5C6600A8FD55 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				014AF8601490CF34003FF2EF /* NewGameViewController.xib */,
 				83EF3416148D032B0076EBA9 /* GameViewController.xib */,
 				835B639A1483B71B00683025 /* MainMenuViewController.xib */,
 				8350E164148D55FA00A8FD55 /* MainWindow.xib */,
@@ -478,6 +484,8 @@
 				837148B7147BE07A0091C992 /* GameViewController.m */,
 				835B63981483B71B00683025 /* MainMenuViewController.h */,
 				835B63991483B71B00683025 /* MainMenuViewController.m */,
+				014AF85E1490CF34003FF2EF /* NewGameViewController.h */,
+				014AF85F1490CF34003FF2EF /* NewGameViewController.m */,
 				837148B9147BE07A0091C992 /* GameLayer.h */,
 				837148BA147BE07A0091C992 /* GameLayer.m */,
 				837148BC147BE07A0091C992 /* GameConfig.h */,
