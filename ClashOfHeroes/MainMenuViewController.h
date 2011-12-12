@@ -20,5 +20,6 @@
 
 - (IBAction)startGameButtonClicked:(id)sender;
 - (void)presentGameView;
+- (void)presentNewGameView;
 
 @end

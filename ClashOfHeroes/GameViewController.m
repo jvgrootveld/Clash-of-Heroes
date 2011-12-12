@@ -24,7 +24,8 @@
 @synthesize playerOneLabel;
 @synthesize playerTwoLabel;
 
-- (void)setupCocos2D {
+- (void)setupCocos2D 
+{
     EAGLView *glView = [EAGLView viewWithFrame:self.view.bounds
                                    pixelFormat:kEAGLColorFormatRGB565	// kEAGLColorFormatRGBA8
                                    depthFormat:0                        // GL_DEPTH_COMPONENT16_OES
@@ -32,7 +33,7 @@
     glView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view insertSubview:glView atIndex:0];
     [[CCDirector sharedDirector] setOpenGLView:glView];
-    [[CCDirector sharedDirector] runWithScene:[GameLayer scene]];
+    [[CCDirector sharedDirector] runWithScene:[GameLayer sceneWithDelegate:self]];
 }
 
 - (void)updateLabels

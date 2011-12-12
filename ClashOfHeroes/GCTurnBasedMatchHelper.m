@@ -120,13 +120,21 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 -(void)turnBasedMatchmakerViewController: (GKTurnBasedMatchmakerViewController *)viewController didFindMatch:(GKTurnBasedMatch *)match
 {
     [presentingViewController dismissModalViewControllerAnimated:YES];
-    [self.mainMenu presentGameView];
     
     NSLog(@"did find match, %@", match);
     
     self.currentMatch = match;
     
-    [self loadPlayerData];
+    if(match.currentParticipant.lastTurnDate)
+    {
+        [self.mainMenu presentGameView];
+
+        [self loadPlayerData];
+    }
+    else
+    {
+        [self.mainMenu presentNewGameView];
+    }
 }
 
 -(void)turnBasedMatchmakerViewControllerWasCancelled: (GKTurnBasedMatchmakerViewController *)viewController

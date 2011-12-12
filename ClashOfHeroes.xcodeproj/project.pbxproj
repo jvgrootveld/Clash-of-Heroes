@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		014AF8611490CF34003FF2EF /* NewGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 014AF85F1490CF34003FF2EF /* NewGameViewController.m */; };
+		014AF8621490CF34003FF2EF /* NewGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 014AF8601490CF34003FF2EF /* NewGameViewController.xib */; };
 		832A6BF8148E4B4000E075D1 /* warriorpin.png in Resources */ = {isa = PBXBuildFile; fileRef = 832A6BF7148E4B4000E075D1 /* warriorpin.png */; };
 		832A6C05148E5F2700E075D1 /* Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 832A6C04148E5F2700E075D1 /* Unit.m */; };
 		8350E165148D55FA00A8FD55 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8350E164148D55FA00A8FD55 /* MainWindow.xib */; };
@@ -141,9 +143,16 @@
 		837F3281148E673C00C77C62 /* Priest.m in Sources */ = {isa = PBXBuildFile; fileRef = 837F3280148E673C00C77C62 /* Priest.m */; };
 		837F3284148E674D00C77C62 /* Shapeshifter.m in Sources */ = {isa = PBXBuildFile; fileRef = 837F3283148E674D00C77C62 /* Shapeshifter.m */; };
 		83EF3417148D032B0076EBA9 /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83EF3416148D032B0076EBA9 /* GameViewController.xib */; };
+		F20BA746147C2F8600654467 /* grossini_dance_atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = F20BA745147C2F8600654467 /* grossini_dance_atlas.png */; };
+		F23FA7FA147E8C04004AE3A3 /* grossini_dance_01.png in Resources */ = {isa = PBXBuildFile; fileRef = F23FA7F9147E8C04004AE3A3 /* grossini_dance_01.png */; };
+		F28F8A8A147E3BA1009502CC /* TestPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F28F8A89147E3BA1009502CC /* TestPlayer.m */; };
+		F29F4EA71483B6EF00D114D0 /* sprites.png in Resources */ = {isa = PBXBuildFile; fileRef = F29F4EA61483B6EF00D114D0 /* sprites.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		014AF85E1490CF34003FF2EF /* NewGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGameViewController.h; sourceTree = "<group>"; };
+		014AF85F1490CF34003FF2EF /* NewGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewGameViewController.m; sourceTree = "<group>"; };
+		014AF8601490CF34003FF2EF /* NewGameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewGameViewController.xib; sourceTree = "<group>"; };
 		832A6BF7148E4B4000E075D1 /* warriorpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warriorpin.png; sourceTree = "<group>"; };
 		832A6C03148E5F2700E075D1 /* Unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
 		832A6C04148E5F2700E075D1 /* Unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unit.m; sourceTree = "<group>"; };
@@ -408,6 +417,11 @@
 		837F3282148E674D00C77C62 /* Shapeshifter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shapeshifter.h; sourceTree = "<group>"; };
 		837F3283148E674D00C77C62 /* Shapeshifter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shapeshifter.m; sourceTree = "<group>"; };
 		83EF3416148D032B0076EBA9 /* GameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
+		F20BA745147C2F8600654467 /* grossini_dance_atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grossini_dance_atlas.png; sourceTree = "<group>"; };
+		F23FA7F9147E8C04004AE3A3 /* grossini_dance_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grossini_dance_01.png; sourceTree = "<group>"; };
+		F28F8A88147E3BA1009502CC /* TestPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestPlayer.h; sourceTree = "<group>"; };
+		F28F8A89147E3BA1009502CC /* TestPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPlayer.m; sourceTree = "<group>"; };
+		F29F4EA61483B6EF00D114D0 /* sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sprites.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -452,6 +466,7 @@
 		8350E166148D5C6600A8FD55 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				014AF8601490CF34003FF2EF /* NewGameViewController.xib */,
 				83EF3416148D032B0076EBA9 /* GameViewController.xib */,
 				835B639A1483B71B00683025 /* MainMenuViewController.xib */,
 				8350E164148D55FA00A8FD55 /* MainWindow.xib */,
@@ -514,9 +529,13 @@
 				837148B7147BE07A0091C992 /* GameViewController.m */,
 				835B63981483B71B00683025 /* MainMenuViewController.h */,
 				835B63991483B71B00683025 /* MainMenuViewController.m */,
+				014AF85E1490CF34003FF2EF /* NewGameViewController.h */,
+				014AF85F1490CF34003FF2EF /* NewGameViewController.m */,
 				837148B9147BE07A0091C992 /* GameLayer.h */,
 				837148BA147BE07A0091C992 /* GameLayer.m */,
 				837148BC147BE07A0091C992 /* GameConfig.h */,
+				F28F8A88147E3BA1009502CC /* TestPlayer.h */,
+				F28F8A89147E3BA1009502CC /* TestPlayer.m */,
 				83714762147BE0770091C992 /* Resources */,
 				83714776147BE0770091C992 /* libs */,
 				837148AF147BE07A0091C992 /* Supporting Files */,
@@ -868,6 +887,9 @@
 		837148C9147BE18A0091C992 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				F29F4EA61483B6EF00D114D0 /* sprites.png */,
+				F23FA7F9147E8C04004AE3A3 /* grossini_dance_01.png */,
+				F20BA745147C2F8600654467 /* grossini_dance_atlas.png */,
 				837148CA147BE19A0091C992 /* SelectedSprite.png */,
 			);
 			name = Sprites;
@@ -952,6 +974,10 @@
 				83EF3417148D032B0076EBA9 /* GameViewController.xib in Resources */,
 				8350E165148D55FA00A8FD55 /* MainWindow.xib in Resources */,
 				832A6BF8148E4B4000E075D1 /* warriorpin.png in Resources */,
+				014AF8621490CF34003FF2EF /* NewGameViewController.xib in Resources */,
+				F20BA746147C2F8600654467 /* grossini_dance_atlas.png in Resources */,
+				F23FA7FA147E8C04004AE3A3 /* grossini_dance_01.png in Resources */,
+				F29F4EA71483B6EF00D114D0 /* sprites.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
