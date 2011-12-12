@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		832A6BF8148E4B4000E075D1 /* warriorpin.png in Resources */ = {isa = PBXBuildFile; fileRef = 832A6BF7148E4B4000E075D1 /* warriorpin.png */; };
+		832A6C05148E5F2700E075D1 /* Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 832A6C04148E5F2700E075D1 /* Unit.m */; };
 		8350E165148D55FA00A8FD55 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8350E164148D55FA00A8FD55 /* MainWindow.xib */; };
 		835B639B1483B71B00683025 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B63991483B71B00683025 /* MainMenuViewController.m */; };
 		835B639C1483B71B00683025 /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835B639A1483B71B00683025 /* MainMenuViewController.xib */; };
@@ -132,11 +133,20 @@
 		837148C7147BE11D0091C992 /* iso-64x64-outside.png in Resources */ = {isa = PBXBuildFile; fileRef = 837148C4147BE11D0091C992 /* iso-64x64-outside.png */; };
 		837148C8147BE11D0091C992 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 837148C5147BE11D0091C992 /* background.jpg */; };
 		837148CB147BE19A0091C992 /* SelectedSprite.png in Resources */ = {isa = PBXBuildFile; fileRef = 837148CA147BE19A0091C992 /* SelectedSprite.png */; };
+		837F3272148E62C400C77C62 /* Upgrade.m in Sources */ = {isa = PBXBuildFile; fileRef = 837F3271148E62C400C77C62 /* Upgrade.m */; };
+		837F3275148E62D600C77C62 /* NoUpgrade.m in Sources */ = {isa = PBXBuildFile; fileRef = 837F3274148E62D600C77C62 /* NoUpgrade.m */; };
+		837F3278148E671D00C77C62 /* Warrior.m in Sources */ = {isa = PBXBuildFile; fileRef = 837F3277148E671C00C77C62 /* Warrior.m */; };
+		837F327B148E672500C77C62 /* Mage.m in Sources */ = {isa = PBXBuildFile; fileRef = 837F327A148E672500C77C62 /* Mage.m */; };
+		837F327E148E672C00C77C62 /* Ranger.m in Sources */ = {isa = PBXBuildFile; fileRef = 837F327D148E672C00C77C62 /* Ranger.m */; };
+		837F3281148E673C00C77C62 /* Priest.m in Sources */ = {isa = PBXBuildFile; fileRef = 837F3280148E673C00C77C62 /* Priest.m */; };
+		837F3284148E674D00C77C62 /* Shapeshifter.m in Sources */ = {isa = PBXBuildFile; fileRef = 837F3283148E674D00C77C62 /* Shapeshifter.m */; };
 		83EF3417148D032B0076EBA9 /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83EF3416148D032B0076EBA9 /* GameViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		832A6BF7148E4B4000E075D1 /* warriorpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warriorpin.png; sourceTree = "<group>"; };
+		832A6C03148E5F2700E075D1 /* Unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
+		832A6C04148E5F2700E075D1 /* Unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unit.m; sourceTree = "<group>"; };
 		8350E164148D55FA00A8FD55 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		835B63981483B71B00683025 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		835B63991483B71B00683025 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
@@ -383,6 +393,20 @@
 		837148C4147BE11D0091C992 /* iso-64x64-outside.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iso-64x64-outside.png"; sourceTree = "<group>"; };
 		837148C5147BE11D0091C992 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		837148CA147BE19A0091C992 /* SelectedSprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SelectedSprite.png; sourceTree = "<group>"; };
+		837F3270148E62C400C77C62 /* Upgrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Upgrade.h; sourceTree = "<group>"; };
+		837F3271148E62C400C77C62 /* Upgrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Upgrade.m; sourceTree = "<group>"; };
+		837F3273148E62D600C77C62 /* NoUpgrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoUpgrade.h; sourceTree = "<group>"; };
+		837F3274148E62D600C77C62 /* NoUpgrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoUpgrade.m; sourceTree = "<group>"; };
+		837F3276148E671C00C77C62 /* Warrior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Warrior.h; sourceTree = "<group>"; };
+		837F3277148E671C00C77C62 /* Warrior.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Warrior.m; sourceTree = "<group>"; };
+		837F3279148E672500C77C62 /* Mage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mage.h; sourceTree = "<group>"; };
+		837F327A148E672500C77C62 /* Mage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mage.m; sourceTree = "<group>"; };
+		837F327C148E672C00C77C62 /* Ranger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ranger.h; sourceTree = "<group>"; };
+		837F327D148E672C00C77C62 /* Ranger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ranger.m; sourceTree = "<group>"; };
+		837F327F148E673C00C77C62 /* Priest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Priest.h; sourceTree = "<group>"; };
+		837F3280148E673C00C77C62 /* Priest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Priest.m; sourceTree = "<group>"; };
+		837F3282148E674D00C77C62 /* Shapeshifter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shapeshifter.h; sourceTree = "<group>"; };
+		837F3283148E674D00C77C62 /* Shapeshifter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shapeshifter.m; sourceTree = "<group>"; };
 		83EF3416148D032B0076EBA9 /* GameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -406,6 +430,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		832A6C02148E5EDB00E075D1 /* Units */ = {
+			isa = PBXGroup;
+			children = (
+				832A6C03148E5F2700E075D1 /* Unit.h */,
+				832A6C04148E5F2700E075D1 /* Unit.m */,
+				837F3276148E671C00C77C62 /* Warrior.h */,
+				837F3277148E671C00C77C62 /* Warrior.m */,
+				837F3279148E672500C77C62 /* Mage.h */,
+				837F327A148E672500C77C62 /* Mage.m */,
+				837F327C148E672C00C77C62 /* Ranger.h */,
+				837F327D148E672C00C77C62 /* Ranger.m */,
+				837F327F148E673C00C77C62 /* Priest.h */,
+				837F3280148E673C00C77C62 /* Priest.m */,
+				837F3282148E674D00C77C62 /* Shapeshifter.h */,
+				837F3283148E674D00C77C62 /* Shapeshifter.m */,
+			);
+			name = Units;
+			sourceTree = "<group>";
+		};
 		8350E166148D5C6600A8FD55 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -461,6 +504,8 @@
 		83714761147BE0770091C992 /* ClashOfHeroes */ = {
 			isa = PBXGroup;
 			children = (
+				837F326E148E625100C77C62 /* Upgrades */,
+				832A6C02148E5EDB00E075D1 /* Units */,
 				8350E166148D5C6600A8FD55 /* Views */,
 				836D207C147E8B230022B058 /* GameCenter */,
 				837148B3147BE07A0091C992 /* AppDelegate.h */,
@@ -828,6 +873,17 @@
 			name = Sprites;
 			sourceTree = "<group>";
 		};
+		837F326E148E625100C77C62 /* Upgrades */ = {
+			isa = PBXGroup;
+			children = (
+				837F3270148E62C400C77C62 /* Upgrade.h */,
+				837F3271148E62C400C77C62 /* Upgrade.m */,
+				837F3273148E62D600C77C62 /* NoUpgrade.h */,
+				837F3274148E62D600C77C62 /* NoUpgrade.m */,
+			);
+			name = Upgrades;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1006,6 +1062,14 @@
 				837148BB147BE07A0091C992 /* GameLayer.m in Sources */,
 				836D207F147E8B3C0022B058 /* GCTurnBasedMatchHelper.m in Sources */,
 				835B639B1483B71B00683025 /* MainMenuViewController.m in Sources */,
+				832A6C05148E5F2700E075D1 /* Unit.m in Sources */,
+				837F3272148E62C400C77C62 /* Upgrade.m in Sources */,
+				837F3275148E62D600C77C62 /* NoUpgrade.m in Sources */,
+				837F3278148E671D00C77C62 /* Warrior.m in Sources */,
+				837F327B148E672500C77C62 /* Mage.m in Sources */,
+				837F327E148E672C00C77C62 /* Ranger.m in Sources */,
+				837F3281148E673C00C77C62 /* Priest.m in Sources */,
+				837F3284148E674D00C77C62 /* Shapeshifter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
