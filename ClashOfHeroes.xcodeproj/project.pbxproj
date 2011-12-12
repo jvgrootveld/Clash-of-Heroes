@@ -1088,6 +1088,8 @@
 				837148BB147BE07A0091C992 /* GameLayer.m in Sources */,
 				836D207F147E8B3C0022B058 /* GCTurnBasedMatchHelper.m in Sources */,
 				835B639B1483B71B00683025 /* MainMenuViewController.m in Sources */,
+				014AF8611490CF34003FF2EF /* NewGameViewController.m in Sources */,
+				F28F8A8A147E3BA1009502CC /* TestPlayer.m in Sources */,
 				832A6C05148E5F2700E075D1 /* Unit.m in Sources */,
 				837F3272148E62C400C77C62 /* Upgrade.m in Sources */,
 				837F3275148E62D600C77C62 /* NoUpgrade.m in Sources */,
