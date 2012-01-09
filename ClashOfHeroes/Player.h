@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class GKPlayer;
+@class Unit;
 
 @interface Player : NSObject
 
@@ -17,5 +18,6 @@
 @property (nonatomic, strong) NSMutableArray *units;
 
 - (id)initForGKPlayer:(GKPlayer *)player;
+- (void)addUnit:(Unit *)unit;
 
 @end

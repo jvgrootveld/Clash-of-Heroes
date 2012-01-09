@@ -37,6 +37,8 @@
         _recievedDamage = 0;
         _spriteTag = 0;
         [self setCode:@"?"];
+        
+        [player addUnit:self];
     }
     
     return self;

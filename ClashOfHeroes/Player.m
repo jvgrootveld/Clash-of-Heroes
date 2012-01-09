@@ -29,4 +29,9 @@
     return self;
 }
 
+- (void)addUnit:(Unit *)unit
+{
+    [_units addObject:unit];
+}
+
 @end
