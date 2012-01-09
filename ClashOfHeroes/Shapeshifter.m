@@ -10,7 +10,7 @@
 
 @implementation Shapeshifter
 
-- (id)initForPlayer:(GKPlayer *)player
+- (id)initForPlayer:(Player *)player withTag:(NSInteger)tag
 {
     if (self == [super initWithName:@"Shapeshifter" 
                              player:player
@@ -23,7 +23,7 @@
                            movement:3]
         )
     {
-        //Customize unit
+        [self setSpriteTag:tag];
     }
     
     return self;

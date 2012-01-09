@@ -18,7 +18,7 @@
 
 @implementation AppDelegate
 
-@synthesize window = _window;
+@synthesize window = _window, currentMatch = _currentMatch;
 
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {

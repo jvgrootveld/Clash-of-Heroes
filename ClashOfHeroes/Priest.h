@@ -10,6 +10,6 @@
 
 @interface Priest : Unit
 
-- (id)initForPlayer:(GKPlayer *)player;
+- (id)initForPlayer:(Player *)player withTag:(NSInteger)tag;
 
 @end

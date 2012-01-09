@@ -11,6 +11,8 @@
 #import "MainMenuViewController.h"
 #import "GameViewController.h"
 
+@class Match;
+
 @interface GCTurnBasedMatchHelper()
 
 - (BOOL)isGameCenterAvailable;
@@ -38,6 +40,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                      object:nil];
         }
     }
+    
     return self;
 }
 
@@ -124,8 +127,10 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     NSLog(@"did find match, %@", match);
     
     self.currentMatch = match;
+    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+    [delegate setCurrentMatch:[Match new]];
     
-    if(match.currentParticipant.lastTurnDate)
+    if(!match.currentParticipant.lastTurnDate)
     {
         [self.mainMenu presentGameView];
 
@@ -176,7 +181,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
         {
             self.currentPlayers = players;
             
-            [self.gameViewController updateLabels];           
+            //[self.gameViewController updateLabels];           
         }
     }];
 }
