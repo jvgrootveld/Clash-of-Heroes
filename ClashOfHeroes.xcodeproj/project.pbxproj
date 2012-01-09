@@ -148,6 +148,12 @@
 		F28F8A8A147E3BA1009502CC /* TestPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F28F8A89147E3BA1009502CC /* TestPlayer.m */; };
 		F29F4EA71483B6EF00D114D0 /* sprites.png in Resources */ = {isa = PBXBuildFile; fileRef = F29F4EA61483B6EF00D114D0 /* sprites.png */; };
 		F2C94EFA1490F3F300A70B1A /* tile_green.png in Resources */ = {isa = PBXBuildFile; fileRef = F2C94EF91490F3F300A70B1A /* tile_green.png */; };
+		F2FAA32A14BB280D00121AD6 /* DefaultBoardFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FAA32914BB280C00121AD6 /* DefaultBoardFactory.m */; };
+		F2FAA32E14BB2A7200121AD6 /* WarriorUnitFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FAA32D14BB2A7200121AD6 /* WarriorUnitFactory.m */; };
+		F2FAA33114BB2BEE00121AD6 /* MageUnitFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FAA33014BB2BEE00121AD6 /* MageUnitFactory.m */; };
+		F2FAA33414BB2BF800121AD6 /* RangerUnitFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FAA33314BB2BF700121AD6 /* RangerUnitFactory.m */; };
+		F2FAA33714BB2C0100121AD6 /* PriestUnitFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FAA33614BB2C0000121AD6 /* PriestUnitFactory.m */; };
+		F2FAA33A14BB2C1600121AD6 /* ShapeshifterUnitFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FAA33914BB2C1500121AD6 /* ShapeshifterUnitFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -424,6 +430,20 @@
 		F28F8A89147E3BA1009502CC /* TestPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPlayer.m; sourceTree = "<group>"; };
 		F29F4EA61483B6EF00D114D0 /* sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sprites.png; sourceTree = "<group>"; };
 		F2C94EF91490F3F300A70B1A /* tile_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile_green.png; sourceTree = "<group>"; };
+		F2FAA32614BB268D00121AD6 /* BoardFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardFactory.h; sourceTree = "<group>"; };
+		F2FAA32814BB280C00121AD6 /* DefaultBoardFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; path = DefaultBoardFactory.h; sourceTree = "<group>"; };
+		F2FAA32914BB280C00121AD6 /* DefaultBoardFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultBoardFactory.m; sourceTree = "<group>"; };
+		F2FAA32B14BB2A0200121AD6 /* UnitFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitFactory.h; sourceTree = "<group>"; };
+		F2FAA32C14BB2A7200121AD6 /* WarriorUnitFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarriorUnitFactory.h; sourceTree = "<group>"; };
+		F2FAA32D14BB2A7200121AD6 /* WarriorUnitFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarriorUnitFactory.m; sourceTree = "<group>"; };
+		F2FAA32F14BB2BED00121AD6 /* MageUnitFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MageUnitFactory.h; sourceTree = "<group>"; };
+		F2FAA33014BB2BEE00121AD6 /* MageUnitFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MageUnitFactory.m; sourceTree = "<group>"; };
+		F2FAA33214BB2BF700121AD6 /* RangerUnitFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RangerUnitFactory.h; sourceTree = "<group>"; };
+		F2FAA33314BB2BF700121AD6 /* RangerUnitFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RangerUnitFactory.m; sourceTree = "<group>"; };
+		F2FAA33514BB2C0000121AD6 /* PriestUnitFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriestUnitFactory.h; sourceTree = "<group>"; };
+		F2FAA33614BB2C0000121AD6 /* PriestUnitFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriestUnitFactory.m; sourceTree = "<group>"; };
+		F2FAA33814BB2C1500121AD6 /* ShapeshifterUnitFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShapeshifterUnitFactory.h; sourceTree = "<group>"; };
+		F2FAA33914BB2C1500121AD6 /* ShapeshifterUnitFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShapeshifterUnitFactory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -461,6 +481,20 @@
 				837F3280148E673C00C77C62 /* Priest.m */,
 				837F3282148E674D00C77C62 /* Shapeshifter.h */,
 				837F3283148E674D00C77C62 /* Shapeshifter.m */,
+				F2FAA32B14BB2A0200121AD6 /* UnitFactory.h */,
+				F2FAA32C14BB2A7200121AD6 /* WarriorUnitFactory.h */,
+				F2FAA32D14BB2A7200121AD6 /* WarriorUnitFactory.m */,
+				F2FAA32F14BB2BED00121AD6 /* MageUnitFactory.h */,
+				F2FAA33014BB2BEE00121AD6 /* MageUnitFactory.m */,
+				F2FAA33214BB2BF700121AD6 /* RangerUnitFactory.h */,
+				F2FAA33314BB2BF700121AD6 /* RangerUnitFactory.m */,
+				F2FAA33514BB2C0000121AD6 /* PriestUnitFactory.h */,
+				F2FAA33614BB2C0000121AD6 /* PriestUnitFactory.m */,
+				F2FAA33814BB2C1500121AD6 /* ShapeshifterUnitFactory.h */,
+				F2FAA33914BB2C1500121AD6 /* ShapeshifterUnitFactory.m */,
+				F2FAA32614BB268D00121AD6 /* BoardFactory.h */,
+				F2FAA32814BB280C00121AD6 /* DefaultBoardFactory.h */,
+				F2FAA32914BB280C00121AD6 /* DefaultBoardFactory.m */,
 			);
 			name = Units;
 			sourceTree = "<group>";
@@ -1102,6 +1136,12 @@
 				837F327E148E672C00C77C62 /* Ranger.m in Sources */,
 				837F3281148E673C00C77C62 /* Priest.m in Sources */,
 				837F3284148E674D00C77C62 /* Shapeshifter.m in Sources */,
+				F2FAA32A14BB280D00121AD6 /* DefaultBoardFactory.m in Sources */,
+				F2FAA32E14BB2A7200121AD6 /* WarriorUnitFactory.m in Sources */,
+				F2FAA33114BB2BEE00121AD6 /* MageUnitFactory.m in Sources */,
+				F2FAA33414BB2BF800121AD6 /* RangerUnitFactory.m in Sources */,
+				F2FAA33714BB2C0100121AD6 /* PriestUnitFactory.m in Sources */,
+				F2FAA33A14BB2C1600121AD6 /* ShapeshifterUnitFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

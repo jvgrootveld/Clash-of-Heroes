@@ -9,6 +9,7 @@
 // Import the interfaces
 #import "GameLayer.h"
 #import "TestPlayer.h"
+#import "DefaultBoardFactory.h"
 
 @interface GameLayer()
 
@@ -80,37 +81,39 @@
 //        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
 //        [self setSprite:sprite atPositionPoint:CGPointMake(14, 5) withTag:200];
         
+        [DefaultBoardFactory createBoardOnLayer:self withPlayer1:nil andPlayer2:nil];
+        
         spriteWidth = 26;
         spriteHeight = 62;
         _items = [NSMutableArray new];
         
-        CCSprite *sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
-        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
-        [_items addObject:sprite];
-        [self setSprite:sprite atPositionPoint:CGPointMake(14, 5) withTag:200];
-        
-        sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
-        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
-        [_items addObject:sprite];
-        [self setSprite:sprite atPositionPoint:CGPointMake(14, 7) withTag:201];
-        
-        sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
-        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
-        [_items addObject:sprite];
-        [self setSprite:sprite atPositionPoint:CGPointMake(12, 3) withTag:202];
-        
-        sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
-        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
-        [_items addObject:sprite];
-        [self setSprite:sprite atPositionPoint:CGPointMake(11, 5) withTag:203];
-        
-        for(int i = 0; i < 5; i++)
-        {
-            sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
-            [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
-            [_items addObject:sprite];
-            [self setSprite:sprite atPositionPoint:CGPointMake(i, i) withTag:204+i];
-        }
+//        CCSprite *sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
+//        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
+//        [_items addObject:sprite];
+//        [self setSprite:sprite atPositionPoint:CGPointMake(14, 5) withTag:200];
+//        
+//        sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
+//        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
+//        [_items addObject:sprite];
+//        [self setSprite:sprite atPositionPoint:CGPointMake(14, 7) withTag:201];
+//        
+//        sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
+//        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
+//        [_items addObject:sprite];
+//        [self setSprite:sprite atPositionPoint:CGPointMake(12, 3) withTag:202];
+//        
+//        sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
+//        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
+//        [_items addObject:sprite];
+//        [self setSprite:sprite atPositionPoint:CGPointMake(11, 5) withTag:203];
+//        
+//        for(int i = 0; i < 5; i++)
+//        {
+//            sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
+//            [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
+//            [_items addObject:sprite];
+//            [self setSprite:sprite atPositionPoint:CGPointMake(i, i) withTag:204+i];
+//        }
 //        
 //        
 //        sprite.position = ccp(100, 100);

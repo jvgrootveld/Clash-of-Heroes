@@ -121,7 +121,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 {
     [presentingViewController dismissModalViewControllerAnimated:YES];
     
-    NSLog(@"did find match, %@", match);
+//    NSLog(@"did find match, %@", match);
     
     self.currentMatch = match;
     
@@ -160,14 +160,15 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 
 - (void)loadPlayerData
 {
-    NSMutableArray *identifiers = [[NSMutableArray new] autorelease];
+    NSMutableArray *identifiers = [NSMutableArray array];
     
     for (GKTurnBasedParticipant *participant in self.currentMatch.participants)
     {
-        [identifiers addObject:participant.playerID];
+        if(participant.playerID) [identifiers addObject:participant.playerID];
     }
     
-    [GKPlayer loadPlayersForIdentifiers:identifiers withCompletionHandler:^(NSArray *players, NSError *error) {
+    [GKPlayer loadPlayersForIdentifiers:identifiers withCompletionHandler:^(NSArray *players, NSError *error) 
+    {
         if (error != nil)
         {
             NSLog(@"Error: %@", error);
@@ -176,7 +177,16 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
         {
             self.currentPlayers = players;
             
-            [self.gameViewController updateLabels];           
+//            for(GKPlayer *player in players)
+//            {
+//                NSString *playerId = player.playerID;
+//                NSArray *chunks = [playerId componentsSeparatedByString:@":"];
+//                NSLog(@"real player id: %@", [chunks lastObject]);
+//                NSLog(@"test ...... ..: %ld", NSIntegerMax);
+//            }
+           
+            
+//          [self.gameViewController updateLabels];           
         }
     }];
 }
