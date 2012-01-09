@@ -10,7 +10,7 @@
 
 @implementation Mage
 
-- (id)initForPlayer:(GKPlayer *)player
+- (id)initForPlayer:(Player *)player withTag:(NSInteger)tag
 {
     if (self == [super initWithName:@"Mage" 
                              player:player
@@ -23,7 +23,7 @@
                            movement:3]
         )
     {
-        //Customize unit
+        [self setSpriteTag:tag];
     }
     
     return self;

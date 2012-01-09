@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <GameKit/GameKit.h>
 
 @class Upgrade;
+@class Player;
 
 typedef enum
 {
@@ -25,7 +25,7 @@ typedef enum
 
 @interface Unit : NSObject
 {
-    GKPlayer *_player;
+    Player *_player;
     
 @protected
     NSString *_name;
@@ -41,15 +41,17 @@ typedef enum
     Direction _moveDirection;
     Direction _attackDirection;
     NSInteger _recievedDamage;
+    NSInteger _spriteTag;
 }
 
-@property (nonatomic, assign) GKPlayer *player;
+@property (nonatomic, assign) Player *player;
 @property (nonatomic, retain) Upgrade *upgrade;
 @property (nonatomic, assign) Direction moveDirection;
 @property (nonatomic, assign) Direction attackDirection;
 @property (nonatomic) BOOL canAttackTroughAir;
+@property (nonatomic) NSInteger spriteTag;
 
-- (id)initWithName:(NSString *)name player:(GKPlayer *)player andBaseStatsPhysicalAttackPower:(NSInteger)physicalAttackPower magicalAttackPower:(NSInteger)magicalAttackPower physicalDefense:(NSInteger)physicalDefense magicalDefense:(NSInteger)magicalDefense healthPoints:(NSInteger)healthPoints range:(NSInteger)range movement:(NSInteger)movement;
+- (id)initWithName:(NSString *)name player:(Player *)player andBaseStatsPhysicalAttackPower:(NSInteger)physicalAttackPower magicalAttackPower:(NSInteger)magicalAttackPower physicalDefense:(NSInteger)physicalDefense magicalDefense:(NSInteger)magicalDefense healthPoints:(NSInteger)healthPoints range:(NSInteger)range movement:(NSInteger)movement;
 - (NSInteger)physicalAttackPower;
 - (NSInteger)magicalAttackPower;
 - (NSInteger)physicalDefense;
@@ -58,7 +60,7 @@ typedef enum
 - (NSInteger)range;
 - (NSInteger)movement;
 
-- (BOOL)belongsToPlayer:(GKPlayer *)player;
+- (BOOL)belongsToPlayer:(Player *)player;
 - (BOOL)containsDirection:(Direction)direction InDirection:(Direction)directionList;
 - (BOOL)canMoveInDirection:(Direction)direction;
 - (BOOL)canAttackInDirection:(Direction)direction;

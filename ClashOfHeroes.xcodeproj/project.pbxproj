@@ -12,6 +12,9 @@
 		832A6BF8148E4B4000E075D1 /* warriorpin.png in Resources */ = {isa = PBXBuildFile; fileRef = 832A6BF7148E4B4000E075D1 /* warriorpin.png */; };
 		832A6C05148E5F2700E075D1 /* Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 832A6C04148E5F2700E075D1 /* Unit.m */; };
 		8350E165148D55FA00A8FD55 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8350E164148D55FA00A8FD55 /* MainWindow.xib */; };
+		83590DAC14BB0F4C00CDC50E /* Turn.m in Sources */ = {isa = PBXBuildFile; fileRef = 83590DAB14BB0F4C00CDC50E /* Turn.m */; };
+		83590DB014BB140900CDC50E /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 83590DAF14BB140900CDC50E /* Match.m */; };
+		83590DB414BB1B3A00CDC50E /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 83590DB314BB1B3A00CDC50E /* Player.m */; };
 		835B639B1483B71B00683025 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B63991483B71B00683025 /* MainMenuViewController.m */; };
 		835B639C1483B71B00683025 /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835B639A1483B71B00683025 /* MainMenuViewController.xib */; };
 		836D207F147E8B3C0022B058 /* GCTurnBasedMatchHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 836D207E147E8B3C0022B058 /* GCTurnBasedMatchHelper.m */; };
@@ -164,6 +167,12 @@
 		832A6C03148E5F2700E075D1 /* Unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
 		832A6C04148E5F2700E075D1 /* Unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unit.m; sourceTree = "<group>"; };
 		8350E164148D55FA00A8FD55 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		83590DAA14BB0F4C00CDC50E /* Turn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Turn.h; sourceTree = "<group>"; };
+		83590DAB14BB0F4C00CDC50E /* Turn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Turn.m; sourceTree = "<group>"; };
+		83590DAE14BB140900CDC50E /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
+		83590DAF14BB140900CDC50E /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
+		83590DB214BB1B3A00CDC50E /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		83590DB314BB1B3A00CDC50E /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		835B63981483B71B00683025 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		835B63991483B71B00683025 /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		835B639A1483B71B00683025 /* MainMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuViewController.xib; sourceTree = "<group>"; };
@@ -510,9 +519,22 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		83590DB114BB1B2900CDC50E /* Match */ = {
+			isa = PBXGroup;
+			children = (
+				83590DAE14BB140900CDC50E /* Match.h */,
+				83590DAF14BB140900CDC50E /* Match.m */,
+				83590DB214BB1B3A00CDC50E /* Player.h */,
+				83590DB314BB1B3A00CDC50E /* Player.m */,
+			);
+			name = Match;
+			sourceTree = "<group>";
+		};
 		836D207C147E8B230022B058 /* GameCenter */ = {
 			isa = PBXGroup;
 			children = (
+				83590DAA14BB0F4C00CDC50E /* Turn.h */,
+				83590DAB14BB0F4C00CDC50E /* Turn.m */,
 				836D207D147E8B3C0022B058 /* GCTurnBasedMatchHelper.h */,
 				836D207E147E8B3C0022B058 /* GCTurnBasedMatchHelper.m */,
 			);
@@ -555,6 +577,7 @@
 		83714761147BE0770091C992 /* ClashOfHeroes */ = {
 			isa = PBXGroup;
 			children = (
+				83590DB114BB1B2900CDC50E /* Match */,
 				837F326E148E625100C77C62 /* Upgrades */,
 				832A6C02148E5EDB00E075D1 /* Units */,
 				8350E166148D5C6600A8FD55 /* Views */,
@@ -1193,6 +1216,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ClashOfHeroes/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = ClashOfHeroes/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lz";
@@ -1210,6 +1234,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ClashOfHeroes/Prefix.pch;
 				"GCC_THUMB_SUPPORT[arch=armv6]" = "";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = ClashOfHeroes/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = "-lz";

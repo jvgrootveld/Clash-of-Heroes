@@ -8,7 +8,7 @@
 
 #import "Unit.h"
 #import "NoUpgrade.h"
-#import <GameKit/GameKit.h>
+#import "Player.h"
 
 @interface Unit(Local)
 - (NSString *)directionToString:(NSInteger)directionValue;
@@ -16,9 +16,9 @@
 
 @implementation Unit
 
-@synthesize upgrade = _upgrade, player = _player, moveDirection = _moveDirection, attackDirection = _attackDirection, canAttackTroughAir = _canAttackTroughAir;
+@synthesize upgrade = _upgrade, player = _player, moveDirection = _moveDirection, attackDirection = _attackDirection, canAttackTroughAir = _canAttackTroughAir, spriteTag = _spriteTag;
 
-- (id)initWithName:(NSString *)name player:(GKPlayer *)player andBaseStatsPhysicalAttackPower:(NSInteger)physicalAttackPower magicalAttackPower:(NSInteger)magicalAttackPower physicalDefense:(NSInteger)physicalDefense magicalDefense:(NSInteger)magicalDefense healthPoints:(NSInteger)healthPoints range:(NSInteger)range movement:(NSInteger)movement
+- (id)initWithName:(NSString *)name player:(Player *)player andBaseStatsPhysicalAttackPower:(NSInteger)physicalAttackPower magicalAttackPower:(NSInteger)magicalAttackPower physicalDefense:(NSInteger)physicalDefense magicalDefense:(NSInteger)magicalDefense healthPoints:(NSInteger)healthPoints range:(NSInteger)range movement:(NSInteger)movement
 {
     self = [super init];
     if (self) 
@@ -35,6 +35,7 @@
         _baseMovement = movement;
         _canAttackTroughAir = NO;
         _recievedDamage = 0;
+        _spriteTag = 0;
         [self setCode:@"?"];
     }
     
@@ -81,9 +82,9 @@
     _code = code;
 }
 
-- (BOOL)belongsToPlayer:(GKPlayer *)player
+- (BOOL)belongsToPlayer:(Player *)player
 {
-    return _player.playerID == player.playerID;
+    return _player == player;
 }
 
 - (BOOL)containsDirection:(Direction)direction InDirection:(Direction)directionList
@@ -136,7 +137,7 @@
 
 - (NSString *)printCode
 {
-    return [NSString stringWithFormat:@"%@(%d)", _code, _player.playerID];
+    return [NSString stringWithFormat:@"%@(%d)", _code, _player];
 }
 
 - (NSString *)directionToString:(NSInteger)directionValue
@@ -196,7 +197,7 @@
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"\nPiece: %@ \n\tPlayer: %@ \n\tGear: \t%@ \n\tP-atk: \t%d \n\tM-atk: \t%d \n\tP-def: \t%d \n\tM-def: \t%d \n\tHp: \t%d \n\tRange: \t%d \n\tMove: \t%d \n\tMove direction: %@ \n\tAttack direction: %@", _name, _player.alias, [_upgrade listOfUpgrades], [self physicalAttackPower], [self magicalAttackPower], [self physicalDefense], [self magicalDefense], [self healthPoints], [self range], [self movement], [self directionToString:_moveDirection], [self directionToString:_attackDirection]];
+    return [NSString stringWithFormat:@"\nPiece: %@ \n\tPlayer: %@ \n\tGear: \t%@ \n\tP-atk: \t%d \n\tM-atk: \t%d \n\tP-def: \t%d \n\tM-def: \t%d \n\tHp: \t%d \n\tRange: \t%d \n\tMove: \t%d \n\tMove direction: %@ \n\tAttack direction: %@", _name, _player, [_upgrade listOfUpgrades], [self physicalAttackPower], [self magicalAttackPower], [self physicalDefense], [self magicalDefense], [self healthPoints], [self range], [self movement], [self directionToString:_moveDirection], [self directionToString:_attackDirection]];
 }
 
 @end
