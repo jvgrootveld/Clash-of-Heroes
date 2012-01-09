@@ -15,7 +15,7 @@
  </layer>
  <layer name="meta" width="16" height="16" opacity="0.53">
   <properties>
-   <property name="selectable" value="true"/>
+   <property name="selectable" value="1"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJxjZGBgYCQTM1Cgd7jqRwYjUT8p4UqsOmrox+Yveuqnlf9JBZJofADETwDo

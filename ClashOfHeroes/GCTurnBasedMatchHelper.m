@@ -136,10 +136,10 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 
         [self loadPlayerData];
     }
-    else
-    {
-        [self.mainMenu presentNewGameView];
-    }
+//    else
+//    {
+//        [self.mainMenu presentNewGameView];
+//    }
 }
 
 -(void)turnBasedMatchmakerViewControllerWasCancelled: (GKTurnBasedMatchmakerViewController *)viewController

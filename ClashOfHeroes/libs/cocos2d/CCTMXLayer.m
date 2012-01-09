@@ -299,6 +299,7 @@ int compareInts (const void * a, const void * b);
 -(CCSprite*) tileAt:(CGPoint)pos
 {
 	NSAssert( pos.x < layerSize_.width && pos.y < layerSize_.height && pos.x >=0 && pos.y >=0, @"TMXLayer: invalid position");
+    
 	NSAssert( tiles_ && atlasIndexArray_, @"TMXLayer: the tiles map has been released");
 	
 	CCSprite *tile = nil;
