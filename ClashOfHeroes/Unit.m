@@ -16,12 +16,11 @@
 
 @implementation Unit
 
-@synthesize upgrade = _upgrade, player = _player, moveDirection = _moveDirection, attackDirection = _attackDirection, canAttackTroughAir = _canAttackTroughAir, spriteTag = _spriteTag;
+@synthesize upgrade = _upgrade, player = _player, moveDirection = _moveDirection, attackDirection = _attackDirection, canAttackTroughAir = _canAttackTroughAir;
 
-- (id)initWithName:(NSString *)name player:(Player *)player andBaseStatsPhysicalAttackPower:(NSInteger)physicalAttackPower magicalAttackPower:(NSInteger)magicalAttackPower physicalDefense:(NSInteger)physicalDefense magicalDefense:(NSInteger)magicalDefense healthPoints:(NSInteger)healthPoints range:(NSInteger)range movement:(NSInteger)movement
+- (id)initWithName:(NSString *)name player:(Player *)player andBaseStatsPhysicalAttackPower:(NSInteger)physicalAttackPower magicalAttackPower:(NSInteger)magicalAttackPower physicalDefense:(NSInteger)physicalDefense magicalDefense:(NSInteger)magicalDefense healthPoints:(NSInteger)healthPoints range:(NSInteger)range movement:(NSInteger)movement tag:(NSInteger)tag file:(NSString*)filename rect:(CGRect)rect
 {
-    self = [super init];
-    if (self) 
+    if (self = [super initWithFile:filename rect:rect]) 
     {
         _name = name;
         _player = player;
@@ -35,10 +34,11 @@
         _baseMovement = movement;
         _canAttackTroughAir = NO;
         _recievedDamage = 0;
-        _spriteTag = 0;
         [self setCode:@"?"];
         
         [player addUnit:self];
+        [self setTag:tag];
+        [self setAnchorPoint:ccp(0.5f, 0.0f)]; //if problem, move to individual classes like Warrior, Mage, etc.
     }
     
     return self;

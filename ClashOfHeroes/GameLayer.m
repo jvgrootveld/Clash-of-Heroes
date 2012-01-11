@@ -21,7 +21,7 @@
 // HelloWorldLayer implementation
 @implementation GameLayer
 
-@synthesize mapLayer = _mapLayer, map = _map, selectedSprite = _selectedSprite, junkLayer = _junkLayer, metaLayer = _metaLayer, gameViewController = _gameViewController, items = _items;
+@synthesize mapLayer = _mapLayer, map = _map, selectedSprite = _selectedSprite, junkLayer = _junkLayer, metaLayer = _metaLayer, gameViewController = _gameViewController, units = _units;
 
 + (CCScene *)sceneWithDelegate:(GameViewController *)delegate;
 {
@@ -84,7 +84,7 @@
         spriteWidth = 26;
         spriteHeight = 62;
         _moveSprites = [NSMutableArray new];
-        _items = [NSMutableArray new];
+        _units = [NSMutableArray new];
         
         [DefaultBoardFactory createBoardOnLayer:self withPlayer1:nil andPlayer2:nil];
         
@@ -346,7 +346,7 @@
 {
     //NSLog(@"search %d sprites", [_items count]);
     
-    for (CCSprite *element in _items) 
+    for (CCSprite *element in _units) 
     {
         if (CGRectContainsPoint(element.boundingBox, touchLocation)) 
         {
@@ -409,7 +409,7 @@
         
         for(Unit *unit in ownUnits)
         {
-            if(sprite.tag == unit.spriteTag)
+            if(sprite.tag == unit.tag)
             {
                 selectedUnit = unit;
                 NSLog(@"selected unit is yours");
@@ -420,7 +420,7 @@
         {
             for(Unit *unit in enemyUnits)
             {
-                if(sprite.tag == unit.spriteTag)
+                if(sprite.tag == unit.tag)
                 {
                     selectedUnit = unit;
                     NSLog(@"selected unit is fromt the enemy");

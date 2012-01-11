@@ -23,7 +23,7 @@ typedef enum
     BOTTOMRIGHT = 128
 }Direction;
 
-@interface Unit : NSObject
+@interface Unit : CCSprite
 {
     Player *_player;
     
@@ -41,7 +41,6 @@ typedef enum
     Direction _moveDirection;
     Direction _attackDirection;
     NSInteger _recievedDamage;
-    NSInteger _spriteTag;
 }
 
 @property (nonatomic, assign) Player *player;
@@ -49,9 +48,8 @@ typedef enum
 @property (nonatomic, assign) Direction moveDirection;
 @property (nonatomic, assign) Direction attackDirection;
 @property (nonatomic) BOOL canAttackTroughAir;
-@property (nonatomic) NSInteger spriteTag;
 
-- (id)initWithName:(NSString *)name player:(Player *)player andBaseStatsPhysicalAttackPower:(NSInteger)physicalAttackPower magicalAttackPower:(NSInteger)magicalAttackPower physicalDefense:(NSInteger)physicalDefense magicalDefense:(NSInteger)magicalDefense healthPoints:(NSInteger)healthPoints range:(NSInteger)range movement:(NSInteger)movement;
+- (id)initWithName:(NSString *)name player:(Player *)player andBaseStatsPhysicalAttackPower:(NSInteger)physicalAttackPower magicalAttackPower:(NSInteger)magicalAttackPower physicalDefense:(NSInteger)physicalDefense magicalDefense:(NSInteger)magicalDefense healthPoints:(NSInteger)healthPoints range:(NSInteger)range movement:(NSInteger)movement tag:(NSInteger)tag file:(NSString*)filename rect:(CGRect)rect;
 - (NSInteger)physicalAttackPower;
 - (NSInteger)magicalAttackPower;
 - (NSInteger)physicalDefense;

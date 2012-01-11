@@ -19,79 +19,63 @@
 @implementation DefaultBoardFactory
 
 + (void)createBoardOnLayer:(GameLayer *)layer withPlayer1:(Player *)player1 andPlayer2:(Player *)player2;
-{
-#warning handle in Player obj?
+{    
+//    CGFloat spriteWidth = 26;
+//    CGFloat spriteHeight = 62;
     
-    CGFloat spriteWidth = 26;
-    CGFloat spriteHeight = 62;
-    
-    NSInteger tag = 100;
-    NSInteger locationX = 5;
+    NSInteger tag = 100; //start tag player 1 (player 2 starts with hero at 200)
+    NSInteger locationX = 5; //start location
     
     //__hero with tag 100;
     tag++;
     
     //__WARRIOR
-    [[Warrior alloc] initForPlayer:player1 withTag:tag];
+    CCSprite *unit = [[Warrior alloc] initForPlayer:player1 withTag:tag];
     
-    CCSprite *sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
-    [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
-    [layer.items addObject:sprite];
+    [layer.units addObject:unit];
     
     //0-14
-    [layer setSprite:sprite atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
+    [layer setSprite:unit atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
     
     tag++;
     locationX++;
     
     //__MAGE
-    [[Mage alloc] initForPlayer:player1 withTag:tag];
+    unit = [[Mage alloc] initForPlayer:player1 withTag:tag];
+
+    [layer.units addObject:unit];
     
-    sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
-    [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
-    [layer.items addObject:sprite];
-    
-    //0-14
-    [layer setSprite:sprite atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
+    [layer setSprite:unit atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
     
     tag++;
     locationX++;
     
     //__RANGER
-    [[Ranger alloc] initForPlayer:player1 withTag:tag];
+    unit = [[Ranger alloc] initForPlayer:player1 withTag:tag];
     
-    sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
-    [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
-    [layer.items addObject:sprite];
+    [layer.units addObject:unit];
     
-    //0-14
-    [layer setSprite:sprite atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
+    [layer setSprite:unit atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
     
     tag++;
     locationX++;
     
     //__PRIEST
-    [[Priest alloc] initForPlayer:player1 withTag:tag];
+    unit = [[Priest alloc] initForPlayer:player1 withTag:tag];
     
-    sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
-    [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
-    [layer.items addObject:sprite];
+    [layer.units addObject:unit];
     
-    //0-14
-    [layer setSprite:sprite atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
+    [layer setSprite:unit atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
     
     tag++;
     locationX++;
     
     //__SHAPSHIFTER
-    [[Shapeshifter alloc] initForPlayer:player1 withTag:tag];
+    unit = [[Shapeshifter alloc] initForPlayer:player1 withTag:tag];
     
-    sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
-    [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
-    [layer.items addObject:sprite];
+    [layer.units addObject:unit];
     
-    //0-14
-    [layer setSprite:sprite atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
+    [layer setSprite:unit atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
     
     tag++;
     locationX++;

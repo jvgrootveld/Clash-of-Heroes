@@ -15,7 +15,7 @@
     NSMutableArray *_moveSprites;
 }
 
-@property (nonatomic, strong) NSMutableArray *items;
+@property (nonatomic, strong) NSMutableArray *units;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 + (CCScene *)sceneWithDelegate:(GameViewController *)delegate;

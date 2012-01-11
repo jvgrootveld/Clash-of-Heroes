@@ -36,7 +36,7 @@
     
     for(Unit *unit in _units)
     {
-        if(unit.spriteTag == tag)
+        if(unit.tag == tag)
         {
             returnUnit = unit;
             break;
