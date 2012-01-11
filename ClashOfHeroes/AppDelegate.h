@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Match.h"
 
 @class MainMenuViewController, GameViewController;
 
@@ -17,6 +16,5 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, strong) Match *currentMatch;
 
 @end

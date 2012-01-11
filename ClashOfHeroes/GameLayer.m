@@ -10,6 +10,9 @@
 #import "GameLayer.h"
 #import "TestPlayer.h"
 #import "DefaultBoardFactory.h"
+#import "GCTurnBasedMatchHelper.h"
+#import "Player.h"
+#import "Unit.h"
 
 @interface GameLayer()
 
@@ -18,7 +21,7 @@
 // HelloWorldLayer implementation
 @implementation GameLayer
 
-@synthesize mapLayer = _mapLayer, map = _map, selectedSprite = _selectedSprite, junkLayer = _junkLayer, metaLayer = _metaLayer, gameViewController = _gameViewController;
+@synthesize mapLayer = _mapLayer, map = _map, selectedSprite = _selectedSprite, junkLayer = _junkLayer, metaLayer = _metaLayer, gameViewController = _gameViewController, items = _items;
 
 + (CCScene *)sceneWithDelegate:(GameViewController *)delegate;
 {
@@ -70,9 +73,6 @@
         
         [self.selectedSprite setVisible:NO];
         
-        _moveSprites = [NSMutableArray new];
-        
-        
         CGFloat spriteWidth = 85;
         CGFloat spriteHeight = 121;
         
@@ -81,11 +81,12 @@
 //        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
 //        [self setSprite:sprite atPositionPoint:CGPointMake(14, 5) withTag:200];
         
-        [DefaultBoardFactory createBoardOnLayer:self withPlayer1:nil andPlayer2:nil];
-        
         spriteWidth = 26;
         spriteHeight = 62;
+        _moveSprites = [NSMutableArray new];
         _items = [NSMutableArray new];
+        
+        [DefaultBoardFactory createBoardOnLayer:self withPlayer1:nil andPlayer2:nil];
         
 //        CCSprite *sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
 //        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
@@ -398,7 +399,36 @@
 
     if(sprite)
     {
-        NSLog(@"tag: %d", sprite.tag);
+        NSLog(@"search tag: %d", sprite.tag);
+        
+        GCTurnBasedMatchHelper *gCTurnBasedMatchHelper = [GCTurnBasedMatchHelper sharedInstance];
+        NSMutableArray *ownUnits = [gCTurnBasedMatchHelper playerForLocalPlayer].units;
+        NSMutableArray *enemyUnits = [gCTurnBasedMatchHelper playerForEnemyPlayer].units;
+        
+        Unit *selectedUnit;
+        
+        for(Unit *unit in ownUnits)
+        {
+            if(sprite.tag == unit.spriteTag)
+            {
+                selectedUnit = unit;
+                NSLog(@"selected unit is yours");
+            }
+        }
+        
+        if(!selectedUnit)
+        {
+            for(Unit *unit in enemyUnits)
+            {
+                if(sprite.tag == unit.spriteTag)
+                {
+                    selectedUnit = unit;
+                    NSLog(@"selected unit is fromt the enemy");
+                }
+            }
+        }
+        
+        if(!selectedUnit) NSLog(@"No unit?");
     }
     
     //test move

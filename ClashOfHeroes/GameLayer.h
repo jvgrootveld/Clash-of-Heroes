@@ -11,10 +11,11 @@
 // GameLayer
 @interface GameLayer : CCLayer
 {
-    NSMutableArray *_items;
     CCSprite *_selectedSprite;
     NSMutableArray *_moveSprites;
 }
+
+@property (nonatomic, strong) NSMutableArray *items;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 + (CCScene *)sceneWithDelegate:(GameViewController *)delegate;

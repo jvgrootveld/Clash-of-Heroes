@@ -21,7 +21,6 @@
 + (void)createBoardOnLayer:(GameLayer *)layer withPlayer1:(Player *)player1 andPlayer2:(Player *)player2;
 {
 #warning handle in Player obj?
-    //_items = [NSMutableArray new];
     
     CGFloat spriteWidth = 26;
     CGFloat spriteHeight = 62;
@@ -37,6 +36,7 @@
     
     CCSprite *sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
     [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
+    [layer.items addObject:sprite];
     
     //0-14
     [layer setSprite:sprite atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
@@ -49,6 +49,7 @@
     
     sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
     [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
+    [layer.items addObject:sprite];
     
     //0-14
     [layer setSprite:sprite atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
@@ -61,6 +62,7 @@
     
     sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
     [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
+    [layer.items addObject:sprite];
     
     //0-14
     [layer setSprite:sprite atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
@@ -73,6 +75,7 @@
     
     sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
     [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
+    [layer.items addObject:sprite];
     
     //0-14
     [layer setSprite:sprite atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
@@ -85,6 +88,7 @@
     
     sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
     [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
+    [layer.items addObject:sprite];
     
     //0-14
     [layer setSprite:sprite atPositionPoint:CGPointMake(locationX, 14) withTag:tag];

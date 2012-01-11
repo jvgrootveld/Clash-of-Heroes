@@ -13,7 +13,6 @@
 		832A6C05148E5F2700E075D1 /* Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 832A6C04148E5F2700E075D1 /* Unit.m */; };
 		8350E165148D55FA00A8FD55 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8350E164148D55FA00A8FD55 /* MainWindow.xib */; };
 		83590DAC14BB0F4C00CDC50E /* Turn.m in Sources */ = {isa = PBXBuildFile; fileRef = 83590DAB14BB0F4C00CDC50E /* Turn.m */; };
-		83590DB014BB140900CDC50E /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 83590DAF14BB140900CDC50E /* Match.m */; };
 		83590DB414BB1B3A00CDC50E /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 83590DB314BB1B3A00CDC50E /* Player.m */; };
 		835B639B1483B71B00683025 /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 835B63991483B71B00683025 /* MainMenuViewController.m */; };
 		835B639C1483B71B00683025 /* MainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 835B639A1483B71B00683025 /* MainMenuViewController.xib */; };
@@ -164,8 +163,6 @@
 		8350E164148D55FA00A8FD55 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		83590DAA14BB0F4C00CDC50E /* Turn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Turn.h; sourceTree = "<group>"; };
 		83590DAB14BB0F4C00CDC50E /* Turn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Turn.m; sourceTree = "<group>"; };
-		83590DAE14BB140900CDC50E /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
-		83590DAF14BB140900CDC50E /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 		83590DB214BB1B3A00CDC50E /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		83590DB314BB1B3A00CDC50E /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		835B63981483B71B00683025 /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
@@ -495,8 +492,6 @@
 		83590DB114BB1B2900CDC50E /* Match */ = {
 			isa = PBXGroup;
 			children = (
-				83590DAE14BB140900CDC50E /* Match.h */,
-				83590DAF14BB140900CDC50E /* Match.m */,
 				83590DB214BB1B3A00CDC50E /* Player.h */,
 				83590DB314BB1B3A00CDC50E /* Player.m */,
 			);
@@ -1133,7 +1128,6 @@
 				837F3281148E673C00C77C62 /* Priest.m in Sources */,
 				837F3284148E674D00C77C62 /* Shapeshifter.m in Sources */,
 				83590DAC14BB0F4C00CDC50E /* Turn.m in Sources */,
-				83590DB014BB140900CDC50E /* Match.m in Sources */,
 				83590DB414BB1B3A00CDC50E /* Player.m in Sources */,
 				F2FAA32A14BB280D00121AD6 /* DefaultBoardFactory.m in Sources */,
 			);

@@ -7,11 +7,9 @@
 //
 
 #import "GCTurnBasedMatchHelper.h"
-#import "AppDelegate.h"
 #import "MainMenuViewController.h"
 #import "GameViewController.h"
-
-@class Match;
+#import "Player.h"
 
 @interface GCTurnBasedMatchHelper()
 
@@ -61,9 +59,10 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     
 }
 
-+ (GCTurnBasedMatchHelper *) sharedInstance
++ (GCTurnBasedMatchHelper *)sharedInstance
 {
-    if (!sharedHelper) {
+    if (!sharedHelper) 
+    {
         sharedHelper = [[GCTurnBasedMatchHelper alloc] init];
     }
     return sharedHelper;
@@ -91,10 +90,13 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     if (!gameCenterAvailable) return;
     
     NSLog(@"Authenticating local user...");
-    if ([GKLocalPlayer localPlayer].authenticated == NO) {     
-        [[GKLocalPlayer localPlayer] 
-         authenticateWithCompletionHandler:nil];        
-    } else {
+    
+    if ([GKLocalPlayer localPlayer].authenticated == NO)
+    {    
+        [[GKLocalPlayer localPlayer] authenticateWithCompletionHandler:nil];        
+    } 
+    else 
+    {
         NSLog(@"Already authenticated!");
     }
 }
@@ -127,8 +129,6 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 //    NSLog(@"did find match, %@", match);
     
     self.currentMatch = match;
-    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    [delegate setCurrentMatch:[Match new]];
     
     if(!match.currentParticipant.lastTurnDate)
     {
@@ -180,20 +180,39 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
         }
         if (players != nil)
         {
-            self.currentPlayers = players;
+            _currentPlayers = [NSMutableArray new];
             
-//            for(GKPlayer *player in players)
-//            {
-//                NSString *playerId = player.playerID;
-//                NSArray *chunks = [playerId componentsSeparatedByString:@":"];
-//                NSLog(@"real player id: %@", [chunks lastObject]);
-//                NSLog(@"test ...... ..: %ld", NSIntegerMax);
-//            }
-           
-            
-//          [self.gameViewController updateLabels];           
+            for(GKPlayer *gkplayer in players)
+            {
+                Player *player = [[Player alloc] initForGKPlayer:gkplayer];
+                [_currentPlayers addObject:player];
+            }        
         }
     }];
+}
+
+- (Player *)playerForLocalPlayer
+{
+    GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+    
+    for(Player *player in _currentPlayers)
+    {
+        if([player.gameCenterInfo.playerID isEqualToString:localPlayer.playerID]) return player;
+    }
+    
+    return nil;
+}
+
+- (Player *)playerForEnemyPlayer
+{
+    GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+    
+    for(Player *player in _currentPlayers)
+    {
+        if(![player.gameCenterInfo.playerID isEqualToString:localPlayer.playerID]) return player;
+    }
+    
+    return nil;
 }
 
 @end

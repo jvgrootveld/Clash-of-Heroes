@@ -19,5 +19,6 @@
 
 - (id)initForGKPlayer:(GKPlayer *)player;
 - (void)addUnit:(Unit *)unit;
+- (Unit *)unitForTag:(NSInteger)tag;
 
 @end
