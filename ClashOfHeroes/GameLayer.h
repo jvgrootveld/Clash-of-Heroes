@@ -7,6 +7,10 @@
 //
 
 @class GameViewController;
+@class MovementPhase;
+@class CombatPhase;
+
+#import "Phase.h"
 
 // GameLayer
 @interface GameLayer : CCLayer
@@ -43,5 +47,9 @@
 @property (nonatomic, retain) CCTMXLayer *metaLayer;
 @property (nonatomic, retain) CCSprite *selectedSprite;
 @property (nonatomic, retain) GameViewController *gameViewController;
+
+@property (nonatomic, assign) id<Phase> currentPhase;
+@property (nonatomic, assign) id<Phase> movementPhase;
+@property (nonatomic, assign) id<Phase> combatPhase;
 
 @end

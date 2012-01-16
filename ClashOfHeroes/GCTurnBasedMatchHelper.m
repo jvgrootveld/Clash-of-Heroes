@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "MainMenuViewController.h"
 #import "GameViewController.h"
+#import "Turn.h"
 
 @class Match;
 
@@ -52,6 +53,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     if ([GKLocalPlayer localPlayer].isAuthenticated && 
         !userAuthenticated) {
         NSLog(@"Authentication changed: player authenticated.");
+        [self.mainMenu.startButton setEnabled:YES];
         userAuthenticated = TRUE;           
     } else if (![GKLocalPlayer localPlayer].isAuthenticated && 
                userAuthenticated) {
@@ -124,11 +126,16 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 {
     [presentingViewController dismissModalViewControllerAnimated:YES];
     
-//    NSLog(@"did find match, %@", match);
+    NSLog(@"Matchdata (%d bytes): %@", match.matchData.length, match.matchData);
+    NSError* error = nil;
+    NSPropertyListFormat plf = NSPropertyListMutableContainersAndLeaves;
+    NSMutableDictionary *lastTurnDict =
+    [NSPropertyListSerialization propertyListWithData:match.matchData options:NSPropertyListMutableContainersAndLeaves format:&plf error:&error];
+    
+    Turn *lastTurn = [[Turn alloc] initWithDictionary:lastTurnDict];
+    NSLog(@"Matchdata (turn): %@", lastTurn);
     
     self.currentMatch = match;
-    AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
-    [delegate setCurrentMatch:[Match new]];
     
     if(!match.currentParticipant.lastTurnDate)
     {
@@ -136,10 +143,10 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 
         [self loadPlayerData];
     }
-//    else
-//    {
-//        [self.mainMenu presentNewGameView];
-//    }
+    else
+    {
+        [self.mainMenu presentNewGameView];
+    }
 }
 
 -(void)turnBasedMatchmakerViewControllerWasCancelled: (GKTurnBasedMatchmakerViewController *)viewController
@@ -194,6 +201,25 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 //          [self.gameViewController updateLabels];           
         }
     }];
+}
+
+#pragma mark - Turns
+
+- (void)endTurn:(Turn *)turn
+{   
+    NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:[turn toDictionary]];
+    
+    NSLog(@"data size: %d bytes.", compressedData.length);
+    
+    NSUInteger currentIndex = [self.currentMatch.participants indexOfObject:self.currentMatch.currentParticipant];
+    
+    GKTurnBasedParticipant *nextParticipant;
+    nextParticipant = [self.currentMatch.participants objectAtIndex:((currentIndex + 1) % [self.currentMatch.participants count ])];
+    [currentMatch endTurnWithNextParticipant:nextParticipant matchData:compressedData completionHandler:^(NSError *error) {
+                                       if (error) {
+                                           NSLog(@"%@", error);
+                                       }
+                                   }];
 }
 
 @end

@@ -8,8 +8,11 @@
 
 // Import the interfaces
 #import "GameLayer.h"
+#import "GameViewController.h"
 #import "TestPlayer.h"
 #import "DefaultBoardFactory.h"
+#import "MovementPhase.h"
+#import "CombatPhase.h"
 
 @interface GameLayer()
 
@@ -18,7 +21,7 @@
 // HelloWorldLayer implementation
 @implementation GameLayer
 
-@synthesize mapLayer = _mapLayer, map = _map, selectedSprite = _selectedSprite, junkLayer = _junkLayer, metaLayer = _metaLayer, gameViewController = _gameViewController;
+@synthesize mapLayer = _mapLayer, map = _map, selectedSprite = _selectedSprite, junkLayer = _junkLayer, metaLayer = _metaLayer, gameViewController = _gameViewController, currentPhase = _currentPhase, combatPhase = _combatPhase, movementPhase = _movementPhase;
 
 + (CCScene *)sceneWithDelegate:(GameViewController *)delegate;
 {
@@ -28,6 +31,7 @@
 	// 'layer' is an autorelease object.
 	GameLayer *layer = [GameLayer node];
     [layer setGameViewController:delegate];
+    [delegate setGameLayer:layer];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
@@ -150,6 +154,10 @@
         
 	}
     
+    [self setCurrentPhase:[MovementPhase new]];
+    [self setMovementPhase:[MovementPhase new]];
+    [self setCombatPhase:[CombatPhase new]];
+    
 	return self;
 }
 
@@ -159,6 +167,7 @@
     
     unsigned int tileGID = [self.metaLayer tileGIDAt:tilePos];
     NSLog(@"tileGID: %d", tileGID);
+    NSLog(@"(isTilePosBlocked) currentPhase: %@", self.currentPhase);
     
     if(tileGID > 0)
     {

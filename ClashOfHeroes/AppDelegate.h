@@ -17,6 +17,5 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, strong) Match *currentMatch;
 
 @end

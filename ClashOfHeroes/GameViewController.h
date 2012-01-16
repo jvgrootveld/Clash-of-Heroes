@@ -9,15 +9,17 @@
 #import <UIKit/UIKit.h>
 
 @class EAGLView;
+@class GameLayer;
 
-
-@interface GameViewController : UIViewController {
-
-}
+@interface GameViewController : UIViewController <UIAlertViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UILabel *playerOneLabel;
 @property (retain, nonatomic) IBOutlet UILabel *playerTwoLabel;
+@property (retain, nonatomic) IBOutlet UILabel *phaseLabel;
+@property (nonatomic, strong) GameLayer *gameLayer;
 
 - (void)updateLabels;
+- (IBAction)endTurn:(id)sender;
+- (IBAction)endPhase:(id)sender;
 
 @end
