@@ -51,4 +51,8 @@
 @property (nonatomic, retain) CCSprite *selectedSprite;
 @property (nonatomic, retain) GameViewController *gameViewController;
 
+@property (nonatomic, assign) id<Phase> currentPhase;
+@property (nonatomic, assign) id<Phase> movementPhase;
+@property (nonatomic, assign) id<Phase> combatPhase;
+
 @end

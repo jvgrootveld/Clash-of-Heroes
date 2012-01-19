@@ -12,17 +12,23 @@
 //
 
 #import <GameKit/GameKit.h>
-
 #import "cocos2d.h"
-
 #import "GameViewController.h"
 #import "GameConfig.h"
 #import "GameLayer.h"
 #import "GCTurnBasedMatchHelper.h"
+#import "Turn.h"
+
+#import "Phase.h"
+#import "MovementPhase.h"
+#import "CombatPhase.h"
 
 @implementation GameViewController
 @synthesize playerOneLabel;
 @synthesize playerTwoLabel;
+@synthesize phaseLabel;
+@synthesize movesLabel;
+@synthesize gameLayer = _gameLayer;
 
 - (void)setupCocos2D 
 {
@@ -43,6 +49,10 @@
     
     [playerOneLabel setText:playerOne.alias];
     [playerTwoLabel setText:playerTwo.alias];
+    
+    [phaseLabel setText:[self.gameLayer.currentPhase description]];
+    [movesLabel setText:[NSString stringWithFormat:@"Remaining moves: %d", self.gameLayer.currentPhase.remainingMoves]];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -57,6 +67,7 @@
     [self setupCocos2D];
     
     [[GCTurnBasedMatchHelper sharedInstance] setGameViewController:self];
+    [self updateLabels];
 }
 
 
@@ -71,6 +82,8 @@
 - (void)viewDidUnload {
     [self setPlayerOneLabel:nil];
     [self setPlayerTwoLabel:nil];
+    [self setPhaseLabel:nil];
+    [self setMovesLabel:nil];
     [super viewDidUnload];
     
     [[CCDirector sharedDirector] end];
@@ -80,6 +93,8 @@
 - (void)dealloc {
     [playerOneLabel release];
     [playerTwoLabel release];
+    [phaseLabel release];
+    [movesLabel release];
     [super dealloc];
 }
 

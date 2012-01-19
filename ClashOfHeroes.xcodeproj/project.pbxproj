@@ -144,6 +144,8 @@
 		837F327E148E672C00C77C62 /* Ranger.m in Sources */ = {isa = PBXBuildFile; fileRef = 837F327D148E672C00C77C62 /* Ranger.m */; };
 		837F3281148E673C00C77C62 /* Priest.m in Sources */ = {isa = PBXBuildFile; fileRef = 837F3280148E673C00C77C62 /* Priest.m */; };
 		837F3284148E674D00C77C62 /* Shapeshifter.m in Sources */ = {isa = PBXBuildFile; fileRef = 837F3283148E674D00C77C62 /* Shapeshifter.m */; };
+		83C8A9FE14C43BD600182C89 /* MovementPhase.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C8A9FD14C43BD600182C89 /* MovementPhase.m */; };
+		83C8AA0114C43E3D00182C89 /* CombatPhase.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C8AA0014C43E3D00182C89 /* CombatPhase.m */; };
 		83EF3417148D032B0076EBA9 /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83EF3416148D032B0076EBA9 /* GameViewController.xib */; };
 		F20BA746147C2F8600654467 /* grossini_dance_atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = F20BA745147C2F8600654467 /* grossini_dance_atlas.png */; };
 		F23FA7FA147E8C04004AE3A3 /* grossini_dance_01.png in Resources */ = {isa = PBXBuildFile; fileRef = F23FA7F9147E8C04004AE3A3 /* grossini_dance_01.png */; };
@@ -424,6 +426,11 @@
 		837F3280148E673C00C77C62 /* Priest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Priest.m; sourceTree = "<group>"; };
 		837F3282148E674D00C77C62 /* Shapeshifter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shapeshifter.h; sourceTree = "<group>"; };
 		837F3283148E674D00C77C62 /* Shapeshifter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shapeshifter.m; sourceTree = "<group>"; };
+		83C8A9F914C43A1400182C89 /* Phase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phase.h; sourceTree = "<group>"; };
+		83C8A9FC14C43BD600182C89 /* MovementPhase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovementPhase.h; sourceTree = "<group>"; };
+		83C8A9FD14C43BD600182C89 /* MovementPhase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovementPhase.m; sourceTree = "<group>"; };
+		83C8A9FF14C43E3D00182C89 /* CombatPhase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CombatPhase.h; sourceTree = "<group>"; };
+		83C8AA0014C43E3D00182C89 /* CombatPhase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombatPhase.m; sourceTree = "<group>"; };
 		83EF3416148D032B0076EBA9 /* GameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
 		F20BA745147C2F8600654467 /* grossini_dance_atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grossini_dance_atlas.png; sourceTree = "<group>"; };
 		F23FA7F9147E8C04004AE3A3 /* grossini_dance_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grossini_dance_01.png; sourceTree = "<group>"; };
@@ -545,6 +552,7 @@
 		83714761147BE0770091C992 /* ClashOfHeroes */ = {
 			isa = PBXGroup;
 			children = (
+				83C8A9F714C439F700182C89 /* Phases */,
 				83590DB114BB1B2900CDC50E /* Match */,
 				837F326E148E625100C77C62 /* Upgrades */,
 				832A6C02148E5EDB00E075D1 /* Units */,
@@ -934,6 +942,18 @@
 			name = Upgrades;
 			sourceTree = "<group>";
 		};
+		83C8A9F714C439F700182C89 /* Phases */ = {
+			isa = PBXGroup;
+			children = (
+				83C8A9F914C43A1400182C89 /* Phase.h */,
+				83C8A9FC14C43BD600182C89 /* MovementPhase.h */,
+				83C8A9FD14C43BD600182C89 /* MovementPhase.m */,
+				83C8A9FF14C43E3D00182C89 /* CombatPhase.h */,
+				83C8AA0014C43E3D00182C89 /* CombatPhase.m */,
+			);
+			name = Phases;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1130,6 +1150,8 @@
 				83590DAC14BB0F4C00CDC50E /* Turn.m in Sources */,
 				83590DB414BB1B3A00CDC50E /* Player.m in Sources */,
 				F2FAA32A14BB280D00121AD6 /* DefaultBoardFactory.m in Sources */,
+				83C8A9FE14C43BD600182C89 /* MovementPhase.m in Sources */,
+				83C8AA0114C43E3D00182C89 /* CombatPhase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

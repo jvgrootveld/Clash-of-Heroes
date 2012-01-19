@@ -12,6 +12,7 @@
 @class MainMenuViewController;
 @class GameViewController;
 @class Player;
+@class Turn;
 
 @interface GCTurnBasedMatchHelper : NSObject <GKTurnBasedMatchmakerViewControllerDelegate> {
     BOOL gameCenterAvailable;
@@ -31,5 +32,6 @@
 - (void)loadPlayerData;
 - (Player *)playerForLocalPlayer;
 - (Player *)playerForEnemyPlayer;
+- (void)endTurn:(Turn *)turn;
 
 @end

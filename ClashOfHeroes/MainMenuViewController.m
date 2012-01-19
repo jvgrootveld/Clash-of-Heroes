@@ -57,7 +57,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [[GCTurnBasedMatchHelper sharedInstance] setMainMenu:self];
 }
 
 - (void)viewDidUnload
@@ -93,7 +94,6 @@
 
 - (IBAction)startGameButtonClicked:(id)sender
 {
-    [[GCTurnBasedMatchHelper sharedInstance] setMainMenu:self];
     [[GCTurnBasedMatchHelper sharedInstance] findMatchWithMinPlayers:2 maxPlayers:2 viewController:self];
 }
 @end

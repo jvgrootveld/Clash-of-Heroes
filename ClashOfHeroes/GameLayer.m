@@ -8,6 +8,7 @@
 
 // Import the interfaces
 #import "GameLayer.h"
+#import "GameViewController.h"
 #import "TestPlayer.h"
 #import "GCTurnBasedMatchHelper.h"
 #import "Player.h"
@@ -18,10 +19,9 @@
 
 @end
 
-// HelloWorldLayer implementation
 @implementation GameLayer
 
-@synthesize mapLayer = _mapLayer, map = _map, selectedSprite = _selectedSprite, junkLayer = _junkLayer, metaLayer = _metaLayer, gameViewController = _gameViewController, units = _units;
+@synthesize mapLayer = _mapLayer, map = _map, selectedSprite = _selectedSprite, junkLayer = _junkLayer, metaLayer = _metaLayer, gameViewController = _gameViewController, units = _units, currentPhase = _currentPhase, combatPhase = _combatPhase, movementPhase = _movementPhase;
 
 + (CCScene *)sceneWithDelegate:(GameViewController *)delegate;
 {
@@ -31,6 +31,7 @@
 	// 'layer' is an autorelease object.
 	GameLayer *layer = [GameLayer node];
     [layer setGameViewController:delegate];
+    [delegate setGameLayer:layer];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
@@ -156,6 +157,10 @@
 //        CCArray* men = [batch children];
 //        CCNode* node = [men objectAtIndex:0];
 	}
+    
+    [self setCurrentPhase:[MovementPhase new]];
+    [self setMovementPhase:[MovementPhase new]];
+    [self setCombatPhase:[CombatPhase new]];
     
 	return self;
 }
