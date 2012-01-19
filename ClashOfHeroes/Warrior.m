@@ -10,7 +10,7 @@
 
 @implementation Warrior
 
-#define spriteLocation CGRectMake(10, 10, 26, 62)
+#define spriteLocation CGRectMake(13, 472, 26, 62)
 
 - (id)initForPlayer:(Player *)player withTag:(NSInteger)tag
 {
@@ -28,7 +28,8 @@
                                rect:spriteLocation]
         )
     {
-        
+        [self setMoveDirection: FORWARD | LEFT | RIGHT | FORWARDLEFT | FORWARDRIGHT];
+        [self setAttackDirection: FORWARD | LEFT | RIGHT];
     }
     
     return self;

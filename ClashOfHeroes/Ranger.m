@@ -10,7 +10,7 @@
 
 @implementation Ranger
 
-#define spriteLocation CGRectMake(10, 10, 26, 62)
+#define spriteLocation CGRectMake(423, 755, 26, 62)
 
 - (id)initForPlayer:(Player *)player withTag:(NSInteger)tag
 {
@@ -28,7 +28,8 @@
                                rect:spriteLocation]
         )
     {
-
+        [self setMoveDirection: FORWARD | LEFT | RIGHT];
+        [self setAttackDirection: FORWARD | LEFT | RIGHT];
     }
     
     return self;

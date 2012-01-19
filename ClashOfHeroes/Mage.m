@@ -10,7 +10,7 @@
 
 @implementation Mage
 
-#define spriteLocation CGRectMake(10, 10, 26, 62)
+#define spriteLocation CGRectMake(215, 482, 26, 52)
 
 - (id)initForPlayer:(Player *)player withTag:(NSInteger)tag
 {
@@ -28,7 +28,8 @@
                                rect:spriteLocation]
         )
     {
-
+        [self setMoveDirection: FORWARD | LEFT | RIGHT];
+        [self setAttackDirection: FORWARD | LEFT | RIGHT];
     }
     
     return self;

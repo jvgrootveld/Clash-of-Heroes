@@ -46,17 +46,16 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 
 - (void)authenticationChanged
 {    
-    
-    if ([GKLocalPlayer localPlayer].isAuthenticated && 
-        !userAuthenticated) {
+    if ([GKLocalPlayer localPlayer].isAuthenticated && !userAuthenticated) 
+    {
         NSLog(@"Authentication changed: player authenticated.");
         userAuthenticated = TRUE;           
-    } else if (![GKLocalPlayer localPlayer].isAuthenticated && 
-               userAuthenticated) {
+    } 
+    else if (![GKLocalPlayer localPlayer].isAuthenticated && userAuthenticated) 
+    {
         NSLog(@"Authentication changed: player not authenticated");
         userAuthenticated = FALSE;
     }
-    
 }
 
 + (GCTurnBasedMatchHelper *)sharedInstance
@@ -86,7 +85,6 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 
 - (void)authenticateLocalUser
 { 
-    
     if (!gameCenterAvailable) return;
     
     NSLog(@"Authenticating local user...");
@@ -132,8 +130,6 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     
     if(!match.currentParticipant.lastTurnDate)
     {
-        [self.mainMenu presentGameView];
-
         [self loadPlayerData];
     }
 //    else
@@ -174,20 +170,23 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     
     [GKPlayer loadPlayersForIdentifiers:identifiers withCompletionHandler:^(NSArray *players, NSError *error) 
     {
-        if (error != nil)
+        if (error)
         {
             NSLog(@"Error: %@", error);
         }
-        if (players != nil)
+        
+        if (players)
         {
             _currentPlayers = [NSMutableArray new];
             
             for(GKPlayer *gkplayer in players)
             {
                 Player *player = [[Player alloc] initForGKPlayer:gkplayer];
+                NSLog(@"add player %@", player);
                 [_currentPlayers addObject:player];
             }        
         }
+                [self.mainMenu presentGameView];
     }];
 }
 

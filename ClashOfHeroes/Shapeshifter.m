@@ -10,7 +10,7 @@
 
 @implementation Shapeshifter
 
-#define spriteLocation CGRectMake(10, 10, 26, 62)
+#define spriteLocation CGRectMake(633, 477, 26, 62)
 
 - (id)initForPlayer:(Player *)player withTag:(NSInteger)tag
 {
@@ -24,11 +24,12 @@
                               range:3
                            movement:3
                                 tag:tag
-                               file:@"sprites.png" 
+                               file:@"sprites.png"
                                rect:spriteLocation]
         )
     {
-
+        [self setMoveDirection: FORWARD | LEFT | RIGHT];
+        [self setAttackDirection: FORWARD | LEFT | RIGHT];
     }
     
     return self;

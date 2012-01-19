@@ -9,6 +9,8 @@
 #import "Unit.h"
 #import "NoUpgrade.h"
 #import "Player.h"
+#import "GameLayer.h"
+#import <GameKit/GameKit.h>
 
 @interface Unit(Local)
 - (NSString *)directionToString:(NSInteger)directionValue;
@@ -16,7 +18,7 @@
 
 @implementation Unit
 
-@synthesize upgrade = _upgrade, player = _player, moveDirection = _moveDirection, attackDirection = _attackDirection, canAttackTroughAir = _canAttackTroughAir;
+@synthesize name = _name, upgrade = _upgrade, player = _player, moveDirection = _moveDirection, attackDirection = _attackDirection, canAttackTroughAir = _canAttackTroughAir;
 
 - (id)initWithName:(NSString *)name player:(Player *)player andBaseStatsPhysicalAttackPower:(NSInteger)physicalAttackPower magicalAttackPower:(NSInteger)magicalAttackPower physicalDefense:(NSInteger)physicalDefense magicalDefense:(NSInteger)magicalDefense healthPoints:(NSInteger)healthPoints range:(NSInteger)range movement:(NSInteger)movement tag:(NSInteger)tag file:(NSString*)filename rect:(CGRect)rect
 {
@@ -118,6 +120,120 @@
     return [self containsDirection:direction InDirection:self.attackDirection];
 }
 
+- (NSMutableArray *)pointsWhichCanBeMovedAtWithTouchPositionPoint:(CGPoint)positionPoint inLayer:(GameLayer *)layer
+{
+    NSMutableArray *returnArray = [NSMutableArray new];
+    
+    const int mapBoundaryX = [layer mapBoundaryX];
+    const int mapBoundaryY = [layer mapBoundaryY];
+    const int positionX = positionPoint.x;
+    const int positionY = positionPoint.y;
+    int newY, newX;
+    
+    int i = 0;
+    
+    NSInteger _range = self.range;
+    
+    if([self containsDirection:FORWARD InDirection:self.moveDirection])
+    {
+         for(i = 1; i <= _range; i++)
+         {
+             newY = positionY - i;
+             
+             if(newY >= 0) [returnArray addObject:[NSValue valueWithCGPoint:CGPointMake(positionX, newY)]];
+             else break;
+         }
+        
+    }
+    
+    if([self containsDirection:BACKWARD InDirection:self.moveDirection])
+    {
+        for(i = 1; i <= _range; i++)
+        {
+            newY = positionY + i;
+            
+            if(newY <= mapBoundaryY) [returnArray addObject:[NSValue valueWithCGPoint:CGPointMake(positionX, newY)]];
+            else break;
+        }
+    }
+    
+    if([self containsDirection:LEFT InDirection:self.moveDirection])
+    {
+        for(i = 1; i <= _range; i++)
+        {
+            newX = positionX - i;
+            
+            if(newX >= 0) [returnArray addObject:[NSValue valueWithCGPoint:CGPointMake(newX, positionY)]];
+            else break;
+        }
+    }
+    
+    if([self containsDirection:RIGHT InDirection:self.moveDirection])
+    {
+        for(i = 1; i <= _range; i++)
+        {
+            newX = positionX + i;
+            
+            if(newX <= mapBoundaryX) [returnArray addObject:[NSValue valueWithCGPoint:CGPointMake(newX, positionY)]];
+            else break;
+        }
+    }
+    
+    if([self containsDirection:FORWARDLEFT InDirection:self.moveDirection])
+    {
+        for(i = 1; i <= _range; i++)
+        {
+            newX = positionX - i;
+            newY = positionY - i;
+            
+            if(newX >= 0 && newY >= 0) [returnArray addObject:[NSValue valueWithCGPoint:CGPointMake(newX, newY)]];
+            else break;
+        }
+    }
+    
+    if([self containsDirection:FORWARDRIGHT InDirection:self.moveDirection])
+    {
+        for(i = 1; i <= _range; i++)
+        {
+            newX = positionX + i;
+            newY = positionY - i;
+            
+            if(newX <= mapBoundaryX && newY >= 0) [returnArray addObject:[NSValue valueWithCGPoint:CGPointMake(newX, newY)]];
+            else break;
+        }
+    }
+    
+    if([self containsDirection:BACKWARDLEFT InDirection:self.moveDirection])
+    {
+        for(i = 1; i <= _range; i++)
+        {
+            newX = positionX - i;
+            newY = positionY + i;
+            
+            if(newX >= 0 && newY <= mapBoundaryY) [returnArray addObject:[NSValue valueWithCGPoint:CGPointMake(newX, newY)]];
+            else break;
+        }
+    }
+    
+    if([self containsDirection:BACKWARDRIGHT InDirection:self.moveDirection])
+    {
+        for(i = 1; i <= _range; i++)
+        {
+            newX = positionX + i;
+            newY = positionY + i;
+            
+            if(newX <= mapBoundaryX && newY <= mapBoundaryY) [returnArray addObject:[NSValue valueWithCGPoint:CGPointMake(newX, newY)]];
+            else break;
+        }
+    }
+    
+      //Return CGPoint from array
+//    NSValue *val = [points objectAtIndex:0];
+//    CGPoint p = [val CGPointValue];
+    
+    return returnArray;
+}
+
 #pragma mark - Attacking methods
 
 - (BOOL)recieveDamage:(NSInteger)damage
@@ -152,22 +268,22 @@
     {
         if(directionValue >= 128)
         {
-            output = [output stringByAppendingString:@"BOTTOMRIGHT, "];
+            output = [output stringByAppendingString:@"BACKWARDRIGHT, "];
             directionValue -= 128;
         }
         if(directionValue >= 64)
         {
-            output = [output stringByAppendingString:@"BOTTOMLEFT, "];
+            output = [output stringByAppendingString:@"BACKWARDLEFT, "];
             directionValue -= 64;
         }
         if(directionValue >= 32)
         {
-            output = [output stringByAppendingString:@"TOPRIGHT, "];
+            output = [output stringByAppendingString:@"FORWARDRIGHT, "];
             directionValue -= 32;
         }
         if(directionValue >= 16)
         {
-            output = [output stringByAppendingString:@"TOPLEFT, "];
+            output = [output stringByAppendingString:@"FORWARDLEFT, "];
             directionValue -= 16;
         }
         if(directionValue >= 8)
@@ -182,12 +298,12 @@
         }
         if(directionValue >= 2)
         {
-            output = [output stringByAppendingString:@"BOTTOM, "];
+            output = [output stringByAppendingString:@"BACKWARD, "];
             directionValue -= 2;
         }
         if(directionValue >= 1)
         {
-            output = [output stringByAppendingString:@"TOP, "];
+            output = [output stringByAppendingString:@"FORWARD, "];
             directionValue -= 1;
         }
     }

@@ -7,6 +7,7 @@
 //
 
 @class GameViewController;
+@class Unit;
 
 // GameLayer
 @interface GameLayer : CCLayer
@@ -25,18 +26,23 @@
 - (void)setSprite:(CCSprite *)sprite atPositionPoint:(CGPoint)position withTag:(NSInteger)tag;
 
 - (void)showSelectionTileAtLocation:(CGPoint)location;
-
 /** position like: 0-0, 12-4, etc NOT pixels */
 - (void)showSelectionTileAtPositionPoint:(CGPoint)position;
 
 /** position like: 0-0, 12-4, etc NOT pixels */
 - (void)showMoveTileAtPositionPoint:(CGPoint)position;
+- (void)showMoveTileAtPositionPoints:(NSArray *)positions;
 
 /** This function gets the specific tile and move the sprite*/
 - (void)moveSprite:(CCSprite *)sprite toTileLocation:(CGPoint)tileLocation;
 
+- (CGFloat)mapBoundaryX;
+- (CGFloat)mapBoundaryY;
 
 - (CCSprite *)selectSpriteForTouch:(CGPoint)touchLocation;
+
+- (Unit *)isFriendlyUnitWithSprite:(CCSprite *)sprite;
+- (Unit *)isEnemyUnitWithSprite:(CCSprite *)sprite;
 
 @property (nonatomic, retain) CCTMXTiledMap *map;
 @property (nonatomic, retain) CCTMXLayer *mapLayer;

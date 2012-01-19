@@ -9,10 +9,10 @@
 // Import the interfaces
 #import "GameLayer.h"
 #import "TestPlayer.h"
-#import "DefaultBoardFactory.h"
 #import "GCTurnBasedMatchHelper.h"
 #import "Player.h"
 #import "Unit.h"
+#import "DefaultBoardFactory.h"
 
 @interface GameLayer()
 
@@ -86,7 +86,14 @@
         _moveSprites = [NSMutableArray new];
         _units = [NSMutableArray new];
         
-        [DefaultBoardFactory createBoardOnLayer:self withPlayer1:nil andPlayer2:nil];
+        GCTurnBasedMatchHelper *gCTurnBasedMatchHelper = [GCTurnBasedMatchHelper sharedInstance];
+        Player *player1 = [gCTurnBasedMatchHelper playerForLocalPlayer];
+        Player *player2 = [gCTurnBasedMatchHelper playerForEnemyPlayer];
+        
+//        NSLog(@"player 1: %@", player1);
+//        NSLog(@"player 2: %@", player2);
+        
+        [DefaultBoardFactory createBoardOnLayer:self withPlayer1:player1 andPlayer2:player2];
         
 //        CCSprite *sprite = [CCSprite spriteWithFile:@"sprites.png" rect:CGRectMake(10, 10, spriteWidth, spriteHeight)];
 //        [sprite setAnchorPoint:ccp(0.5f, 0.0f)];
@@ -148,7 +155,6 @@
 //        
 //        CCArray* men = [batch children];
 //        CCNode* node = [men objectAtIndex:0];
-        
 	}
     
 	return self;
@@ -156,14 +162,15 @@
 
 - (BOOL)isTilePosBlocked:(CGPoint)tilePos
 {
-    BOOL isBlocked = YES;
-    
     unsigned int tileGID = [self.metaLayer tileGIDAt:tilePos];
-    NSLog(@"tileGID: %d", tileGID);
+    //NSLog(@"tileGID: %d", tileGID);
     
-    if(tileGID > 0)
+    //outside, water or grass   =  0
+    //weird left tile           = 25
+    //good                      =  1
+    if(tileGID != 1)
     {
-        return NO;
+        return YES;
 //        NSDictionary *tileProperties = [self.map propertiesForGID:tileGID];
 //        NSLog(@"tileProperties: %@", tileProperties);
 //        id selectable = [tileProperties objectForKey:@"selectable"];
@@ -171,7 +178,7 @@
 //        isBlocked = (selectable == nil);
     }
     
-    return isBlocked;
+    return NO;
 }
 
 - (void)showSelectionTileAtLocation:(CGPoint)location
@@ -187,7 +194,7 @@
     {
         if(![self isTilePosBlocked:position])
         {
-            NSLog(@"Touch at tile: %@", NSStringFromCGPoint(position));
+            NSLog(@"Show selection tile at: %@", NSStringFromCGPoint(position));
             
             CGPoint pos = [[self.metaLayer tileAt:position] position];
             
@@ -204,12 +211,14 @@
         }
         else
         {
-            NSLog(@"showSelectionTileAtPositionPoint: tile blocked: %@", NSStringFromCGPoint(position));
+            [self.selectedSprite setVisible:NO];
+            NSLog(@"Show selection tile at: tile blocked: %@", NSStringFromCGPoint(position));
         }
     }
     else
     {
-        NSLog(@"showSelectionTileAtPositionPoint: invalid position: %@", NSStringFromCGPoint(position));
+        [self.selectedSprite setVisible:NO];
+        NSLog(@"Show selection tile at: invalid position: %@", NSStringFromCGPoint(position));
     }
 }
 
@@ -235,12 +244,25 @@
         }
         else
         {
-            NSLog(@"showMoveTileAtPositionPoint: tile blocked: %@", NSStringFromCGPoint(position));
+            NSLog(@"Show move tile at: tile blocked: %@", NSStringFromCGPoint(position));
         }
     }
     else
     {
-        NSLog(@"showMoveTileAtPositionPoint: invalid position: %@", NSStringFromCGPoint(position));
+        NSLog(@"Show move tile at: invalid position: %@", NSStringFromCGPoint(position));
+    }
+}
+
+- (void)showMoveTileAtPositionPoints:(NSArray *)positions
+{
+    if(_moveSprites && _moveSprites.count > 0)
+        for(CCSprite *moveSprite in _moveSprites) 
+            [self.map removeChild:moveSprite cleanup:YES];
+    
+    for(NSValue *pointValue in positions)
+    {
+        CGPoint movePoint = [pointValue CGPointValue];
+        [self showMoveTileAtPositionPoint:movePoint];
     }
 }
 
@@ -319,6 +341,16 @@
     }
 }
 
+- (CGFloat)mapBoundaryX
+{
+    return (self.mapLayer.layerSize.width - 2);
+}
+
+- (CGFloat)mapBoundaryY
+{
+     return (self.mapLayer.layerSize.height - 2);
+}
+
 - (CGPoint)tilePosFromLocation:(CGPoint)location tileMap:(CCTMXTiledMap*)tileMap
 {	
     CGPoint pos = ccpSub(location, tileMap.position);
@@ -360,6 +392,32 @@
     return nil;
 }
 
+- (Unit *)isFriendlyUnitWithSprite:(CCSprite *)sprite
+{
+    GCTurnBasedMatchHelper *gCTurnBasedMatchHelper = [GCTurnBasedMatchHelper sharedInstance];
+    NSMutableArray *ownUnits = [gCTurnBasedMatchHelper playerForLocalPlayer].units;
+    
+    for(Unit *unit in ownUnits)
+    {
+        if(sprite.tag == unit.tag) return unit;
+    }
+    
+    return nil;
+}
+
+- (Unit *)isEnemyUnitWithSprite:(CCSprite *)sprite
+{
+    GCTurnBasedMatchHelper *gCTurnBasedMatchHelper = [GCTurnBasedMatchHelper sharedInstance];
+    NSMutableArray *enemyUnits = [gCTurnBasedMatchHelper playerForEnemyPlayer].units;
+    
+    for(Unit *unit in enemyUnits)
+    {
+        if(sprite.tag == unit.tag) return unit;
+    }
+    
+    return  nil;
+}
+
 -(void) registerWithTouchDispatcher
 {
 	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
@@ -377,14 +435,14 @@
     [self showSelectionTileAtPositionPoint:positionPoint];
     
     //test
-    positionPoint.x += 1;
-    [self showMoveTileAtPositionPoint:positionPoint];
-    positionPoint.x += 1;
-    [self showMoveTileAtPositionPoint:positionPoint];
-    positionPoint.x += 1;
-    [self showMoveTileAtPositionPoint:positionPoint];
-    positionPoint.x += 1;
-    [self showMoveTileAtPositionPoint:positionPoint];
+//    positionPoint.x += 1;
+//    [self showMoveTileAtPositionPoint:positionPoint];
+//    positionPoint.x += 1;
+//    [self showMoveTileAtPositionPoint:positionPoint];
+//    positionPoint.x += 1;
+//    [self showMoveTileAtPositionPoint:positionPoint];
+//    positionPoint.x += 1;
+//    [self showMoveTileAtPositionPoint:positionPoint];
     //test
     
 //    TestPlayer *test = (TestPlayer *)[self getChildByTag:5000];
@@ -401,34 +459,24 @@
     {
         NSLog(@"search tag: %d", sprite.tag);
         
-        GCTurnBasedMatchHelper *gCTurnBasedMatchHelper = [GCTurnBasedMatchHelper sharedInstance];
-        NSMutableArray *ownUnits = [gCTurnBasedMatchHelper playerForLocalPlayer].units;
-        NSMutableArray *enemyUnits = [gCTurnBasedMatchHelper playerForEnemyPlayer].units;
+        Unit *selectedUnit = [self isFriendlyUnitWithSprite:sprite];
         
-        Unit *selectedUnit;
-        
-        for(Unit *unit in ownUnits)
+        if(selectedUnit)
         {
-            if(sprite.tag == unit.tag)
-            {
-                selectedUnit = unit;
-                NSLog(@"selected unit is yours");
-            }
+            NSLog(@"selected unit: %@ is yours", selectedUnit.name);
+            NSArray *moveLocations = [selectedUnit pointsWhichCanBeMovedAtWithTouchPositionPoint:positionPoint inLayer:self];
+            
+            [self showMoveTileAtPositionPoints:moveLocations];
         }
-        
-        if(!selectedUnit)
+        else
         {
-            for(Unit *unit in enemyUnits)
-            {
-                if(sprite.tag == unit.tag)
-                {
-                    selectedUnit = unit;
-                    NSLog(@"selected unit is fromt the enemy");
-                }
-            }
+            selectedUnit = [self isEnemyUnitWithSprite:sprite];
+            
+            if(selectedUnit)
+                NSLog(@"selected unit is from the enemy");
+            else
+                NSLog(@"No unit?");
         }
-        
-        if(!selectedUnit) NSLog(@"No unit?");
     }
     
     //test move

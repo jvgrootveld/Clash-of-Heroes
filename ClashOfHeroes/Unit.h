@@ -10,17 +10,18 @@
 
 @class Upgrade;
 @class Player;
+@class GameLayer;
 
 typedef enum
 {
-    TOP = 1,
-    BOTTOM = 2,
+    FORWARD = 1,
+    BACKWARD = 2,
     LEFT = 4,
     RIGHT = 8,
-    TOPLEFT = 16,
-    TOPRIGHT = 32,
-    BOTTOMLEFT = 64,
-    BOTTOMRIGHT = 128
+    FORWARDLEFT = 16,
+    FORWARDRIGHT = 32,
+    BACKWARDLEFT = 64,
+    BACKWARDRIGHT = 128
 }Direction;
 
 @interface Unit : CCSprite
@@ -28,7 +29,6 @@ typedef enum
     Player *_player;
     
 @protected
-    NSString *_name;
     Upgrade *_upgrade;
     NSInteger _basePhysicalAttackPower;
     NSInteger _baseMagicalAttackPower;
@@ -43,6 +43,7 @@ typedef enum
     NSInteger _recievedDamage;
 }
 
+@property (nonatomic, retain) NSString *name;
 @property (nonatomic, assign) Player *player;
 @property (nonatomic, retain) Upgrade *upgrade;
 @property (nonatomic, assign) Direction moveDirection;
@@ -62,6 +63,7 @@ typedef enum
 - (BOOL)containsDirection:(Direction)direction InDirection:(Direction)directionList;
 - (BOOL)canMoveInDirection:(Direction)direction;
 - (BOOL)canAttackInDirection:(Direction)direction;
+- (NSMutableArray *)pointsWhichCanBeMovedAtWithTouchPositionPoint:(CGPoint)positionPoint inLayer:(GameLayer *)layer;
 
 - (BOOL)recieveDamage:(NSInteger)damage;
 - (void)reduceDamage:(NSInteger)damage;
