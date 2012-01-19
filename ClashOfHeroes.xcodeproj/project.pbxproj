@@ -11,7 +11,6 @@
 		014AF8621490CF34003FF2EF /* NewGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 014AF8601490CF34003FF2EF /* NewGameViewController.xib */; };
 		832A6BF8148E4B4000E075D1 /* warriorpin.png in Resources */ = {isa = PBXBuildFile; fileRef = 832A6BF7148E4B4000E075D1 /* warriorpin.png */; };
 		832A6C05148E5F2700E075D1 /* Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 832A6C04148E5F2700E075D1 /* Unit.m */; };
-		8349DC8614C8594B00DFA3FE /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = 8349DC8514C8594B00DFA3FE /* Match.m */; };
 		8350E165148D55FA00A8FD55 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8350E164148D55FA00A8FD55 /* MainWindow.xib */; };
 		83590DAC14BB0F4C00CDC50E /* Turn.m in Sources */ = {isa = PBXBuildFile; fileRef = 83590DAB14BB0F4C00CDC50E /* Turn.m */; };
 		83590DB414BB1B3A00CDC50E /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 83590DB314BB1B3A00CDC50E /* Player.m */; };
@@ -163,8 +162,6 @@
 		832A6BF7148E4B4000E075D1 /* warriorpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warriorpin.png; sourceTree = "<group>"; };
 		832A6C03148E5F2700E075D1 /* Unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
 		832A6C04148E5F2700E075D1 /* Unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unit.m; sourceTree = "<group>"; };
-		8349DC8314C8590400DFA3FE /* Match.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Match.h; sourceTree = "<group>"; };
-		8349DC8514C8594B00DFA3FE /* Match.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Match.m; sourceTree = "<group>"; };
 		8350E164148D55FA00A8FD55 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		83590DAA14BB0F4C00CDC50E /* Turn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Turn.h; sourceTree = "<group>"; };
 		83590DAB14BB0F4C00CDC50E /* Turn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Turn.m; sourceTree = "<group>"; };
@@ -502,8 +499,6 @@
 		83590DB114BB1B2900CDC50E /* Match */ = {
 			isa = PBXGroup;
 			children = (
-				8349DC8314C8590400DFA3FE /* Match.h */,
-				8349DC8514C8594B00DFA3FE /* Match.m */,
 				83590DB214BB1B3A00CDC50E /* Player.h */,
 				83590DB314BB1B3A00CDC50E /* Player.m */,
 			);
@@ -1157,7 +1152,6 @@
 				F2FAA32A14BB280D00121AD6 /* DefaultBoardFactory.m in Sources */,
 				83C8A9FE14C43BD600182C89 /* MovementPhase.m in Sources */,
 				83C8AA0114C43E3D00182C89 /* CombatPhase.m in Sources */,
-				8349DC8614C8594B00DFA3FE /* Match.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
