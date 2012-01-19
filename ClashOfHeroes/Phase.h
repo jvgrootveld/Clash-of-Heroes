@@ -12,8 +12,9 @@
 
 @protocol Phase <NSObject>
 
-- (void)didSelectSquare:(CGPoint)squarePoint onLayer:(GameLayer *)layer;
+@property (nonatomic) NSInteger remainingMoves;
 
+- (void)didSelectSquare:(CGPoint)squarePoint onLayer:(GameLayer *)layer;
 - (void)endPhaseOnLayer:(GameLayer *)layer;
 
 @end

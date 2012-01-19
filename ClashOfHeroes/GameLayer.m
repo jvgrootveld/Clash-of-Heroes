@@ -18,7 +18,6 @@
 
 @end
 
-// HelloWorldLayer implementation
 @implementation GameLayer
 
 @synthesize mapLayer = _mapLayer, map = _map, selectedSprite = _selectedSprite, junkLayer = _junkLayer, metaLayer = _metaLayer, gameViewController = _gameViewController, currentPhase = _currentPhase, combatPhase = _combatPhase, movementPhase = _movementPhase;

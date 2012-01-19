@@ -16,6 +16,7 @@
 @property (retain, nonatomic) IBOutlet UILabel *playerOneLabel;
 @property (retain, nonatomic) IBOutlet UILabel *playerTwoLabel;
 @property (retain, nonatomic) IBOutlet UILabel *phaseLabel;
+@property (retain, nonatomic) IBOutlet UILabel *movesLabel;
 @property (nonatomic, strong) GameLayer *gameLayer;
 
 - (void)updateLabels;

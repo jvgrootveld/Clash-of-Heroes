@@ -8,25 +8,25 @@
 
 #import "CombatPhase.h"
 #import "GameLayer.h"
+#import "Unit.h"
 
 @interface CombatPhase()
 
-@property (nonatomic) CGPoint selectedSquare;
-@property (nonatomic) NSInteger remainingMoves;
+@property (nonatomic, strong) Unit *selectedUnit;
 
 @end
 
-NSInteger const MAXMOVES = 3;
+NSInteger const MAXACTIONS = 3;
 
 @implementation CombatPhase
 
-@synthesize selectedSquare = _selectedSquare, remainingMoves = _remainingMoves;
+@synthesize selectedUnit = _selectedUnit, remainingMoves = _remainingMoves;
 
 - (id)init
 {
     if (self = [super init])
     {
-        [self setRemainingMoves:MAXMOVES];
+        [self setRemainingMoves:MAXACTIONS];
     }
     
     return self;
@@ -40,6 +40,11 @@ NSInteger const MAXMOVES = 3;
 - (void)endPhaseOnLayer:(GameLayer *)layer
 {
     [layer setCurrentPhase:layer.movementPhase];
+}
+
+- (NSString *)description
+{
+    return @"Combat Phase";
 }
 
 @end

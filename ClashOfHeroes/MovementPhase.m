@@ -8,11 +8,11 @@
 
 #import "MovementPhase.h"
 #import "GameLayer.h"
+#import "Unit.h"
 
 @interface MovementPhase()
 
-@property (nonatomic) CGPoint selectedSquare;
-@property (nonatomic) NSInteger remainingMoves;
+@property (nonatomic, strong) Unit *selectedUnit;
 
 @end
 
@@ -20,7 +20,7 @@ NSInteger const MAXMOVES = 3;
 
 @implementation MovementPhase
 
-@synthesize selectedSquare = _selectedSquare, remainingMoves = _remainingMoves;
+@synthesize selectedUnit = _selectedUnit, remainingMoves = _remainingMoves;
 
 - (id)init
 {
@@ -34,12 +34,23 @@ NSInteger const MAXMOVES = 3;
 
 - (void)didSelectSquare:(CGPoint)squarePoint onLayer:(GameLayer *)layer
 {
-    
+    if (self.selectedUnit == nil)
+    {
+        if ([layer selectSpriteForTouch:squarePoint] == nil)
+        {
+            
+        }
+    }
 }
 
 - (void)endPhaseOnLayer:(GameLayer *)layer
 {
     [layer setCurrentPhase:layer.combatPhase];
+}
+
+- (NSString *)description
+{
+    return @"Movement Phase";
 }
 
 @end
