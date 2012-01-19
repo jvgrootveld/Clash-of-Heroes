@@ -8,11 +8,7 @@
 
 #import <GameKit/GameKit.h>
 #import "Player.h"
-#import "Warrior.h"
-#import "Mage.h"
-#import "Ranger.h"
-#import "Priest.h"
-#import "Shapeshifter.h"
+#import "Unit.h"
 
 @implementation Player
 
@@ -32,6 +28,22 @@
 - (void)addUnit:(Unit *)unit
 {
     [_units addObject:unit];
+}
+
+- (Unit *)unitForTag:(NSInteger)tag
+{
+    Unit *returnUnit = nil;
+    
+    for(Unit *unit in _units)
+    {
+        if(unit.tag == tag)
+        {
+            returnUnit = unit;
+            break;
+        }
+    }
+    
+    return returnUnit;
 }
 
 @end

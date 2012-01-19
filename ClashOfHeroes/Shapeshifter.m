@@ -10,6 +10,8 @@
 
 @implementation Shapeshifter
 
+#define spriteLocation CGRectMake(10, 10, 26, 62)
+
 - (id)initForPlayer:(Player *)player withTag:(NSInteger)tag
 {
     if (self == [super initWithName:@"Shapeshifter" 
@@ -20,10 +22,13 @@
                      magicalDefense:3
                        healthPoints:25
                               range:3
-                           movement:3]
+                           movement:3
+                                tag:tag
+                               file:@"sprites.png" 
+                               rect:spriteLocation]
         )
     {
-        [self setSpriteTag:tag];
+
     }
     
     return self;
