@@ -7,7 +7,11 @@
 //
 
 @class GameViewController;
+@class MovementPhase;
+@class CombatPhase;
 @class Unit;
+
+#import "Phase.h"
 
 // GameLayer
 @interface GameLayer : CCLayer

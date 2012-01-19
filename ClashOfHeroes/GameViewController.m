@@ -18,6 +18,7 @@
 #import "GameLayer.h"
 #import "GCTurnBasedMatchHelper.h"
 #import "Turn.h"
+#import "Player.h"
 
 #import "Phase.h"
 #import "MovementPhase.h"
@@ -44,18 +45,72 @@
 
 - (void)updateLabels
 {
-    GKPlayer *playerOne = (GKPlayer *)[[[GCTurnBasedMatchHelper sharedInstance] currentPlayers] objectAtIndex:0];
-    GKPlayer *playerTwo = (GKPlayer *)[[[GCTurnBasedMatchHelper sharedInstance] currentPlayers] objectAtIndex:1];
+    Player *playerOne = [[GCTurnBasedMatchHelper sharedInstance] playerForLocalPlayer];
+    Player *playerTwo = [[GCTurnBasedMatchHelper sharedInstance] playerForEnemyPlayer];
     
-    [playerOneLabel setText:playerOne.alias];
-    [playerTwoLabel setText:playerTwo.alias];
+    if(playerOne) [playerOneLabel setText:playerOne.gameCenterInfo.alias];
+    if(playerTwo) [playerOneLabel setText:playerTwo.gameCenterInfo.alias];
     
     [phaseLabel setText:[self.gameLayer.currentPhase description]];
     [movesLabel setText:[NSString stringWithFormat:@"Remaining moves: %d", self.gameLayer.currentPhase.remainingMoves]];
     
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (IBAction)endTurn:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"End turn" 
+                                                    message:@"Are you sure you want to end this turn? This will cancel any remaining moves." 
+                                                   delegate:self 
+                                          cancelButtonTitle:@"Cancel" 
+                                          otherButtonTitles:@"Ok", nil];
+    [alert setTag:1];
+    
+    [alert show];
+}
+
+- (IBAction)endPhase:(id)sender {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"End phase" 
+                                                    message:@"Are you sure you want to end this phase? This will cancel any remaining moves." 
+                                                   delegate:self 
+                                          cancelButtonTitle:@"Cancel" 
+                                          otherButtonTitles:@"Ok", nil];
+    [alert setTag:2];
+    
+    [alert show];
+}
+
+#pragma mark - UIAlertView delegate
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        if (alertView.tag == 1)
+        {
+            Turn *lastTurn = [Turn new];
+            
+            NSMutableDictionary *move = [NSMutableDictionary dictionary];
+            [move setValue:@"piece 24" forKey:@"piece"];
+            
+            NSMutableDictionary *action = [NSMutableDictionary dictionary];
+            [action setValue:@"Attack" forKey:@"action"];
+            
+            [lastTurn.movements addObject:move];
+            [lastTurn.actions addObject:action];
+            
+            [[GCTurnBasedMatchHelper sharedInstance] endTurn:lastTurn];
+        }
+        else if (alertView.tag == 2)
+        {
+            [self.gameLayer.currentPhase endPhaseOnLayer:self.gameLayer];
+        }
+    }
+    
+    //[self updateLabels];
+}
+
+#pragma mark - View lifecycle
+
+- (void) viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [super viewWillAppear:animated];

@@ -139,10 +139,12 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     
     if(!match.currentParticipant.lastTurnDate)
     {
+        NSLog(@"Load game");
         [self loadPlayerData];
     }
     else
     {
+        NSLog(@"new game");
         [self.mainMenu presentNewGameView];
     }
 }

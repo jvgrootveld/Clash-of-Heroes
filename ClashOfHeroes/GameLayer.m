@@ -13,6 +13,8 @@
 #import "GCTurnBasedMatchHelper.h"
 #import "Player.h"
 #import "Unit.h"
+#import "MovementPhase.h"
+#import "CombatPhase.h"
 #import "DefaultBoardFactory.h"
 
 @interface GameLayer()
