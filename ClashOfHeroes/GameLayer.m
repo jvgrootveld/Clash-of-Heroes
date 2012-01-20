@@ -438,6 +438,8 @@
     
     //[self showSelectionTileAtLocation:touchLocation];
     
+    [self.currentPhase didSelectSquare:touchLocation onLayer:self];
+    
     CGPoint positionPoint = [self tilePosFromLocation:touchLocation tileMap:self.map];
     [self showSelectionTileAtPositionPoint:positionPoint];
     

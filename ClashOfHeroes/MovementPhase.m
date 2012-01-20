@@ -33,12 +33,44 @@ NSInteger const MAXMOVES = 3;
 }
 
 - (void)didSelectSquare:(CGPoint)squarePoint onLayer:(GameLayer *)layer
-{
+{    
     if (self.selectedUnit == nil)
     {
-        if ([layer selectSpriteForTouch:squarePoint] == nil)
+        CCSprite *selectedSprite = [layer selectSpriteForTouch:squarePoint];
+        
+        if (selectedSprite == nil)
         {
-            
+            NSLog(@"Selected empty square");
+        }
+        else if ([layer isFriendlyUnitWithSprite:selectedSprite] != nil)
+        {
+            self.selectedUnit = [layer isFriendlyUnitWithSprite:selectedSprite];
+            NSLog(@"Selected friendly unit: %@", self.selectedUnit.name);
+        }
+        else if ([layer isEnemyUnitWithSprite:selectedSprite] != nil)
+        {
+            NSLog(@"Selected enemy unit: %@", [layer isEnemyUnitWithSprite:selectedSprite].name);
+        }
+    }
+    else
+    {
+        CCSprite *selectedSprite = [layer selectSpriteForTouch:squarePoint];
+        
+        if (selectedSprite == nil && !(self.remainingMoves <= 0))
+        {
+            NSLog(@"Selected empty square, moving and deselecting unit.");
+            self.remainingMoves--;
+            self.selectedUnit = nil;
+        }
+        else if ([layer isFriendlyUnitWithSprite:selectedSprite] != nil)
+        {
+            self.selectedUnit = [layer isFriendlyUnitWithSprite:selectedSprite];
+            NSLog(@"Selected friendly unit: %@, reselecting unit.", self.selectedUnit.name);
+        }
+        else if ([layer isEnemyUnitWithSprite:selectedSprite] != nil)
+        {
+            self.selectedUnit = nil;
+            NSLog(@"Selected enemy unit: %@, deselecting unit.", [layer isEnemyUnitWithSprite:selectedSprite].name);
         }
     }
 }
@@ -46,6 +78,7 @@ NSInteger const MAXMOVES = 3;
 - (void)endPhaseOnLayer:(GameLayer *)layer
 {
     [layer setCurrentPhase:layer.combatPhase];
+    self.remainingMoves = MAXMOVES;
 }
 
 - (NSString *)description
