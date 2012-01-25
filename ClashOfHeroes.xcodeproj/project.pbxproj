@@ -11,6 +11,10 @@
 		014AF8621490CF34003FF2EF /* NewGameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 014AF8601490CF34003FF2EF /* NewGameViewController.xib */; };
 		832A6BF8148E4B4000E075D1 /* warriorpin.png in Resources */ = {isa = PBXBuildFile; fileRef = 832A6BF7148E4B4000E075D1 /* warriorpin.png */; };
 		832A6C05148E5F2700E075D1 /* Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 832A6C04148E5F2700E075D1 /* Unit.m */; };
+		8344E5D114C9811900BEC96F /* COHAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8344E5CF14C9811900BEC96F /* COHAlertViewController.m */; };
+		8344E5D214C9811900BEC96F /* COHAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8344E5D014C9811900BEC96F /* COHAlertViewController.xib */; };
+		8344E5D814C9856100BEC96F /* UIView+AlertAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = 8344E5D714C9856100BEC96F /* UIView+AlertAnimations.m */; };
+		8344E5DB14C9945400BEC96F /* alert_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 8344E5DA14C9945400BEC96F /* alert_background.png */; };
 		8350E165148D55FA00A8FD55 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8350E164148D55FA00A8FD55 /* MainWindow.xib */; };
 		83590DAC14BB0F4C00CDC50E /* Turn.m in Sources */ = {isa = PBXBuildFile; fileRef = 83590DAB14BB0F4C00CDC50E /* Turn.m */; };
 		83590DB414BB1B3A00CDC50E /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 83590DB314BB1B3A00CDC50E /* Player.m */; };
@@ -162,6 +166,12 @@
 		832A6BF7148E4B4000E075D1 /* warriorpin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warriorpin.png; sourceTree = "<group>"; };
 		832A6C03148E5F2700E075D1 /* Unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
 		832A6C04148E5F2700E075D1 /* Unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unit.m; sourceTree = "<group>"; };
+		8344E5CE14C9811900BEC96F /* COHAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COHAlertViewController.h; sourceTree = "<group>"; };
+		8344E5CF14C9811900BEC96F /* COHAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COHAlertViewController.m; sourceTree = "<group>"; };
+		8344E5D014C9811900BEC96F /* COHAlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = COHAlertViewController.xib; sourceTree = "<group>"; };
+		8344E5D614C9856100BEC96F /* UIView+AlertAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AlertAnimations.h"; sourceTree = "<group>"; };
+		8344E5D714C9856100BEC96F /* UIView+AlertAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AlertAnimations.m"; sourceTree = "<group>"; };
+		8344E5DA14C9945400BEC96F /* alert_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alert_background.png; sourceTree = "<group>"; };
 		8350E164148D55FA00A8FD55 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		83590DAA14BB0F4C00CDC50E /* Turn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Turn.h; sourceTree = "<group>"; };
 		83590DAB14BB0F4C00CDC50E /* Turn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Turn.m; sourceTree = "<group>"; };
@@ -485,6 +495,17 @@
 			name = Units;
 			sourceTree = "<group>";
 		};
+		8344E5D914C98D0C00BEC96F /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				8344E5CE14C9811900BEC96F /* COHAlertViewController.h */,
+				8344E5CF14C9811900BEC96F /* COHAlertViewController.m */,
+				8344E5D614C9856100BEC96F /* UIView+AlertAnimations.h */,
+				8344E5D714C9856100BEC96F /* UIView+AlertAnimations.m */,
+			);
+			name = Alert;
+			sourceTree = "<group>";
+		};
 		8350E166148D5C6600A8FD55 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,6 +513,7 @@
 				83EF3416148D032B0076EBA9 /* GameViewController.xib */,
 				835B639A1483B71B00683025 /* MainMenuViewController.xib */,
 				8350E164148D55FA00A8FD55 /* MainWindow.xib */,
+				8344E5D014C9811900BEC96F /* COHAlertViewController.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -552,6 +574,7 @@
 		83714761147BE0770091C992 /* ClashOfHeroes */ = {
 			isa = PBXGroup;
 			children = (
+				8344E5D914C98D0C00BEC96F /* Alert */,
 				83C8A9F714C439F700182C89 /* Phases */,
 				83590DB114BB1B2900CDC50E /* Match */,
 				837F326E148E625100C77C62 /* Upgrades */,
@@ -584,6 +607,7 @@
 				837148C9147BE18A0091C992 /* Sprites */,
 				837148C2147BE10A0091C992 /* TMX */,
 				83714763147BE0770091C992 /* Default.png */,
+				8344E5DA14C9945400BEC96F /* alert_background.png */,
 				832A6BF7148E4B4000E075D1 /* warriorpin.png */,
 				837148C5147BE11D0091C992 /* background.jpg */,
 				83714765147BE0770091C992 /* fps_images.png */,
@@ -1027,6 +1051,8 @@
 				F23FA7FA147E8C04004AE3A3 /* grossini_dance_01.png in Resources */,
 				F29F4EA71483B6EF00D114D0 /* sprites.png in Resources */,
 				F2C94EFA1490F3F300A70B1A /* tile_green.png in Resources */,
+				8344E5D214C9811900BEC96F /* COHAlertViewController.xib in Resources */,
+				8344E5DB14C9945400BEC96F /* alert_background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1152,6 +1178,8 @@
 				F2FAA32A14BB280D00121AD6 /* DefaultBoardFactory.m in Sources */,
 				83C8A9FE14C43BD600182C89 /* MovementPhase.m in Sources */,
 				83C8AA0114C43E3D00182C89 /* CombatPhase.m in Sources */,
+				8344E5D114C9811900BEC96F /* COHAlertViewController.m in Sources */,
+				8344E5D814C9856100BEC96F /* UIView+AlertAnimations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

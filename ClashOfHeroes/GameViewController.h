@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "COHAlertViewController.h"
 
 @class EAGLView;
 @class GameLayer;
 
-@interface GameViewController : UIViewController <UIAlertViewDelegate>
+@interface GameViewController : UIViewController <COHAlertViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UILabel *playerOneLabel;
 @property (retain, nonatomic) IBOutlet UILabel *playerTwoLabel;
@@ -22,5 +23,6 @@
 - (void)updateLabels;
 - (IBAction)endTurn:(id)sender;
 - (IBAction)endPhase:(id)sender;
+- (IBAction)backButtonPressed:(id)sender;
 
 @end

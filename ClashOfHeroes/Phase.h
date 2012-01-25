@@ -14,7 +14,7 @@
 
 @property (nonatomic) NSInteger remainingMoves;
 
-- (void)didSelectSquare:(CGPoint)squarePoint onLayer:(GameLayer *)layer;
+- (void)didSelectPoint:(CGPoint)point onLayer:(GameLayer *)layer;
 - (void)endPhaseOnLayer:(GameLayer *)layer;
 
 @end

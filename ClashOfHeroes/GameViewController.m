@@ -19,7 +19,7 @@
 #import "GCTurnBasedMatchHelper.h"
 #import "Turn.h"
 #import "Player.h"
-
+#import "COHAlertViewController.h"
 #import "Phase.h"
 #import "MovementPhase.h"
 #import "CombatPhase.h"
@@ -57,34 +57,45 @@
 }
 
 - (IBAction)endTurn:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"End turn" 
-                                                    message:@"Are you sure you want to end this turn? This will cancel any remaining moves." 
-                                                   delegate:self 
-                                          cancelButtonTitle:@"Cancel" 
-                                          otherButtonTitles:@"Ok", nil];
-    [alert setTag:1];
+    COHAlertViewController *alertView = [[COHAlertViewController alloc] initWithTitle:@"End turn" andMessage:@"Are you sure you want to end this phase? This will cancel any remaining moves."];
     
-    [alert show];
+    alertView.view.frame = self.view.frame;
+    alertView.view.center = self.view.center;
+    [alertView setTag:1];
+    [alertView setDelegate:self];
+    [self.view addSubview:alertView.view];
+    [alertView show];
 }
 
-- (IBAction)endPhase:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"End phase" 
-                                                    message:@"Are you sure you want to end this phase? This will cancel any remaining moves." 
-                                                   delegate:self 
-                                          cancelButtonTitle:@"Cancel" 
-                                          otherButtonTitles:@"Ok", nil];
-    [alert setTag:2];
-    
-    [alert show];
+- (IBAction)endPhase:(id)sender {    
+    COHAlertViewController *alertView = [[COHAlertViewController alloc] initWithTitle:@"End phase" andMessage:@"Are you sure you want to end this phase? This will cancel any remaining moves."];
+    alertView.view.frame = self.view.frame;
+    alertView.view.center = self.view.center;
+    [alertView setTag:2];
+    [alertView setDelegate:self];
+    [self.view addSubview:alertView.view];
+    [alertView show];
 }
 
-#pragma mark - UIAlertView delegate
+- (IBAction)backButtonPressed:(id)sender {
+    COHAlertViewController *alertView = [[COHAlertViewController alloc] initWithTitle:@"Back to menu" andMessage:@"Are you sure you want to quit? This will revert any moves you have made."];
+    
+    alertView.view.frame = self.view.frame;
+    alertView.view.center = self.view.center;
+    [alertView setTag:3];
+    [alertView setDelegate:self];
+    [self.view addSubview:alertView.view];
+    [alertView show];
+}
 
-- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+#pragma mark - COHAlertView delegate
+
+- (void)alertView:(COHAlertViewController *)alert wasDismissedWithButtonIndex:(NSInteger)buttonIndex;
 {
-    if (buttonIndex == 1)
+    NSLog(@"buttonindex: %d", buttonIndex);
+    if (buttonIndex == 2)
     {
-        if (alertView.tag == 1)
+        if (alert.tag == 1)
         {
             Turn *lastTurn = [Turn new];
             
@@ -99,10 +110,12 @@
             
             [[GCTurnBasedMatchHelper sharedInstance] endTurn:lastTurn];
         }
-        else if (alertView.tag == 2)
+        else if (alert.tag == 2)
         {
             [self.gameLayer.currentPhase endPhaseOnLayer:self.gameLayer];
         }
+        else if (alert.tag == 3)
+            [self.navigationController popViewControllerAnimated:YES];
     }
     
     //[self updateLabels];

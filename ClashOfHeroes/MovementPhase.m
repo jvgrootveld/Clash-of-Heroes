@@ -32,42 +32,42 @@ NSInteger const MAXMOVES = 3;
     return self;
 }
 
-- (void)didSelectSquare:(CGPoint)squarePoint onLayer:(GameLayer *)layer
+- (void)didSelectPoint:(CGPoint)point onLayer:(GameLayer *)layer
 {    
-    if (self.selectedUnit == nil)
+    if (self.selectedUnit == nil) //NO UNIT SELECTED YET
     {
-        CCSprite *selectedSprite = [layer selectSpriteForTouch:squarePoint];
+        CCSprite *selectedSprite = [layer selectSpriteForTouch:point];
         
-        if (selectedSprite == nil)
+        if (selectedSprite == nil) //SELECTED EMPTY SQUARE
         {
             NSLog(@"Selected empty square");
         }
-        else if ([layer isFriendlyUnitWithSprite:selectedSprite] != nil)
+        else if ([layer isFriendlyUnitWithSprite:selectedSprite] != nil) //SELECTED UNIT IS FRIENDLY
         {
             self.selectedUnit = [layer isFriendlyUnitWithSprite:selectedSprite];
             NSLog(@"Selected friendly unit: %@", self.selectedUnit.name);
         }
-        else if ([layer isEnemyUnitWithSprite:selectedSprite] != nil)
+        else if ([layer isEnemyUnitWithSprite:selectedSprite] != nil) //SELECTED UNIT IS NOT FRIENDLY
         {
             NSLog(@"Selected enemy unit: %@", [layer isEnemyUnitWithSprite:selectedSprite].name);
         }
     }
-    else
+    else //ALREADY SELECTED A UNIT
     {
-        CCSprite *selectedSprite = [layer selectSpriteForTouch:squarePoint];
+        CCSprite *selectedSprite = [layer selectSpriteForTouch:point];
         
-        if (selectedSprite == nil && !(self.remainingMoves <= 0))
+        if (selectedSprite == nil && !(self.remainingMoves <= 0)) //SELECTED EMPTY SQUARE -> MOVE & DESELECT
         {
             NSLog(@"Selected empty square, moving and deselecting unit.");
             self.remainingMoves--;
             self.selectedUnit = nil;
         }
-        else if ([layer isFriendlyUnitWithSprite:selectedSprite] != nil)
+        else if ([layer isFriendlyUnitWithSprite:selectedSprite] != nil) //SELECTED FRIENDLY UNIT -> RESELECT UNIT
         {
             self.selectedUnit = [layer isFriendlyUnitWithSprite:selectedSprite];
             NSLog(@"Selected friendly unit: %@, reselecting unit.", self.selectedUnit.name);
         }
-        else if ([layer isEnemyUnitWithSprite:selectedSprite] != nil)
+        else if ([layer isEnemyUnitWithSprite:selectedSprite] != nil) //SELECTED ENEMY UNIT -> DESELECT
         {
             self.selectedUnit = nil;
             NSLog(@"Selected enemy unit: %@, deselecting unit.", [layer isEnemyUnitWithSprite:selectedSprite].name);
