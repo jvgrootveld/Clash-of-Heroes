@@ -11,10 +11,15 @@
 #import "GameViewController.h"
 #import "Player.h"
 #import "Turn.h"
+#import "MatchData.h"
+
+#import "Hero.h"
+#import "UnitData.h"
 
 @interface GCTurnBasedMatchHelper()
 
 - (BOOL)isGameCenterAvailable;
+- (void)synchronizeMatchData:(NSDictionary *)matchData;
 
 @end
 
@@ -126,27 +131,14 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 {
     [presentingViewController dismissModalViewControllerAnimated:YES];
     
-    NSLog(@"Matchdata (%d bytes): %@", match.matchData.length, match.matchData);
-    NSError* error = nil;
-    NSPropertyListFormat plf = NSPropertyListMutableContainersAndLeaves;
-    NSMutableDictionary *lastTurnDict =
-    [NSPropertyListSerialization propertyListWithData:match.matchData options:NSPropertyListMutableContainersAndLeaves format:&plf error:&error];
+    //NSLog(@"Matchdata (%d bytes): %@", match.matchData.length, match.matchData);
+    NSDictionary *matchData = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
     
-    Turn *lastTurn = [[Turn alloc] initWithDictionary:lastTurnDict];
-    NSLog(@"Matchdata (turn): %@", lastTurn);
+    NSLog(@"MatchData %@", matchData);
     
     self.currentMatch = match;
     
-    if(!match.currentParticipant.lastTurnDate)
-    {
-        NSLog(@"Load game");
-        [self loadPlayerData];
-    }
-    else
-    {
-        NSLog(@"new game");
-        [self.mainMenu presentNewGameView];
-    }
+    [self loadPlayerDataWithMatchData:matchData];
 }
 
 -(void)turnBasedMatchmakerViewControllerWasCancelled: (GKTurnBasedMatchmakerViewController *)viewController
@@ -165,12 +157,27 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 
 -(void)turnBasedMatchmakerViewController: (GKTurnBasedMatchmakerViewController *)viewController playerQuitForMatch:(GKTurnBasedMatch *)match
 {
-    NSLog(@"playerquitforMatch, %@, %@", match, match.currentParticipant);
+    NSUInteger currentIndex = 
+    [match.participants indexOfObject:match.currentParticipant];
+    GKTurnBasedParticipant *part;
+    
+    for (int i = 0; i < [match.participants count]; i++) {
+        part = [match.participants objectAtIndex:
+                (currentIndex + 1 + i) % match.participants.count];
+        if (part.matchOutcome != GKTurnBasedMatchOutcomeQuit) {
+            break;
+        } 
+    }
+    NSLog(@"playerquitforMatch, %@, %@", 
+          match, match.currentParticipant);
+    [match participantQuitInTurnWithOutcome:
+     GKTurnBasedMatchOutcomeQuit nextParticipant:part 
+                                  matchData:match.matchData completionHandler:nil];
 }
 
 #pragma mark - Player data
 
-- (void)loadPlayerData
+- (void)loadPlayerDataWithMatchData:(NSDictionary *)dataDictionary
 {
     NSMutableArray *identifiers = [NSMutableArray array];
     
@@ -193,12 +200,101 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
             for(GKPlayer *gkplayer in players)
             {
                 Player *player = [[Player alloc] initForGKPlayer:gkplayer];
-                NSLog(@"add player %@", player);
+                NSLog(@"add player %@", player.gameCenterInfo.alias);
                 [_currentPlayers addObject:player];
             }        
         }
-                [self.mainMenu presentGameView];
+        
+        if (dataDictionary) [self synchronizeMatchData:dataDictionary];
+             
+        if(self.currentMatch.currentParticipant.lastTurnDate)
+        {
+            NSLog(@"Load game");
+            [self.mainMenu presentGameView];
+        }
+        else
+        {
+            NSLog(@"new game");
+            [self.mainMenu presentNewGameView];
+        }
     }];
+}
+
+- (void)synchronizeMatchData:(NSDictionary *)matchData
+{
+    for (Player *player in self.currentPlayers)
+    {
+        NSDictionary *playerData = [matchData objectForKey:player.gameCenterInfo.playerID];
+        if (playerData)
+        {
+            NSDictionary *heroDict = [playerData objectForKey:@"hero"];
+            NSDictionary *warriorDict = [playerData objectForKey:@"Warrior"];
+            NSDictionary *mageDict = [playerData objectForKey:@"Mage"];
+            NSDictionary *rangerDict = [playerData objectForKey:@"Ranger"];
+            NSDictionary *priestDict = [playerData objectForKey:@"Priest"];
+            NSDictionary *shifterDict = [playerData objectForKey:@"Shapeshifter"];
+            
+            if (heroDict) {
+                Hero *heroUnit = [Hero new];
+                [heroUnit setHeroName:[heroDict valueForKey:@"heroName"]];
+                [heroUnit setCurrentHealth:[[heroDict valueForKey:@"health"] integerValue]];
+                [heroUnit setAbilityOne:[heroDict valueForKey:@"abilityOne"]];
+                [heroUnit setAbilityTwo:[heroDict valueForKey:@"abilityTwo"]];
+                [heroUnit setAbilityThree:[heroDict valueForKey:@"abilityThree"]];
+                [heroUnit setAbilityFour:[heroDict valueForKey:@"abilityFour"]];
+                
+                [player setHero:heroUnit];
+            }
+            
+            NSMutableArray *unitArray = [NSMutableArray array];
+            
+            if (warriorDict)
+            {
+                UnitData *warriorUnit = [[UnitData alloc] initWithType:@"warrior"
+                                                            tag:[[warriorDict valueForKey:@"tag"] integerValue]
+                                                           andLocation:[[warriorDict valueForKey:@"location"] CGPointValue]];
+                [unitArray addObject:warriorUnit];
+            }
+            
+            if (mageDict)
+            {
+                UnitData *mageUnit = [[UnitData alloc] initWithType:@"mage"
+                                                                   tag:[[mageDict valueForKey:@"tag"] integerValue]
+                                                           andLocation:[[mageDict valueForKey:@"location"] CGPointValue]];
+                
+                [unitArray addObject:mageUnit];
+            }
+            
+            if (rangerDict)
+            {
+                UnitData *rangerUnit = [[UnitData alloc] initWithType:@"ranger"
+                                                                   tag:[[rangerDict valueForKey:@"tag"] integerValue]
+                                                           andLocation:[[rangerDict valueForKey:@"location"] CGPointValue]];
+                
+                [unitArray addObject:rangerUnit];
+            }
+            
+            if (priestDict)
+            {
+                UnitData *priestUnit = [[UnitData alloc] initWithType:@"priest"
+                                                                   tag:[[priestDict valueForKey:@"tag"] integerValue]
+                                                           andLocation:[[priestDict valueForKey:@"location"] CGPointValue]];
+                
+                [unitArray addObject:priestUnit];
+            }
+            
+            if (shifterDict)
+            {
+                UnitData *shifterUnit = [[UnitData alloc] initWithType:@"shapeshifter"
+                                                                   tag:[[shifterDict valueForKey:@"tag"] integerValue]
+                                                           andLocation:[[shifterDict valueForKey:@"location"] CGPointValue]];
+                
+                [unitArray addObject:shifterUnit];
+            }
+            
+            [player setUnitData:unitArray];      
+        }
+    }
 }
 
 #pragma mark - players
@@ -226,11 +322,20 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     return nil;
 }
 
+- (BOOL)localPlayerIsCurrentParticipant
+{
+    return [self.playerForLocalPlayer.gameCenterInfo.playerID isEqualToString:self.currentMatch.currentParticipant.playerID];
+}
+
 #pragma mark - Turns
 
 - (void)endTurn:(Turn *)turn
 {   
-    NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:[turn toDictionary]];
+    MatchData *matchData = [MatchData new];
+    [matchData setPlayerOne:[self playerForLocalPlayer]];
+    [matchData setPlayerTwo:[self playerForEnemyPlayer]];    
+    
+    NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:[matchData toDictionary]];
     
     NSLog(@"data size: %d bytes.", compressedData.length);
     

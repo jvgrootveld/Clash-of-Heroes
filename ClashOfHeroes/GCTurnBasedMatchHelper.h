@@ -29,9 +29,10 @@
 - (void)findMatchWithMinPlayers:(int)minPlayers maxPlayers:(int)maxPlayers viewController:(UIViewController *)viewController;
 + (GCTurnBasedMatchHelper *)sharedInstance;
 - (void)authenticateLocalUser;
-- (void)loadPlayerData;
+- (void)loadPlayerDataWithMatchData:(NSDictionary *)dataDictionary;
 - (Player *)playerForLocalPlayer;
 - (Player *)playerForEnemyPlayer;
 - (void)endTurn:(Turn *)turn;
+- (BOOL)localPlayerIsCurrentParticipant;
 
 @end

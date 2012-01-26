@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Galen</key>
+	<dict>
+		<key>Elementalist</key>
+		<string>Elementalist
+Increases fire/ice/lightning damage by 10.</string>
+		<key>Acuity</key>
+		<string>Acuity
+Increases arcane damage by 10.</string>
+		<key>Break</key>
+		<string>Break
+Lowers enemy resistances by 5.</string>
+		<key>Fireball</key>
+		<string>Fireball
+Shoots off a fireball, dealing fire-based damage.
+Effect: 20 damage to an Enemy Unit
+Cost: +2 to Unit Cooldown</string>
+		<key>Thunder</key>
+		<string>Thunder
+Thunder strikes down, dealing lightning-based damage and stunning the target.
+Effect: 30 lightning-based damage to an Enemy Unit and +1 to Enemy Cooldown
+Cost: +4 to Unit Cooldown</string>
+		<key>Freeze</key>
+		<string>Freeze
+Freezes the target.
+Effect: +2 to Enemy Cooldown and deals 5 ice-based damage
+Cost: +3 to Unit Cooldown</string>
+		<key>Ice Shield</key>
+		<string>Ice Shield
+Enhances the defense of Galen for 3 rounds.
+Effect: +15 to defense for Galen
+Cost: +2 to Unit Cooldown</string>
+		<key>Blast</key>
+		<string>Blast
+Deals arcane-based damage to an enemy.
+Effect: 30 arcane-based damage to an Enemy Unit
+Cost: +2 to Unit Cooldown</string>
+		<key>Slow</key>
+		<string>Slow
+Slows an enemy target for 2 rounds.
+Effect: -2 to Enemy Unit Movement
+Cost: +2 to Unit Cooldown</string>
+		<key>Haste</key>
+		<string>Haste
+Enhances a friendly target, enhancing movement speed for 2 rounds.
+Effect: +2 to Friendly Unit Movement
+Cost: +2 to Unit Cooldown</string>
+		<key>Missiles</key>
+		<string>Missiles
+Hits every enemy target in range for arcane-based damage.
+Effect: +30 to surrounding Enemy Units
+Cost: +5 to Unit Cooldown</string>
+	</dict>
+	<key>Garrick</key>
+	<dict>
+		<key>Steelskin</key>
+		<string>Steelskin
+Enhances the defense of Garrick.</string>
+		<key>Fury</key>
+		<string>Fury
+Increases the melee damage by 10.</string>
+		<key>Vitality</key>
+		<string>Vitality
+Increases the healthpoints of Garrick by 20.</string>
+		<key>Charge</key>
+		<string>Charge
+Charges to an enemy and stuns it.
+Effect: +1 to Enemy Cooldown
+Cost: +2 to Unit Cooldown</string>
+		<key>Disarm</key>
+		<string>Disarm
+Lowers the enemies&apos; chance to evade.
+Effect: -10% Enemy Defense
+Cost: +1 to Unit Cooldown</string>
+		<key>Quadra-strike</key>
+		<string>Quadra-strike
+Attacks the enemy with all four swords.
+Effect: 40 Damage to Enemy Unit
+Cost: +2 to Unit Cooldown</string>
+		<key>Hurricane</key>
+		<string>Hurricane
+Attacks all enemies around Garrick.
+Effect: 20 Damage to surrounding Enemy Units Enemy Defense
+Cost: +3 to Unit Cooldown</string>
+		<key>Taunt</key>
+		<string>Taunt
+Forces the enemy to attack Garrick the next round.
+Cost: +1 to Unit Cooldown</string>
+		<key>Sword-wall</key>
+		<string>Sword-wall
+Increases Garricks&apos; defense for 5 rounds, does not stack.
+Effect: +20 Unit Defense
+Cost: +2 to Unit Cooldown</string>
+		<key>Headbash</key>
+		<string>Headbash
+Stuns an enemy unit.
+Effect: +1 to Enemy Cooldown
+Cost: +2 to Unit Cooldown</string>
+		<key>Battlecry</key>
+		<string>Battlecry
+Increases the attack power of friendly minutes for 4 rounds, does not stack.
+Effect: +10 to Friendly Unit Attack Power
+
+Cost: +2 to Unit Cooldown</string>
+	</dict>
+	<key>Eldurin</key>
+	<dict>
+		<key>Devotion</key>
+		<string>Devotion
+Heals heal for 10 healthpoints more.</string>
+		<key>Shadow</key>
+		<string>Shadow
+Increases damage done by spells by 10.</string>
+		<key>Vampire</key>
+		<string>Vampire
+Increases the effectiveness of Siphon by 10 and Pain by -5 enemy attack power.</string>
+		<key>Heal</key>
+		<string>Heal
+Heals a friendly unit.
+Effect: +20 healthpoints to Friendly Unit.
+Cost: +2 to Unit Cooldown</string>
+		<key>Greater Heal</key>
+		<string>Greater heal
+A powerfull heal.
+Effect: +40 healthpoints to Friendly Unit.
+Cost: +3 to Unit Cooldown</string>
+		<key>Endurance</key>
+		<string>Endurance
+Increases the health of all friendly units for 3 rounds, does not stack.
+Effect: +20 to maximum healthpoints for all Friendly Units.
+Cost: +2 to Unit Cooldown</string>
+		<key>Radiance</key>
+		<string>Radiance
+Heals nearby friendly units for 30HP. </string>
+		<key>Flay</key>
+		<string>Flay
+Deals damage to an enemy unit.
+Effect: 30 fire damage to an Enemy Unit.
+Cost: +2GCD</string>
+		<key>Flare</key>
+		<string>Flare
+Deals fire-based enemy to an enemy unit.
+Effect: +20 Unit Defense
+Cost: +2 to Unit Cooldown</string>
+		<key>Pain</key>
+		<string>Pain
+Lowers the attack power of target enemy unit for 2 rounds.
+Effect: -15 to Enemy Cooldown
+Cost: +2 to Unit Cooldown</string>
+		<key>Siphon</key>
+		<string>Siphon
+Transfers healthpoints of an enemy unit to Eldurin.
+Effect: +10 healthpoints to Eldurin
+Cost: +2 to Unit Cooldown</string>
+	</dict>
+</dict>
+</plist>

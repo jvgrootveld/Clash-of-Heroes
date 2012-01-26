@@ -73,4 +73,6 @@ typedef enum
 - (void)setCode:(NSString *)code;
 - (NSString *)printCode;
 
+- (NSDictionary *)toDictionary;
+
 @end

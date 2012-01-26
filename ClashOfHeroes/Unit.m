@@ -323,6 +323,17 @@
     return output;
 }
 
+- (NSDictionary *)toDictionary
+{
+    NSMutableDictionary *unitDict = [NSMutableDictionary dictionary];
+    
+    [unitDict setValue:[NSNumber numberWithInteger:self.healthPoints] forKey:@"currentHealth"];
+    [unitDict setValue:[NSValue valueWithCGPoint:self.location] forKey:@"currentLocation"];
+    [unitDict setValue:[NSNumber numberWithInteger:self.tag] forKey:@"tag"];
+    
+    return unitDict;
+}
+
 -(NSString *)description
 {
     return [NSString stringWithFormat:@"\nPiece: %@ \n\tPlayer: %@ \n\tGear: \t%@ \n\tP-atk: \t%d \n\tM-atk: \t%d \n\tP-def: \t%d \n\tM-def: \t%d \n\tHp: \t%d \n\tRange: \t%d \n\tMove: \t%d \n\tMove direction: %@ \n\tAttack direction: %@", _name, _player, [_upgrade listOfUpgrades], [self physicalAttackPower], [self magicalAttackPower], [self physicalDefense], [self magicalDefense], [self healthPoints], [self range], [self movement], [self directionToString:_moveDirection], [self directionToString:_attackDirection]];

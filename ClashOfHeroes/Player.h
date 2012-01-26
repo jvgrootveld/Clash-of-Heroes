@@ -10,15 +10,19 @@
 
 @class GKPlayer;
 @class Unit;
+@class Hero;
 
 @interface Player : NSObject
 
 @property (nonatomic, strong) GKPlayer *gameCenterInfo;
-@property (nonatomic, strong) NSObject *hero;
+@property (nonatomic, strong) Hero *hero;
 @property (nonatomic, strong) NSMutableArray *units;
+@property (nonatomic, strong) NSArray *unitData;
 
 - (id)initForGKPlayer:(GKPlayer *)player;
 - (void)addUnit:(Unit *)unit;
 - (Unit *)unitForTag:(NSInteger)tag;
+
+- (NSDictionary *)toDictionary;
 
 @end
