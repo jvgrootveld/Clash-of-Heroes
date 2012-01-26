@@ -18,7 +18,7 @@
 
 @implementation Unit
 
-@synthesize name = _name, upgrade = _upgrade, player = _player, moveDirection = _moveDirection, attackDirection = _attackDirection, canAttackTroughAir = _canAttackTroughAir;
+@synthesize name = _name, upgrade = _upgrade, player = _player, moveDirection = _moveDirection, attackDirection = _attackDirection, canAttackTroughAir = _canAttackTroughAir, location = _location;
 
 - (id)initWithName:(NSString *)name player:(Player *)player andBaseStatsPhysicalAttackPower:(NSInteger)physicalAttackPower magicalAttackPower:(NSInteger)magicalAttackPower physicalDefense:(NSInteger)physicalDefense magicalDefense:(NSInteger)magicalDefense healthPoints:(NSInteger)healthPoints range:(NSInteger)range movement:(NSInteger)movement tag:(NSInteger)tag file:(NSString*)filename rect:(CGRect)rect
 {
@@ -41,6 +41,7 @@
         [player addUnit:self];
         [self setTag:tag];
         [self setAnchorPoint:ccp(0.5f, 0.0f)]; //if problem, move to individual classes like Warrior, Mage, etc.
+        self.location = CGPointMake(-1, -1);
     }
     
     return self;
@@ -129,6 +130,7 @@
     const int positionX = positionPoint.x;
     const int positionY = positionPoint.y;
     int newY, newX;
+    CGPoint point;
     
     int i = 0;
     
@@ -139,8 +141,9 @@
          for(i = 1; i <= _range; i++)
          {
              newY = positionY - i;
+             point = CGPointMake(positionX, newY);
              
-             if(newY >= 0) [returnArray addObject:[NSValue valueWithCGPoint:CGPointMake(positionX, newY)]];
+             if(newY >= 0 && [layer isEmptySquare:point]) [returnArray addObject:[NSValue valueWithCGPoint:point]];
              else break;
          }
         
@@ -151,8 +154,9 @@
         for(i = 1; i <= _range; i++)
         {
             newY = positionY + i;
+            point = CGPointMake(positionX, newY);
             
-            if(newY <= mapBoundaryY) [returnArray addObject:[NSValue valueWithCGPoint:CGPointMake(positionX, newY)]];
+            if(newY <= mapBoundaryY && [layer isEmptySquare:point]) [returnArray addObject:[NSValue valueWithCGPoint:point]];
             else break;
         }
     }
@@ -162,8 +166,9 @@
         for(i = 1; i <= _range; i++)
         {
             newX = positionX - i;
+            point = CGPointMake(newX, positionY);
             
-            if(newX >= 0) [returnArray addObject:[NSValue valueWithCGPoint:CGPointMake(newX, positionY)]];
+            if(newX >= 0 && [layer isEmptySquare:point]) [returnArray addObject:[NSValue valueWithCGPoint:point]];
             else break;
         }
     }
@@ -173,8 +178,9 @@
         for(i = 1; i <= _range; i++)
         {
             newX = positionX + i;
+            point = CGPointMake(newX, positionY);
             
-            if(newX <= mapBoundaryX) [returnArray addObject:[NSValue valueWithCGPoint:CGPointMake(newX, positionY)]];
+            if(newX <= mapBoundaryX && [layer isEmptySquare:point]) [returnArray addObject:[NSValue valueWithCGPoint:point]];
             else break;
         }
     }
@@ -185,8 +191,9 @@
         {
             newX = positionX - i;
             newY = positionY - i;
+            point = CGPointMake(newX, newY);
             
-            if(newX >= 0 && newY >= 0) [returnArray addObject:[NSValue valueWithCGPoint:CGPointMake(newX, newY)]];
+            if(newX >= 0 && newY >= 0 && [layer isEmptySquare:point]) [returnArray addObject:[NSValue valueWithCGPoint:point]];
             else break;
         }
     }
@@ -197,8 +204,9 @@
         {
             newX = positionX + i;
             newY = positionY - i;
+            point = CGPointMake(newX, newY);
             
-            if(newX <= mapBoundaryX && newY >= 0) [returnArray addObject:[NSValue valueWithCGPoint:CGPointMake(newX, newY)]];
+            if(newX <= mapBoundaryX && newY >= 0 && [layer isEmptySquare:point]) [returnArray addObject:[NSValue valueWithCGPoint:point]];
             else break;
         }
     }
@@ -209,8 +217,9 @@
         {
             newX = positionX - i;
             newY = positionY + i;
+            point = CGPointMake(newX, newY);
             
-            if(newX >= 0 && newY <= mapBoundaryY) [returnArray addObject:[NSValue valueWithCGPoint:CGPointMake(newX, newY)]];
+            if(newX >= 0 && newY <= mapBoundaryY && [layer isEmptySquare:point]) [returnArray addObject:[NSValue valueWithCGPoint:point]];
             else break;
         }
     }
@@ -221,8 +230,9 @@
         {
             newX = positionX + i;
             newY = positionY + i;
+            point = CGPointMake(newX, newY && [layer isEmptySquare:point]);
             
-            if(newX <= mapBoundaryX && newY <= mapBoundaryY) [returnArray addObject:[NSValue valueWithCGPoint:CGPointMake(newX, newY)]];
+            if(newX <= mapBoundaryX && newY <= mapBoundaryY) [returnArray addObject:[NSValue valueWithCGPoint:point]];
             else break;
         }
     }

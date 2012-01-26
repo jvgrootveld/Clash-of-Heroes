@@ -13,8 +13,10 @@
 @protocol Phase <NSObject>
 
 @property (nonatomic) NSInteger remainingMoves;
+@property (nonatomic, strong) GameLayer *gameLayer;
 
-- (void)didSelectPoint:(CGPoint)point onLayer:(GameLayer *)layer;
-- (void)endPhaseOnLayer:(GameLayer *)layer;
+- (id)initWithGameLayer:(GameLayer *)gameLayer;
+- (void)didSelectPoint:(CGPoint)point;
+- (void)endPhase;
 
 @end

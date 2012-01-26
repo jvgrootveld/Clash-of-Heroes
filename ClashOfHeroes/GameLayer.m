@@ -23,7 +23,7 @@
 
 @implementation GameLayer
 
-@synthesize mapLayer = _mapLayer, map = _map, selectedSprite = _selectedSprite, junkLayer = _junkLayer, metaLayer = _metaLayer, gameViewController = _gameViewController, units = _units, currentPhase = _currentPhase, combatPhase = _combatPhase, movementPhase = _movementPhase;
+@synthesize mapLayer = _mapLayer, map = _map, selectedSprite = _selectedSprite, junkLayer = _junkLayer, metaLayer = _metaLayer, gameViewController = _gameViewController, currentPhase = _currentPhase, combatPhase = _combatPhase, movementPhase = _movementPhase;
 
 + (CCScene *)sceneWithDelegate:(GameViewController *)delegate;
 {
@@ -87,7 +87,6 @@
         spriteWidth = 26;
         spriteHeight = 62;
         _moveSprites = [NSMutableArray new];
-        _units = [NSMutableArray new];
         
         GCTurnBasedMatchHelper *gCTurnBasedMatchHelper = [GCTurnBasedMatchHelper sharedInstance];
         Player *player1 = [gCTurnBasedMatchHelper playerForLocalPlayer];
@@ -160,9 +159,9 @@
 //        CCNode* node = [men objectAtIndex:0];
 	}
     
-    [self setCurrentPhase:[MovementPhase new]];
-    [self setMovementPhase:[MovementPhase new]];
-    [self setCombatPhase:[CombatPhase new]];
+    [self setMovementPhase:[[MovementPhase alloc] initWithGameLayer:self]];
+    [self setCombatPhase:[[CombatPhase alloc] initWithGameLayer:self]];
+    [self setCurrentPhase:self.movementPhase];
     
 	return self;
 }
@@ -197,11 +196,11 @@
 
 - (void)showSelectionTileAtPositionPoint:(CGPoint)position
 {
-    if((position.x < self.metaLayer.layerSize.width && position.y < self.metaLayer.layerSize.height && position.x >=0 && position.y >=0))
+    if([self isLocationInBounds:position])
     {
         if(![self isTilePosBlocked:position])
         {
-            NSLog(@"Show selection tile at: %@", NSStringFromCGPoint(position));
+            //NSLog(@"Show selection tile at: %@", NSStringFromCGPoint(position));
             
             CGPoint pos = [[self.metaLayer tileAt:position] position];
             
@@ -231,19 +230,17 @@
 
 - (void)showMoveTileAtPositionPoint:(CGPoint)position
 {
-    if((position.x < self.metaLayer.layerSize.width && position.y < self.metaLayer.layerSize.height && position.x >=0 && position.y >=0))
+    if([self isLocationInBounds:position])
     {
         if(![self isTilePosBlocked:position])
-        {
-            NSLog(@"Show move tile at: %@", NSStringFromCGPoint(position));
-            
+        {   
             CGPoint pos = [[self.metaLayer tileAt:position] position];
             
             pos.x += (self.map.tileSize.width / 2);
             pos.y += (self.map.tileSize.height / 2);
             
             CCSprite *moveSprite = [CCSprite spriteWithFile:@"tile_green.png"];
-            [moveSprite setTag:100];
+            [moveSprite setTag:100];//needed?
             [moveSprite setOpacity:128];
             [self.map addChild:moveSprite z:1];
             [_moveSprites addObject:moveSprite];
@@ -262,9 +259,7 @@
 
 - (void)showMoveTileAtPositionPoints:(NSArray *)positions
 {
-    if(_moveSprites && _moveSprites.count > 0)
-        for(CCSprite *moveSprite in _moveSprites) 
-            [self.map removeChild:moveSprite cleanup:YES];
+    [self removeMoveTiles];
     
     for(NSValue *pointValue in positions)
     {
@@ -273,10 +268,20 @@
     }
 }
 
+- (void)removeMoveTiles
+{
+    if(_moveSprites && _moveSprites.count > 0)
+        for(CCSprite *moveSprite in _moveSprites) 
+            [self.map removeChild:moveSprite cleanup:YES];
+}
+
 - (void)setSprite:(CCSprite *)sprite atPositionPoint:(CGPoint)position withTag:(NSInteger)tag;
 {
-    if((position.x < self.metaLayer.layerSize.width && position.y < self.metaLayer.layerSize.height && position.x >=0 && position.y >=0))
+    if([self isLocationInBounds:position])
     {
+        
+        if([sprite isKindOfClass:[Unit class]]) [(Unit *)sprite setLocation:position];
+        
         //NSLog(@"sprite paint at %@", NSStringFromCGPoint(position));
         
     //    CGFloat spriteWidth = sprite.contentSize.width;
@@ -315,7 +320,7 @@
     //Tile location
     CGPoint selectedTilePoint = [self tilePosFromLocation:tileLocation tileMap:self.map];
     
-    if((selectedTilePoint.x < self.metaLayer.layerSize.width && selectedTilePoint.y < self.metaLayer.layerSize.height && selectedTilePoint.x >=0 && selectedTilePoint.y >=0))
+    if([self isLocationInBounds:selectedTilePoint])
     { 
         NSLog(@"Move sprite to: %@", NSStringFromCGPoint(selectedTilePoint));
         
@@ -341,6 +346,8 @@
                                             position:pos];
 
         [sprite runAction: [CCSequence actions:actionMove, nil]];
+        
+        if([sprite isKindOfClass:[Unit class]]) [(Unit *)sprite setLocation:selectedTilePoint];
     }
     else
     {
@@ -385,7 +392,7 @@
 {
     //NSLog(@"search %d sprites", [_items count]);
     
-    for (CCSprite *element in _units) 
+    for (CCSprite *element in self.units) 
     {
         if (CGRectContainsPoint(element.boundingBox, touchLocation)) 
         {
@@ -425,7 +432,22 @@
     return  nil;
 }
 
--(void) registerWithTouchDispatcher
+- (BOOL)isEmptySquare:(CGPoint)squarePosition
+{
+    for(Unit *unit in self.units)
+    {
+        if(CGPointEqualToPoint(unit.location, squarePosition)) return NO;
+    }
+    
+    return YES;
+}
+
+- (BOOL)isLocationInBounds:(CGPoint)location
+{
+    return (location.x < self.metaLayer.layerSize.width && location.y < self.metaLayer.layerSize.height && location.x >=0 && location.y >=0);
+}
+
+-(void)registerWithTouchDispatcher
 {
 	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
@@ -436,23 +458,8 @@
     touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
 	touchLocation = [self.map convertToNodeSpace:touchLocation];
     
-    //[self showSelectionTileAtLocation:touchLocation];
+    [self.currentPhase didSelectPoint:touchLocation];
     
-    [self.currentPhase didSelectSquare:touchLocation onLayer:self];
-    
-    CGPoint positionPoint = [self tilePosFromLocation:touchLocation tileMap:self.map];
-    [self showSelectionTileAtPositionPoint:positionPoint];
-    
-    //test
-//    positionPoint.x += 1;
-//    [self showMoveTileAtPositionPoint:positionPoint];
-//    positionPoint.x += 1;
-//    [self showMoveTileAtPositionPoint:positionPoint];
-//    positionPoint.x += 1;
-//    [self showMoveTileAtPositionPoint:positionPoint];
-//    positionPoint.x += 1;
-//    [self showMoveTileAtPositionPoint:positionPoint];
-    //test
     
 //    TestPlayer *test = (TestPlayer *)[self getChildByTag:5000];
 //    NSLog(@"type: %@", [self getChildByTag:5000].class);
@@ -461,32 +468,6 @@
 //    CCSprite *sprite = (CCSprite *)[self getChildByTag:200];
 //    
 //    [self moveSprite:sprite toTileLocation:touchLocation];
-    
-    CCSprite *sprite = [self selectSpriteForTouch:touchLocation];
-
-    if(sprite)
-    {
-        NSLog(@"search tag: %d", sprite.tag);
-        
-        Unit *selectedUnit = [self isFriendlyUnitWithSprite:sprite];
-        
-        if(selectedUnit)
-        {
-            NSLog(@"selected unit: %@ is yours", selectedUnit.name);
-            NSArray *moveLocations = [selectedUnit pointsWhichCanBeMovedAtWithTouchPositionPoint:positionPoint inLayer:self];
-            
-            [self showMoveTileAtPositionPoints:moveLocations];
-        }
-        else
-        {
-            selectedUnit = [self isEnemyUnitWithSprite:sprite];
-            
-            if(selectedUnit)
-                NSLog(@"selected unit is from the enemy");
-            else
-                NSLog(@"No unit?");
-        }
-    }
     
     //test move
 //    if(!sprite && _selectedSprite)
@@ -525,6 +506,20 @@
 //    CCNode *node = [self getChildByTag:2];
 //    CGPoint currentPos = [node position];
 //    [node setPosition: ccpAdd(currentPos, diff)];
+}
+
+- (NSArray *)units
+{
+    NSMutableArray *returnArray = [NSMutableArray new];
+    
+    GCTurnBasedMatchHelper *gCTurnBasedMatchHelper = [GCTurnBasedMatchHelper sharedInstance];
+    NSMutableArray *ownUnits = [gCTurnBasedMatchHelper playerForLocalPlayer].units;
+    NSMutableArray *enemyUnits = [gCTurnBasedMatchHelper playerForEnemyPlayer].units;
+    
+    if(ownUnits && ownUnits.count > 0) [returnArray addObjectsFromArray:ownUnits];
+    if(enemyUnits && enemyUnits.count > 0) [returnArray addObjectsFromArray:enemyUnits];
+    
+    return returnArray;
 }
 
 // on "dealloc" you need to release all your retained objects

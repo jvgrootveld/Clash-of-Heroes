@@ -16,11 +16,10 @@
 // GameLayer
 @interface GameLayer : CCLayer
 {
-    CCSprite *_selectedSprite;
     NSMutableArray *_moveSprites;
 }
 
-@property (nonatomic, strong) NSMutableArray *units;
+@property (nonatomic, readonly) NSArray *units;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 + (CCScene *)sceneWithDelegate:(GameViewController *)delegate;
@@ -36,6 +35,7 @@
 /** position like: 0-0, 12-4, etc NOT pixels */
 - (void)showMoveTileAtPositionPoint:(CGPoint)position;
 - (void)showMoveTileAtPositionPoints:(NSArray *)positions;
+- (void)removeMoveTiles;
 
 /** This function gets the specific tile and move the sprite*/
 - (void)moveSprite:(CCSprite *)sprite toTileLocation:(CGPoint)tileLocation;
@@ -44,9 +44,11 @@
 - (CGFloat)mapBoundaryY;
 
 - (CCSprite *)selectSpriteForTouch:(CGPoint)touchLocation;
-
 - (Unit *)isFriendlyUnitWithSprite:(CCSprite *)sprite;
 - (Unit *)isEnemyUnitWithSprite:(CCSprite *)sprite;
+- (BOOL)isEmptySquare:(CGPoint)squarePosition;
+
+- (BOOL)isLocationInBounds:(CGPoint)location;
 
 @property (nonatomic, retain) CCTMXTiledMap *map;
 @property (nonatomic, retain) CCTMXLayer *mapLayer;
