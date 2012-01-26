@@ -57,7 +57,7 @@
 }
 
 - (IBAction)endTurn:(id)sender {
-    COHAlertViewController *alertView = [[COHAlertViewController alloc] initWithTitle:@"End turn" andMessage:@"Are you sure you want to end this phase? This will cancel any remaining moves."];
+    COHAlertViewController *alertView = [[COHAlertViewController alloc] initWithTitle:@"End turn" andMessage:@"Are you sure you want to end this turn? This will cancel any remaining moves."];
     
     alertView.view.frame = self.view.frame;
     alertView.view.center = self.view.center;
