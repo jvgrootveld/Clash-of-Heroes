@@ -49,6 +49,7 @@ typedef enum
 @property (nonatomic, assign) Direction moveDirection;
 @property (nonatomic, assign) Direction attackDirection;
 @property (nonatomic) BOOL canAttackTroughAir;
+@property (nonatomic) CGPoint location; //not in pixels 
 
 - (id)initWithName:(NSString *)name player:(Player *)player andBaseStatsPhysicalAttackPower:(NSInteger)physicalAttackPower magicalAttackPower:(NSInteger)magicalAttackPower physicalDefense:(NSInteger)physicalDefense magicalDefense:(NSInteger)magicalDefense healthPoints:(NSInteger)healthPoints range:(NSInteger)range movement:(NSInteger)movement tag:(NSInteger)tag file:(NSString*)filename rect:(CGRect)rect;
 - (NSInteger)physicalAttackPower;

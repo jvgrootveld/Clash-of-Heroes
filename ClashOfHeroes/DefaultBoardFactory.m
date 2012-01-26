@@ -32,8 +32,6 @@
     //__WARRIOR
     CCSprite *unit = [[Warrior alloc] initForPlayer:player1 withTag:tag];
     
-    [layer.units addObject:unit];
-    
     //0-14
     [layer setSprite:unit atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
     
@@ -42,8 +40,6 @@
     
     //__MAGE
     unit = [[Mage alloc] initForPlayer:player1 withTag:tag];
-
-    [layer.units addObject:unit];
     
     [layer setSprite:unit atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
     
@@ -53,8 +49,6 @@
     //__RANGER
     unit = [[Ranger alloc] initForPlayer:player1 withTag:tag];
     
-    [layer.units addObject:unit];
-    
     [layer setSprite:unit atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
     
     tag++;
@@ -63,8 +57,6 @@
     //__PRIEST
     unit = [[Priest alloc] initForPlayer:player1 withTag:tag];
     
-    [layer.units addObject:unit];
-    
     [layer setSprite:unit atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
     
     tag++;
@@ -72,8 +64,6 @@
     
     //__SHAPSHIFTER
     unit = [[Shapeshifter alloc] initForPlayer:player1 withTag:tag];
-    
-    [layer.units addObject:unit];
     
     [layer setSprite:unit atPositionPoint:CGPointMake(locationX, 14) withTag:tag];
     
