@@ -112,7 +112,7 @@
         }
         else if (alert.tag == 2)
         {
-            [self.gameLayer.currentPhase endPhaseOnLayer:self.gameLayer];
+            [self.gameLayer.currentPhase endPhase];
         }
         else if (alert.tag == 3)
             [self.navigationController popViewControllerAnimated:YES];

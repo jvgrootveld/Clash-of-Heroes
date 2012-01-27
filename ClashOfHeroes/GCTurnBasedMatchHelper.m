@@ -33,11 +33,14 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 
 - (id)init
 {
-    if ((self = [super init])) {
+    if ((self = [super init])) 
+    {
         gameCenterAvailable = [self isGameCenterAvailable];
-        if (gameCenterAvailable) {
-            NSNotificationCenter *nc = 
-            [NSNotificationCenter defaultCenter];
+        
+        if (gameCenterAvailable) 
+        {
+            NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+            
             [nc addObserver:self 
                    selector:@selector(authenticationChanged) 
                        name:GKPlayerAuthenticationDidChangeNotificationName 
@@ -225,6 +228,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     for (Player *player in self.currentPlayers)
     {
         NSDictionary *playerData = [matchData objectForKey:player.gameCenterInfo.playerID];
+        
         if (playerData)
         {
             NSDictionary *heroDict = [playerData objectForKey:@"hero"];
@@ -234,8 +238,10 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
             NSDictionary *priestDict = [playerData objectForKey:@"Priest"];
             NSDictionary *shifterDict = [playerData objectForKey:@"Shapeshifter"];
             
-            if (heroDict) {
+            if (heroDict) 
+            {
                 Hero *heroUnit = [Hero new];
+                
                 [heroUnit setHeroName:[heroDict valueForKey:@"heroName"]];
                 [heroUnit setCurrentHealth:[[heroDict valueForKey:@"health"] integerValue]];
                 [heroUnit setAbilityOne:[heroDict valueForKey:@"abilityOne"]];
@@ -251,7 +257,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
             if (warriorDict)
             {
                 UnitData *warriorUnit = [[UnitData alloc] initWithType:@"warrior"
-                                                            tag:[[warriorDict valueForKey:@"tag"] integerValue]
+                                                                   tag:[[warriorDict valueForKey:@"tag"] integerValue]
                                                            andLocation:[[warriorDict valueForKey:@"location"] CGPointValue]];
                 [unitArray addObject:warriorUnit];
             }
@@ -259,8 +265,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
             if (mageDict)
             {
                 UnitData *mageUnit = [[UnitData alloc] initWithType:@"mage"
-                                                                   tag:[[mageDict valueForKey:@"tag"] integerValue]
-                                                           andLocation:[[mageDict valueForKey:@"location"] CGPointValue]];
+                                                                tag:[[mageDict valueForKey:@"tag"] integerValue]
+                                                        andLocation:[[mageDict valueForKey:@"location"] CGPointValue]];
                 
                 [unitArray addObject:mageUnit];
             }
@@ -268,8 +274,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
             if (rangerDict)
             {
                 UnitData *rangerUnit = [[UnitData alloc] initWithType:@"ranger"
-                                                                   tag:[[rangerDict valueForKey:@"tag"] integerValue]
-                                                           andLocation:[[rangerDict valueForKey:@"location"] CGPointValue]];
+                                                                  tag:[[rangerDict valueForKey:@"tag"] integerValue]
+                                                          andLocation:[[rangerDict valueForKey:@"location"] CGPointValue]];
                 
                 [unitArray addObject:rangerUnit];
             }
@@ -277,8 +283,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
             if (priestDict)
             {
                 UnitData *priestUnit = [[UnitData alloc] initWithType:@"priest"
-                                                                   tag:[[priestDict valueForKey:@"tag"] integerValue]
-                                                           andLocation:[[priestDict valueForKey:@"location"] CGPointValue]];
+                                                                  tag:[[priestDict valueForKey:@"tag"] integerValue]
+                                                          andLocation:[[priestDict valueForKey:@"location"] CGPointValue]];
                 
                 [unitArray addObject:priestUnit];
             }
