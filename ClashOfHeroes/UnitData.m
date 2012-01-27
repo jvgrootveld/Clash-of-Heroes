@@ -38,11 +38,11 @@
         self.tag = tag;
         self.location = location;
         
-        if ([name isEqualToString:@"warrior"]) self.unitType = WARRIOR;
-        else if ([name isEqualToString:@"mage"]) self.unitType = MAGE;
-        else if ([name isEqualToString:@"ranger"]) self.unitType = RANGER;
-        else if ([name isEqualToString:@"priest"]) self.unitType = PRIEST;
-        else if ([name isEqualToString:@"shapeshifter"]) self.unitType = SHAPESHIFTER;
+        if ([name isEqualToString:@"Warrior"]) self.unitType = WARRIOR;
+        else if ([name isEqualToString:@"Mage"]) self.unitType = MAGE;
+        else if ([name isEqualToString:@"Ranger"]) self.unitType = RANGER;
+        else if ([name isEqualToString:@"Priest"]) self.unitType = PRIEST;
+        else if ([name isEqualToString:@"Shapeshifter"]) self.unitType = SHAPESHIFTER;
     }
     
     return self;

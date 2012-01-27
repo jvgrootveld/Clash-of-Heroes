@@ -18,6 +18,7 @@
 @property (nonatomic, strong) Hero *hero;
 @property (nonatomic, strong) NSMutableArray *units;
 @property (nonatomic, strong) NSArray *unitData;
+@property (nonatomic, assign) NSInteger turnNumber;
 
 - (id)initForGKPlayer:(GKPlayer *)player;
 - (void)addUnit:(Unit *)unit;

@@ -14,7 +14,7 @@
 
 @implementation Player
 
-@synthesize hero = _hero, units = _units, gameCenterInfo = _gameCenterInfo, unitData = _unitData;
+@synthesize hero = _hero, units = _units, gameCenterInfo = _gameCenterInfo, unitData = _unitData, turnNumber = _turnNumber;
 
 - (id)initForGKPlayer:(GKPlayer *)player
 {
@@ -24,6 +24,7 @@
         self.units = [NSMutableArray array];
         self.unitData = [NSArray array];
         self.gameCenterInfo = player;
+        self.turnNumber = 0;
     }
     
     return self;
@@ -53,13 +54,19 @@
 - (NSDictionary *)toDictionary
 {
     NSMutableDictionary *playerDict = [NSMutableDictionary dictionary];
+    BOOL revert = ((self == [[GCTurnBasedMatchHelper sharedInstance] playerForEnemyPlayer]) && self.turnNumber > 1);
     
+    [playerDict setValue:[NSNumber numberWithInteger:self.turnNumber] forKey:@"turnNumber"];
     [playerDict setValue:[self.hero toDictionary] forKey:@"hero"];
     
-    if (self.units.count != 0) //Check for unit objects as they only get set on the Game View, not hero selection
-    {
+    if (self.units.count > 0) //Check for unit objects as they only get set on the Game View, not hero selection
+    {        
         for (Unit *unit in self.units)
         {
+            self.unitData = [NSArray new];
+            
+            if (revert) unit.location = CGPointMake(abs(unit.location.x-14), abs(unit.location.y-14));
+            
             UnitData *unitData = [[UnitData alloc] initWithName:unit.name tag:unit.tag andLocation:unit.location];
             [playerDict setValue:[unitData toDictionary] forKey:unitData.unitName];
         }
@@ -68,6 +75,8 @@
     {
         for (UnitData *unitData in self.unitData)
         {
+            if (revert) unitData.location = CGPointMake(abs(unitData.location.x-14), abs(unitData.location.y-14));
+            
             [playerDict setValue:[unitData toDictionary] forKey:unitData.unitName];
         }
     }

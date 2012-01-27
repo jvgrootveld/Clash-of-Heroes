@@ -50,6 +50,8 @@
 
 - (BOOL)isLocationInBounds:(CGPoint)location;
 
+- (void)loadUnitLocations;
+
 @property (nonatomic, retain) CCTMXTiledMap *map;
 @property (nonatomic, retain) CCTMXLayer *mapLayer;
 @property (nonatomic, retain) CCTMXLayer *junkLayer;
