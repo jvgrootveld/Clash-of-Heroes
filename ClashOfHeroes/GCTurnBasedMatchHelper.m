@@ -33,11 +33,14 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 
 - (id)init
 {
-    if ((self = [super init])) {
+    if ((self = [super init])) 
+    {
         gameCenterAvailable = [self isGameCenterAvailable];
-        if (gameCenterAvailable) {
-            NSNotificationCenter *nc = 
-            [NSNotificationCenter defaultCenter];
+        
+        if (gameCenterAvailable) 
+        {
+            NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+            
             [nc addObserver:self 
                    selector:@selector(authenticationChanged) 
                        name:GKPlayerAuthenticationDidChangeNotificationName 
@@ -225,6 +228,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     for (Player *player in self.currentPlayers)
     {
         NSDictionary *playerData = [matchData objectForKey:player.gameCenterInfo.playerID];
+        
         if (playerData)
         {
             NSDictionary *heroDict = [playerData objectForKey:@"hero"];
@@ -234,8 +238,10 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
             NSDictionary *priestDict = [playerData objectForKey:@"priest"];
             NSDictionary *shifterDict = [playerData objectForKey:@"shapeshifter"];
             
-            if (heroDict) {
+            if (heroDict) 
+            {
                 Hero *heroUnit = [Hero new];
+                
                 [heroUnit setHeroName:[heroDict valueForKey:@"heroName"]];
                 [heroUnit setCurrentHealth:[[heroDict valueForKey:@"health"] integerValue]];
                 [heroUnit setAbilityOne:[heroDict valueForKey:@"abilityOne"]];

@@ -212,8 +212,6 @@
 		83C8AA0114C43E3D00182C89 /* CombatPhase.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C8AA0014C43E3D00182C89 /* CombatPhase.m */; };
 		83EF3417148D032B0076EBA9 /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83EF3416148D032B0076EBA9 /* GameViewController.xib */; };
 		F20BA746147C2F8600654467 /* grossini_dance_atlas.png in Resources */ = {isa = PBXBuildFile; fileRef = F20BA745147C2F8600654467 /* grossini_dance_atlas.png */; };
-		F21D3F9214D1896000BF0E0F /* frame.png in Resources */ = {isa = PBXBuildFile; fileRef = F21D3F9114D1896000BF0E0F /* frame.png */; };
-		F21D3F9514D18F4C00BF0E0F /* alert.png in Resources */ = {isa = PBXBuildFile; fileRef = F21D3F9414D18F4C00BF0E0F /* alert.png */; };
 		F21D3F9914D1980700BF0E0F /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F21D3F9814D1980600BF0E0F /* Default-Landscape~ipad.png */; };
 		F21D3F9B14D19B0000BF0E0F /* menu_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = F21D3F9A14D19B0000BF0E0F /* menu_screen.png */; };
 		F21D3F9D14D1A4A400BF0E0F /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = F21D3F9C14D1A4A400BF0E0F /* button.png */; };
@@ -221,6 +219,8 @@
 		F28F8A8A147E3BA1009502CC /* TestPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F28F8A89147E3BA1009502CC /* TestPlayer.m */; };
 		F29F4EA71483B6EF00D114D0 /* sprites.png in Resources */ = {isa = PBXBuildFile; fileRef = F29F4EA61483B6EF00D114D0 /* sprites.png */; };
 		F2C94EFA1490F3F300A70B1A /* tile_green.png in Resources */ = {isa = PBXBuildFile; fileRef = F2C94EF91490F3F300A70B1A /* tile_green.png */; };
+		F2D10D4514D2BE600047ABB2 /* frame.png in Resources */ = {isa = PBXBuildFile; fileRef = F2D10D4414D2BE600047ABB2 /* frame.png */; };
+		F2D10D4714D2C2340047ABB2 /* alert.png in Resources */ = {isa = PBXBuildFile; fileRef = F2D10D4614D2C2340047ABB2 /* alert.png */; };
 		F2FAA32A14BB280D00121AD6 /* DefaultBoardFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FAA32914BB280C00121AD6 /* DefaultBoardFactory.m */; };
 /* End PBXBuildFile section */
 
@@ -571,8 +571,6 @@
 		83C8AA0014C43E3D00182C89 /* CombatPhase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CombatPhase.m; sourceTree = "<group>"; };
 		83EF3416148D032B0076EBA9 /* GameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
 		F20BA745147C2F8600654467 /* grossini_dance_atlas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grossini_dance_atlas.png; sourceTree = "<group>"; };
-		F21D3F9114D1896000BF0E0F /* frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = frame.png; sourceTree = "<group>"; };
-		F21D3F9414D18F4C00BF0E0F /* alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alert.png; sourceTree = "<group>"; };
 		F21D3F9814D1980600BF0E0F /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		F21D3F9A14D19B0000BF0E0F /* menu_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_screen.png; sourceTree = "<group>"; };
 		F21D3F9C14D1A4A400BF0E0F /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
@@ -581,6 +579,8 @@
 		F28F8A89147E3BA1009502CC /* TestPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPlayer.m; sourceTree = "<group>"; };
 		F29F4EA61483B6EF00D114D0 /* sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sprites.png; sourceTree = "<group>"; };
 		F2C94EF91490F3F300A70B1A /* tile_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile_green.png; sourceTree = "<group>"; };
+		F2D10D4414D2BE600047ABB2 /* frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = frame.png; sourceTree = "<group>"; };
+		F2D10D4614D2C2340047ABB2 /* alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alert.png; sourceTree = "<group>"; };
 		F2FAA32614BB268D00121AD6 /* BoardFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardFactory.h; sourceTree = "<group>"; };
 		F2FAA32814BB280C00121AD6 /* DefaultBoardFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultBoardFactory.h; sourceTree = "<group>"; };
 		F2FAA32914BB280C00121AD6 /* DefaultBoardFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultBoardFactory.m; sourceTree = "<group>"; };
@@ -815,14 +815,14 @@
 		83714762147BE0770091C992 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F21D3F9414D18F4C00BF0E0F /* alert.png */,
+				F2D10D4614D2C2340047ABB2 /* alert.png */,
+				F2D10D4414D2BE600047ABB2 /* frame.png */,
 				F21D3F9C14D1A4A400BF0E0F /* button.png */,
 				F21D3F9A14D19B0000BF0E0F /* menu_screen.png */,
 				8355D9C814D18EC1007CAF81 /* Hero selection */,
 				837148C9147BE18A0091C992 /* Sprites */,
 				837148C2147BE10A0091C992 /* TMX */,
 				83714763147BE0770091C992 /* Default.png */,
-				F21D3F9114D1896000BF0E0F /* frame.png */,
 				8344E5DA14C9945400BEC96F /* alert_background.png */,
 				832A6BF7148E4B4000E075D1 /* warriorpin.png */,
 				837148C5147BE11D0091C992 /* background.jpg */,
@@ -1270,8 +1270,6 @@
 				F2C94EFA1490F3F300A70B1A /* tile_green.png in Resources */,
 				8344E5D214C9811900BEC96F /* COHAlertViewController.xib in Resources */,
 				8344E5DB14C9945400BEC96F /* alert_background.png in Resources */,
-				F21D3F9214D1896000BF0E0F /* frame.png in Resources */,
-				F21D3F9514D18F4C00BF0E0F /* alert.png in Resources */,
 				F21D3F9914D1980700BF0E0F /* Default-Landscape~ipad.png in Resources */,
 				F21D3F9B14D19B0000BF0E0F /* menu_screen.png in Resources */,
 				F21D3F9D14D1A4A400BF0E0F /* button.png in Resources */,
@@ -1332,6 +1330,8 @@
 				8355DA3714D18F7B007CAF81 /* hero_galen.png in Resources */,
 				8355DA3814D18F7B007CAF81 /* wood_background_texture.png in Resources */,
 				8355DA3A14D18FCD007CAF81 /* HeroDescriptions.plist in Resources */,
+				F2D10D4514D2BE600047ABB2 /* frame.png in Resources */,
+				F2D10D4714D2C2340047ABB2 /* alert.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
