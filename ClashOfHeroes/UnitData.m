@@ -14,12 +14,14 @@
 @synthesize tag = _tag;
 @synthesize location = _location;
 @synthesize currentHealth = _currentHealth;
+@synthesize unitName = _unitName;
 
-- (id)initWithType:(NSString *)type tag:(NSInteger)tag andLocation:(CGPoint)location
+- (id)initWithType:(NSInteger)type name:(NSString *)name tag:(NSInteger)tag andLocation:(CGPoint)location
 {
     if (self == [super init])
     {
         self.unitType = type;
+        self.unitName = name;
         self.tag = tag;
         self.location = location;
         self.currentHealth = 100;
@@ -33,7 +35,8 @@
     NSMutableDictionary *dataDict = [NSMutableDictionary dictionary];
     
     //Key-value pairs have to match pairs given by a Unit object
-    [dataDict setValue:self.unitType forKey:@"unitName"];
+    [dataDict setValue:[NSNumber numberWithInteger:self.unitType] forKey:@"unitType"];
+    [dataDict setValue:self.unitName forKey:@"unitName"];
     [dataDict setValue:[NSNumber numberWithInteger:self.tag] forKey:@"tag"];
     [dataDict setValue:[NSValue valueWithCGPoint:self.location] forKey:@"location"];
     [dataDict setValue:[NSNumber numberWithInteger:self.currentHealth] forKey:@"health"];
@@ -43,7 +46,7 @@
 
 - (void)dealloc
 {
-    [self.unitType dealloc];
+    [self.unitName dealloc];
     
     [super dealloc];
 }

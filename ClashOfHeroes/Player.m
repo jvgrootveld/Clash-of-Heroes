@@ -67,7 +67,7 @@
     {
         for (UnitData *unitData in self.unitData)
         {
-            [playerDict setValue:[unitData toDictionary] forKey:unitData.unitType];
+            [playerDict setValue:[unitData toDictionary] forKey:unitData.unitName];
         }
     }
     

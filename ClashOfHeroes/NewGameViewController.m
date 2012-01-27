@@ -535,15 +535,15 @@
             NSInteger indexForPlayer = ([[helper currentPlayers] indexOfObject:localPlayer])+1;
             NSInteger positionX = 5;
             
-            UnitData *warrior = [[UnitData alloc] initWithType:@"Warrior" tag:(100*indexForPlayer) andLocation:CGPointMake(positionX, 14)];
+            UnitData *warrior = [[UnitData alloc] initWithType:WARRIOR name:@"warrior" tag:(100*indexForPlayer) andLocation:CGPointMake(positionX, 14)];
             
-            UnitData *mage = [[UnitData alloc] initWithType:@"Mage" tag:((100*indexForPlayer)+1) andLocation:CGPointMake((positionX+1), 14)];
+            UnitData *mage = [[UnitData alloc] initWithType:MAGE name:@"mage" tag:((100*indexForPlayer)+1) andLocation:CGPointMake((positionX+1), 14)];
             
-            UnitData *ranger = [[UnitData alloc] initWithType:@"Ranger" tag:((100*indexForPlayer)+2) andLocation:CGPointMake((positionX+2), 14)];
+            UnitData *ranger = [[UnitData alloc] initWithType:RANGER name:@"ranger" tag:((100*indexForPlayer)+2) andLocation:CGPointMake((positionX+2), 14)];
             
-            UnitData *priest = [[UnitData alloc] initWithType:@"Priest" tag:((100*indexForPlayer)+3) andLocation:CGPointMake((positionX+3), 14)];
+            UnitData *priest = [[UnitData alloc] initWithType:PRIEST name:@"priest" tag:((100*indexForPlayer)+3) andLocation:CGPointMake((positionX+3), 14)];
             
-            UnitData *shifter = [[UnitData alloc] initWithType:@"Shapeshifter" tag:((100*indexForPlayer)+4) andLocation:CGPointMake((positionX+4), 14)];
+            UnitData *shifter = [[UnitData alloc] initWithType:SHAPESHIFTER name:@"shapeshifter" tag:((100*indexForPlayer)+4) andLocation:CGPointMake((positionX+4), 14)];
             
             [localPlayer setHero:selectedHero];
             [localPlayer setUnitData:[NSMutableArray arrayWithObjects:warrior, mage, ranger, priest, shifter, nil]];

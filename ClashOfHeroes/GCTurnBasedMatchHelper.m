@@ -232,11 +232,11 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
         if (playerData)
         {
             NSDictionary *heroDict = [playerData objectForKey:@"hero"];
-            NSDictionary *warriorDict = [playerData objectForKey:@"Warrior"];
-            NSDictionary *mageDict = [playerData objectForKey:@"Mage"];
-            NSDictionary *rangerDict = [playerData objectForKey:@"Ranger"];
-            NSDictionary *priestDict = [playerData objectForKey:@"Priest"];
-            NSDictionary *shifterDict = [playerData objectForKey:@"Shapeshifter"];
+            NSDictionary *warriorDict = [playerData objectForKey:@"warrior"];
+            NSDictionary *mageDict = [playerData objectForKey:@"mage"];
+            NSDictionary *rangerDict = [playerData objectForKey:@"ranger"];
+            NSDictionary *priestDict = [playerData objectForKey:@"priest"];
+            NSDictionary *shifterDict = [playerData objectForKey:@"shapeshifter"];
             
             if (heroDict) 
             {
@@ -291,7 +291,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
             
             if (shifterDict)
             {
-                UnitData *shifterUnit = [[UnitData alloc] initWithType:@"shapeshifter"
+                UnitData *shifterUnit = [[UnitData alloc] initWithType:SHAPESHIFTER
+                                                                  name:@"shapeshifter"
                                                                    tag:[[shifterDict valueForKey:@"tag"] integerValue]
                                                            andLocation:[[shifterDict valueForKey:@"location"] CGPointValue]];
                 

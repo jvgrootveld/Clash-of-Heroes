@@ -8,14 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
+enum
+{
+    WARRIOR = 1,
+    MAGE = 2,
+    RANGER = 3,
+    PRIEST = 4,
+    SHAPESHIFTER = 5
+};
+
 @interface UnitData : NSObject
 
-@property (nonatomic, strong) NSString *unitType;
+@property (nonatomic, assign) NSInteger unitType;
 @property (nonatomic, assign) NSInteger tag;
 @property (nonatomic, assign) CGPoint location;
 @property (nonatomic, assign) NSInteger currentHealth;
+@property (nonatomic, strong) NSString *unitName;
 
-- (id)initWithType:(NSString *)type tag:(NSInteger)tag andLocation:(CGPoint)location;
+- (id)initWithType:(NSInteger)type name:(NSString *)name tag:(NSInteger)tag andLocation:(CGPoint)location;
 - (NSDictionary *)toDictionary;
 
 @end
