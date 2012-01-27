@@ -256,35 +256,39 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
             
             if (warriorDict)
             {
-                UnitData *warriorUnit = [[UnitData alloc] initWithType:@"warrior"
-                                                                   tag:[[warriorDict valueForKey:@"tag"] integerValue]
+                UnitData *warriorUnit = [[UnitData alloc] initWithType:WARRIOR
+                                                                  name:@"warrior"
+                                                            tag:[[warriorDict valueForKey:@"tag"] integerValue]
                                                            andLocation:[[warriorDict valueForKey:@"location"] CGPointValue]];
                 [unitArray addObject:warriorUnit];
             }
             
             if (mageDict)
             {
-                UnitData *mageUnit = [[UnitData alloc] initWithType:@"mage"
-                                                                tag:[[mageDict valueForKey:@"tag"] integerValue]
-                                                        andLocation:[[mageDict valueForKey:@"location"] CGPointValue]];
+                UnitData *mageUnit = [[UnitData alloc] initWithType:MAGE
+                                                               name:@"mage"
+                                                                   tag:[[mageDict valueForKey:@"tag"] integerValue]
+                                                           andLocation:[[mageDict valueForKey:@"location"] CGPointValue]];
                 
                 [unitArray addObject:mageUnit];
             }
             
             if (rangerDict)
             {
-                UnitData *rangerUnit = [[UnitData alloc] initWithType:@"ranger"
-                                                                  tag:[[rangerDict valueForKey:@"tag"] integerValue]
-                                                          andLocation:[[rangerDict valueForKey:@"location"] CGPointValue]];
+                UnitData *rangerUnit = [[UnitData alloc] initWithType:RANGER
+                                                                 name:@"ranger"
+                                                                   tag:[[rangerDict valueForKey:@"tag"] integerValue]
+                                                           andLocation:[[rangerDict valueForKey:@"location"] CGPointValue]];
                 
                 [unitArray addObject:rangerUnit];
             }
             
             if (priestDict)
             {
-                UnitData *priestUnit = [[UnitData alloc] initWithType:@"priest"
-                                                                  tag:[[priestDict valueForKey:@"tag"] integerValue]
-                                                          andLocation:[[priestDict valueForKey:@"location"] CGPointValue]];
+                UnitData *priestUnit = [[UnitData alloc] initWithType:PRIEST
+                                                                 name:@"priest"
+                                                                   tag:[[priestDict valueForKey:@"tag"] integerValue]
+                                                           andLocation:[[priestDict valueForKey:@"location"] CGPointValue]];
                 
                 [unitArray addObject:priestUnit];
             }
