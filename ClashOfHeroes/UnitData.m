@@ -30,6 +30,24 @@
     return self;
 }
 
+- (id)initWithName:(NSString *)name tag:(NSInteger)tag andLocation:(CGPoint)location
+{
+    if (self = [super init])
+    {
+        self.unitName = name;
+        self.tag = tag;
+        self.location = location;
+        
+        if ([name isEqualToString:@"warrior"]) self.unitType = WARRIOR;
+        else if ([name isEqualToString:@"mage"]) self.unitType = MAGE;
+        else if ([name isEqualToString:@"ranger"]) self.unitType = RANGER;
+        else if ([name isEqualToString:@"priest"]) self.unitType = PRIEST;
+        else if ([name isEqualToString:@"shapeshifter"]) self.unitType = SHAPESHIFTER;
+    }
+    
+    return self;
+}
+
 - (NSDictionary *)toDictionary
 {
     NSMutableDictionary *dataDict = [NSMutableDictionary dictionary];

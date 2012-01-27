@@ -60,7 +60,8 @@
     {
         for (Unit *unit in self.units)
         {
-            [playerDict setValue:[unit toDictionary] forKey:unit.name];
+            UnitData *unitData = [[UnitData alloc] initWithName:unit.name tag:unit.tag andLocation:unit.location];
+            [playerDict setValue:[unitData toDictionary] forKey:unitData.unitName];
         }
     }
     else

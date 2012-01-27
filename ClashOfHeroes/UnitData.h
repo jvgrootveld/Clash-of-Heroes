@@ -25,6 +25,7 @@ enum
 @property (nonatomic, assign) NSInteger currentHealth;
 @property (nonatomic, strong) NSString *unitName;
 
+- (id)initWithName:(NSString *)name tag:(NSInteger)tag andLocation:(CGPoint)location;
 - (id)initWithType:(NSInteger)type name:(NSString *)name tag:(NSInteger)tag andLocation:(CGPoint)location;
 - (NSDictionary *)toDictionary;
 
