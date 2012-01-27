@@ -228,11 +228,11 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
         if (playerData)
         {
             NSDictionary *heroDict = [playerData objectForKey:@"hero"];
-            NSDictionary *warriorDict = [playerData objectForKey:@"Warrior"];
-            NSDictionary *mageDict = [playerData objectForKey:@"Mage"];
-            NSDictionary *rangerDict = [playerData objectForKey:@"Ranger"];
-            NSDictionary *priestDict = [playerData objectForKey:@"Priest"];
-            NSDictionary *shifterDict = [playerData objectForKey:@"Shapeshifter"];
+            NSDictionary *warriorDict = [playerData objectForKey:@"warrior"];
+            NSDictionary *mageDict = [playerData objectForKey:@"mage"];
+            NSDictionary *rangerDict = [playerData objectForKey:@"ranger"];
+            NSDictionary *priestDict = [playerData objectForKey:@"priest"];
+            NSDictionary *shifterDict = [playerData objectForKey:@"shapeshifter"];
             
             if (heroDict) {
                 Hero *heroUnit = [Hero new];
@@ -250,7 +250,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
             
             if (warriorDict)
             {
-                UnitData *warriorUnit = [[UnitData alloc] initWithType:@"warrior"
+                UnitData *warriorUnit = [[UnitData alloc] initWithType:WARRIOR
+                                                                  name:@"warrior"
                                                             tag:[[warriorDict valueForKey:@"tag"] integerValue]
                                                            andLocation:[[warriorDict valueForKey:@"location"] CGPointValue]];
                 [unitArray addObject:warriorUnit];
@@ -258,7 +259,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
             
             if (mageDict)
             {
-                UnitData *mageUnit = [[UnitData alloc] initWithType:@"mage"
+                UnitData *mageUnit = [[UnitData alloc] initWithType:MAGE
+                                                               name:@"mage"
                                                                    tag:[[mageDict valueForKey:@"tag"] integerValue]
                                                            andLocation:[[mageDict valueForKey:@"location"] CGPointValue]];
                 
@@ -267,7 +269,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
             
             if (rangerDict)
             {
-                UnitData *rangerUnit = [[UnitData alloc] initWithType:@"ranger"
+                UnitData *rangerUnit = [[UnitData alloc] initWithType:RANGER
+                                                                 name:@"ranger"
                                                                    tag:[[rangerDict valueForKey:@"tag"] integerValue]
                                                            andLocation:[[rangerDict valueForKey:@"location"] CGPointValue]];
                 
@@ -276,7 +279,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
             
             if (priestDict)
             {
-                UnitData *priestUnit = [[UnitData alloc] initWithType:@"priest"
+                UnitData *priestUnit = [[UnitData alloc] initWithType:PRIEST
+                                                                 name:@"priest"
                                                                    tag:[[priestDict valueForKey:@"tag"] integerValue]
                                                            andLocation:[[priestDict valueForKey:@"location"] CGPointValue]];
                 
@@ -285,7 +289,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
             
             if (shifterDict)
             {
-                UnitData *shifterUnit = [[UnitData alloc] initWithType:@"shapeshifter"
+                UnitData *shifterUnit = [[UnitData alloc] initWithType:SHAPESHIFTER
+                                                                  name:@"shapeshifter"
                                                                    tag:[[shifterDict valueForKey:@"tag"] integerValue]
                                                            andLocation:[[shifterDict valueForKey:@"location"] CGPointValue]];
                 
