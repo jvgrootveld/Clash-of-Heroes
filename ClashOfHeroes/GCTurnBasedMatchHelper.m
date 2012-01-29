@@ -71,6 +71,9 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     else if (![GKLocalPlayer localPlayer].isAuthenticated && userAuthenticated) 
     {
         NSLog(@"Authentication changed: player not authenticated");
+        
+        [self.mainMenu updateStatsWithName:@"" andStats:nil];
+        
         userAuthenticated = FALSE;
     }
 }
