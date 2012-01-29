@@ -247,12 +247,12 @@
     }
 }
 
-- (void)moveSprite:(CCSprite *)sprite toTileLocation:(CGPoint)tileLocation
+- (BOOL)moveSprite:(CCSprite *)sprite toTileLocation:(CGPoint)tileLocation
 {
     //Tile location
     CGPoint selectedTilePoint = [self tilePosFromLocation:tileLocation tileMap:self.map];
     
-    if([self isLocationInBounds:selectedTilePoint])
+    if(![self isTilePosBlocked:selectedTilePoint])
     { 
         NSLog(@"Move sprite to: %@", NSStringFromCGPoint(selectedTilePoint));
         
@@ -279,12 +279,18 @@
 
         [sprite runAction: [CCSequence actions:actionMove, nil]];
         
-        if([sprite isKindOfClass:[Unit class]]) [(Unit *)sprite setLocation:selectedTilePoint];
+        if([sprite isKindOfClass:[Unit class]])
+        {
+            [(Unit *)sprite setLocation:selectedTilePoint];
+            return YES;
+        }
     }
     else
     {
         NSLog(@"moveSprite: invalid position");
     }
+    
+    return NO;
 }
 
 - (CGFloat)mapBoundaryX

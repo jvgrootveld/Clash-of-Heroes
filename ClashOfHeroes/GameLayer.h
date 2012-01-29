@@ -38,7 +38,7 @@
 - (void)removeMoveTiles;
 
 /** This function gets the specific tile and move the sprite*/
-- (void)moveSprite:(CCSprite *)sprite toTileLocation:(CGPoint)tileLocation;
+- (BOOL)moveSprite:(CCSprite *)sprite toTileLocation:(CGPoint)tileLocation;
 
 - (CGFloat)mapBoundaryX;
 - (CGFloat)mapBoundaryY;

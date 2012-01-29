@@ -64,7 +64,7 @@ typedef enum
 - (BOOL)containsDirection:(Direction)direction InDirection:(Direction)directionList;
 - (BOOL)canMoveInDirection:(Direction)direction;
 - (BOOL)canAttackInDirection:(Direction)direction;
-- (NSMutableArray *)pointsWhichCanBeMovedAtWithTouchPositionPoint:(CGPoint)positionPoint inLayer:(GameLayer *)layer;
+- (NSMutableArray *)pointsWhichCanBeMovedAtInLayer:(GameLayer *)layer;
 
 - (BOOL)recieveDamage:(NSInteger)damage;
 - (void)reduceDamage:(NSInteger)damage;

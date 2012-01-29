@@ -55,7 +55,7 @@ NSInteger const MAXMOVES = 3;
             
             squarePoint = [_gameLayer tilePosFromLocation:self.selectedUnit.positionInPixels tileMap:_gameLayer.map];
             
-            NSArray *moveLocations = [self.selectedUnit pointsWhichCanBeMovedAtWithTouchPositionPoint:squarePoint inLayer:_gameLayer];
+            NSArray *moveLocations = [self.selectedUnit pointsWhichCanBeMovedAtInLayer:_gameLayer];
             [_gameLayer showMoveTileAtPositionPoints:moveLocations];
             
         }
@@ -73,9 +73,21 @@ NSInteger const MAXMOVES = 3;
             if((self.remainingMoves <= 0)) return; //no moves left
             NSLog(@"Selected empty square, moving and deselecting unit.");
             
-            [_gameLayer moveSprite:self.selectedUnit toTileLocation:point];
+            NSArray *moveLocations = [self.selectedUnit pointsWhichCanBeMovedAtInLayer:_gameLayer];
             
-            self.remainingMoves--;
+            for(NSValue *location in moveLocations)
+            {
+                CGPoint movePoint = [location CGPointValue];
+
+                if(CGPointEqualToPoint(squarePoint, movePoint)) //if unit can move to selected point
+                {
+                    if([_gameLayer moveSprite:self.selectedUnit toTileLocation:point])
+                        self.remainingMoves--;
+                    
+                    break;
+                }
+            }
+            
             self.selectedUnit = nil;
             [_gameLayer removeMoveTiles]; //deselect movement tiles
         }
@@ -86,7 +98,7 @@ NSInteger const MAXMOVES = 3;
             
             squarePoint = [_gameLayer tilePosFromLocation:self.selectedUnit.positionInPixels tileMap:_gameLayer.map];
             
-            NSArray *moveLocations = [self.selectedUnit pointsWhichCanBeMovedAtWithTouchPositionPoint:squarePoint inLayer:_gameLayer];
+            NSArray *moveLocations = [self.selectedUnit pointsWhichCanBeMovedAtInLayer:_gameLayer];
             [_gameLayer showMoveTileAtPositionPoints:moveLocations];
         }
         else if (enemyUnit) //SELECTED ENEMY UNIT -> DESELECT

@@ -121,10 +121,11 @@
     return [self containsDirection:direction InDirection:self.attackDirection];
 }
 
-- (NSMutableArray *)pointsWhichCanBeMovedAtWithTouchPositionPoint:(CGPoint)positionPoint inLayer:(GameLayer *)layer
+- (NSMutableArray *)pointsWhichCanBeMovedAtInLayer:(GameLayer *)layer
 {
     NSMutableArray *returnArray = [NSMutableArray new];
     
+    CGPoint positionPoint = self.location;
     const int mapBoundaryX = [layer mapBoundaryX];
     const int mapBoundaryY = [layer mapBoundaryY];
     const int positionX = positionPoint.x;
