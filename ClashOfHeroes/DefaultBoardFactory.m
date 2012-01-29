@@ -38,7 +38,11 @@
     
     for (UnitData *unitData in playerData)
     {
-        CGPoint location = ((player == [[GCTurnBasedMatchHelper sharedInstance] playerForLocalPlayer])/* && player.turnNumber > 0*/) ? unitData.location : CGPointMake((14-unitData.location.x), (14-unitData.location.y));
+        CGPoint location = unitData.location;
+        if ((player == [[GCTurnBasedMatchHelper sharedInstance] playerForEnemyPlayer]) && [[GCTurnBasedMatchHelper sharedInstance] playerForLocalPlayer].turnNumber > 0)
+        {
+            location = CGPointMake((14-unitData.location.x), (14-unitData.location.y));
+        }
         
         NSLog(@"Placing unit %@ for player %@ on point %@", unitData.unitName, player.gameCenterInfo.alias, [NSValue valueWithCGPoint:location]);
         
