@@ -12,6 +12,7 @@
 #import "Player.h"
 #import "Turn.h"
 #import "MatchData.h"
+#import "CDPlayer.h"
 
 #import "Hero.h"
 #import "UnitData.h"
@@ -59,7 +60,13 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     {
         NSLog(@"Authentication changed: player authenticated.");
         [self.mainMenu.startButton setEnabled:YES];
-        userAuthenticated = TRUE;           
+        
+        CDPlayer *player = [StatsController playerForGameCenterId:[GKLocalPlayer localPlayer].playerID];
+        if(!player) player = [StatsController newPlayerAndStatsForPlayerWithGameCenterId:[GKLocalPlayer localPlayer].playerID]; //new user
+        
+        [self.mainMenu updateStatsWithName:[GKLocalPlayer localPlayer].alias andStats:(CDStats *)player.stats];
+        
+        userAuthenticated = TRUE;
     } 
     else if (![GKLocalPlayer localPlayer].isAuthenticated && userAuthenticated) 
     {
@@ -137,7 +144,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     //NSLog(@"Matchdata (%d bytes): %@", match.matchData.length, match.matchData);
     NSDictionary *matchData = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
     
-    NSLog(@"MatchData %@", matchData);
+    //NSLog(@"MatchData %@", matchData);
     
     self.currentMatch = match;
     
@@ -225,10 +232,11 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 
 - (void)synchronizeMatchData:(NSDictionary *)matchData
 {
+    NSLog(@"synchronizeMatchData %@", matchData);
     for (Player *player in self.currentPlayers)
     {
         NSDictionary *playerData = [matchData objectForKey:player.gameCenterInfo.playerID];
-        NSLog(@"sync turn number for %@: %d", player.gameCenterInfo.playerID, [[player valueForKey:@"turnNumber"] integerValue]);
+        NSLog(@"sync turn number for %@(%@): %d", player.gameCenterInfo.playerID, player.gameCenterInfo.alias, [[player valueForKey:@"turnNumber"] integerValue]);
         [player setTurnNumber:[[player valueForKey:@"turnNumber"] integerValue]];
         
         if (playerData)

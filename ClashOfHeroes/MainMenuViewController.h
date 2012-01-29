@@ -9,8 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @class GameViewController;
+@class CDStats;
 
 @interface MainMenuViewController : UIViewController
+{
+    IBOutlet UILabel *playerNameLabel;
+    IBOutlet UILabel *gamesPlayedLabel;
+    IBOutlet UILabel *damageDealtName;
+    IBOutlet UILabel *damageTakenLabel;
+    IBOutlet UILabel *metersMovedLabel;
+}
 
 @property (retain, nonatomic) IBOutlet UIButton *startButton;
 @property (retain, nonatomic) IBOutlet UIButton *continueButton;
@@ -21,5 +29,6 @@
 - (IBAction)startGameButtonClicked:(id)sender;
 - (void)presentGameView;
 - (void)presentNewGameView;
+- (void)updateStatsWithName:(NSString *)playerName andStats:(CDStats *)stats;
 
 @end

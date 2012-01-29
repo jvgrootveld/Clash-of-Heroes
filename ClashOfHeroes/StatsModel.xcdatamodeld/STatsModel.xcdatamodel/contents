@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="STatsModel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="CDPlayer" representedClassName="CDPlayer" syncable="YES">
+        <attribute name="gameCenterId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="stats" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CDStats" inverseName="player" inverseEntity="CDStats" syncable="YES"/>
+    </entity>
+    <entity name="CDStats" representedClassName="CDStats" syncable="YES">
+        <attribute name="gamesPlayedEldurin" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="gamesPlayedGarrick" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="gamesPlayerGalen" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="totalDamageDealt" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="totalDamageTaken" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="totalMetersMoved" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="player" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="CDPlayer" inverseName="stats" inverseEntity="CDPlayer" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CDPlayer" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="CDStats" positionX="160" positionY="192" width="128" height="150"/>
+    </elements>
 </model>

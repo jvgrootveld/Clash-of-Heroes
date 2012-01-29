@@ -16,6 +16,8 @@
 #import "MovementPhase.h"
 #import "CombatPhase.h"
 #import "DefaultBoardFactory.h"
+#import "CDPlayer.h"
+#import "CDStats.h"
 
 @interface GameLayer()
 
@@ -87,11 +89,11 @@
         spriteWidth = 26;
         spriteHeight = 62;
         _moveSprites = [NSMutableArray new];
+        
+        [self setMovementPhase:[[MovementPhase alloc] initWithGameLayer:self]];
+        [self setCombatPhase:[[CombatPhase alloc] initWithGameLayer:self]];
+        [self setCurrentPhase:self.movementPhase];
 	}
-    
-    [self setMovementPhase:[[MovementPhase alloc] initWithGameLayer:self]];
-    [self setCombatPhase:[[CombatPhase alloc] initWithGameLayer:self]];
-    [self setCurrentPhase:self.movementPhase];
     
 	return self;
 }

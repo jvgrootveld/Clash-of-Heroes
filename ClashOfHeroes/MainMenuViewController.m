@@ -11,6 +11,7 @@
 #import "GCTurnBasedMatchHelper.h"
 #import "GameViewController.h"
 #import "NewGameViewController.h"
+#import "CDStats.h"
 
 @implementation MainMenuViewController
 @synthesize startButton;
@@ -68,6 +69,16 @@
     [self setSettingsButton:nil];
     [self setFeedbackButton:nil];
     
+    [playerNameLabel release];
+    playerNameLabel = nil;
+    [gamesPlayedLabel release];
+    gamesPlayedLabel = nil;
+    [damageDealtName release];
+    damageDealtName = nil;
+    [damageTakenLabel release];
+    damageTakenLabel = nil;
+    [metersMovedLabel release];
+    metersMovedLabel = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -86,11 +97,37 @@
     return UIInterfaceOrientationIsLandscape(interfaceOrientation);
 }
 
-- (void)dealloc {
+- (void)updateStatsWithName:(NSString *)playerName andStats:(CDStats *)stats
+{
+    [playerNameLabel setText:playerName];
+    
+    if(stats)
+    {
+        [gamesPlayedLabel setText:[NSString stringWithFormat:@"%d", [stats totalGamesPlayed]]];
+        [damageDealtName setText:[NSString stringWithFormat:@"%d", stats.totalDamageDealt.integerValue]];
+        [damageTakenLabel setText:[NSString stringWithFormat:@"%d", stats.totalDamageTaken.integerValue]];
+        [metersMovedLabel setText:[NSString stringWithFormat:@"%d", stats.totalMetersMoved.integerValue]];
+    }
+    else
+    {
+        [gamesPlayedLabel setText:@""];
+        [damageDealtName setText:@""];
+        [damageTakenLabel setText:@""];
+        [metersMovedLabel setText:@""];
+    }
+}
+
+- (void)dealloc 
+{
     [startButton release];
     [continueButton release];
     [settingsButton release];
     [feedbackButton release];
+    [playerNameLabel release];
+    [gamesPlayedLabel release];
+    [damageDealtName release];
+    [damageTakenLabel release];
+    [metersMovedLabel release];
     [super dealloc];
 }
 
