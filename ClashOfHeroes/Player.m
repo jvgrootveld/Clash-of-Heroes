@@ -54,7 +54,7 @@
 - (NSDictionary *)toDictionary
 {
     NSMutableDictionary *playerDict = [NSMutableDictionary dictionary];
-    BOOL revert = ((self == [[GCTurnBasedMatchHelper sharedInstance] playerForEnemyPlayer]) && self.turnNumber > 1);
+    BOOL revert = ((self == [[GCTurnBasedMatchHelper sharedInstance] playerForEnemyPlayer]) && [[GCTurnBasedMatchHelper sharedInstance] playerForLocalPlayer].turnNumber > 1);
     
     [playerDict setValue:[NSNumber numberWithInteger:self.turnNumber] forKey:@"turnNumber"];
     [playerDict setValue:[self.hero toDictionary] forKey:@"hero"];
