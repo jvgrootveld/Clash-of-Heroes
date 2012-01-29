@@ -75,6 +75,8 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    [self.continueButton setEnabled:[[GKLocalPlayer localPlayer] isAuthenticated]];
+    
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
 }

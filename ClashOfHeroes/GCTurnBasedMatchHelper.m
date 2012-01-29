@@ -228,6 +228,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     for (Player *player in self.currentPlayers)
     {
         NSDictionary *playerData = [matchData objectForKey:player.gameCenterInfo.playerID];
+        NSLog(@"sync turn number for %@: %d", player.gameCenterInfo.playerID, [[player valueForKey:@"turnNumber"] integerValue]);
         [player setTurnNumber:[[player valueForKey:@"turnNumber"] integerValue]];
         
         if (playerData)
@@ -344,13 +345,11 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 - (void)endTurn:(Turn *)turn
 {   
     Player *localPlayer = [self playerForLocalPlayer];
-    Player *enemyPlayer = [self playerForEnemyPlayer];
     
     localPlayer.turnNumber += 1;
-    enemyPlayer.turnNumber += 1;
     
     MatchData *matchData = [MatchData new];
-    [matchData setPlayerOne:[self playerForLocalPlayer]];
+    [matchData setPlayerOne:localPlayer];
     [matchData setPlayerTwo:[self playerForEnemyPlayer]];    
     
     NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:[matchData toDictionary]];

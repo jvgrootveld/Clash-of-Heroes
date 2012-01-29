@@ -136,6 +136,18 @@
     
     [[GCTurnBasedMatchHelper sharedInstance] setGameViewController:self];
     [self updateLabels];
+    
+    if (![[GCTurnBasedMatchHelper sharedInstance] localPlayerIsCurrentParticipant])
+    {
+        COHAlertViewController *alertView = [[COHAlertViewController alloc] initWithTitle:@"Waiting for player" andMessage:@"Waiting for your opponent to make his move."];
+        
+        alertView.view.frame = self.view.frame;
+        alertView.view.center = self.view.center;
+        [alertView setTag:3];
+        [alertView setDelegate:self];
+        [self.view addSubview:alertView.view];
+        [alertView show];
+    }
 }
 
 
