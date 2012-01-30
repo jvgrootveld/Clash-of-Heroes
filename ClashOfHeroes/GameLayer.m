@@ -38,6 +38,10 @@
     [delegate setGameLayer:layer];
     
     [layer loadUnitLocations];
+    
+    [layer setMovementPhase:[[MovementPhase alloc] initWithGameLayer:layer]];
+    [layer setCombatPhase:[[CombatPhase alloc] initWithGameLayer:layer]];
+    [layer setCurrentPhase:layer.movementPhase];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
@@ -90,10 +94,6 @@
         spriteHeight = 62;
         _moveSprites = [NSMutableArray new];
         _attackSprites = [NSMutableArray new];
-        
-        [self setMovementPhase:[[MovementPhase alloc] initWithGameLayer:self]];
-        [self setCombatPhase:[[CombatPhase alloc] initWithGameLayer:self]];
-        [self setCurrentPhase:self.movementPhase];
 	}
     
 	return self;
