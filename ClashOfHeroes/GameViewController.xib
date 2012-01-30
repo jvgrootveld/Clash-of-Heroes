@@ -54,7 +54,7 @@
 					</object>
 					<object class="IBUIImageView" id="814193945">
 						<reference key="NSNextResponder" ref="284661587"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{19, 7}, {123, 118}}</string>
 						<reference key="NSSuperview" ref="284661587"/>
 						<reference key="NSWindow"/>
@@ -69,7 +69,7 @@
 					</object>
 					<object class="IBUIImageView" id="404144912">
 						<reference key="NSNextResponder" ref="284661587"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{882, 7}, {123, 118}}</string>
 						<reference key="NSSuperview" ref="284661587"/>
 						<reference key="NSWindow"/>
@@ -81,7 +81,7 @@
 					</object>
 					<object class="IBUILabel" id="293609924">
 						<reference key="NSNextResponder" ref="284661587"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{0, 143}, {160, 23}}</string>
 						<reference key="NSSuperview" ref="284661587"/>
 						<reference key="NSWindow"/>
@@ -118,7 +118,7 @@
 					</object>
 					<object class="IBUILabel" id="1030841224">
 						<reference key="NSNextResponder" ref="284661587"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{863, 143}, {161, 23}}</string>
 						<reference key="NSSuperview" ref="284661587"/>
 						<reference key="NSWindow"/>
@@ -142,7 +142,7 @@
 					</object>
 					<object class="IBUILabel" id="658539776">
 						<reference key="NSNextResponder" ref="284661587"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{32, 193}, {42, 21}}</string>
 						<reference key="NSSuperview" ref="284661587"/>
 						<reference key="NSWindow"/>
@@ -178,7 +178,7 @@
 					</object>
 					<object class="IBUILabel" id="35472917">
 						<reference key="NSNextResponder" ref="284661587"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{82, 193}, {49, 21}}</string>
 						<reference key="NSSuperview" ref="284661587"/>
 						<reference key="NSWindow"/>
@@ -201,7 +201,7 @@
 					</object>
 					<object class="IBUILabel" id="781938921">
 						<reference key="NSNextResponder" ref="284661587"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{82, 222}, {50, 21}}</string>
 						<reference key="NSSuperview" ref="284661587"/>
 						<reference key="NSWindow"/>
@@ -224,7 +224,7 @@
 					</object>
 					<object class="IBUILabel" id="564575777">
 						<reference key="NSNextResponder" ref="284661587"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{82, 251}, {59, 21}}</string>
 						<reference key="NSSuperview" ref="284661587"/>
 						<reference key="NSWindow"/>
@@ -247,7 +247,7 @@
 					</object>
 					<object class="IBUILabel" id="641496878">
 						<reference key="NSNextResponder" ref="284661587"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{32, 251}, {42, 21}}</string>
 						<reference key="NSSuperview" ref="284661587"/>
 						<reference key="NSWindow"/>
@@ -270,7 +270,7 @@
 					</object>
 					<object class="IBUILabel" id="1015554779">
 						<reference key="NSNextResponder" ref="284661587"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{32, 222}, {42, 21}}</string>
 						<reference key="NSSuperview" ref="284661587"/>
 						<reference key="NSWindow"/>
@@ -293,7 +293,7 @@
 					</object>
 					<object class="IBUILabel" id="693610866">
 						<reference key="NSNextResponder" ref="284661587"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{882, 193}, {42, 21}}</string>
 						<reference key="NSSuperview" ref="284661587"/>
 						<reference key="NSWindow"/>
@@ -316,7 +316,7 @@
 					</object>
 					<object class="IBUILabel" id="1702001">
 						<reference key="NSNextResponder" ref="284661587"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{932, 193}, {49, 21}}</string>
 						<reference key="NSSuperview" ref="284661587"/>
 						<reference key="NSWindow"/>
@@ -339,7 +339,7 @@
 					</object>
 					<object class="IBUILabel" id="882944632">
 						<reference key="NSNextResponder" ref="284661587"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{932, 222}, {50, 21}}</string>
 						<reference key="NSSuperview" ref="284661587"/>
 						<reference key="NSWindow"/>
@@ -362,7 +362,7 @@
 					</object>
 					<object class="IBUILabel" id="239460501">
 						<reference key="NSNextResponder" ref="284661587"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{932, 251}, {59, 21}}</string>
 						<reference key="NSSuperview" ref="284661587"/>
 						<reference key="NSWindow"/>
@@ -385,7 +385,7 @@
 					</object>
 					<object class="IBUILabel" id="654935520">
 						<reference key="NSNextResponder" ref="284661587"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{882, 251}, {42, 21}}</string>
 						<reference key="NSSuperview" ref="284661587"/>
 						<reference key="NSWindow"/>
@@ -408,7 +408,7 @@
 					</object>
 					<object class="IBUILabel" id="459467933">
 						<reference key="NSNextResponder" ref="284661587"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<string key="NSFrame">{{882, 222}, {42, 21}}</string>
 						<reference key="NSSuperview" ref="284661587"/>
 						<reference key="NSWindow"/>
@@ -687,6 +687,134 @@
 					<int key="connectionID">63</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playerOneUnitAttackPowerLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="781938921"/>
+					</object>
+					<int key="connectionID">69</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playerOneUnitImageView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="814193945"/>
+					</object>
+					<int key="connectionID">70</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playerOneUnitNameLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="293609924"/>
+					</object>
+					<int key="connectionID">71</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playerOneUnitHealthLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="35472917"/>
+					</object>
+					<int key="connectionID">72</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playerOneUnitDefenseLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="564575777"/>
+					</object>
+					<int key="connectionID">73</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playerTwoUnitImageView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="404144912"/>
+					</object>
+					<int key="connectionID">74</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playerTwoUnitNameLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1030841224"/>
+					</object>
+					<int key="connectionID">75</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playerTwoUnitHealthLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1702001"/>
+					</object>
+					<int key="connectionID">76</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playerTwoUnitAttackPowerLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="882944632"/>
+					</object>
+					<int key="connectionID">77</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playerTwoUnitDefenseLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="239460501"/>
+					</object>
+					<int key="connectionID">78</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playerOneHealthLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="658539776"/>
+					</object>
+					<int key="connectionID">79</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playerOneAttackLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1015554779"/>
+					</object>
+					<int key="connectionID">80</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playerOneDefenseLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="641496878"/>
+					</object>
+					<int key="connectionID">81</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playerTwoHealthLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="693610866"/>
+					</object>
+					<int key="connectionID">82</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playerTwoAttackLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="459467933"/>
+					</object>
+					<int key="connectionID">83</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">playerTwoDefenseLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="654935520"/>
+					</object>
+					<int key="connectionID">84</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">endTurn:</string>
 						<reference key="source" ref="69927124"/>
@@ -921,7 +1049,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">65</int>
+			<int key="maxID">84</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -950,8 +1078,24 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="movesLabel">UILabel</string>
 						<string key="phaseLabel">UILabel</string>
+						<string key="playerOneAttackLabel">UILabel</string>
+						<string key="playerOneDefenseLabel">UILabel</string>
+						<string key="playerOneHealthLabel">UILabel</string>
 						<string key="playerOneLabel">UILabel</string>
+						<string key="playerOneUnitAttackPowerLabel">UILabel</string>
+						<string key="playerOneUnitDefenseLabel">UILabel</string>
+						<string key="playerOneUnitHealthLabel">UILabel</string>
+						<string key="playerOneUnitImageView">UIImageView</string>
+						<string key="playerOneUnitNameLabel">UILabel</string>
+						<string key="playerTwoAttackLabel">UILabel</string>
+						<string key="playerTwoDefenseLabel">UILabel</string>
+						<string key="playerTwoHealthLabel">UILabel</string>
 						<string key="playerTwoLabel">UILabel</string>
+						<string key="playerTwoUnitAttackPowerLabel">UILabel</string>
+						<string key="playerTwoUnitDefenseLabel">UILabel</string>
+						<string key="playerTwoUnitHealthLabel">UILabel</string>
+						<string key="playerTwoUnitImageView">UIImageView</string>
+						<string key="playerTwoUnitNameLabel">UILabel</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="movesLabel">
@@ -962,12 +1106,76 @@
 							<string key="name">phaseLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="playerOneAttackLabel">
+							<string key="name">playerOneAttackLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="playerOneDefenseLabel">
+							<string key="name">playerOneDefenseLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="playerOneHealthLabel">
+							<string key="name">playerOneHealthLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="playerOneLabel">
 							<string key="name">playerOneLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="playerOneUnitAttackPowerLabel">
+							<string key="name">playerOneUnitAttackPowerLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="playerOneUnitDefenseLabel">
+							<string key="name">playerOneUnitDefenseLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="playerOneUnitHealthLabel">
+							<string key="name">playerOneUnitHealthLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="playerOneUnitImageView">
+							<string key="name">playerOneUnitImageView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="playerOneUnitNameLabel">
+							<string key="name">playerOneUnitNameLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="playerTwoAttackLabel">
+							<string key="name">playerTwoAttackLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="playerTwoDefenseLabel">
+							<string key="name">playerTwoDefenseLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="playerTwoHealthLabel">
+							<string key="name">playerTwoHealthLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="playerTwoLabel">
 							<string key="name">playerTwoLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="playerTwoUnitAttackPowerLabel">
+							<string key="name">playerTwoUnitAttackPowerLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="playerTwoUnitDefenseLabel">
+							<string key="name">playerTwoUnitDefenseLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="playerTwoUnitHealthLabel">
+							<string key="name">playerTwoUnitHealthLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="playerTwoUnitImageView">
+							<string key="name">playerTwoUnitImageView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="playerTwoUnitNameLabel">
+							<string key="name">playerTwoUnitNameLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 					</dictionary>

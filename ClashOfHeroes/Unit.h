@@ -65,9 +65,12 @@ typedef enum
 - (BOOL)canMoveInDirection:(Direction)direction;
 - (BOOL)canAttackInDirection:(Direction)direction;
 - (NSMutableArray *)pointsWhichCanBeMovedAtInLayer:(GameLayer *)layer;
+- (NSMutableArray *)pointsWhichCanBeAttackedAtInLayer:(GameLayer *)layer;
 
 - (BOOL)recieveDamage:(NSInteger)damage;
 - (void)reduceDamage:(NSInteger)damage;
+
+- (BOOL)attackUnit:(Unit *)target;
 
 //for printing
 - (void)setCode:(NSString *)code;

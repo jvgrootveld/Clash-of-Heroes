@@ -227,6 +227,14 @@
 		F2D10D4714D2C2340047ABB2 /* alert.png in Resources */ = {isa = PBXBuildFile; fileRef = F2D10D4614D2C2340047ABB2 /* alert.png */; };
 		F2D44DD014D488C600CDFC4A /* icon_72.png in Resources */ = {isa = PBXBuildFile; fileRef = F2D44DCF14D488C600CDFC4A /* icon_72.png */; };
 		F2E72B5C14D5DB01001268EC /* stats_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = F2E72B5B14D5DB01001268EC /* stats_screen.png */; };
+		F2E72B6014D5FF04001268EC /* tile_red.png in Resources */ = {isa = PBXBuildFile; fileRef = F2E72B5E14D5FF04001268EC /* tile_red.png */; };
+		F2E72B6114D5FF04001268EC /* tile_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = F2E72B5F14D5FF04001268EC /* tile_blue.png */; };
+		F2E72B6714D61A9A001268EC /* rune_priest.png in Resources */ = {isa = PBXBuildFile; fileRef = F2E72B6214D61A97001268EC /* rune_priest.png */; };
+		F2E72B6814D61A9A001268EC /* rune_warrior.png in Resources */ = {isa = PBXBuildFile; fileRef = F2E72B6314D61A98001268EC /* rune_warrior.png */; };
+		F2E72B6914D61A9A001268EC /* rune_ranger.png in Resources */ = {isa = PBXBuildFile; fileRef = F2E72B6414D61A98001268EC /* rune_ranger.png */; };
+		F2E72B6A14D61A9A001268EC /* rune_mage.png in Resources */ = {isa = PBXBuildFile; fileRef = F2E72B6514D61A99001268EC /* rune_mage.png */; };
+		F2E72B6B14D61A9A001268EC /* rune_shapeshifter.png in Resources */ = {isa = PBXBuildFile; fileRef = F2E72B6614D61A9A001268EC /* rune_shapeshifter.png */; };
+		F2E72B6D14D61B77001268EC /* rune_hero.png in Resources */ = {isa = PBXBuildFile; fileRef = F2E72B6C14D61B77001268EC /* rune_hero.png */; };
 		F2FAA32A14BB280D00121AD6 /* DefaultBoardFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FAA32914BB280C00121AD6 /* DefaultBoardFactory.m */; };
 /* End PBXBuildFile section */
 
@@ -597,6 +605,14 @@
 		F2D10D4614D2C2340047ABB2 /* alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = alert.png; sourceTree = "<group>"; };
 		F2D44DCF14D488C600CDFC4A /* icon_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_72.png; sourceTree = "<group>"; };
 		F2E72B5B14D5DB01001268EC /* stats_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stats_screen.png; sourceTree = "<group>"; };
+		F2E72B5E14D5FF04001268EC /* tile_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile_red.png; sourceTree = "<group>"; };
+		F2E72B5F14D5FF04001268EC /* tile_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile_blue.png; sourceTree = "<group>"; };
+		F2E72B6214D61A97001268EC /* rune_priest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rune_priest.png; sourceTree = "<group>"; };
+		F2E72B6314D61A98001268EC /* rune_warrior.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rune_warrior.png; sourceTree = "<group>"; };
+		F2E72B6414D61A98001268EC /* rune_ranger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rune_ranger.png; sourceTree = "<group>"; };
+		F2E72B6514D61A99001268EC /* rune_mage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rune_mage.png; sourceTree = "<group>"; };
+		F2E72B6614D61A9A001268EC /* rune_shapeshifter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rune_shapeshifter.png; sourceTree = "<group>"; };
+		F2E72B6C14D61B77001268EC /* rune_hero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rune_hero.png; sourceTree = "<group>"; };
 		F2FAA32614BB268D00121AD6 /* BoardFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardFactory.h; sourceTree = "<group>"; };
 		F2FAA32814BB280C00121AD6 /* DefaultBoardFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DefaultBoardFactory.h; sourceTree = "<group>"; };
 		F2FAA32914BB280C00121AD6 /* DefaultBoardFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefaultBoardFactory.m; sourceTree = "<group>"; };
@@ -835,6 +851,12 @@
 		83714762147BE0770091C992 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F2E72B6214D61A97001268EC /* rune_priest.png */,
+				F2E72B6314D61A98001268EC /* rune_warrior.png */,
+				F2E72B6414D61A98001268EC /* rune_ranger.png */,
+				F2E72B6514D61A99001268EC /* rune_mage.png */,
+				F2E72B6614D61A9A001268EC /* rune_shapeshifter.png */,
+				F2E72B6C14D61B77001268EC /* rune_hero.png */,
 				F2E72B5B14D5DB01001268EC /* stats_screen.png */,
 				F2D10D4614D2C2340047ABB2 /* alert.png */,
 				F2D10D4414D2BE600047ABB2 /* frame.png */,
@@ -1187,6 +1209,8 @@
 				F29F4EA61483B6EF00D114D0 /* sprites.png */,
 				F2C94EF91490F3F300A70B1A /* tile_green.png */,
 				F23FA7F9147E8C04004AE3A3 /* grossini_dance_01.png */,
+				F2E72B5E14D5FF04001268EC /* tile_red.png */,
+				F2E72B5F14D5FF04001268EC /* tile_blue.png */,
 				F20BA745147C2F8600654467 /* grossini_dance_atlas.png */,
 				837148CA147BE19A0091C992 /* tile_brown.png */,
 			);
@@ -1368,6 +1392,14 @@
 				F2D10D4714D2C2340047ABB2 /* alert.png in Resources */,
 				F2D44DD014D488C600CDFC4A /* icon_72.png in Resources */,
 				F2E72B5C14D5DB01001268EC /* stats_screen.png in Resources */,
+				F2E72B6014D5FF04001268EC /* tile_red.png in Resources */,
+				F2E72B6114D5FF04001268EC /* tile_blue.png in Resources */,
+				F2E72B6714D61A9A001268EC /* rune_priest.png in Resources */,
+				F2E72B6814D61A9A001268EC /* rune_warrior.png in Resources */,
+				F2E72B6914D61A9A001268EC /* rune_ranger.png in Resources */,
+				F2E72B6A14D61A9A001268EC /* rune_mage.png in Resources */,
+				F2E72B6B14D61A9A001268EC /* rune_shapeshifter.png in Resources */,
+				F2E72B6D14D61B77001268EC /* rune_hero.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

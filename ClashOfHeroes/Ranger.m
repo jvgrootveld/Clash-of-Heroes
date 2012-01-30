@@ -16,11 +16,11 @@
 {
     if (self == [super initWithName:@"Ranger" 
                              player:player
-    andBaseStatsPhysicalAttackPower:8
-                 magicalAttackPower:3
+    andBaseStatsPhysicalAttackPower:10
+                 magicalAttackPower:10
                     physicalDefense:8
                      magicalDefense:3
-                       healthPoints:35
+                       healthPoints:100
                               range:3
                            movement:3
                                 tag:tag

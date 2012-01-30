@@ -23,10 +23,32 @@
 #import "Phase.h"
 #import "MovementPhase.h"
 #import "CombatPhase.h"
+#import "Unit.h"
+
+@interface GameViewController()
+- (void)setPlayerOneLabelsHidden:(BOOL)hidden;
+- (void)setPlayerTwoLabelsHidden:(BOOL)hidden;
+@end
 
 @implementation GameViewController
 @synthesize playerOneLabel;
+@synthesize playerOneUnitImageView;
+@synthesize playerOneUnitNameLabel;
+@synthesize playerOneUnitHealthLabel;
+@synthesize playerOneUnitAttackPowerLabel;
+@synthesize playerOneUnitDefenseLabel;
+@synthesize playerOneHealthLabel;
+@synthesize playerOneAttackLabel;
+@synthesize playerOneDefenseLabel;
 @synthesize playerTwoLabel;
+@synthesize playerTwoUnitImageView;
+@synthesize playerTwoUnitNameLabel;
+@synthesize playerTwoUnitHealthLabel;
+@synthesize playerTwoUnitAttackPowerLabel;
+@synthesize playerTwoUnitDefenseLabel;
+@synthesize playerTwoHealthLabel;
+@synthesize playerTwoAttackLabel;
+@synthesize playerTwoDefenseLabel;
 @synthesize phaseLabel;
 @synthesize movesLabel;
 @synthesize gameLayer = _gameLayer;
@@ -164,17 +186,148 @@
     [self setPlayerTwoLabel:nil];
     [self setPhaseLabel:nil];
     [self setMovesLabel:nil];
+    [self setPlayerOneUnitAttackPowerLabel:nil];
+    [self setPlayerOneUnitImageView:nil];
+    [self setPlayerOneUnitNameLabel:nil];
+    [self setPlayerOneUnitHealthLabel:nil];
+    [self setPlayerOneUnitDefenseLabel:nil];
+    [self setPlayerTwoUnitImageView:nil];
+    [self setPlayerTwoUnitNameLabel:nil];
+    [self setPlayerTwoUnitHealthLabel:nil];
+    [self setPlayerTwoUnitAttackPowerLabel:nil];
+    [self setPlayerTwoUnitDefenseLabel:nil];
+    [self setPlayerOneHealthLabel:nil];
+    [self setPlayerOneAttackLabel:nil];
+    [self setPlayerOneDefenseLabel:nil];
+    [self setPlayerTwoHealthLabel:nil];
+    [self setPlayerTwoAttackLabel:nil];
+    [self setPlayerTwoDefenseLabel:nil];
     [super viewDidUnload];
     
     [[CCDirector sharedDirector] end];
 }
 
+- (void)setPlayerOneLabelsHidden:(BOOL)hidden
+{
+    [self.playerOneUnitImageView setHidden:hidden];
+    [self.playerOneUnitNameLabel setHidden:hidden];
+    [self.playerOneUnitAttackPowerLabel setHidden:hidden];
+    [self.playerOneUnitDefenseLabel setHidden:hidden];
+    [self.playerOneUnitHealthLabel setHidden:hidden];
+    [self.playerOneHealthLabel setHidden:hidden];
+    [self.playerOneAttackLabel setHidden:hidden];
+    [self.playerOneDefenseLabel setHidden:hidden];
+}
+
+- (void)setPlayerTwoLabelsHidden:(BOOL)hidden
+{
+    [self.playerTwoUnitImageView setHidden:hidden];
+    [self.playerTwoUnitNameLabel setHidden:hidden];
+    [self.playerTwoUnitAttackPowerLabel setHidden:hidden];
+    [self.playerTwoUnitDefenseLabel setHidden:hidden];
+    [self.playerTwoUnitHealthLabel setHidden:hidden];
+    [self.playerTwoHealthLabel setHidden:hidden];
+    [self.playerTwoAttackLabel setHidden:hidden];
+    [self.playerTwoDefenseLabel setHidden:hidden];
+}
+
+- (void)updatePlayerOneUnit:(Unit *)unit
+{
+    UIImage *image = nil;
+    
+    if(unit)
+    {
+        [self setPlayerOneLabelsHidden:NO];
+        
+        //image
+        if([unit.name isEqualToString:@"Warrior"])
+            image = [UIImage imageNamed:@"rune_warrior.png"];
+        else if([unit.name isEqualToString:@"Mage"])
+            image = [UIImage imageNamed:@"rune_mage.png"];
+        else if([unit.name isEqualToString:@"Ranger"])
+            image = [UIImage imageNamed:@"rune_ranger.png"];
+        else if([unit.name isEqualToString:@"Priest"])
+            image = [UIImage imageNamed:@"rune_priest.png"];
+        else if([unit.name isEqualToString:@"Shapeshifter"])
+            image = [UIImage imageNamed:@"rune_shapeshifter.png"];
+        else
+            image = [UIImage imageNamed:@"rune_hero.png"];
+        
+        [self.playerOneUnitNameLabel setText:unit.name];
+        [self.playerOneUnitAttackPowerLabel setText:[NSString stringWithFormat:@"%d", unit.physicalDefense]];
+        [self.playerOneUnitDefenseLabel setText:[NSString stringWithFormat:@"%d", unit.physicalDefense]];
+        [self.playerOneUnitHealthLabel setText:[NSString stringWithFormat:@"%d", unit.healthPoints]];
+    }
+    else
+    {
+        [self setPlayerOneLabelsHidden:YES];
+    }
+    
+    [self.playerOneUnitImageView setImage:image];
+}
+
+- (void)updatePlayerTwoUnit:(Unit *)unit
+{
+    UIImage *image = nil;
+    
+    if(unit)
+    {
+        [self setPlayerTwoLabelsHidden:NO];
+        
+        //image
+        if([unit.name isEqualToString:@"Warrior"])
+            image = [UIImage imageNamed:@"warriorpin.png"];
+        else if([unit.name isEqualToString:@"Mage"])
+            image = [UIImage imageNamed:@"warriorpin.png"];
+        else if([unit.name isEqualToString:@"Ranger"])
+            image = [UIImage imageNamed:@"warriorpin.png"];
+        else if([unit.name isEqualToString:@"Priest"])
+            image = [UIImage imageNamed:@"warriorpin.png"];
+        else if([unit.name isEqualToString:@"Shapeshifter"])
+            image = [UIImage imageNamed:@"warriorpin.png"];
+        else if([unit.name isEqualToString:@"Hero"])
+            image = [UIImage imageNamed:@"warriorpin.png"];
+        
+        [self.playerTwoUnitNameLabel setText:unit.name];
+        [self.playerTwoUnitAttackPowerLabel setText:[NSString stringWithFormat:@"%d", unit.physicalDefense]];
+        [self.playerTwoUnitDefenseLabel setText:[NSString stringWithFormat:@"%d", unit.physicalDefense]];
+        [self.playerTwoUnitHealthLabel setText:[NSString stringWithFormat:@"%d", unit.healthPoints]];
+    }
+    else
+    {
+        [self setPlayerTwoLabelsHidden:YES];
+    }
+    
+    [self.playerTwoUnitImageView setImage:image];
+}
+
+- (void)hidePlayerLabels
+{
+    [self updatePlayerOneUnit:nil];
+    [self updatePlayerTwoUnit:nil];
+}
 
 - (void)dealloc {
     [playerOneLabel release];
     [playerTwoLabel release];
     [phaseLabel release];
     [movesLabel release];
+    [playerOneUnitAttackPowerLabel release];
+    [playerOneUnitImageView release];
+    [playerOneUnitNameLabel release];
+    [playerOneUnitHealthLabel release];
+    [playerOneUnitDefenseLabel release];
+    [playerTwoUnitImageView release];
+    [playerTwoUnitNameLabel release];
+    [playerTwoUnitHealthLabel release];
+    [playerTwoUnitAttackPowerLabel release];
+    [playerTwoUnitDefenseLabel release];
+    [playerOneHealthLabel release];
+    [playerOneAttackLabel release];
+    [playerOneDefenseLabel release];
+    [playerTwoHealthLabel release];
+    [playerTwoAttackLabel release];
+    [playerTwoDefenseLabel release];
     [super dealloc];
 }
 

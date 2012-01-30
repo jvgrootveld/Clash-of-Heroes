@@ -76,7 +76,7 @@
         self.metaLayer = [self.map layerNamed:@"meta"];
         [self.metaLayer setVisible:NO];
         
-        self.selectedSprite = [CCSprite spriteWithFile:@"tile_brown.png"];
+        self.selectedSprite = [CCSprite spriteWithFile:@"tile_blue.png"];
         [self.selectedSprite setOpacity:128];
         [self.map addChild:self.selectedSprite z: [[self.map children] count]];
         [self.selectedSprite retain];
@@ -89,6 +89,7 @@
         spriteWidth = 26;
         spriteHeight = 62;
         _moveSprites = [NSMutableArray new];
+        _attackSprites = [NSMutableArray new];
         
         [self setMovementPhase:[[MovementPhase alloc] initWithGameLayer:self]];
         [self setCombatPhase:[[CombatPhase alloc] initWithGameLayer:self]];
@@ -205,6 +206,46 @@
     if(_moveSprites && _moveSprites.count > 0)
         for(CCSprite *moveSprite in _moveSprites) 
             [self.map removeChild:moveSprite cleanup:YES];
+}
+
+- (void)showAttackTileAtPositionPoint:(CGPoint)position
+{
+    if(![self isTilePosBlocked:position])
+    {   
+        CGPoint pos = [[self.metaLayer tileAt:position] position];
+        
+        pos.x += (self.map.tileSize.width / 2);
+        pos.y += (self.map.tileSize.height / 2);
+        
+        CCSprite *attackSprite = [CCSprite spriteWithFile:@"tile_red.png"];
+        [attackSprite setOpacity:128];
+        [self.map addChild:attackSprite z:1];
+        [_attackSprites addObject:attackSprite];
+        [attackSprite setPosition:pos];
+    }
+    else
+    {
+        NSLog(@"Show attack tile at: tile blocked: %@", NSStringFromCGPoint(position));
+    }
+}
+
+- (void)showAttackTileAtPositionPoints:(NSArray *)positions
+{
+    [self removeAttackTiles];
+    
+    for(NSValue *pointValue in positions)
+    {
+        CGPoint movePoint = [pointValue CGPointValue];
+        [self showAttackTileAtPositionPoint:movePoint];
+    }
+}
+
+- (void)removeAttackTiles
+{
+    NSLog(@"remove attack tiles");
+     if(_attackSprites && _attackSprites.count > 0)
+         for(CCSprite *attackSprite in _attackSprites)
+             [self.map removeChild:attackSprite cleanup:YES];
 }
 
 - (void)setSprite:(CCSprite *)sprite atPositionPoint:(CGPoint)position withTag:(NSInteger)tag;

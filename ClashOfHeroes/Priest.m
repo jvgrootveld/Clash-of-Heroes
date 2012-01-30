@@ -18,9 +18,9 @@
                              player:player
     andBaseStatsPhysicalAttackPower:10
                  magicalAttackPower:0
-                    physicalDefense:10
+                    physicalDefense:4
                      magicalDefense:7
-                       healthPoints:40
+                       healthPoints:100
                               range:3
                            movement:3
                                 tag:tag

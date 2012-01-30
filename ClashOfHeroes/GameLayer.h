@@ -17,6 +17,7 @@
 @interface GameLayer : CCLayer
 {
     NSMutableArray *_moveSprites;
+    NSMutableArray *_attackSprites;
 }
 
 @property (nonatomic, readonly) NSArray *units;
@@ -36,6 +37,9 @@
 - (void)showMoveTileAtPositionPoint:(CGPoint)position;
 - (void)showMoveTileAtPositionPoints:(NSArray *)positions;
 - (void)removeMoveTiles;
+- (void)showAttackTileAtPositionPoint:(CGPoint)position;
+- (void)showAttackTileAtPositionPoints:(NSArray *)positions;
+- (void)removeAttackTiles;
 
 /** This function gets the specific tile and move the sprite*/
 - (BOOL)moveSprite:(CCSprite *)sprite toTileLocation:(CGPoint)tileLocation;

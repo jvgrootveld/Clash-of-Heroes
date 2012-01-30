@@ -16,11 +16,11 @@
 {
     if (self == [super initWithName:@"Shapeshifter" 
                              player:player
-    andBaseStatsPhysicalAttackPower:3
+    andBaseStatsPhysicalAttackPower:8
                  magicalAttackPower:3
                     physicalDefense:3
                      magicalDefense:3
-                       healthPoints:25
+                       healthPoints:100
                               range:3
                            movement:3
                                 tag:tag

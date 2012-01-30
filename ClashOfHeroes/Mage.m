@@ -16,11 +16,11 @@
 {
     if (self == [super initWithName:@"Mage" 
                              player:player
-    andBaseStatsPhysicalAttackPower:0
+    andBaseStatsPhysicalAttackPower:10
                  magicalAttackPower:10
                     physicalDefense:5
                      magicalDefense:5
-                       healthPoints:30
+                       healthPoints:100
                               range:3
                            movement:3
                                 tag:tag

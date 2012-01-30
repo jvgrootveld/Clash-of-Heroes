@@ -11,6 +11,7 @@
 #import "Player.h"
 #import "GameLayer.h"
 #import <GameKit/GameKit.h>
+#include <stdlib.h>
 
 @interface Unit(Local)
 - (NSString *)directionToString:(NSInteger)directionValue;
@@ -135,7 +136,7 @@
     
     int i = 0;
     
-    NSInteger _range = self.range;
+    NSInteger _range = self.movement;
     
     if([self containsDirection:FORWARD InDirection:self.moveDirection])
     {
@@ -231,9 +232,9 @@
         {
             newX = positionX + i;
             newY = positionY + i;
-            point = CGPointMake(newX, newY && [layer isEmptySquare:point]);
+            point = CGPointMake(newX, newY);
             
-            if(newX <= mapBoundaryX && newY <= mapBoundaryY) [returnArray addObject:[NSValue valueWithCGPoint:point]];
+            if(newX <= mapBoundaryX && newY <= mapBoundaryY && [layer isEmptySquare:point]) [returnArray addObject:[NSValue valueWithCGPoint:point]];
             else break;
         }
     }
@@ -241,6 +242,186 @@
       //Return CGPoint from array
 //    NSValue *val = [points objectAtIndex:0];
 //    CGPoint p = [val CGPointValue];
+    
+    return returnArray;
+}
+
+- (NSMutableArray *)pointsWhichCanBeAttackedAtInLayer:(GameLayer *)layer
+{
+    NSMutableArray *returnArray = [NSMutableArray new];
+    
+    CGPoint positionPoint = self.location;
+    const int mapBoundaryX = [layer mapBoundaryX];
+    const int mapBoundaryY = [layer mapBoundaryY];
+    const int positionX = positionPoint.x;
+    const int positionY = positionPoint.y;
+    int newY, newX;
+    CGPoint point;
+    
+    int i = 0;
+    
+    NSInteger _range = self.range;
+    
+    if([self containsDirection:FORWARD InDirection:self.attackDirection])
+    {
+        for(i = 1; i <= _range; i++)
+        {
+            newY = positionY - i;
+            point = CGPointMake(positionX, newY);
+            
+            if(newY >= 0)
+            {   
+                if(![layer isEmptySquare:point]) //if enemy is on square in range
+                {
+                    [returnArray addObject:[NSValue valueWithCGPoint:point]];
+                    if(!self.canAttackTroughAir) break; //if this unit can't attack trough air, he is blocking to attack units behind the enemy
+                }
+            }
+            else break; //off map
+        }
+        
+    }
+    
+    if([self containsDirection:BACKWARD InDirection:self.attackDirection])
+    {
+        for(i = 1; i <= _range; i++)
+        {
+            newY = positionY + i;
+            point = CGPointMake(positionX, newY);
+            
+            if(newY <= mapBoundaryY)
+            {   
+                if(![layer isEmptySquare:point]) //if enemy is on square in range
+                {
+                    [returnArray addObject:[NSValue valueWithCGPoint:point]];
+                    if(!self.canAttackTroughAir) break; //if this unit can't attack trough air, he is blocking to attack units behind the enemy
+                }
+            }
+            else break; //off map
+        }
+    }
+    
+    if([self containsDirection:LEFT InDirection:self.attackDirection])
+    {
+        for(i = 1; i <= _range; i++)
+        {
+            newX = positionX - i;
+            point = CGPointMake(newX, positionY);
+            
+            if(newX >= 0)
+            {   
+                if(![layer isEmptySquare:point]) //if enemy is on square in range
+                {
+                    [returnArray addObject:[NSValue valueWithCGPoint:point]];
+                    if(!self.canAttackTroughAir) break; //if this unit can't attack trough air, he is blocking to attack units behind the enemy
+                }
+            }
+            else break; //off map
+        }
+    }
+    
+    if([self containsDirection:RIGHT InDirection:self.attackDirection])
+    {
+        for(i = 1; i <= _range; i++)
+        {
+            newX = positionX + i;
+            point = CGPointMake(newX, positionY);
+            
+            if(newX <= mapBoundaryX)
+            {   
+                if(![layer isEmptySquare:point]) //if enemy is on square in range
+                {
+                    [returnArray addObject:[NSValue valueWithCGPoint:point]];
+                    if(!self.canAttackTroughAir) break; //if this unit can't attack trough air, he is blocking to attack units behind the enemy
+                }
+            }
+            else break; //off map
+        }
+    }
+    
+    if([self containsDirection:FORWARDLEFT InDirection:self.attackDirection])
+    {
+        for(i = 1; i <= _range; i++)
+        {
+            newX = positionX - i;
+            newY = positionY - i;
+            point = CGPointMake(newX, newY);
+            
+            if(newX >= 0 && newY >= 0)
+            {   
+                if(![layer isEmptySquare:point]) //if enemy is on square in range
+                {
+                    [returnArray addObject:[NSValue valueWithCGPoint:point]];
+                    if(!self.canAttackTroughAir) break; //if this unit can't attack trough air, he is blocking to attack units behind the enemy
+                }
+            }
+            else break; //off map
+        }
+    }
+    
+    if([self containsDirection:FORWARDRIGHT InDirection:self.attackDirection])
+    {
+        for(i = 1; i <= _range; i++)
+        {
+            newX = positionX + i;
+            newY = positionY - i;
+            point = CGPointMake(newX, newY);
+            
+            if(newX <= mapBoundaryX && newY >= 0)
+            {   
+                if(![layer isEmptySquare:point]) //if enemy is on square in range
+                {
+                    [returnArray addObject:[NSValue valueWithCGPoint:point]];
+                    if(!self.canAttackTroughAir) break; //if this unit can't attack trough air, he is blocking to attack units behind the enemy
+                }
+            }
+            else break; //off map
+        }
+    }
+    
+    if([self containsDirection:BACKWARDLEFT InDirection:self.attackDirection])
+    {
+        for(i = 1; i <= _range; i++)
+        {
+            newX = positionX - i;
+            newY = positionY + i;
+            point = CGPointMake(newX, newY);
+            
+            if(newX >= 0 && newY <= mapBoundaryY)
+            {   
+                if(![layer isEmptySquare:point]) //if enemy is on square in range
+                {
+                    [returnArray addObject:[NSValue valueWithCGPoint:point]];
+                    if(!self.canAttackTroughAir) break; //if this unit can't attack trough air, he is blocking to attack units behind the enemy
+                }
+            }
+            else break; //off map
+        }
+    }
+    
+    if([self containsDirection:BACKWARDRIGHT InDirection:self.attackDirection])
+    {
+        for(i = 1; i <= _range; i++)
+        {
+            newX = positionX + i;
+            newY = positionY + i;
+            point = CGPointMake(newX, newY);
+            
+            if(newX <= mapBoundaryX && newY <= mapBoundaryY)
+            {   
+                if(![layer isEmptySquare:point]) //if enemy is on square in range
+                {
+                    [returnArray addObject:[NSValue valueWithCGPoint:point]];
+                    if(!self.canAttackTroughAir) break; //if this unit can't attack trough air, he is blocking to attack units behind the enemy
+                }
+            }
+            else break; //off map
+        }
+    }
+    
+    //Return CGPoint from array
+    //    NSValue *val = [points objectAtIndex:0];
+    //    CGPoint p = [val CGPointValue];
     
     return returnArray;
 }
@@ -262,6 +443,30 @@
     _recievedDamage -= damage;
     
     NSLog(@"added %d health to %@, %d health remaining.", damage, _name, ([self healthPoints] - _recievedDamage));
+}
+
+- (BOOL)attackUnit:(Unit *)target
+{
+    NSLog(@"%@(%@) attacks %@(%@)", self.name, self.player.gameCenterInfo.alias, target.name, target.player.gameCenterInfo.alias);
+    
+    NSInteger damage = (self.physicalAttackPower - target.physicalDefense);
+    if(damage < 0) damage = 0;
+    
+    NSInteger criticalChange = arc4random() % 100;
+    NSInteger blockChange = arc4random() % 100;
+    
+    if(criticalChange < 10)
+    {
+        NSLog(@"critical");
+        damage *= 1.5;
+    }
+    else if(blockChange < 10)
+    {
+        NSLog(@"block");
+        damage *= 0.5;
+    }
+    
+    return [target recieveDamage:damage];
 }
 
 - (NSString *)printCode
