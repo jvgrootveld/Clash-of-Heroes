@@ -207,6 +207,7 @@
 		837F327E148E672C00C77C62 /* Ranger.m in Sources */ = {isa = PBXBuildFile; fileRef = 837F327D148E672C00C77C62 /* Ranger.m */; };
 		837F3281148E673C00C77C62 /* Priest.m in Sources */ = {isa = PBXBuildFile; fileRef = 837F3280148E673C00C77C62 /* Priest.m */; };
 		837F3284148E674D00C77C62 /* Shapeshifter.m in Sources */ = {isa = PBXBuildFile; fileRef = 837F3283148E674D00C77C62 /* Shapeshifter.m */; };
+		83C2D33314D6DEEC00B620DB /* message_dialog.png in Resources */ = {isa = PBXBuildFile; fileRef = 83C2D33214D6DEEC00B620DB /* message_dialog.png */; };
 		83C8A9FE14C43BD600182C89 /* MovementPhase.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C8A9FD14C43BD600182C89 /* MovementPhase.m */; };
 		83C8AA0114C43E3D00182C89 /* CombatPhase.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C8AA0014C43E3D00182C89 /* CombatPhase.m */; };
 		83EF3417148D032B0076EBA9 /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83EF3416148D032B0076EBA9 /* GameViewController.xib */; };
@@ -578,6 +579,7 @@
 		837F3280148E673C00C77C62 /* Priest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Priest.m; sourceTree = "<group>"; };
 		837F3282148E674D00C77C62 /* Shapeshifter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shapeshifter.h; sourceTree = "<group>"; };
 		837F3283148E674D00C77C62 /* Shapeshifter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shapeshifter.m; sourceTree = "<group>"; };
+		83C2D33214D6DEEC00B620DB /* message_dialog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = message_dialog.png; sourceTree = "<group>"; };
 		83C8A9F914C43A1400182C89 /* Phase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Phase.h; sourceTree = "<group>"; };
 		83C8A9FC14C43BD600182C89 /* MovementPhase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovementPhase.h; sourceTree = "<group>"; };
 		83C8A9FD14C43BD600182C89 /* MovementPhase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovementPhase.m; sourceTree = "<group>"; };
@@ -851,6 +853,7 @@
 		83714762147BE0770091C992 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				83C2D33214D6DEEC00B620DB /* message_dialog.png */,
 				F2E72B6214D61A97001268EC /* rune_priest.png */,
 				F2E72B6314D61A98001268EC /* rune_warrior.png */,
 				F2E72B6414D61A98001268EC /* rune_ranger.png */,
@@ -1400,6 +1403,7 @@
 				F2E72B6A14D61A9A001268EC /* rune_mage.png in Resources */,
 				F2E72B6B14D61A9A001268EC /* rune_shapeshifter.png in Resources */,
 				F2E72B6D14D61B77001268EC /* rune_hero.png in Resources */,
+				83C2D33314D6DEEC00B620DB /* message_dialog.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

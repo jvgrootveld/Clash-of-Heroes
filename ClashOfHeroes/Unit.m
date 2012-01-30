@@ -432,7 +432,7 @@
 {
     _recievedDamage += damage;
     
-    [layer presentMessage:[NSString stringWithFormat:@"%@ recieved %d damage, %d health remaining.", _name, damage, [self healthPoints]]];
+    [layer presentMessage:[NSString stringWithFormat:@"%@'s %@ recieved %d damage, %d health remaining.", self.player.gameCenterInfo.alias, self.name, damage, [self healthPoints]]];
     NSLog(@"%@ recieved %d damage, %d health remaining.", _name, damage, [self healthPoints]);
     if ([self healthPoints] <= 0) return YES;
     

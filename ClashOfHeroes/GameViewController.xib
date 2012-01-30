@@ -85,7 +85,7 @@
 						<string key="NSFrame">{{0, 143}, {160, 23}}</string>
 						<reference key="NSSuperview" ref="284661587"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="782942095"/>
+						<reference key="NSNextKeyView" ref="1030841224"/>
 						<string key="NSReuseIdentifierKey">_NS:345</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -182,7 +182,7 @@
 						<string key="NSFrame">{{82, 193}, {49, 21}}</string>
 						<reference key="NSSuperview" ref="284661587"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="693610866"/>
+						<reference key="NSNextKeyView" ref="782942095"/>
 						<string key="NSReuseIdentifierKey">_NS:345</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -625,7 +625,7 @@
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">alert.png</string>
+									<string key="NSResourceName">message_dialog.png</string>
 								</object>
 							</object>
 							<object class="IBUILabel" id="391841925">
@@ -634,7 +634,7 @@
 								<string key="NSFrame">{{39, 7}, {510, 26}}</string>
 								<reference key="NSSuperview" ref="782942095"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="1030841224"/>
+								<reference key="NSNextKeyView" ref="693610866"/>
 								<string key="NSReuseIdentifierKey">_NS:345</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -651,12 +651,12 @@
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUITextAlignment">1</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
-									<int key="type">2</int>
-									<double key="pointSize">17</double>
+									<int key="type">1</int>
+									<double key="pointSize">16</double>
 								</object>
 								<object class="NSFont" key="IBUIFont">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">17</double>
+									<string key="NSName">Helvetica</string>
+									<double key="NSSize">16</double>
 									<int key="NSfFlags">16</int>
 								</object>
 							</object>
@@ -1306,9 +1306,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="alert.png">{500, 200}</string>
 			<string key="button.png">{140, 40}</string>
 			<string key="frame.png">{1024, 768}</string>
+			<string key="message_dialog.png">{589, 40}</string>
 			<string key="warriorpin.png">{180, 182}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">933</string>
