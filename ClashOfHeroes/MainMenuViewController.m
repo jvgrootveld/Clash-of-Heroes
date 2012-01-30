@@ -79,6 +79,8 @@
     damageTakenLabel = nil;
     [metersMovedLabel release];
     metersMovedLabel = nil;
+    [gamesWonLabel release];
+    gamesWonLabel = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -104,6 +106,7 @@
     if(stats)
     {
         [gamesPlayedLabel setText:[NSString stringWithFormat:@"%d", [stats totalGamesPlayed]]];
+        [gamesWonLabel setText:[NSString stringWithFormat:@"%d", stats.gamesWon.integerValue]];
         [damageDealtName setText:[NSString stringWithFormat:@"%d", stats.totalDamageDealt.integerValue]];
         [damageTakenLabel setText:[NSString stringWithFormat:@"%d", stats.totalDamageTaken.integerValue]];
         [metersMovedLabel setText:[NSString stringWithFormat:@"%d", stats.totalMetersMoved.integerValue]];
@@ -111,6 +114,7 @@
     else
     {
         [gamesPlayedLabel setText:@""];
+        [gamesWonLabel setText:@""];
         [damageDealtName setText:@""];
         [damageTakenLabel setText:@""];
         [metersMovedLabel setText:@""];
@@ -128,6 +132,7 @@
     [damageDealtName release];
     [damageTakenLabel release];
     [metersMovedLabel release];
+    [gamesWonLabel release];
     [super dealloc];
 }
 

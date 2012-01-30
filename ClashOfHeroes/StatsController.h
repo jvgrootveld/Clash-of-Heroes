@@ -25,5 +25,6 @@
 + (BOOL)addTotalDamageDealt:(NSInteger)addGamesPlayed forPlayer:(NSString *)gameCenterId;
 + (BOOL)addTotalDamageTaken:(NSInteger)addGamesPlayed forPlayer:(NSString *)gameCenterId;
 + (BOOL)addTotalMetersMoved:(NSInteger)addGamesPlayed forPlayer:(NSString *)gameCenterId;
++ (BOOL)addGamesWon:(NSInteger)gamesWon forPlayer:(NSString *)gameCenterId;
 
 @end

@@ -36,8 +36,6 @@ NSInteger const MAXMOVES = 3;
 
 - (void)didSelectPoint:(CGPoint)point
 {    
-    if(self.remainingMoves <= 0) return; //no moves left
-    
     CGPoint squarePoint = [_gameLayer tilePosFromLocation:point tileMap:_gameLayer.map]; //for selection tile, default is point, can be set for sprite/unit
     CCSprite *selectedSprite = [_gameLayer selectSpriteForTouch:point];
     Unit *friendlyUnit = ((selectedSprite) ? [_gameLayer isFriendlyUnitWithSprite:selectedSprite] : nil);
@@ -61,8 +59,11 @@ NSInteger const MAXMOVES = 3;
             
             squarePoint = [_gameLayer tilePosFromLocation:self.selectedUnit.positionInPixels tileMap:_gameLayer.map];
             
-            NSArray *moveLocations = [self.selectedUnit pointsWhichCanBeMovedAtInLayer:_gameLayer];
-            [_gameLayer showMoveTileAtPositionPoints:moveLocations];
+            if(self.remainingMoves > 0)
+            {
+                NSArray *moveLocations = [self.selectedUnit pointsWhichCanBeMovedAtInLayer:_gameLayer];
+                [_gameLayer showMoveTileAtPositionPoints:moveLocations];
+            }
             
             [_gameLayer.gameViewController updatePlayerOneUnit:friendlyUnit];
         }
@@ -79,21 +80,23 @@ NSInteger const MAXMOVES = 3;
     {   
         if (!selectedSprite) //SELECTED EMPTY SQUARE -> MOVE & DESELECT
         {
-            if((self.remainingMoves <= 0)) return; //no moves left
-            NSLog(@"Selected empty square, moving and deselecting unit.");
-            
-            NSArray *moveLocations = [self.selectedUnit pointsWhichCanBeMovedAtInLayer:_gameLayer];
-            
-            for(NSValue *location in moveLocations)
+            if(self.remainingMoves > 0)
             {
-                CGPoint movePoint = [location CGPointValue];
-
-                if(CGPointEqualToPoint(squarePoint, movePoint)) //if unit can move to selected point
+                NSLog(@"Selected empty square, moving and deselecting unit.");
+                
+                NSArray *moveLocations = [self.selectedUnit pointsWhichCanBeMovedAtInLayer:_gameLayer];
+                
+                for(NSValue *location in moveLocations)
                 {
-                    if([_gameLayer moveSprite:self.selectedUnit toTileLocation:point])
-                        self.remainingMoves--;
-                    
-                    break;
+                    CGPoint movePoint = [location CGPointValue];
+
+                    if(CGPointEqualToPoint(squarePoint, movePoint)) //if unit can move to selected point
+                    {
+                        if([_gameLayer moveSprite:self.selectedUnit toTileLocation:point])
+                            self.remainingMoves--;
+                        
+                        break;
+                    }
                 }
             }
             
@@ -108,8 +111,12 @@ NSInteger const MAXMOVES = 3;
             
             squarePoint = [_gameLayer tilePosFromLocation:self.selectedUnit.positionInPixels tileMap:_gameLayer.map];
             
-            NSArray *moveLocations = [self.selectedUnit pointsWhichCanBeMovedAtInLayer:_gameLayer];
-            [_gameLayer showMoveTileAtPositionPoints:moveLocations];
+            if(self.remainingMoves > 0)
+            {
+                NSArray *moveLocations = [self.selectedUnit pointsWhichCanBeMovedAtInLayer:_gameLayer];
+                [_gameLayer showMoveTileAtPositionPoints:moveLocations];
+            }
+            
             [_gameLayer.gameViewController updatePlayerOneUnit:friendlyUnit];
         }
         else if (enemyUnit) //SELECTED ENEMY UNIT -> DESELECT
