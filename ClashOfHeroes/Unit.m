@@ -19,7 +19,7 @@
 
 @implementation Unit
 
-@synthesize name = _name, upgrade = _upgrade, player = _player, moveDirection = _moveDirection, attackDirection = _attackDirection, canAttackTroughAir = _canAttackTroughAir, location = _location;
+@synthesize name = _name, upgrade = _upgrade, player = _player, moveDirection = _moveDirection, attackDirection = _attackDirection, canAttackTroughAir = _canAttackTroughAir, location = _location, healthPoints = _baseHealthPoints;
 
 - (id)initWithName:(NSString *)name player:(Player *)player andBaseStatsPhysicalAttackPower:(NSInteger)physicalAttackPower magicalAttackPower:(NSInteger)magicalAttackPower physicalDefense:(NSInteger)physicalDefense magicalDefense:(NSInteger)magicalDefense healthPoints:(NSInteger)healthPoints range:(NSInteger)range movement:(NSInteger)movement tag:(NSInteger)tag file:(NSString*)filename rect:(CGRect)rect
 {
@@ -428,24 +428,25 @@
 
 #pragma mark - Attacking methods
 
-- (BOOL)recieveDamage:(NSInteger)damage
+- (BOOL)recieveDamage:(NSInteger)damage onLayer:(GameLayer *)layer
 {
     _recievedDamage += damage;
     
+    [layer presentMessage:[NSString stringWithFormat:@"%@ recieved %d damage, %d health remaining.", _name, damage, [self healthPoints]]];
     NSLog(@"%@ recieved %d damage, %d health remaining.", _name, damage, [self healthPoints]);
     if ([self healthPoints] <= 0) return YES;
     
     return NO;
 }
 
-- (void)reduceDamage:(NSInteger)damage
+- (void)reduceDamage:(NSInteger)damage onLayer:(GameLayer *)layer
 {
     _recievedDamage -= damage;
     
     NSLog(@"added %d health to %@, %d health remaining.", damage, _name, ([self healthPoints] - _recievedDamage));
 }
 
-- (BOOL)attackUnit:(Unit *)target
+- (BOOL)attackUnit:(Unit *)target onLayer:(GameLayer *)layer
 {
     NSLog(@"%@(%@) attacks %@(%@)", self.name, self.player.gameCenterInfo.alias, target.name, target.player.gameCenterInfo.alias);
     
@@ -466,7 +467,7 @@
         damage *= 0.5;
     }
     
-    return [target recieveDamage:damage];
+    return [target recieveDamage:damage onLayer:layer];
 }
 
 - (NSString *)printCode

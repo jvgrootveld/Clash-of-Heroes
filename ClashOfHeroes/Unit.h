@@ -48,6 +48,7 @@ typedef enum
 @property (nonatomic, retain) Upgrade *upgrade;
 @property (nonatomic, assign) Direction moveDirection;
 @property (nonatomic, assign) Direction attackDirection;
+@property (nonatomic, assign) NSInteger healthPoints;
 @property (nonatomic) BOOL canAttackTroughAir;
 @property (nonatomic) CGPoint location; //not in pixels 
 
@@ -67,10 +68,10 @@ typedef enum
 - (NSMutableArray *)pointsWhichCanBeMovedAtInLayer:(GameLayer *)layer;
 - (NSMutableArray *)pointsWhichCanBeAttackedAtInLayer:(GameLayer *)layer;
 
-- (BOOL)recieveDamage:(NSInteger)damage;
-- (void)reduceDamage:(NSInteger)damage;
+- (BOOL)recieveDamage:(NSInteger)damage onLayer:(GameLayer *)layer;
+- (void)reduceDamage:(NSInteger)damage onLayer:(GameLayer *)layer;
 
-- (BOOL)attackUnit:(Unit *)target;
+- (BOOL)attackUnit:(Unit *)target onLayer:(GameLayer *)layer;
 
 //for printing
 - (void)setCode:(NSString *)code;

@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Unit.h"
 
-@interface Hero : NSObject
+@interface Hero : Unit
 
 @property (nonatomic, strong) NSString *heroName;
 @property (nonatomic, assign) NSInteger currentHealth;

@@ -9,7 +9,7 @@
 #import "UIView+AlertAnimations.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define kAnimationDuration  0.2555
+#define kAnimationDuration  0.3
 
 @implementation UIView(AlertAnimations)
 
@@ -52,6 +52,22 @@
     CABasicAnimation *fadeInAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     fadeInAnimation.fromValue = [NSNumber numberWithFloat:0.0];
     fadeInAnimation.toValue = [NSNumber numberWithFloat:1.0];
+    fadeInAnimation.duration = kAnimationDuration;
+    fadeInAnimation.delegate = animationDelegate;
+    [viewLayer addAnimation:fadeInAnimation forKey:@"opacity"];
+}
+
+- (void)doFadeOutAnimation
+{
+    [self doFadeInAnimationWithDelegate:nil];
+}
+
+- (void)doFadeOutAnimationWithDelegate:(id)animationDelegate
+{
+    CALayer *viewLayer = self.layer;
+    CABasicAnimation *fadeInAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    fadeInAnimation.fromValue = [NSNumber numberWithFloat:1.0];
+    fadeInAnimation.toValue = [NSNumber numberWithFloat:0.0];
     fadeInAnimation.duration = kAnimationDuration;
     fadeInAnimation.delegate = animationDelegate;
     [viewLayer addAnimation:fadeInAnimation forKey:@"opacity"];

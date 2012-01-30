@@ -10,6 +10,7 @@
 #import "Player.h"
 #import "GameLayer.h"
 #import "UnitData.h"
+#import "Unit.h"
 #import "Warrior.h"
 #import "Mage.h"
 #import "Ranger.h"
@@ -34,7 +35,7 @@
 + (void)createBoardForPlayer:(Player *)player onLayer:(GameLayer *)layer
 {
     NSArray *playerData = player.unitData;
-    CCSprite *unit;
+    Unit *unit;
     
     for (UnitData *unitData in playerData)
     {
@@ -50,22 +51,27 @@
         {
             case WARRIOR:
                 unit = [[Warrior alloc] initForPlayer:player withTag:unitData.tag];
+                [unit setHealthPoints:unitData.currentHealth];
                 [layer setSprite:unit atPositionPoint:location withTag:unitData.tag];
                 break;
             case MAGE:
                 unit = [[Mage alloc] initForPlayer:player withTag:unitData.tag];
+                [unit setHealthPoints:unitData.currentHealth];
                 [layer setSprite:unit atPositionPoint:location withTag:unitData.tag];
                 break;
             case RANGER:
                 unit = [[Ranger alloc] initForPlayer:player withTag:unitData.tag];
+                [unit setHealthPoints:unitData.currentHealth];
                 [layer setSprite:unit atPositionPoint:location withTag:unitData.tag];
                 break;
             case PRIEST:
                 unit = [[Priest alloc] initForPlayer:player withTag:unitData.tag];
+                [unit setHealthPoints:unitData.currentHealth];
                 [layer setSprite:unit atPositionPoint:location withTag:unitData.tag];
                 break;
             case SHAPESHIFTER:
                 unit = [[Shapeshifter alloc] initForPlayer:player withTag:unitData.tag];
+                [unit setHealthPoints:unitData.currentHealth];
                 [layer setSprite:unit atPositionPoint:location withTag:unitData.tag];
                 break;
             default:

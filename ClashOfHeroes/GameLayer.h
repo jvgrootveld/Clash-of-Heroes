@@ -54,6 +54,8 @@
 
 - (BOOL)isLocationInBounds:(CGPoint)location;
 
+- (void)presentMessage:(NSString *)message;
+
 - (void)loadUnitLocations;
 
 @property (nonatomic, retain) CCTMXTiledMap *map;

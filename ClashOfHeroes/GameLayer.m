@@ -487,6 +487,12 @@
 //    [node setPosition: ccpAdd(currentPos, diff)];
 }
 
+- (void)presentMessage:(NSString *)message
+{
+    [self.gameViewController presentMessage:message];
+    
+}
+
 - (NSArray *)units
 {
     NSMutableArray *returnArray = [NSMutableArray new];

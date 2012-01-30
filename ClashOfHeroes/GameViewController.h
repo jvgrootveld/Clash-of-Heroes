@@ -39,6 +39,8 @@
 
 @property (retain, nonatomic) IBOutlet UILabel *phaseLabel;
 @property (retain, nonatomic) IBOutlet UILabel *movesLabel;
+@property (retain, nonatomic) IBOutlet UIView *messageView;
+@property (retain, nonatomic) IBOutlet UILabel *messageLabel;
 @property (nonatomic, strong) GameLayer *gameLayer;
 
 - (void)updateLabels;
@@ -49,5 +51,7 @@
 - (IBAction)endTurn:(id)sender;
 - (IBAction)endPhase:(id)sender;
 - (IBAction)backButtonPressed:(id)sender;
+
+- (void)presentMessage:(NSString *)message;
 
 @end
