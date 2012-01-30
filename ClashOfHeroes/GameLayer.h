@@ -51,6 +51,7 @@
 - (Unit *)isFriendlyUnitWithSprite:(CCSprite *)sprite;
 - (Unit *)isEnemyUnitWithSprite:(CCSprite *)sprite;
 - (BOOL)isEmptySquare:(CGPoint)squarePosition;
+- (void)removeUnits;
 
 - (BOOL)isLocationInBounds:(CGPoint)location;
 

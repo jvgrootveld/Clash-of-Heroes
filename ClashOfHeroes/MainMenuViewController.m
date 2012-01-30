@@ -12,6 +12,7 @@
 #import "GameViewController.h"
 #import "NewGameViewController.h"
 #import "CDStats.h"
+#import "GameLayer.h"
 
 @implementation MainMenuViewController
 @synthesize startButton;
@@ -40,6 +41,13 @@
     if (_gameViewController == nil)
     {
         self.gameViewController = [[GameViewController new] autorelease];
+    }
+    
+    CCScene *scene = [CCDirector sharedDirector].runningScene;
+    
+    for(CCLayer *layer in scene.children)
+    {
+        if([layer isKindOfClass:[GameLayer class]]) [(GameLayer *)layer loadUnitLocations];
     }
     
     [self.navigationController pushViewController:self.gameViewController animated:NO];

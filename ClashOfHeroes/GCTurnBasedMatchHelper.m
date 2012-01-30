@@ -235,7 +235,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 
 - (void)synchronizeMatchData:(NSDictionary *)matchData
 {
-    NSLog(@"synchronizeMatchData %@", matchData);
+    //NSLog(@"synchronizeMatchData %@", matchData);
     for (Player *player in self.currentPlayers)
     {
         NSDictionary *playerData = [matchData objectForKey:player.gameCenterInfo.playerID];

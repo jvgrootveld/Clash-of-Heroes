@@ -48,6 +48,9 @@
 
 - (void)loadUnitLocations
 {
+    NSLog(@"load units");
+    [self removeUnits];
+    
     GCTurnBasedMatchHelper *gCTurnBasedMatchHelper = [GCTurnBasedMatchHelper sharedInstance];
     Player *player1 = [gCTurnBasedMatchHelper playerForLocalPlayer];
     Player *player2 = [gCTurnBasedMatchHelper playerForEnemyPlayer];
@@ -56,7 +59,7 @@
 }
 
 // on "init" you need to initialize your instance
--(id) init
+- (id)init
 {
 	if( (self = [super init]))
     {
@@ -409,6 +412,25 @@
     }
     
     return  nil;
+}
+
+- (void)removeUnits
+{
+    NSLog(@"start removing units");
+//    for(Unit *unit in self.units)
+//    {
+//        NSLog(@"remove: %@ at %@", unit.name, NSStringFromCGPoint( unit.location));
+//        [self removeChild:unit cleanup:YES];
+//    }
+    
+    for(CCSprite *sprite in self.children)
+    {
+        if([sprite isKindOfClass:[Unit class]])
+        {
+            NSLog(@"remove: %@ at %@", ((Unit *)sprite).name, NSStringFromCGPoint( ((Unit *)sprite).location));
+            [self removeChild:sprite cleanup:YES];
+        }
+    }
 }
 
 - (BOOL)isEmptySquare:(CGPoint)squarePosition

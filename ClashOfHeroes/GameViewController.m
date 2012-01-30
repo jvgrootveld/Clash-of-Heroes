@@ -100,7 +100,8 @@
     [alertView show];
 }
 
-- (IBAction)backButtonPressed:(id)sender {
+- (IBAction)backButtonPressed:(id)sender 
+{
     COHAlertViewController *alertView = [[COHAlertViewController alloc] initWithTitle:@"Back to menu" andMessage:@"Are you sure you want to quit? This will revert any moves you have made."];
     
     alertView.view.frame = self.view.frame;
@@ -138,7 +139,10 @@
             [self.gameLayer.currentPhase endPhase];
         }
         else if (alert.tag == 3)
+        {
+            [self.gameLayer removeUnits];
             [self.navigationController popViewControllerAnimated:YES];
+        }
     }
     
     //[self updateLabels];
