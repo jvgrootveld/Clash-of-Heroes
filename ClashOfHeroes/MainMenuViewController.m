@@ -70,15 +70,10 @@
     [self setFeedbackButton:nil];
     
     [playerNameLabel release];
-    playerNameLabel = nil;
     [gamesPlayedLabel release];
-    gamesPlayedLabel = nil;
     [damageDealtName release];
-    damageDealtName = nil;
     [damageTakenLabel release];
-    damageTakenLabel = nil;
     [metersMovedLabel release];
-    metersMovedLabel = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
