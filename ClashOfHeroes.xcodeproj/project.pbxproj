@@ -215,6 +215,7 @@
 		F21D3F9B14D19B0000BF0E0F /* menu_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = F21D3F9A14D19B0000BF0E0F /* menu_screen.png */; };
 		F21D3F9D14D1A4A400BF0E0F /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = F21D3F9C14D1A4A400BF0E0F /* button.png */; };
 		F23FA7FA147E8C04004AE3A3 /* grossini_dance_01.png in Resources */ = {isa = PBXBuildFile; fileRef = F23FA7F9147E8C04004AE3A3 /* grossini_dance_01.png */; };
+		F262F89714D6E009007DFA6A /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F262F89614D6E009007DFA6A /* GameCenterManager.m */; };
 		F28F8A8A147E3BA1009502CC /* TestPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F28F8A89147E3BA1009502CC /* TestPlayer.m */; };
 		F29F4EA71483B6EF00D114D0 /* sprites.png in Resources */ = {isa = PBXBuildFile; fileRef = F29F4EA61483B6EF00D114D0 /* sprites.png */; };
 		F2AC90DF14D577AE00541F11 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2AC90DE14D577AE00541F11 /* CoreData.framework */; };
@@ -590,6 +591,9 @@
 		F21D3F9C14D1A4A400BF0E0F /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
 		F23FA7F9147E8C04004AE3A3 /* grossini_dance_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grossini_dance_01.png; sourceTree = "<group>"; };
 		F262F89114D69DEE007DFA6A /* StatsModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "StatsModel 2.xcdatamodel"; sourceTree = "<group>"; };
+		F262F89414D6E009007DFA6A /* AppSpecificValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSpecificValues.h; sourceTree = "<group>"; };
+		F262F89514D6E009007DFA6A /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterManager.h; sourceTree = "<group>"; };
+		F262F89614D6E009007DFA6A /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterManager.m; sourceTree = "<group>"; };
 		F28F8A88147E3BA1009502CC /* TestPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestPlayer.h; sourceTree = "<group>"; };
 		F28F8A89147E3BA1009502CC /* TestPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestPlayer.m; sourceTree = "<group>"; };
 		F29F4EA61483B6EF00D114D0 /* sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sprites.png; sourceTree = "<group>"; };
@@ -769,6 +773,7 @@
 		836D207C147E8B230022B058 /* GameCenter */ = {
 			isa = PBXGroup;
 			children = (
+				F262F89314D6DFDC007DFA6A /* Achievements */,
 				8355D9C014D17ABB007CAF81 /* MatchData.h */,
 				8355D9C114D17ABB007CAF81 /* MatchData.m */,
 				8355DA3B14D1F57F007CAF81 /* UnitData.h */,
@@ -1241,6 +1246,16 @@
 			name = Phases;
 			sourceTree = "<group>";
 		};
+		F262F89314D6DFDC007DFA6A /* Achievements */ = {
+			isa = PBXGroup;
+			children = (
+				F262F89414D6E009007DFA6A /* AppSpecificValues.h */,
+				F262F89514D6E009007DFA6A /* GameCenterManager.h */,
+				F262F89614D6E009007DFA6A /* GameCenterManager.m */,
+			);
+			name = Achievements;
+			sourceTree = "<group>";
+		};
 		F2AC914214D5A06E00541F11 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -1535,6 +1550,7 @@
 				F2AC914514D5A0F800541F11 /* CDPlayer.m in Sources */,
 				F2AC914B14D5A12A00541F11 /* CDStats.m in Sources */,
 				F2AC914E14D5A24A00541F11 /* StatsController.m in Sources */,
+				F262F89714D6E009007DFA6A /* GameCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
