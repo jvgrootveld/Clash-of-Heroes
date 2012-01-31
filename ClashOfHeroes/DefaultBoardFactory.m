@@ -34,6 +34,7 @@
 
 + (void)createBoardForPlayer:(Player *)player onLayer:(GameLayer *)layer
 {
+    [player resetUnits];
     NSArray *playerData = player.unitData;
     Unit *unit;
     

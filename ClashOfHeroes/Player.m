@@ -21,13 +21,18 @@
     if (self = [super init])
     {        
         self.hero = nil;
-        self.units = [NSMutableArray array];
-        self.unitData = [NSArray array];
+        self.units = [NSMutableArray new];
+        self.unitData = [NSArray new];
         self.gameCenterInfo = player;
         self.turnNumber = 0;
     }
     
     return self;
+}
+
+- (void)resetUnits
+{
+    self.units = [NSMutableArray new];
 }
 
 - (void)addUnit:(Unit *)unit

@@ -72,6 +72,7 @@
 
 @property (nonatomic, assign)  id <GameCenterManagerDelegate> delegate;
 
++ (GameCenterManager *)sharedInstance;
 + (BOOL) isGameCenterAvailable;
 
 - (void) authenticateLocalUser;

@@ -10,14 +10,28 @@
 #import "CDPlayer.h"
 #import "CDStats.h"
 #import "AppDelegate.h"
+#import "GameCenterManager.h"
+#import "AppSpecificValues.h"
 
 #define kPlayer @"CDPlayer"
 #define kStats @"CDStats"
 
 @interface StatsController()
+//data
 + (NSManagedObjectContext *)managedObjectContext;
 + (NSArray *)dataFromEntity:(NSString *)entityName;
 + (NSArray *)dataFromEntity:(NSString *)entityName withPredicate:(NSPredicate *)predicate;
+
+//achievement check
++ (void)submitAchievement:(NSString*)identifier percentComplete:(double)percentComplete;
++ (void)updateAchievementForGamesPlayedEldurin:(NSInteger)gamesPlayedEldurin;
++ (void)updateAchievementForGamesPlayedGarrick:(NSInteger)gamesPlayedGarrick;
++ (void)updateAchievementForGamesPlayedGalen:(NSInteger)gamesPlayedGalen;
++ (void)updateAchievementForTotalGamesPlayed:(NSInteger)totalGamesPlayed;
++ (void)updateAchievementForTotalDamageDealt:(NSInteger)totalDamageDealt;
++ (void)updateAchievementForTotalDamageTaken:(NSInteger)totalDamageTaken;
++ (void)updateAchievementForTotalMetersMoved:(NSInteger)totalMetersMoved;
++ (void)updateAchievementForGamesWon:(NSInteger)totalGamesWon;
 @end
 
 @implementation StatsController
@@ -122,9 +136,12 @@
     CDPlayer *testPlayer = [self playerForGameCenterId:gameCenterId];
     
     if(testPlayer)
-    {
+    {   
         CDStats *testStats = (CDStats *)testPlayer.stats;
-        [testStats setGamesPlayedEldurin:[NSNumber numberWithInt:addGamesPlayed + testStats.gamesPlayedEldurin.integerValue]];
+        
+        NSInteger total = addGamesPlayed + testStats.gamesPlayedEldurin.integerValue;
+        
+        [testStats setGamesPlayedEldurin:[NSNumber numberWithInt:total]];
         
         NSError *error;
         
@@ -133,6 +150,10 @@
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
             return NO;
         }
+        
+        //update achievement
+        [self updateAchievementForGamesPlayedEldurin:total];
+        [self updateAchievementForTotalGamesPlayed:total];
         
         return YES;
     }
@@ -147,7 +168,10 @@
     if(testPlayer)
     {
         CDStats *testStats = (CDStats *)testPlayer.stats;
-       [testStats setGamesPlayedGarrick:[NSNumber numberWithInt:addGamesPlayed + testStats.gamesPlayedGarrick.integerValue]];
+        
+        NSInteger total = addGamesPlayed + testStats.gamesPlayedGarrick.integerValue;
+        
+       [testStats setGamesPlayedGarrick:[NSNumber numberWithInt:total]];
         
         NSError *error;
         
@@ -156,6 +180,10 @@
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
             return NO;
         }
+        
+        //update achievement
+        [self updateAchievementForGamesPlayedGarrick:total];
+        [self updateAchievementForTotalGamesPlayed:total];
         
         return YES;
     }
@@ -170,7 +198,10 @@
     if(testPlayer)
     {
         CDStats *testStats = (CDStats *)testPlayer.stats;
-        [testStats setGamesPlayerGalen:[NSNumber numberWithInt:addGamesPlayed + testStats.gamesPlayerGalen.integerValue]];
+        
+        NSInteger total = addGamesPlayed + testStats.gamesPlayerGalen.integerValue;
+        
+        [testStats setGamesPlayerGalen:[NSNumber numberWithInt:total]];
         
         NSError *error;
         
@@ -179,6 +210,10 @@
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
             return NO;
         }
+        
+        //update achievement
+        [self updateAchievementForGamesPlayedGalen:total];
+        [self updateAchievementForTotalGamesPlayed:total];
         
         return YES;
     }
@@ -193,7 +228,10 @@
     if(testPlayer)
     {
         CDStats *testStats = (CDStats *)testPlayer.stats;
-        [testStats setTotalDamageDealt:[NSNumber numberWithInt:addGamesPlayed + testStats.totalDamageDealt.integerValue]];
+        
+        NSInteger total = addGamesPlayed + testStats.totalDamageDealt.integerValue;
+        
+        [testStats setTotalDamageDealt:[NSNumber numberWithInt:total]];
         
         NSError *error;
         
@@ -202,6 +240,9 @@
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
             return NO;
         }
+        
+        //update achievement
+        [self updateAchievementForTotalDamageDealt:total];
         
         return YES;
     }
@@ -216,7 +257,10 @@
     if(testPlayer)
     {
         CDStats *testStats = (CDStats *)testPlayer.stats;
-        [testStats setTotalDamageTaken:[NSNumber numberWithInt:addGamesPlayed + testStats.totalDamageTaken.integerValue]];
+        
+        NSInteger total = addGamesPlayed + testStats.totalDamageTaken.integerValue;
+        
+        [testStats setTotalDamageTaken:[NSNumber numberWithInt:total]];
         
         NSError *error;
         
@@ -225,6 +269,9 @@
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
             return NO;
         }
+        
+        //update achievement
+        [self updateAchievementForTotalDamageTaken:total];
         
         return YES;
     }
@@ -239,7 +286,10 @@
     if(testPlayer)
     {
         CDStats *testStats = (CDStats *)testPlayer.stats;
-        [testStats setTotalMetersMoved:[NSNumber numberWithInt:addGamesPlayed + testStats.totalMetersMoved.integerValue]];
+        
+        NSInteger total = addGamesPlayed + testStats.totalMetersMoved.integerValue;
+        
+        [testStats setTotalMetersMoved:[NSNumber numberWithInt:total]];
         
         NSError *error;
         
@@ -248,6 +298,9 @@
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
             return NO;
         }
+        
+        //update achievement
+        [self updateAchievementForTotalMetersMoved:total];
         
         return YES;
     }
@@ -262,7 +315,10 @@
     if(testPlayer)
     {
         CDStats *testStats = (CDStats *)testPlayer.stats;
-        [testStats setGamesWon:[NSNumber numberWithInt:gamesWon + testStats.gamesWon.integerValue]];
+        
+        NSInteger total = gamesWon + testStats.gamesWon.integerValue;
+        
+        [testStats setGamesWon:[NSNumber numberWithInt:total]];
         
         NSError *error;
         
@@ -272,10 +328,429 @@
             return NO;
         }
         
+        //update achievement
+        [self updateAchievementForGamesWon:total];
+        
         return YES;
     }
     
     return NO;
+}
+
+#pragma mark - Update Achievements
+
++ (void)submitAchievement:(NSString*)identifier percentComplete:(double)percentComplete
+{
+    if(identifier)
+    {
+        GameCenterManager *gameCenterManager = [GameCenterManager sharedInstance];
+        
+        [gameCenterManager submitAchievement:identifier percentComplete:percentComplete];
+    }
+}
+
++ (void)updateAchievementForGamesPlayedEldurin:(NSInteger)gamesPlayedEldurin
+{
+    NSString *identifier;
+    double percentComplete = 0;
+    
+    if(gamesPlayedEldurin > 0)
+    {
+        identifier = kAchievement5PlayedEldurin;
+        
+        if(gamesPlayedEldurin < 5)
+        {
+            percentComplete = (100/5) * gamesPlayedEldurin;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+        
+        identifier = kAchievement10PlayedEldurin;
+        
+        if(gamesPlayedEldurin < 10)
+        {
+            percentComplete = (100/10) * gamesPlayedEldurin;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+    }
+}
+
++ (void)updateAchievementForGamesPlayedGarrick:(NSInteger)gamesPlayedGarrick
+{   
+    NSString *identifier;
+    double percentComplete = 0;
+    
+    if(gamesPlayedGarrick > 0)
+    {
+        identifier = kAchievement5PlayedGarrick;
+        
+        if(gamesPlayedGarrick < 5)
+        {
+            percentComplete = (100/5) * gamesPlayedGarrick;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+        
+        identifier = kAchievement10PlayedGarrick;
+        
+        if(gamesPlayedGarrick < 10)
+        {
+            percentComplete = (100/10) * gamesPlayedGarrick;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+    }
+}
+
++ (void)updateAchievementForGamesPlayedGalen:(NSInteger)gamesPlayedGalen
+{
+    NSString *identifier;
+    double percentComplete = 0;
+    
+    if(gamesPlayedGalen > 0)
+    {
+        identifier = kAchievement5PlayedGalen;
+        
+        if(gamesPlayedGalen < 5)
+        {
+            percentComplete = (100/5) * gamesPlayedGalen;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+        
+        identifier = kAchievement10PlayedGalen;
+        
+        if(gamesPlayedGalen < 10)
+        {
+            percentComplete = (100/10) * gamesPlayedGalen;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+    }
+}
+
++ (void)updateAchievementForTotalGamesPlayed:(NSInteger)totalGamesPlayed
+{
+    NSString *identifier;
+    double percentComplete = 0;
+    
+    if(totalGamesPlayed > 0)
+    {
+        identifier = kAchievement5GamesPlayed;
+        
+        if(totalGamesPlayed < 5)
+        {
+            percentComplete = (100/5) * totalGamesPlayed;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+        
+        identifier = kAchievement10GamesPlayed;
+        
+        if(totalGamesPlayed < 10)
+        {
+            percentComplete = (100/10) * totalGamesPlayed;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+        
+        identifier = kAchievement25GamesPlayed;
+        
+        if(totalGamesPlayed < 25)
+        {
+            percentComplete = (100/25) * totalGamesPlayed;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+        
+        identifier = kAchievement50GamesPlayed;
+        
+        if(totalGamesPlayed < 50)
+        {
+            percentComplete = (100/50) * totalGamesPlayed;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+        
+        identifier = kAchievement100GamesPlayed;
+        
+        if(totalGamesPlayed < 100)
+        {   
+            percentComplete = (100/100) * totalGamesPlayed;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+    }
+}
+
++ (void)updateAchievementForTotalDamageDealt:(NSInteger)totalDamageDealt
+{
+    NSString *identifier;
+    double percentComplete = 0;
+    
+    if(totalDamageDealt > 0)
+    {
+        identifier = kAchievement10DamageDealt;
+        
+        if(totalDamageDealt < 10)
+        {
+            percentComplete = (100/10) * totalDamageDealt;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+        
+        identifier = kAchievement100DamageDealt;
+        
+        if(totalDamageDealt < 100)
+        {
+            percentComplete = (100/100) * totalDamageDealt;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+        
+        identifier = kAchievement1000DamageDealt;
+        
+        if(totalDamageDealt < 1000)
+        {
+            percentComplete = (100/1000) * totalDamageDealt;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+        
+        identifier = kAchievement10000DamageDealt;
+        
+        if(totalDamageDealt < 10000)
+        {
+            percentComplete = (100/10000) * totalDamageDealt;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+    }
+}
+
++ (void)updateAchievementForTotalDamageTaken:(NSInteger)totalDamageTaken
+{
+    NSString *identifier;
+    double percentComplete = 0;
+    
+    if(totalDamageTaken > 0)
+    {
+        identifier = kAchievement10DamageTaken;
+        
+        if(totalDamageTaken < 10)
+        {
+            percentComplete = (100/10) * totalDamageTaken;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+        
+        identifier = kAchievement100DamageTaken;
+        
+        if(totalDamageTaken < 100)
+        {
+            percentComplete = (100/100) * totalDamageTaken;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+        
+        identifier = kAchievement1000DamageTaken;
+        
+        if(totalDamageTaken < 1000)
+        {
+            percentComplete = (100/1000) * totalDamageTaken;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+        
+        identifier = kAchievement10000DamageTaken;
+        
+        if(totalDamageTaken < 10000)
+        {
+            percentComplete = (100/10000) * totalDamageTaken;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+    }
+}
+
++ (void)updateAchievementForTotalMetersMoved:(NSInteger)totalMetersMoved
+{
+    NSString *identifier;
+    double percentComplete = 0;
+    
+    if(totalMetersMoved > 0)
+    {
+        identifier = kAchievement10MetersWalked;
+        
+        if(totalMetersMoved <= 10)
+        {
+            percentComplete = (100/10) * totalMetersMoved;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+        
+        identifier = kAchievement500MetersWalked;
+        
+        if(totalMetersMoved <= 500)
+        {
+            percentComplete = (100/500) * totalMetersMoved;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+        
+        identifier = kAchievement1000MetersWalked;
+        
+        if(totalMetersMoved <= 1000)
+        {
+            percentComplete = (100/1000) * totalMetersMoved;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+    }
+}
+
++ (void)updateAchievementForGamesWon:(NSInteger)totalGamesWon
+{
+    GameCenterManager *gameCenterManager = [GameCenterManager sharedInstance];
+    
+    NSString *identifier;
+    double percentComplete = 0;
+    
+    if(totalGamesWon > 0)
+    {
+        identifier = kAchievement10GamesWon;
+        
+        if(totalGamesWon <= 10)
+        {
+            percentComplete = (100/10) * totalGamesWon;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+        
+        identifier = kAchievement50GamesWon;
+        
+        if(totalGamesWon <= 50)
+        {
+            percentComplete = (100/50) * totalGamesWon;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+        
+        identifier = kAchievement100GamesWon;
+        
+        if(totalGamesWon <= 100)
+        {
+            percentComplete = (100/100) * totalGamesWon;
+        }
+        else
+        {
+            percentComplete = 100;
+        }
+        
+        [self submitAchievement:identifier percentComplete:percentComplete];
+        
+        //leaderboard
+        [gameCenterManager reportScore:totalGamesWon forCategory:kLeaderboardID];
+    }
+    
+    
 }
 
 @end

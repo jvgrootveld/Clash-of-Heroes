@@ -21,6 +21,7 @@
 @property (nonatomic, assign) NSInteger turnNumber;
 
 - (id)initForGKPlayer:(GKPlayer *)player;
+- (void)resetUnits;
 - (void)addUnit:(Unit *)unit;
 - (Unit *)unitForTag:(NSInteger)tag;
 

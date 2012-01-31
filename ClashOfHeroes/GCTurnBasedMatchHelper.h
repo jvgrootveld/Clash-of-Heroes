@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
+#import "GameCenterManager.h"
 
 @class MainMenuViewController;
 @class GameViewController;
 @class Player;
 @class Turn;
 
-@interface GCTurnBasedMatchHelper : NSObject <GKTurnBasedMatchmakerViewControllerDelegate, GKLeaderboardViewControllerDelegate, GKAchievementViewControllerDelegate>
+@interface GCTurnBasedMatchHelper : NSObject <GKTurnBasedMatchmakerViewControllerDelegate, GameCenterManagerDelegate>
 {
     BOOL gameCenterAvailable;
     BOOL userAuthenticated;

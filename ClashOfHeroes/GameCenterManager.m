@@ -53,6 +53,8 @@
 @synthesize earnedAchievementCache;
 @synthesize delegate;
 
+static GameCenterManager *sharedHelper = nil;
+
 - (id) init
 {
 	self = [super init];
@@ -67,6 +69,15 @@
 {
 	self.earnedAchievementCache= NULL;
 	[super dealloc];
+}
+
++ (GameCenterManager *)sharedInstance
+{
+    if (!sharedHelper) 
+    {
+        sharedHelper = [GameCenterManager new];
+    }
+    return sharedHelper;
 }
 
 

@@ -51,6 +51,7 @@
 - (IBAction)endTurn:(id)sender;
 - (IBAction)endPhase:(id)sender;
 - (IBAction)backButtonPressed:(id)sender;
+- (IBAction)undoButtonPressed:(id)sender;
 
 - (void)presentMessage:(NSString *)message;
 

@@ -18,6 +18,7 @@
 #import "DefaultBoardFactory.h"
 #import "CDPlayer.h"
 #import "CDStats.h"
+#import "Turn.h"
 
 @interface GameLayer()
 
@@ -25,7 +26,7 @@
 
 @implementation GameLayer
 
-@synthesize mapLayer = _mapLayer, map = _map, selectedSprite = _selectedSprite, junkLayer = _junkLayer, metaLayer = _metaLayer, gameViewController = _gameViewController, currentPhase = _currentPhase, combatPhase = _combatPhase, movementPhase = _movementPhase;
+@synthesize mapLayer = _mapLayer, map = _map, selectedSprite = _selectedSprite, junkLayer = _junkLayer, metaLayer = _metaLayer, gameViewController = _gameViewController, currentPhase = _currentPhase, combatPhase = _combatPhase, movementPhase = _movementPhase, turn = _turn;
 
 + (CCScene *)sceneWithDelegate:(GameViewController *)delegate;
 {
@@ -53,7 +54,7 @@
 - (void)loadUnitLocations
 {
     NSLog(@"load units");
-    [self removeUnits];
+    [self resetBoard];
     
     GCTurnBasedMatchHelper *gCTurnBasedMatchHelper = [GCTurnBasedMatchHelper sharedInstance];
     Player *player1 = [gCTurnBasedMatchHelper playerForLocalPlayer];
@@ -97,6 +98,7 @@
         spriteHeight = 62;
         _moveSprites = [NSMutableArray new];
         _attackSprites = [NSMutableArray new];
+        self.turn = [Turn new];
 	}
     
 	return self;
@@ -414,20 +416,15 @@
     return  nil;
 }
 
-- (void)removeUnits
+- (void)resetBoard
 {
-    NSLog(@"start removing units");
-//    for(Unit *unit in self.units)
-//    {
-//        NSLog(@"remove: %@ at %@", unit.name, NSStringFromCGPoint( unit.location));
-//        [self removeChild:unit cleanup:YES];
-//    }
+    [self.turn reset];
     
     for(CCSprite *sprite in self.children)
     {
         if([sprite isKindOfClass:[Unit class]])
         {
-            NSLog(@"remove: %@ at %@", ((Unit *)sprite).name, NSStringFromCGPoint( ((Unit *)sprite).location));
+            //NSLog(@"remove: %@ at %@", ((Unit *)sprite).name, NSStringFromCGPoint( ((Unit *)sprite).location));
             [self removeChild:sprite cleanup:YES];
         }
     }

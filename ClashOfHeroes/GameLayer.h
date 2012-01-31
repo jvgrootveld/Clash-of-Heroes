@@ -6,12 +6,13 @@
 //  Copyright Pro4all 2011. All rights reserved.
 //
 
+#import "Phase.h"
+
 @class GameViewController;
 @class MovementPhase;
 @class CombatPhase;
 @class Unit;
-
-#import "Phase.h"
+@class Turn;
 
 // GameLayer
 @interface GameLayer : CCLayer
@@ -21,6 +22,7 @@
 }
 
 @property (nonatomic, readonly) NSArray *units;
+@property (nonatomic, strong) Turn *turn;
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 + (CCScene *)sceneWithDelegate:(GameViewController *)delegate;

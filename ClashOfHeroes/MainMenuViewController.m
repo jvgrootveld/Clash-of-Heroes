@@ -13,6 +13,9 @@
 #import "NewGameViewController.h"
 #import "CDStats.h"
 #import "GameLayer.h"
+#import "AppSpecificValues.h"
+#import "GameCenterManager.h"
+#import "CDPlayer.h"
 
 @implementation MainMenuViewController
 @synthesize startButton;
@@ -20,6 +23,9 @@
 @synthesize settingsButton;
 @synthesize feedbackButton;
 @synthesize gameViewController = _gameViewController;
+@synthesize currentLeaderBoard = _currentLeaderBoard;
+@synthesize achievementsButton;
+@synthesize LeaderboardButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -68,6 +74,20 @@
     [super viewDidLoad];
     
     [[GCTurnBasedMatchHelper sharedInstance] setMainMenu:self];
+    
+    self.currentLeaderBoard = kLeaderboardID;
+    
+    if ([GameCenterManager isGameCenterAvailable]) 
+    {
+        GameCenterManager *gameCenterManager = [GameCenterManager sharedInstance];
+        [gameCenterManager setDelegate:[GCTurnBasedMatchHelper sharedInstance]];
+        [gameCenterManager authenticateLocalUser];
+        
+    } else {
+        
+        // The current device does not support Game Center.
+        
+    }
 }
 
 - (void)viewDidUnload
@@ -76,6 +96,7 @@
     [self setContinueButton:nil];
     [self setSettingsButton:nil];
     [self setFeedbackButton:nil];
+    self.currentLeaderBoard = nil;
     
     [playerNameLabel release];
     [gamesPlayedLabel release];
@@ -85,6 +106,8 @@
     metersMovedLabel = nil;
     [gamesWonLabel release];
     gamesWonLabel = nil;
+    [self setAchievementsButton:nil];
+    [self setLeaderboardButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -96,6 +119,19 @@
     
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if([GKLocalPlayer localPlayer].isAuthenticated)
+    {
+        CDPlayer *player = [StatsController playerForGameCenterId:[GKLocalPlayer localPlayer].playerID];
+        if(!player) player = [StatsController newPlayerAndStatsForPlayerWithGameCenterId:[GKLocalPlayer localPlayer].playerID]; //new user
+        
+        [self updateStatsWithName:[GKLocalPlayer localPlayer].alias andStats:(CDStats *)player.stats];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -137,11 +173,50 @@
     [damageTakenLabel release];
     [metersMovedLabel release];
     [gamesWonLabel release];
+    [self.currentLeaderBoard release];
+    [achievementsButton release];
+    [LeaderboardButton release];
     [super dealloc];
 }
 
 - (IBAction)startGameButtonClicked:(id)sender
 {
     [[GCTurnBasedMatchHelper sharedInstance] findMatchWithMinPlayers:2 maxPlayers:2 viewController:self];
+}
+
+#pragma mark - Leaderboard delegate
+- (IBAction)showLeaderboard:(id)sender
+{
+    GKLeaderboardViewController *leaderboardController = [GKLeaderboardViewController new];
+    if (leaderboardController != NULL)
+    {
+        leaderboardController.category = kLeaderboardID;
+        leaderboardController.timeScope = GKLeaderboardTimeScopeWeek;
+        leaderboardController.leaderboardDelegate = self;
+        [self presentModalViewController: leaderboardController animated: YES];
+    }
+}
+
+- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+{
+    [self dismissModalViewControllerAnimated: YES];
+    [viewController release];
+}
+
+#pragma mark - Achievement delegate
+- (IBAction)showAchievements:(id)sender
+{
+    GKAchievementViewController *achievements = [GKAchievementViewController new];
+    if (achievements != NULL)
+    {
+        achievements.achievementDelegate = self;
+        [self presentModalViewController: achievements animated: YES];
+    }
+}
+
+- (void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController;
+{
+    [self dismissModalViewControllerAnimated: YES];
+    [viewController release];
 }
 @end

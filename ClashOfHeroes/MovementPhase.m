@@ -10,6 +10,7 @@
 #import "GameLayer.h"
 #import "Unit.h"
 #import "GameViewController.h"
+#import "Turn.h"
 
 @interface MovementPhase()
 
@@ -92,8 +93,18 @@ NSInteger const MAXMOVES = 3;
 
                     if(CGPointEqualToPoint(squarePoint, movePoint)) //if unit can move to selected point
                     {
+                        CGPoint from = self.selectedUnit.location;
+                        
                         if([_gameLayer moveSprite:self.selectedUnit toTileLocation:point])
+                        {
+                            CGPoint to = movePoint;
+                            
+                            NSInteger metersMoved = MAX(abs(from.x - to.x), abs(from.y - to.y));
+                            
+                            [_gameLayer.turn addToTotalMetersMoved:metersMoved];
+                            
                             self.remainingMoves--;
+                        }
                         
                         break;
                     }
