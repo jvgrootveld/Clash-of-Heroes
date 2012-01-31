@@ -430,6 +430,18 @@
     }
 }
 
+- (void)removeUnit:(Unit *)unit
+{
+    for(CCSprite *sprite in self.children)
+    {
+        if(sprite.tag == unit.tag)
+        {
+            NSLog(@"remove: %@ at %@", ((Unit *)sprite).name, NSStringFromCGPoint( ((Unit *)sprite).location));
+            [self removeChild:sprite cleanup:YES];
+        }
+    }
+}
+
 - (BOOL)isEmptySquare:(CGPoint)squarePosition
 {
     for(Unit *unit in self.units)
@@ -504,6 +516,12 @@
 //    CCNode *node = [self getChildByTag:2];
 //    CGPoint currentPos = [node position];
 //    [node setPosition: ccpAdd(currentPos, diff)];
+}
+
+- (void)presentMessage:(NSString *)message
+{
+    [self.gameViewController presentMessage:message];
+    
 }
 
 - (NSArray *)units

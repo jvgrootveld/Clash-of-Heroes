@@ -275,6 +275,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                                                                   name:@"Warrior"
                                                             tag:[[warriorDict valueForKey:@"tag"] integerValue]
                                                            andLocation:[[warriorDict valueForKey:@"location"] CGPointValue]];
+                [warriorUnit setCurrentHealth:[[warriorDict valueForKey:@"health"] integerValue]];
                 [unitArray addObject:warriorUnit];
             }
             
@@ -284,7 +285,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                                                                name:@"Mage"
                                                                    tag:[[mageDict valueForKey:@"tag"] integerValue]
                                                            andLocation:[[mageDict valueForKey:@"location"] CGPointValue]];
-                
+                [mageUnit setCurrentHealth:[[mageDict valueForKey:@"health"] integerValue]];
                 [unitArray addObject:mageUnit];
             }
             
@@ -294,7 +295,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                                                                  name:@"Ranger"
                                                                    tag:[[rangerDict valueForKey:@"tag"] integerValue]
                                                            andLocation:[[rangerDict valueForKey:@"location"] CGPointValue]];
-                
+                [rangerUnit setCurrentHealth:[[rangerDict valueForKey:@"health"] integerValue]];                
                 [unitArray addObject:rangerUnit];
             }
             
@@ -304,7 +305,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                                                                  name:@"Priest"
                                                                    tag:[[priestDict valueForKey:@"tag"] integerValue]
                                                           andLocation:[[priestDict valueForKey:@"location"] CGPointValue]];
-                
+                NSLog(@"setting current health for unit data: %d", [[priestDict valueForKey:@"health"] integerValue]);
+                [priestUnit setCurrentHealth:[[priestDict valueForKey:@"health"] integerValue]];
                 [unitArray addObject:priestUnit];
             }
             
@@ -314,7 +316,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                                                                   name:@"Shapeshifter"
                                                                    tag:[[shifterDict valueForKey:@"tag"] integerValue]
                                                            andLocation:[[shifterDict valueForKey:@"location"] CGPointValue]];
-                
+                [shifterUnit setCurrentHealth:[[shifterDict valueForKey:@"health"] integerValue]];
                 [unitArray addObject:shifterUnit];
             }
             

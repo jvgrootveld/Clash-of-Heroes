@@ -96,9 +96,10 @@ NSInteger const MAXACTIONS = 3;
                     
                     if(CGPointEqualToPoint(squarePoint, attackPoint)) //if unit can attack to selected point
                     {
-                        if([self.selectedUnit attackUnit:enemyUnit])//if enemy is killed by last attack
+                        if([self.selectedUnit attackUnit:enemyUnit onLayer:self.gameLayer])//if enemy is killed by last attack
                         {
-                            NSLog(@"%@ died", enemyUnit.name);
+                            [enemyUnit removeFromPlayer];
+                            [self.gameLayer removeUnit:enemyUnit];
                         }
                         
                         self.remainingMoves--;

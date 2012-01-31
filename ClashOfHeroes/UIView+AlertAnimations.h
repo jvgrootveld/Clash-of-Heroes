@@ -14,5 +14,8 @@
 - (void)doPopInAnimationWithDelegate:(id)animationDelegate;
 - (void)doFadeInAnimation;
 - (void)doFadeInAnimationWithDelegate:(id)animationDelegate;
+- (void)doFadeOutAnimation;
+- (void)doFadeOutAnimationWithDelegate:(id)animationDelegate;
+
 
 @end

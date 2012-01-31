@@ -73,6 +73,7 @@
             if (revert) unit.location = CGPointMake(abs(unit.location.x-14), abs(unit.location.y-14));
             
             UnitData *unitData = [[UnitData alloc] initWithName:unit.name tag:unit.tag andLocation:unit.location];
+            [unitData setCurrentHealth:unit.healthPoints];
             [playerDict setValue:[unitData toDictionary] forKey:unitData.unitName];
         }
     }

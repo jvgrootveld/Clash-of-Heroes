@@ -51,17 +51,10 @@
 - (IBAction)EldurinSelectedEvent:(id)sender;
 
 // Ability actions
-- (IBAction)Ability1Action:(id)sender;
-- (IBAction)Ability2Action:(id)sender;
-- (IBAction)Ability3Action:(id)sender;
-- (IBAction)Ability4Action:(id)sender;
-- (IBAction)Ability5Action:(id)sender;
-- (IBAction)Ability6Action:(id)sender;
-- (IBAction)Ability7Action:(id)sender;
-- (IBAction)Ability8Action:(id)sender;
+- (IBAction)abilityButtonPressed:(UIButton *)sender;
 
 // functions
-- (void)UpdateAbilitiesAndPassives:(NSString *)sender;
+- (void)UpdateAbilitiesAndPassives;
 - (void)validateAndSelectAbility:(NSString *)ability andButtonByTag:(NSInteger)tag;
 - (void)resetAbilitiesAndPassive;
 - (IBAction)goAndPlay:(id)sender;

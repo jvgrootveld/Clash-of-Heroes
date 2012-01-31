@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Unit.h"
 
-@interface Hero : NSObject
+@interface Hero : Unit
 
 @property (nonatomic, strong) NSString *heroName;
 @property (nonatomic, assign) NSInteger currentHealth;
@@ -17,6 +18,15 @@
 @property (nonatomic, strong) NSString *abilityThree;
 @property (nonatomic, strong) NSString *abilityFour;
 
+@property (nonatomic, assign) NSInteger bonusPhysicalAttackPower;
+@property (nonatomic, assign) NSInteger bonusMagicalAttackPower;
+@property (nonatomic, assign) NSInteger bonusPhysicalDefensePower;
+@property (nonatomic, assign) NSInteger bonusMagicalDefensePower;
+@property (nonatomic, assign) NSInteger bonusHealthPoints;
+@property (nonatomic, assign) NSInteger bonusRange;
+@property (nonatomic, assign) NSInteger bonusMovement;
+
 - (NSDictionary *)toDictionary;
+- (void)setBonusForAbilities;
 
 @end

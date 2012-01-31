@@ -24,10 +24,13 @@
 #import "MovementPhase.h"
 #import "CombatPhase.h"
 #import "Unit.h"
+#import "UIView+AlertAnimations.h"
 
 @interface GameViewController()
 - (void)setPlayerOneLabelsHidden:(BOOL)hidden;
 - (void)setPlayerTwoLabelsHidden:(BOOL)hidden;
+- (void)fadeInView:(UIView *)view;
+- (void)fadeOutView:(UIView *)view withDelay:(NSTimeInterval)delay;
 - (UIImage *)imageForUnitName:(NSString *)unitName;
 @end
 
@@ -52,6 +55,8 @@
 @synthesize playerTwoDefenseLabel;
 @synthesize phaseLabel;
 @synthesize movesLabel;
+@synthesize messageView;
+@synthesize messageLabel;
 @synthesize gameLayer = _gameLayer;
 
 - (void)setupCocos2D 
@@ -208,6 +213,8 @@
     [self setPlayerTwoHealthLabel:nil];
     [self setPlayerTwoAttackLabel:nil];
     [self setPlayerTwoDefenseLabel:nil];
+    [self setMessageLabel:nil];
+    [self setMessageView:nil];
     [super viewDidUnload];
     
     [[CCDirector sharedDirector] end];
@@ -310,6 +317,32 @@
     [self updatePlayerTwoUnit:nil];
 }
 
+- (void)presentMessage:(NSString *)message
+{
+    [self.messageLabel setText:message];
+    [self fadeInView:self.messageView];    
+}
+
+- (void)fadeInView:(UIView *)view
+{
+    [view setAlpha:0];
+    [view setHidden:NO];
+    
+    [UIView animateWithDuration:1 delay:0 options:UIViewAnimationCurveEaseIn animations:^{[view setAlpha:1];} completion:^(BOOL finished){
+        [self fadeOutView:view withDelay:2];
+    }];
+    
+    [UIView commitAnimations];
+}
+
+- (void)fadeOutView:(UIView *)view withDelay:(NSTimeInterval)delay
+{
+    [UIView animateWithDuration:1 delay:delay options:UIViewAnimationCurveEaseIn animations:^{[view setAlpha:0];} completion:^(BOOL finished){
+        [view setHidden:YES];}];
+    
+    [UIView commitAnimations];
+}
+
 - (void)dealloc {
     [playerOneLabel release];
     [playerTwoLabel release];
@@ -331,6 +364,8 @@
     [playerTwoHealthLabel release];
     [playerTwoAttackLabel release];
     [playerTwoDefenseLabel release];
+    [messageLabel release];
+    [messageView release];
     [super dealloc];
 }
 

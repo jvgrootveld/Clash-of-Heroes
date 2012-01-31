@@ -54,8 +54,12 @@
 - (Unit *)isEnemyUnitWithSprite:(CCSprite *)sprite;
 - (BOOL)isEmptySquare:(CGPoint)squarePosition;
 - (void)resetBoard; //clear sprites and reset turn object.
+- (void)removeUnits;
+- (void)removeUnit:(Unit *)unit;
 
 - (BOOL)isLocationInBounds:(CGPoint)location;
+
+- (void)presentMessage:(NSString *)message;
 
 - (void)loadUnitLocations;
 

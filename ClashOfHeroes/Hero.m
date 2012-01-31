@@ -17,6 +17,14 @@
 @synthesize abilityThree = _abilityThree;
 @synthesize abilityFour = _abilityFour;
 
+@synthesize bonusRange = _bonusRange;
+@synthesize bonusHealthPoints = _bonusHealthPoints;
+@synthesize bonusMagicalAttackPower = _bonusMagicalAttackPower;
+@synthesize bonusMagicalDefensePower = _bonusMagicalDefensePower;
+@synthesize bonusMovement = _bonusMovement;
+@synthesize bonusPhysicalAttackPower = _bonusPhysicalAttackPower;
+@synthesize bonusPhysicalDefensePower = _bonusPhysicalDefensePower;
+
 - (id)init
 {
     if (self = [super init])
@@ -27,6 +35,14 @@
         self.abilityTwo = @"";
         self.abilityThree = @"";
         self.abilityFour = @"";
+        
+        self.bonusPhysicalDefensePower = 0;
+        self.bonusRange = 0;
+        self.bonusPhysicalAttackPower = 0;
+        self.bonusMovement = 0;
+        self.bonusMagicalDefensePower = 0;
+        self.bonusMagicalAttackPower = 0;
+        self.bonusHealthPoints = 0;
     }
     
     return self;

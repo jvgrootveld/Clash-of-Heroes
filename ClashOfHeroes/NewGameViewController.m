@@ -19,6 +19,7 @@
 #import "Player.h"
 #import "COHAlertViewController.h"
 #import "UnitData.h"
+#import "UIImage+UIImage_Grayscale.h"
 
 @implementation NewGameViewController
 
@@ -73,17 +74,16 @@
     [self.view setOpaque:NO];
     [[self.view layer] setOpaque:NO];
     
+    self.heroes = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HeroDescriptions" ofType:@"plist"]];
+    
     // Default hero inladen
     self.chosenHero = @"Garrick";
     self.chosenHeroDictionary = [_heroes objectForKey:@"Garrick"];
     
     self.chosenAbilities = [NSMutableDictionary dictionary];
     
-    // inladen van de plist: HeroDescriptions
-    _heroes = [[NSDictionary alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HeroDescriptions" ofType:@"plist"]];
-    
-    [self UpdateAbilitiesAndPassives:@"Garrick"];
-    [self.DescriptionField setText:@"Garrick of the Four Swords \nGarrick is a notorious warrior known for fighting with four swords. His abilities excel in either the protection allies, or devastating melee attacks."];
+    [self resetAbilitiesAndPassive];
+    [self.DescriptionField setText:[self.chosenHeroDictionary valueForKey:@"subtitle"]];
     [self.AbilityDescriptionField setText:@"Tap on an ability to find out what it does and to select it. You can only select 4 abilities.\n\nYou can tap on an selected ability button to deselect."];
     
     _abilityCounter = 0;
@@ -124,6 +124,8 @@
 }
 
 - (IBAction)GarrickSelectedEvent:(id)sender {
+    self.chosenHeroDictionary = [self.heroes objectForKey:@"Garrick"];
+    [self.DescriptionField setText:[self.chosenHeroDictionary valueForKey:@"subtitle"]];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_garrick.png"]];
     
@@ -149,7 +151,6 @@
     [self.DescriptionField setText:@"Galen earned his nickname 'the Spellslinger' to years of practicing and sharpening his ability with the elemental and arcane powers. As such, he has become a master in the use of Fire, Lightning, Ice and Arcane magics."];
     
     self.chosenHero = @"Galen";
-    [self UpdateAbilitiesAndPassives:@"Galen"];
     [self.AbilityDescriptionField setText:@""];
     
     [self resetAbilitiesAndPassive];
@@ -166,7 +167,6 @@
     [self.DescriptionField setText:@"Eldurin was abandoned when she was young and roamed the streets. It didn't take long before she was adopted by the Church, and learned the ways of the Holy Light. She studied it rigorously, resulting in her title 'the Enlightened'."];
     
     self.chosenHero = @"Eldurin";
-    [self UpdateAbilitiesAndPassives:@"Eldurin"];
     [self.AbilityDescriptionField setText:@""];
     
     [self resetAbilitiesAndPassive];
@@ -180,31 +180,29 @@
 #pragma validateAndSelectAbility
 
 - (void)validateAndSelectAbility:(NSString *)ability andButtonByTag:(NSInteger) tag {
+    NSDictionary *abilityDict = [self.chosenHeroDictionary objectForKey:@"abilities"];
 
     if (_abilityCounter <= 3 && (![self.chosenAbilities objectForKey:ability]) ) {
-
-        NSLog(@"Tag#: %d", tag);
         
         [self.chosenAbilities setObject:ability forKey:ability];
 
         UIButton * button = (UIButton *)[self.view viewWithTag:tag];
         
-        [button setImage:[UIImage imageNamed:[[ability lowercaseString] stringByAppendingString:@".png"]] forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:[[abilityDict objectForKey:ability] valueForKey:@"image"]] forState:UIControlStateNormal];
         
-        _abilityCounter++;
+        self.abilityCounter++;
         
     }  else if ([self.chosenAbilities objectForKey:ability]) {
 
         [self.chosenAbilities removeObjectForKey:ability];
         
-        UIButton * button = (UIButton *)[self.view viewWithTag:tag];        
+        UIButton * button = (UIButton *)[self.view viewWithTag:tag];
+        [button setImage:[[UIImage imageNamed:[[abilityDict objectForKey:ability] valueForKey:@"image"]] grayScale] forState:UIControlStateNormal];
         
-        [button setImage:[UIImage imageNamed:[[ability lowercaseString] stringByAppendingString:@"_gray.png"]] forState:UIControlStateNormal];
-        
-        _abilityCounter--;
+        self.abilityCounter--;
         
     } else {
-                NSLog(@"Teveel gekozen!");
+        NSLog(@"Teveel gekozen!");
     }
     
 }
@@ -214,40 +212,25 @@
     self.chosenAbilities = [NSMutableDictionary dictionary];
     self.abilityCounter = 0;
     
-    if ( [_chosenHero isEqualToString:@"Garrick"] ) {
-        
-        [self.Ability1Button setImage:[UIImage imageNamed:@"charge_gray.png"] forState:UIControlStateNormal];
-        [self.Ability2Button setImage:[UIImage imageNamed:@"disarm_gray.png"] forState:UIControlStateNormal];
-        [self.Ability3Button setImage:[UIImage imageNamed:@"quadra-strike_gray.png"] forState:UIControlStateNormal];
-        [self.Ability4Button setImage:[UIImage imageNamed:@"hurricane_gray.png"] forState:UIControlStateNormal];
-        [self.Ability5Button setImage:[UIImage imageNamed:@"taunt_gray.png"] forState:UIControlStateNormal];
-        [self.Ability6Button setImage:[UIImage imageNamed:@"sword-wall_gray.png"] forState:UIControlStateNormal];
-        [self.Ability7Button setImage:[UIImage imageNamed:@"headbash_gray.png"] forState:UIControlStateNormal];
-        [self.Ability8Button setImage:[UIImage imageNamed:@"battlecry_gray.png"] forState:UIControlStateNormal];
-        
-    } else if ( [_chosenHero isEqualToString:@"Galen"] ) {
-        
-        [self.Ability1Button setImage:[UIImage imageNamed:@"fireball_gray.png"] forState:UIControlStateNormal];
-        [self.Ability2Button setImage:[UIImage imageNamed:@"thunder_gray.png"] forState:UIControlStateNormal];
-        [self.Ability3Button setImage:[UIImage imageNamed:@"freeze_gray.png"] forState:UIControlStateNormal];
-        [self.Ability4Button setImage:[UIImage imageNamed:@"ice shield_gray.png"] forState:UIControlStateNormal];
-        [self.Ability5Button setImage:[UIImage imageNamed:@"blast_gray.png"] forState:UIControlStateNormal];
-        [self.Ability6Button setImage:[UIImage imageNamed:@"slow_gray.png"] forState:UIControlStateNormal];
-        [self.Ability7Button setImage:[UIImage imageNamed:@"haste_gray.png"] forState:UIControlStateNormal];
-        [self.Ability8Button setImage:[UIImage imageNamed:@"missiles_gray.png"] forState:UIControlStateNormal];
-        
-    } else {
-
-        [self.Ability1Button setImage:[UIImage imageNamed:@"heal_gray.png"] forState:UIControlStateNormal];
-        [self.Ability2Button setImage:[UIImage imageNamed:@"greater heal_gray.png"] forState:UIControlStateNormal];
-        [self.Ability3Button setImage:[UIImage imageNamed:@"endurance_gray.png"] forState:UIControlStateNormal];
-        [self.Ability4Button setImage:[UIImage imageNamed:@"radiance_gray.png"] forState:UIControlStateNormal];
-        [self.Ability5Button setImage:[UIImage imageNamed:@"flay_gray.png"] forState:UIControlStateNormal];
-        [self.Ability6Button setImage:[UIImage imageNamed:@"flare_gray.png"] forState:UIControlStateNormal];
-        [self.Ability7Button setImage:[UIImage imageNamed:@"pain_gray.png"] forState:UIControlStateNormal];
-        [self.Ability8Button setImage:[UIImage imageNamed:@"siphon_gray.png"] forState:UIControlStateNormal];
-        
-    }
+    NSDictionary *abilityDict = [self.chosenHeroDictionary objectForKey:@"abilities"];
+    NSArray *allKeys = [abilityDict allKeys];
+    
+    [self.Ability1Button setImage:[[UIImage imageNamed:[[abilityDict objectForKey:[allKeys objectAtIndex:0]] valueForKey:@"image"]] grayScale]
+                         forState:UIControlStateNormal];
+    [self.Ability2Button setImage:[[UIImage imageNamed:[[abilityDict objectForKey:[allKeys objectAtIndex:1]] valueForKey:@"image"]] grayScale]
+                         forState:UIControlStateNormal];
+    [self.Ability3Button setImage:[[UIImage imageNamed:[[abilityDict objectForKey:[allKeys objectAtIndex:2]] valueForKey:@"image"]] grayScale]
+                         forState:UIControlStateNormal];
+    [self.Ability4Button setImage:[[UIImage imageNamed:[[abilityDict objectForKey:[allKeys objectAtIndex:3]] valueForKey:@"image"]] grayScale]
+                         forState:UIControlStateNormal];
+    [self.Ability5Button setImage:[[UIImage imageNamed:[[abilityDict objectForKey:[allKeys objectAtIndex:4]] valueForKey:@"image"]] grayScale]
+                         forState:UIControlStateNormal];
+    [self.Ability6Button setImage:[[UIImage imageNamed:[[abilityDict objectForKey:[allKeys objectAtIndex:5]] valueForKey:@"image"]] grayScale]
+                         forState:UIControlStateNormal];
+    [self.Ability7Button setImage:[[UIImage imageNamed:[[abilityDict objectForKey:[allKeys objectAtIndex:6]] valueForKey:@"image"]] grayScale]
+                         forState:UIControlStateNormal];
+    [self.Ability8Button setImage:[[UIImage imageNamed:[[abilityDict objectForKey:[allKeys objectAtIndex:7]] valueForKey:@"image"]] grayScale]
+                         forState:UIControlStateNormal];
     
 }
 
@@ -268,195 +251,13 @@
     
 }
 
-- (IBAction)Ability1Action:(id)sender {
+- (IBAction)abilityButtonPressed:(UIButton *)sender {
+    NSDictionary *abilities = [self.chosenHeroDictionary objectForKey:@"abilities"];
+    NSString *abilityName = [[abilities allKeys] objectAtIndex:(sender.tag-1)];
+    NSDictionary *abilityDict = [abilities objectForKey:abilityName];
     
-    if ( [_chosenHero isEqualToString:@"Garrick"] ) {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Charge"]];
-        
-        [self validateAndSelectAbility:@"Charge" andButtonByTag:1];
-        
-    } else if ( [_chosenHero isEqualToString:@"Galen"] ) {
-                 
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Fireball"]];
-        
-        [self validateAndSelectAbility:@"Fireball" andButtonByTag:1];
-        
-    } else {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Heal"]];
-        
-        [self validateAndSelectAbility:@"Heal" andButtonByTag:1];
-        
-    }
-    
-}
-
-- (IBAction)Ability2Action:(id)sender {
-
-    if ( [_chosenHero isEqualToString:@"Garrick"] ) {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Disarm"]];
-        
-        [self validateAndSelectAbility:@"Disarm" andButtonByTag:2];
-        
-    } else if ( [_chosenHero isEqualToString:@"Galen"] ) {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Thunder"]];
-        
-        [self validateAndSelectAbility:@"Thunder" andButtonByTag:2];
-        
-    } else {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Greater Heal"]];
-        
-        [self validateAndSelectAbility:@"Greater Heal" andButtonByTag:2];
-        
-    }
-    
-}
-
-- (IBAction)Ability3Action:(id)sender {
-    
-    if ( [_chosenHero isEqualToString:@"Garrick"] ) {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Quadra-strike"]];
-        
-        [self validateAndSelectAbility:@"Quadra-strike" andButtonByTag:3];
-        
-    } else if ( [_chosenHero isEqualToString:@"Galen"] ) {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Freeze"]];
-        
-        [self validateAndSelectAbility:@"Freeze" andButtonByTag:3];
-        
-    } else {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Endurance"]];
-        
-        [self validateAndSelectAbility:@"Endurance" andButtonByTag:3];
-        
-    }
-    
-}
-
-- (IBAction)Ability4Action:(id)sender {
-    
-    if ( [_chosenHero isEqualToString:@"Garrick"] ) {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Hurricane"]];
-        
-        [self validateAndSelectAbility:@"Hurricane" andButtonByTag:4];
-        
-    } else if ( [_chosenHero isEqualToString:@"Galen"] ) {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Freeze"]];
-        
-        [self validateAndSelectAbility:@"Ice shield" andButtonByTag:4];
-        
-    } else {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Radiance"]];
-        
-        [self validateAndSelectAbility:@"Radiance" andButtonByTag:4];
-        
-    }
-    
-}
-
-- (IBAction)Ability5Action:(id)sender {
-    
-    if ( [_chosenHero isEqualToString:@"Garrick"] ) {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Taunt"]];
-        
-        [self validateAndSelectAbility:@"Taunt" andButtonByTag:5];
-        
-    } else if ( [_chosenHero isEqualToString:@"Galen"] ) {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Blast"]];
-        
-        [self validateAndSelectAbility:@"Blast" andButtonByTag:5];
-        
-    } else {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Flay"]];
-        
-        [self validateAndSelectAbility:@"Flay" andButtonByTag:5];
-        
-    }
-    
-}
-
-- (IBAction)Ability6Action:(id)sender {
-    
-    if ( [_chosenHero isEqualToString:@"Garrick"] ) {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Sword-wall"]];
-        
-        [self validateAndSelectAbility:@"Sword-wall" andButtonByTag:6];
-        
-    } else if ( [_chosenHero isEqualToString:@"Galen"] ) {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Slow"]];
-        
-        [self validateAndSelectAbility:@"Slow" andButtonByTag:6];
-        
-    } else {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Flare"]];
-        
-        [self validateAndSelectAbility:@"Flare" andButtonByTag:6];
-        
-    }
-    
-}
-
-- (IBAction)Ability7Action:(id)sender {
-    
-    if ( [_chosenHero isEqualToString:@"Garrick"] ) {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Headbash"]];
-        
-        [self validateAndSelectAbility:@"Headbash" andButtonByTag:7];
-        
-    } else if ( [_chosenHero isEqualToString:@"Galen"] ) {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Haste"]];
-        
-        [self validateAndSelectAbility:@"Haste" andButtonByTag:7];
-        
-    } else {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Pain"]];
-        
-        [self validateAndSelectAbility:@"Pain" andButtonByTag:7];
-        
-    }
-    
-}
-
-- (IBAction)Ability8Action:(id)sender {
-    
-    if ( [_chosenHero isEqualToString:@"Garrick"] ) {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Battlecry"]];
-        
-        [self validateAndSelectAbility:@"Battlecry" andButtonByTag:8];
-        
-    } else if ( [_chosenHero isEqualToString:@"Galen"] ) {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Missiles"]];
-        
-        [self validateAndSelectAbility:@"Missiles" andButtonByTag:8];
-        
-    } else {
-        
-        [self.AbilityDescriptionField setText:[_chosenHeroDictionary objectForKey:@"Siphon"]];
-        
-        [self validateAndSelectAbility:@"Siphon" andButtonByTag:8];
-        
-    }
+    [self.AbilityDescriptionField setText:[NSString stringWithFormat:@"%@: %@", abilityName, [abilityDict valueForKey:@"abilityDescription"]]];
+    [self validateAndSelectAbility:abilityName andButtonByTag:sender.tag];    
     
 }
 
@@ -476,44 +277,30 @@
     [super dealloc];
 }
 
-- (void)UpdateAbilitiesAndPassives:(NSString *)sender {
+- (void)UpdateAbilitiesAndPassives {    
+    NSDictionary *abilityDict = [self.chosenHeroDictionary objectForKey:@"abilities"];
+    NSArray *allKeys = [abilityDict allKeys];
     
-    self.chosenHeroDictionary = [_heroes objectForKey:sender];
+    NSLog(@"%@", allKeys);
     
-    if([sender isEqualToString:@"Garrick"]) {
-        
-        [self.Ability1Button setImage:[UIImage imageNamed:@"charge_gray.png"] forState:UIControlStateNormal];
-        [self.Ability2Button setImage:[UIImage imageNamed:@"disarm_gray.png"] forState:UIControlStateNormal];
-        [self.Ability3Button setImage:[UIImage imageNamed:@"quadra-strike_gray.png"] forState:UIControlStateNormal];
-        [self.Ability4Button setImage:[UIImage imageNamed:@"hurricane_gray.png"] forState:UIControlStateNormal];
-        [self.Ability5Button setImage:[UIImage imageNamed:@"taunt_gray.png"] forState:UIControlStateNormal];
-        [self.Ability6Button setImage:[UIImage imageNamed:@"sword-wall_gray.png"] forState:UIControlStateNormal];
-        [self.Ability7Button setImage:[UIImage imageNamed:@"headbash_gray.png"] forState:UIControlStateNormal];
-        [self.Ability8Button setImage:[UIImage imageNamed:@"battlecry_gray.png"] forState:UIControlStateNormal];
-
-    } else if([sender isEqualToString:@"Galen"]) {
-        
-        [self.Ability1Button setImage:[UIImage imageNamed:@"fireball_gray.png"] forState:UIControlStateNormal];
-        [self.Ability2Button setImage:[UIImage imageNamed:@"thunder_gray.png"] forState:UIControlStateNormal];
-        [self.Ability3Button setImage:[UIImage imageNamed:@"freeze_gray.png"] forState:UIControlStateNormal];
-        [self.Ability4Button setImage:[UIImage imageNamed:@"ice shield_gray.png"] forState:UIControlStateNormal];
-        [self.Ability5Button setImage:[UIImage imageNamed:@"blast_gray.png"] forState:UIControlStateNormal];
-        [self.Ability6Button setImage:[UIImage imageNamed:@"slow_gray.png"] forState:UIControlStateNormal];
-        [self.Ability7Button setImage:[UIImage imageNamed:@"haste_gray.png"] forState:UIControlStateNormal];
-        [self.Ability8Button setImage:[UIImage imageNamed:@"missiles_gray.png"] forState:UIControlStateNormal];
-        
-    } else {
-        
-        [self.Ability1Button setImage:[UIImage imageNamed:@"heal_gray.png"] forState:UIControlStateNormal];
-        [self.Ability2Button setImage:[UIImage imageNamed:@"greater heal_gray.png"] forState:UIControlStateNormal];
-        [self.Ability3Button setImage:[UIImage imageNamed:@"endurance_gray.png"] forState:UIControlStateNormal];
-        [self.Ability4Button setImage:[UIImage imageNamed:@"radiance_gray.png"] forState:UIControlStateNormal];
-        [self.Ability5Button setImage:[UIImage imageNamed:@"flay_gray.png"] forState:UIControlStateNormal];
-        [self.Ability6Button setImage:[UIImage imageNamed:@"flare_gray.png"] forState:UIControlStateNormal];
-        [self.Ability7Button setImage:[UIImage imageNamed:@"pain_gray.png"] forState:UIControlStateNormal];
-        [self.Ability8Button setImage:[UIImage imageNamed:@"siphon_gray.png"] forState:UIControlStateNormal];
-        
-    }
+    [self.Ability1Button setImage:[UIImage imageNamed:[[abilityDict objectForKey:[allKeys objectAtIndex:0]] valueForKey:@"image"]]
+                         forState:UIControlStateNormal];
+    [self.Ability2Button setImage:[UIImage imageNamed:[[abilityDict objectForKey:[allKeys objectAtIndex:1]] valueForKey:@"image"]]
+                         forState:UIControlStateNormal];
+    [self.Ability3Button setImage:[UIImage imageNamed:[[abilityDict objectForKey:[allKeys objectAtIndex:2]] valueForKey:@"image"]]
+                         forState:UIControlStateNormal];
+    [self.Ability4Button setImage:[UIImage imageNamed:[[abilityDict objectForKey:[allKeys objectAtIndex:3]] valueForKey:@"image"]]
+                         forState:UIControlStateNormal];
+    [self.Ability5Button setImage:[UIImage imageNamed:[[abilityDict objectForKey:[allKeys objectAtIndex:4]] valueForKey:@"image"]]
+                         forState:UIControlStateNormal];
+    [self.Ability6Button setImage:[UIImage imageNamed:[[abilityDict objectForKey:[allKeys objectAtIndex:5]] valueForKey:@"image"]]
+                         forState:UIControlStateNormal];
+    [self.Ability7Button setImage:[UIImage imageNamed:[[abilityDict objectForKey:[allKeys objectAtIndex:6]] valueForKey:@"image"]]
+                         forState:UIControlStateNormal];
+    
+    NSLog(@"value button 8: %@", [abilityDict objectForKey:[allKeys objectAtIndex:7]]);
+    [self.Ability8Button setImage:[UIImage imageNamed:[[abilityDict objectForKey:[allKeys objectAtIndex:7]] valueForKey:@"image"]]
+                         forState:UIControlStateNormal];
 }
 
 - (void)alertView:(COHAlertViewController *)alert wasDismissedWithButtonIndex:(NSInteger)buttonIndex
