@@ -214,6 +214,10 @@
 		F21D3F9B14D19B0000BF0E0F /* menu_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = F21D3F9A14D19B0000BF0E0F /* menu_screen.png */; };
 		F21D3F9D14D1A4A400BF0E0F /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = F21D3F9C14D1A4A400BF0E0F /* button.png */; };
 		F2388B1C14D80732008488D5 /* undo.png in Resources */ = {isa = PBXBuildFile; fileRef = F2388B1B14D80732008488D5 /* undo.png */; };
+		F2388B2014D845E9008488D5 /* background_eldurin.png in Resources */ = {isa = PBXBuildFile; fileRef = F2388B1D14D845E9008488D5 /* background_eldurin.png */; };
+		F2388B2114D845E9008488D5 /* background_galen.png in Resources */ = {isa = PBXBuildFile; fileRef = F2388B1E14D845E9008488D5 /* background_galen.png */; };
+		F2388B2214D845E9008488D5 /* background_garrick.png in Resources */ = {isa = PBXBuildFile; fileRef = F2388B1F14D845E9008488D5 /* background_garrick.png */; };
+		F2388B2414D84978008488D5 /* hero_overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = F2388B2314D84978008488D5 /* hero_overlay.png */; };
 		F23FA7FA147E8C04004AE3A3 /* grossini_dance_01.png in Resources */ = {isa = PBXBuildFile; fileRef = F23FA7F9147E8C04004AE3A3 /* grossini_dance_01.png */; };
 		F262F89714D6E009007DFA6A /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F262F89614D6E009007DFA6A /* GameCenterManager.m */; };
 		F28F8A8A147E3BA1009502CC /* TestPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F28F8A89147E3BA1009502CC /* TestPlayer.m */; };
@@ -589,6 +593,10 @@
 		F21D3F9A14D19B0000BF0E0F /* menu_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_screen.png; sourceTree = "<group>"; };
 		F21D3F9C14D1A4A400BF0E0F /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
 		F2388B1B14D80732008488D5 /* undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undo.png; sourceTree = "<group>"; };
+		F2388B1D14D845E9008488D5 /* background_eldurin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_eldurin.png; sourceTree = "<group>"; };
+		F2388B1E14D845E9008488D5 /* background_galen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_galen.png; sourceTree = "<group>"; };
+		F2388B1F14D845E9008488D5 /* background_garrick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_garrick.png; sourceTree = "<group>"; };
+		F2388B2314D84978008488D5 /* hero_overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hero_overlay.png; sourceTree = "<group>"; };
 		F23FA7F9147E8C04004AE3A3 /* grossini_dance_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grossini_dance_01.png; sourceTree = "<group>"; };
 		F262F89114D69DEE007DFA6A /* StatsModel 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "StatsModel 2.xcdatamodel"; sourceTree = "<group>"; };
 		F262F89414D6E009007DFA6A /* AppSpecificValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSpecificValues.h; sourceTree = "<group>"; };
@@ -701,6 +709,10 @@
 		8355D9C814D18EC1007CAF81 /* Hero selection */ = {
 			isa = PBXGroup;
 			children = (
+				F2388B2314D84978008488D5 /* hero_overlay.png */,
+				F2388B1D14D845E9008488D5 /* background_eldurin.png */,
+				F2388B1E14D845E9008488D5 /* background_galen.png */,
+				F2388B1F14D845E9008488D5 /* background_garrick.png */,
 				8355D9C914D18F7B007CAF81 /* battlecry_gray.png */,
 				8355D9CA14D18F7B007CAF81 /* charge_gray.png */,
 				8355D9CB14D18F7B007CAF81 /* disarm_gray.png */,
@@ -1416,6 +1428,10 @@
 				F2E72B6B14D61A9A001268EC /* rune_shapeshifter.png in Resources */,
 				F2E72B6D14D61B77001268EC /* rune_hero.png in Resources */,
 				F2388B1C14D80732008488D5 /* undo.png in Resources */,
+				F2388B2014D845E9008488D5 /* background_eldurin.png in Resources */,
+				F2388B2114D845E9008488D5 /* background_galen.png in Resources */,
+				F2388B2214D845E9008488D5 /* background_garrick.png in Resources */,
+				F2388B2414D84978008488D5 /* hero_overlay.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
