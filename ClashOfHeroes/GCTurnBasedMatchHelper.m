@@ -13,6 +13,7 @@
 #import "Turn.h"
 #import "MatchData.h"
 #import "CDPlayer.h"
+#import <GameKit/GameKit.h>
 
 #import "Hero.h"
 #import "UnitData.h"
@@ -377,16 +378,29 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                                    }];
 }
 
-#pragma mark - Leaderboard delegate
-- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+#pragma mark - GameCenterManagerDelegate
+- (void)achievementSubmitted:(GKAchievement*)ach error:(NSError*)error
 {
-    
-}
-
-#pragma mark - Achievement delegate
-- (void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
-{
-    
+    if(!error)
+    {
+        NSMutableDictionary *achievementDescriptions = [[NSMutableDictionary alloc] init];
+        [GKAchievementDescription loadAchievementDescriptionsWithCompletionHandler:^(NSArray *descriptions, NSError *error) {
+            if (error != nil) {
+                NSLog(@"Error getting achievement descriptions: %@", error);
+            }
+            for (GKAchievementDescription *achievementDescription in descriptions) {
+                [achievementDescriptions setObject:achievementDescription forKey:achievementDescription.identifier];
+            }
+        }];
+        
+        GKAchievementDescription *achievementDescription = [achievementDescriptions objectForKey:ach.identifier];
+        
+#warning HIER MESSAGE in gamelayer
+    }
+    else
+    {
+        NSLog(@"error submitting achievement: %@", [error localizedDescription]);
+    }
 }
 
 @end

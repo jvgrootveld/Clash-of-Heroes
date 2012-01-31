@@ -43,6 +43,8 @@ NSInteger const MAXMOVES = 3;
     
     NSLog(@"Selected: %@(%@)", NSStringFromCGPoint(point), NSStringFromCGPoint(squarePoint));
     
+    [StatsController addGamesPlayedGarrick:5 forPlayer:[GKLocalPlayer localPlayer].playerID];
+    
     if (!self.selectedUnit) //NO UNIT SELECTED YET
     {   
         if (!selectedSprite) //SELECTED EMPTY SQUARE

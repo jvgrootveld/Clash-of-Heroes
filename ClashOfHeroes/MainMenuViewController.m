@@ -13,6 +13,8 @@
 #import "NewGameViewController.h"
 #import "CDStats.h"
 #import "GameLayer.h"
+#import "AppSpecificValues.h"
+#import "GameCenterManager.h"
 
 @implementation MainMenuViewController
 @synthesize startButton;
@@ -20,6 +22,7 @@
 @synthesize settingsButton;
 @synthesize feedbackButton;
 @synthesize gameViewController = _gameViewController;
+@synthesize currentLeaderBoard = _currentLeaderBoard;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -68,6 +71,20 @@
     [super viewDidLoad];
     
     [[GCTurnBasedMatchHelper sharedInstance] setMainMenu:self];
+    
+    self.currentLeaderBoard = kLeaderboardID;
+    
+    if ([GameCenterManager isGameCenterAvailable]) 
+    {
+        GameCenterManager *gameCenterManager = [GameCenterManager sharedInstance];
+        [gameCenterManager setDelegate:[GCTurnBasedMatchHelper sharedInstance]];
+        [gameCenterManager authenticateLocalUser];
+        
+    } else {
+        
+        // The current device does not support Game Center.
+        
+    }
 }
 
 - (void)viewDidUnload
@@ -76,6 +93,7 @@
     [self setContinueButton:nil];
     [self setSettingsButton:nil];
     [self setFeedbackButton:nil];
+    self.currentLeaderBoard = nil;
     
     [playerNameLabel release];
     [gamesPlayedLabel release];
@@ -137,11 +155,48 @@
     [damageTakenLabel release];
     [metersMovedLabel release];
     [gamesWonLabel release];
+    [self.currentLeaderBoard release];
     [super dealloc];
 }
 
 - (IBAction)startGameButtonClicked:(id)sender
 {
     [[GCTurnBasedMatchHelper sharedInstance] findMatchWithMinPlayers:2 maxPlayers:2 viewController:self];
+}
+
+#pragma mark - Leaderboard delegate
+- (IBAction)showLeaderboard:(id)sender
+{
+    GKLeaderboardViewController *leaderboardController = [GKLeaderboardViewController new];
+    if (leaderboardController != NULL)
+    {
+        leaderboardController.category = self.currentLeaderBoard;
+        leaderboardController.timeScope = GKLeaderboardTimeScopeWeek;
+        leaderboardController.leaderboardDelegate = self;
+        [self presentModalViewController: leaderboardController animated: YES];
+    }
+}
+
+- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+{
+    [self dismissModalViewControllerAnimated: YES];
+    [viewController release];
+}
+
+#pragma mark - Achievement delegate
+- (IBAction)showAchievements:(id)sender
+{
+    GKAchievementViewController *achievements = [GKAchievementViewController new];
+    if (achievements != NULL)
+    {
+        achievements.achievementDelegate = self;
+        [self presentModalViewController: achievements animated: YES];
+    }
+}
+
+- (void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController;
+{
+    [self dismissModalViewControllerAnimated: YES];
+    [viewController release];
 }
 @end
