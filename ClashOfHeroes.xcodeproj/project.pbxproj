@@ -794,6 +794,7 @@
 		83714762147BE0770091C992 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F2388B1B14D80732008488D5 /* undo.png */,
 				83C2D33214D6DEEC00B620DB /* message_dialog.png */,
 				F2E72B6214D61A97001268EC /* rune_priest.png */,
 				F2E72B6314D61A98001268EC /* rune_warrior.png */,
@@ -1328,6 +1329,7 @@
 				F2E72B6A14D61A9A001268EC /* rune_mage.png in Resources */,
 				F2E72B6B14D61A9A001268EC /* rune_shapeshifter.png in Resources */,
 				F2E72B6D14D61B77001268EC /* rune_hero.png in Resources */,
+				F2388B1C14D80732008488D5 /* undo.png in Resources */,
 				83C2D33314D6DEEC00B620DB /* message_dialog.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
