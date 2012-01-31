@@ -112,27 +112,29 @@
     [alertView show];
 }
 
+- (IBAction)undoButtonPressed:(id)sender 
+{
+    [StatsController addGamesWon:1 forPlayer:[GKLocalPlayer localPlayer].playerID];
+    
+    [_gameLayer setCurrentPhase:_gameLayer.movementPhase];
+    [_gameLayer.movementPhase setRemainingMoves:3];
+    [_gameLayer loadUnitLocations];
+}
+
 #pragma mark - COHAlertView delegate
 
 - (void)alertView:(COHAlertViewController *)alert wasDismissedWithButtonIndex:(NSInteger)buttonIndex;
 {
-    NSLog(@"buttonindex: %d", buttonIndex);
     if (buttonIndex == 2)
     {
         if (alert.tag == 1)
         {
-            Turn *lastTurn = [Turn new];
+            NSLog(@"turn: %@", _gameLayer.turn);
             
-            NSMutableDictionary *move = [NSMutableDictionary dictionary];
-            [move setValue:@"piece 24" forKey:@"piece"];
+            [StatsController addTotalMetersMoved:_gameLayer.turn.totalMetersMoved forPlayer:[GKLocalPlayer localPlayer].playerID];
+            [StatsController addTotalDamageDealt:_gameLayer.turn.totalDamageDealt forPlayer:[GKLocalPlayer localPlayer].playerID];
             
-            NSMutableDictionary *action = [NSMutableDictionary dictionary];
-            [action setValue:@"Attack" forKey:@"action"];
-            
-            [lastTurn.movements addObject:move];
-            [lastTurn.actions addObject:action];
-            
-            [[GCTurnBasedMatchHelper sharedInstance] endTurn:lastTurn];
+            [[GCTurnBasedMatchHelper sharedInstance] endTurn:nil];
         }
         else if (alert.tag == 2)
         {
@@ -140,7 +142,7 @@
         }
         else if (alert.tag == 3)
         {
-            [self.gameLayer removeUnits];
+            [self.gameLayer resetBoard];
             [self.navigationController popViewControllerAnimated:YES];
         }
     }
@@ -176,7 +178,6 @@
         [alertView show];
     }
 }
-
 
 - (void)didReceiveMemoryWarning 
 {

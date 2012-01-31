@@ -28,6 +28,8 @@
 @property (retain, nonatomic) IBOutlet UIButton *feedbackButton;
 @property (nonatomic, retain) GameViewController *gameViewController;
 @property (nonatomic, retain) NSString* currentLeaderBoard;
+@property (retain, nonatomic) IBOutlet UIButton *achievementsButton;
+@property (retain, nonatomic) IBOutlet UIButton *LeaderboardButton;
 
 - (IBAction)startGameButtonClicked:(id)sender;
 - (void)presentGameView;

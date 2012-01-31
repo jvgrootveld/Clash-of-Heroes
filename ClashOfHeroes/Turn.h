@@ -10,16 +10,13 @@
 
 @interface Turn : NSObject
 
-/**
- Deze twee arrays bevatten NSDictionairies. Deze Dicts bevatten key/value pairs voor de actie die begaan is.
- Bijvoorbeeld: Movement array bevat per Move-actie een array met source-unit, source-coord en destination-coord.
- **/
-@property (nonatomic, strong) NSMutableArray *movements;
-@property (nonatomic, strong) NSMutableArray *actions;
+@property (nonatomic) NSInteger totalMetersMoved;
+@property (nonatomic) NSInteger totalDamageDealt;
+@property (nonatomic) NSInteger totalDamageTaken;
 
-@property (nonatomic, strong) NSObject *hero;
-
-- (id)initWithDictionary:(NSDictionary *)dictionary;
-- (NSDictionary *)toDictionary;
+- (void)addToTotalMetersMoved:(NSInteger)totalMetersMoved;
+- (void)addToTotalDamageDealt:(NSInteger)totalDamageDealt;
+- (void)addToTotalDamageTaken:(NSInteger)totalDamageTaken;
+- (void)reset;
 
 @end

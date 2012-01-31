@@ -15,6 +15,7 @@
 #import "GameLayer.h"
 #import "AppSpecificValues.h"
 #import "GameCenterManager.h"
+#import "CDPlayer.h"
 
 @implementation MainMenuViewController
 @synthesize startButton;
@@ -23,6 +24,8 @@
 @synthesize feedbackButton;
 @synthesize gameViewController = _gameViewController;
 @synthesize currentLeaderBoard = _currentLeaderBoard;
+@synthesize achievementsButton;
+@synthesize LeaderboardButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -103,6 +106,8 @@
     metersMovedLabel = nil;
     [gamesWonLabel release];
     gamesWonLabel = nil;
+    [self setAchievementsButton:nil];
+    [self setLeaderboardButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -114,6 +119,19 @@
     
     [self.navigationController setNavigationBarHidden:YES animated:animated];
     [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if([GKLocalPlayer localPlayer].isAuthenticated)
+    {
+        CDPlayer *player = [StatsController playerForGameCenterId:[GKLocalPlayer localPlayer].playerID];
+        if(!player) player = [StatsController newPlayerAndStatsForPlayerWithGameCenterId:[GKLocalPlayer localPlayer].playerID]; //new user
+        
+        [self updateStatsWithName:[GKLocalPlayer localPlayer].alias andStats:(CDStats *)player.stats];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -156,6 +174,8 @@
     [metersMovedLabel release];
     [gamesWonLabel release];
     [self.currentLeaderBoard release];
+    [achievementsButton release];
+    [LeaderboardButton release];
     [super dealloc];
 }
 
@@ -170,7 +190,7 @@
     GKLeaderboardViewController *leaderboardController = [GKLeaderboardViewController new];
     if (leaderboardController != NULL)
     {
-        leaderboardController.category = self.currentLeaderBoard;
+        leaderboardController.category = kLeaderboardID;
         leaderboardController.timeScope = GKLeaderboardTimeScopeWeek;
         leaderboardController.leaderboardDelegate = self;
         [self presentModalViewController: leaderboardController animated: YES];

@@ -61,6 +61,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     {
         NSLog(@"Authentication changed: player authenticated.");
         [self.mainMenu.startButton setEnabled:YES];
+        [self.mainMenu.achievementsButton setEnabled:YES];
+        [self.mainMenu.LeaderboardButton setEnabled:YES];
         
         CDPlayer *player = [StatsController playerForGameCenterId:[GKLocalPlayer localPlayer].playerID];
         if(!player) player = [StatsController newPlayerAndStatsForPlayerWithGameCenterId:[GKLocalPlayer localPlayer].playerID]; //new user
@@ -381,7 +383,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 #pragma mark - GameCenterManagerDelegate
 - (void)achievementSubmitted:(GKAchievement*)ach error:(NSError*)error
 {
-    if(!error)
+    if(!error && ach)
     {
         NSMutableDictionary *achievementDescriptions = [[NSMutableDictionary alloc] init];
         [GKAchievementDescription loadAchievementDescriptionsWithCompletionHandler:^(NSArray *descriptions, NSError *error) {
@@ -400,6 +402,18 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     else
     {
         NSLog(@"error submitting achievement: %@", [error localizedDescription]);
+    }
+}
+
+- (void)scoreReported: (NSError*) error
+{
+    if(!error)
+    {
+        NSLog(@"Leaderboard updated");
+    }
+    else
+    {
+        NSLog(@"error submitting to Leaderboard: %@", [error localizedDescription]);
     }
 }
 
