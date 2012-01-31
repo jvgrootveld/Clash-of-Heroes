@@ -1345,6 +1345,7 @@
 				F2E72B6B14D61A9A001268EC /* rune_shapeshifter.png in Resources */,
 				F2E72B6D14D61B77001268EC /* rune_hero.png in Resources */,
 				F2388B1C14D80732008488D5 /* undo.png in Resources */,
+				83C2D33314D6DEEC00B620DB /* message_dialog.png in Resources */,
 				F2388B2014D845E9008488D5 /* background_eldurin.png in Resources */,
 				F2388B2114D845E9008488D5 /* background_galen.png in Resources */,
 				F2388B2214D845E9008488D5 /* background_garrick.png in Resources */,

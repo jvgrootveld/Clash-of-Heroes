@@ -123,17 +123,14 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (IBAction)GarrickSelectedEvent:(id)sender {
+- (IBAction)GarrickSelectedEvent:(id)sender 
+{
     self.chosenHeroDictionary = [self.heroes objectForKey:@"Garrick"];
     [self.DescriptionField setText:[self.chosenHeroDictionary valueForKey:@"subtitle"]];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_garrick.png"]];
     
-    [self.DescriptionField setText:@"Garrick of the Four Swords \nGarrick is a notorious warrior known for fighting with four swords. His abilities excel in either the protection allies, or devastating melee attacks."];
-    
-    self.chosenHero = @"Garrick";
-    [self UpdateAbilitiesAndPassives:@"Garrick"];
-    
+    self.chosenHero = @"Garrick";    
     [self.AbilityDescriptionField setText:@""];
     
     [self resetAbilitiesAndPassive];
@@ -144,7 +141,10 @@
     
 }
 
-- (IBAction)GalenSelectedEvent:(id)sender {
+- (IBAction)GalenSelectedEvent:(id)sender 
+{
+    self.chosenHeroDictionary = [self.heroes objectForKey:@"Galen"];
+    [self.DescriptionField setText:[self.chosenHeroDictionary valueForKey:@"subtitle"]];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_galen.png"]];
     
@@ -161,6 +161,8 @@
 }
 
 - (IBAction)EldurinSelectedEvent:(id)sender {
+    self.chosenHeroDictionary = [self.heroes objectForKey:@"Eldurin"];
+    [self.DescriptionField setText:[self.chosenHeroDictionary valueForKey:@"subtitle"]];
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_eldurin.png"]];
     
