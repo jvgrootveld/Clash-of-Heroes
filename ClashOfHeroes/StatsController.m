@@ -255,4 +255,27 @@
     return NO;
 }
 
++ (BOOL)addGamesWon:(NSInteger)gamesWon forPlayer:(NSString *)gameCenterId
+{
+    CDPlayer *testPlayer = [self playerForGameCenterId:gameCenterId];
+    
+    if(testPlayer)
+    {
+        CDStats *testStats = (CDStats *)testPlayer.stats;
+        [testStats setGamesWon:[NSNumber numberWithInt:gamesWon + testStats.gamesWon.integerValue]];
+        
+        NSError *error;
+        
+        if (![[self managedObjectContext] save:&error]) 
+        {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            return NO;
+        }
+        
+        return YES;
+    }
+    
+    return NO;
+}
+
 @end

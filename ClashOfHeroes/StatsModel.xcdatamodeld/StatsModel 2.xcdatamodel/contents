@@ -16,6 +16,6 @@
     </entity>
     <elements>
         <element name="CDPlayer" positionX="160" positionY="192" width="128" height="75"/>
-        <element name="CDStats" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="CDStats" positionX="160" positionY="192" width="128" height="165"/>
     </elements>
 </model>

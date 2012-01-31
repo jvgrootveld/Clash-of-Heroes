@@ -35,9 +35,7 @@ NSInteger const MAXACTIONS = 3;
 }
 
 - (void)didSelectPoint:(CGPoint)point
-{
-    if(self.remainingMoves <= 0) return; //no moves left
-    
+{   
     CGPoint squarePoint = [_gameLayer tilePosFromLocation:point tileMap:_gameLayer.map]; //for selection tile, default is point, can be set for sprite/unit
     CCSprite *selectedSprite = [_gameLayer selectSpriteForTouch:point];
     Unit *friendlyUnit = ((selectedSprite) ? [_gameLayer isFriendlyUnitWithSprite:selectedSprite] : nil);
@@ -57,8 +55,12 @@ NSInteger const MAXACTIONS = 3;
             
             squarePoint = [_gameLayer tilePosFromLocation:self.selectedUnit.positionInPixels tileMap:_gameLayer.map];
             
-            NSArray *attackLocations = [self.selectedUnit pointsWhichCanBeAttackedAtInLayer:_gameLayer];
-            [_gameLayer showAttackTileAtPositionPoints:attackLocations];
+            if(self.remainingMoves > 0)
+            {
+                NSArray *attackLocations = [self.selectedUnit pointsWhichCanBeAttackedAtInLayer:_gameLayer];
+                [_gameLayer showAttackTileAtPositionPoints:attackLocations];
+            }
+            
             [_gameLayer.gameViewController updatePlayerOneUnit:friendlyUnit];
         }
         else if (enemyUnit) //SELECTED ENEMY UNIT
@@ -82,28 +84,30 @@ NSInteger const MAXACTIONS = 3;
         }
         else if (enemyUnit) //SELECTED UNFRIENDLY UNIT -> ATTACK
         {
-            NSLog(@"Selected enemy unit: %@, attacking with %@ deselecting unit.", enemyUnit.name, self.selectedUnit.name);
-            
-            NSArray *attackLocations = [self.selectedUnit pointsWhichCanBeAttackedAtInLayer:_gameLayer];
-            
-            for(NSValue *location in attackLocations)
+            if(self.remainingMoves > 0)
             {
-                CGPoint attackPoint = [location CGPointValue];
+                NSLog(@"Selected enemy unit: %@, attacking with %@ deselecting unit.", enemyUnit.name, self.selectedUnit.name);
                 
-                if(CGPointEqualToPoint(squarePoint, attackPoint)) //if unit can attack to selected point
+                NSArray *attackLocations = [self.selectedUnit pointsWhichCanBeAttackedAtInLayer:_gameLayer];
+                
+                for(NSValue *location in attackLocations)
                 {
-                    if([self.selectedUnit attackUnit:enemyUnit onLayer:self.gameLayer])//if enemy is killed by last attack
+                    CGPoint attackPoint = [location CGPointValue];
+                    
+                    if(CGPointEqualToPoint(squarePoint, attackPoint)) //if unit can attack to selected point
                     {
-                        NSLog(@"%@ died", enemyUnit.name);
+                        if([self.selectedUnit attackUnit:enemyUnit onLayer:self.gameLayer])//if enemy is killed by last attack
+                        {
+                            [enemyUnit removeFromPlayer];
+                            [self.gameLayer removeUnit:enemyUnit];
+                        }
+                        
+                        self.remainingMoves--;
+                        
+                        break;
                     }
-                    
-                    self.remainingMoves--;
-                    
-                    break;
                 }
             }
-            
-            self.selectedUnit = nil;
             [_gameLayer.gameViewController updatePlayerTwoUnit:enemyUnit];
         }
         

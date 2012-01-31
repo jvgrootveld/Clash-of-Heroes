@@ -21,6 +21,7 @@
 @property (nonatomic, retain) NSNumber *totalMetersMoved;
 @property (nonatomic, retain) NSNumber *totalDamageDealt;
 @property (nonatomic, retain) NSNumber *totalDamageTaken;
+@property (nonatomic, retain) NSNumber *gamesWon;
 @property (nonatomic, retain) CDPlayer *player;
 
 - (NSInteger)totalGamesPlayed;

@@ -73,6 +73,8 @@ typedef enum
 
 - (BOOL)attackUnit:(Unit *)target onLayer:(GameLayer *)layer;
 
+- (void)removeFromPlayer;
+
 //for printing
 - (void)setCode:(NSString *)code;
 - (NSString *)printCode;

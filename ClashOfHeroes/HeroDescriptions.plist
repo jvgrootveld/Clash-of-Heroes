@@ -4,157 +4,531 @@
 <dict>
 	<key>Galen</key>
 	<dict>
-		<key>Elementalist</key>
-		<string>Elementalist
-Increases fire/ice/lightning damage by 10.</string>
-		<key>Acuity</key>
-		<string>Acuity
-Increases arcane damage by 10.</string>
-		<key>Break</key>
-		<string>Break
-Lowers enemy resistances by 5.</string>
-		<key>Fireball</key>
-		<string>Fireball
-Shoots off a fireball, dealing fire-based damage.
-Effect: 20 damage to an Enemy Unit
-Cost: +2 to Unit Cooldown</string>
-		<key>Thunder</key>
-		<string>Thunder
-Thunder strikes down, dealing lightning-based damage and stunning the target.
-Effect: 30 lightning-based damage to an Enemy Unit and +1 to Enemy Cooldown
-Cost: +4 to Unit Cooldown</string>
-		<key>Freeze</key>
-		<string>Freeze
-Freezes the target.
-Effect: +2 to Enemy Cooldown and deals 5 ice-based damage
-Cost: +3 to Unit Cooldown</string>
-		<key>Ice Shield</key>
-		<string>Ice Shield
-Enhances the defense of Galen for 3 rounds.
-Effect: +15 to defense for Galen
-Cost: +2 to Unit Cooldown</string>
-		<key>Blast</key>
-		<string>Blast
-Deals arcane-based damage to an enemy.
-Effect: 30 arcane-based damage to an Enemy Unit
-Cost: +2 to Unit Cooldown</string>
-		<key>Slow</key>
-		<string>Slow
-Slows an enemy target for 2 rounds.
-Effect: -2 to Enemy Unit Movement
-Cost: +2 to Unit Cooldown</string>
-		<key>Haste</key>
-		<string>Haste
-Enhances a friendly target, enhancing movement speed for 2 rounds.
-Effect: +2 to Friendly Unit Movement
-Cost: +2 to Unit Cooldown</string>
-		<key>Missiles</key>
-		<string>Missiles
-Hits every enemy target in range for arcane-based damage.
-Effect: +30 to surrounding Enemy Units
-Cost: +5 to Unit Cooldown</string>
+		<key>abilities</key>
+		<dict>
+			<key>Elementalist</key>
+			<dict>
+				<key>image</key>
+				<string>elementalist.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>1</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Galen&apos;s army commands the forces of nature and get +1 to their Magical Attacks.</string>
+			</dict>
+			<key>Acuity</key>
+			<dict>
+				<key>image</key>
+				<string>acuity.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>1</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Galen&apos;s bond with the elements lets him warn his comrads of incoming magic attacks. This gives +1 to their Magic Defense.</string>
+			</dict>
+			<key>Mage Armor</key>
+			<dict>
+				<key>image</key>
+				<string>magearmor.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>1</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Galen imbues his forces&apos; armor with arcane powers and gives them +1 to Magical Defense.</string>
+			</dict>
+			<key>Power Surge</key>
+			<dict>
+				<key>image</key>
+				<string>powersurge.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>1</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Surging with arcane power, Galen&apos;s forces&apos; magical attacks reach far beyond normal attacks. This gives them +1 to Range.</string>
+			</dict>
+			<key>Blink</key>
+			<dict>
+				<key>image</key>
+				<string>blink.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>1</integer>
+				<key>abilityDescription</key>
+				<string>Galen&apos;s forces bend perception of time and seemingly move in the blink of an eye. This gives them +1 to Movement.</string>
+			</dict>
+			<key>Freeze</key>
+			<dict>
+				<key>image</key>
+				<string>freeze.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Galen&apos;s presence on the battlefield strikes fear in his enemies&apos; hearts and slows their advance. +1 to Enemy Cooldown.</string>
+			</dict>
+			<key>Ice Shield</key>
+			<dict>
+				<key>image</key>
+				<string>iceshield.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>1</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>1</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>A layer of ice surrounds Galen&apos;s army, granting them +1 to their Magic and Physical Defense.</string>
+			</dict>
+			<key>Evocation</key>
+			<dict>
+				<key>image</key>
+				<string>evocation.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Finely in tune with the elements, Galen&apos;s forces quickly replenish their power after attacking. Gives +1 to Friendly Cooldown.</string>
+			</dict>
+		</dict>
+		<key>subtitle</key>
+		<string>Galen earned his nickname &apos;the Spellslinger&apos; to years of practicing and sharpening his ability with the elemental and arcane powers. As such, he has become a master in the use of Fire, Lightning, Ice and Arcane magics.</string>
 	</dict>
 	<key>Garrick</key>
 	<dict>
-		<key>Steelskin</key>
-		<string>Steelskin
-Enhances the defense of Garrick.</string>
-		<key>Fury</key>
-		<string>Fury
-Increases the melee damage by 10.</string>
-		<key>Vitality</key>
-		<string>Vitality
-Increases the healthpoints of Garrick by 20.</string>
-		<key>Charge</key>
-		<string>Charge
-Charges to an enemy and stuns it.
-Effect: +1 to Enemy Cooldown
-Cost: +2 to Unit Cooldown</string>
-		<key>Disarm</key>
-		<string>Disarm
-Lowers the enemies&apos; chance to evade.
-Effect: -10% Enemy Defense
-Cost: +1 to Unit Cooldown</string>
-		<key>Quadra-strike</key>
-		<string>Quadra-strike
-Attacks the enemy with all four swords.
-Effect: 40 Damage to Enemy Unit
-Cost: +2 to Unit Cooldown</string>
-		<key>Hurricane</key>
-		<string>Hurricane
-Attacks all enemies around Garrick.
-Effect: 20 Damage to surrounding Enemy Units Enemy Defense
-Cost: +3 to Unit Cooldown</string>
-		<key>Taunt</key>
-		<string>Taunt
-Forces the enemy to attack Garrick the next round.
-Cost: +1 to Unit Cooldown</string>
-		<key>Sword-wall</key>
-		<string>Sword-wall
-Increases Garricks&apos; defense for 5 rounds, does not stack.
-Effect: +20 Unit Defense
-Cost: +2 to Unit Cooldown</string>
-		<key>Headbash</key>
-		<string>Headbash
-Stuns an enemy unit.
-Effect: +1 to Enemy Cooldown
-Cost: +2 to Unit Cooldown</string>
-		<key>Battlecry</key>
-		<string>Battlecry
-Increases the attack power of friendly minutes for 4 rounds, does not stack.
-Effect: +10 to Friendly Unit Attack Power
-
-Cost: +2 to Unit Cooldown</string>
+		<key>abilities</key>
+		<dict>
+			<key>Steelskin</key>
+			<dict>
+				<key>image</key>
+				<string>steelskin.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>5</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Garrick&apos;s forces have been trained to withstand the fiercest of attacks and get +1 to their Physical Defense.</string>
+			</dict>
+			<key>Fury</key>
+			<dict>
+				<key>image</key>
+				<string>fury.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>1</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>With a warrior&apos;s rage, Garrick&apos;s forces ruthlessly pummel their opponents. Grants +1 to Physical Attack.</string>
+			</dict>
+			<key>Vitality</key>
+			<dict>
+				<key>image</key>
+				<string>vitality.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>5</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Garrick&apos;s forces have been trained to withstand the endless attacks and get +5 to their Health.</string>
+			</dict>
+			<key>Charge</key>
+			<dict>
+				<key>image</key>
+				<string>charge.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>1</integer>
+				<key>abilityDescription</key>
+				<string>Burning with rage, Garrick&apos;s forces charge at their enemies with boundless ferocity. Grants +1 to Movement.</string>
+			</dict>
+			<key>Defensive Stance</key>
+			<dict>
+				<key>image</key>
+				<string>defensivestance.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>1</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Always ready for the next attack, Garrick&apos;s forces adopt a defensive stance and get +1 to their Physical Defense.</string>
+			</dict>
+			<key>Recklessness</key>
+			<dict>
+				<key>image</key>
+				<string>recklessness.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>2</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>-1</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Blinded with fury, Garrick&apos;s forces charge at the enemy with no regard for their own safety. Grants +2 to Physical Attack, but -1 to Physical Defense.</string>
+			</dict>
+			<key>Hamstring</key>
+			<dict>
+				<key>image</key>
+				<string>hamstring.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Crippling their foes, Garrack&apos;s forces use the most dirty of techniques to slow the opposition down. Grants +1 to Enemy Cooldown.</string>
+			</dict>
+			<key>Battlecry</key>
+			<dict>
+				<key>image</key>
+				<string>battlecry.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Garrick directs his forces with a rallying cry. Grants -1 to Friendly Cooldown.</string>
+			</dict>
+		</dict>
+		<key>subtitle</key>
+		<string>Garrick is a notorious warrior known for fighting with four swords. His abilities excel in either the protection allies, or devastating melee attacks.</string>
 	</dict>
 	<key>Eldurin</key>
 	<dict>
-		<key>Devotion</key>
-		<string>Devotion
-Heals heal for 10 healthpoints more.</string>
-		<key>Shadow</key>
-		<string>Shadow
-Increases damage done by spells by 10.</string>
-		<key>Vampire</key>
-		<string>Vampire
-Increases the effectiveness of Siphon by 10 and Pain by -5 enemy attack power.</string>
-		<key>Heal</key>
-		<string>Heal
-Heals a friendly unit.
-Effect: +20 healthpoints to Friendly Unit.
-Cost: +2 to Unit Cooldown</string>
-		<key>Greater Heal</key>
-		<string>Greater heal
-A powerfull heal.
-Effect: +40 healthpoints to Friendly Unit.
-Cost: +3 to Unit Cooldown</string>
-		<key>Endurance</key>
-		<string>Endurance
-Increases the health of all friendly units for 3 rounds, does not stack.
-Effect: +20 to maximum healthpoints for all Friendly Units.
-Cost: +2 to Unit Cooldown</string>
-		<key>Radiance</key>
-		<string>Radiance
-Heals nearby friendly units for 30HP. </string>
-		<key>Flay</key>
-		<string>Flay
-Deals damage to an enemy unit.
-Effect: 30 fire damage to an Enemy Unit.
-Cost: +2GCD</string>
-		<key>Flare</key>
-		<string>Flare
-Deals fire-based enemy to an enemy unit.
-Effect: +20 Unit Defense
-Cost: +2 to Unit Cooldown</string>
-		<key>Pain</key>
-		<string>Pain
-Lowers the attack power of target enemy unit for 2 rounds.
-Effect: -15 to Enemy Cooldown
-Cost: +2 to Unit Cooldown</string>
-		<key>Siphon</key>
-		<string>Siphon
-Transfers healthpoints of an enemy unit to Eldurin.
-Effect: +10 healthpoints to Eldurin
-Cost: +2 to Unit Cooldown</string>
+		<key>abilities</key>
+		<dict>
+			<key>Devotion</key>
+			<dict>
+				<key>image</key>
+				<string>devotion.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>1</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Burning with devotion for Eldurin, her forces will do anything to protect her. Grants +1 to Magical Attack.</string>
+			</dict>
+			<key>Fortitude</key>
+			<dict>
+				<key>image</key>
+				<string>fortitude.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>5</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Blessing her forces with fortitude, Eldurin grants them +5 health.</string>
+			</dict>
+			<key>Holy Fire</key>
+			<dict>
+				<key>image</key>
+				<string>holyfire.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>1</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Filling her forces&apos; spirits with holy fire, Eldurin grants +1 to Healing Attacks.</string>
+			</dict>
+			<key>Hymn of Hope</key>
+			<dict>
+				<key>image</key>
+				<string>hymnofhope.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Chanting a hymn of hope, Eldurin&apos;s forces gain +1 to Healing Attacks.</string>
+			</dict>
+			<key>Fear Ward</key>
+			<dict>
+				<key>image</key>
+				<string>fearward.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>1</integer>
+				<key>abilityDescription</key>
+				<string>Fearless, Eldurin&apos;s troop march towards their foes. Grants +1 to Movement</string>
+			</dict>
+			<key>Endurance</key>
+			<dict>
+				<key>image</key>
+				<string>endurance.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>1</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Eldurin&apos;s forces push themselves to the extreme, gaining +1 to Range.</string>
+			</dict>
+			<key>Radiance</key>
+			<dict>
+				<key>image</key>
+				<string>radiance.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Eldurin&apos;s presence on the battlefield fills her forces with holy light, granting -1 to Friendly Cooldown.</string>
+			</dict>
+			<key>Flay</key>
+			<dict>
+				<key>image</key>
+				<string>flay.png</string>
+				<key>bonusPhysicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusPhysicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusMagicalAttackPower</key>
+				<integer>0</integer>
+				<key>bonusMagicalDefensePower</key>
+				<integer>0</integer>
+				<key>bonusHealthPoints</key>
+				<integer>0</integer>
+				<key>bonusRange</key>
+				<integer>0</integer>
+				<key>bonusMovement</key>
+				<integer>0</integer>
+				<key>abilityDescription</key>
+				<string>Eldurin&apos;s forces&apos; attacks flay their foes, grating +1 to Enemy Cooldown.</string>
+			</dict>
+		</dict>
+		<key>subtitle</key>
+		<string>Eldurin was abandoned when she was young and roamed the streets. It didn&apos;t take long before she was adopted by the Church, and learned the ways of the Holy Light. She studied it rigorously, resulting in her title &apos;the Enlightened&apos;.</string>
 	</dict>
 </dict>
 </plist>

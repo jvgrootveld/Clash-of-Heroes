@@ -14,6 +14,7 @@
 @interface MainMenuViewController : UIViewController
 {
     IBOutlet UILabel *playerNameLabel;
+    IBOutlet UILabel *gamesWonLabel;
     IBOutlet UILabel *gamesPlayedLabel;
     IBOutlet UILabel *damageDealtName;
     IBOutlet UILabel *damageTakenLabel;

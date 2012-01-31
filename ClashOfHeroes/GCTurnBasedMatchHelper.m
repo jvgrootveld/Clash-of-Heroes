@@ -56,7 +56,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 
 - (void)authenticationChanged
 {    
-    if ([GKLocalPlayer localPlayer].isAuthenticated && !userAuthenticated) 
+    if ([GKLocalPlayer localPlayer].isAuthenticated && !userAuthenticated)
     {
         NSLog(@"Authentication changed: player authenticated.");
         [self.mainMenu.startButton setEnabled:YES];
@@ -68,7 +68,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
         
         userAuthenticated = TRUE;
     } 
-    else if (![GKLocalPlayer localPlayer].isAuthenticated && userAuthenticated) 
+    else if (![GKLocalPlayer localPlayer].isAuthenticated && userAuthenticated)
     {
         NSLog(@"Authentication changed: player not authenticated");
         
@@ -235,7 +235,7 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 
 - (void)synchronizeMatchData:(NSDictionary *)matchData
 {
-    NSLog(@"synchronizeMatchData %@", matchData);
+    //NSLog(@"synchronizeMatchData %@", matchData);
     for (Player *player in self.currentPlayers)
     {
         NSDictionary *playerData = [matchData objectForKey:player.gameCenterInfo.playerID];
@@ -377,6 +377,18 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                                            NSLog(@"%@", error);
                                        }
                                    }];
+}
+
+#pragma mark - Leaderboard delegate
+- (void)leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
+{
+    
+}
+
+#pragma mark - Achievement delegate
+- (void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
+{
+    
 }
 
 @end

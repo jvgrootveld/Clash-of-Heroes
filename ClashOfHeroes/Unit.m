@@ -470,6 +470,11 @@
     return [target recieveDamage:damage onLayer:layer];
 }
 
+- (void)removeFromPlayer
+{
+    [self.player.units removeObject:self];
+}
+
 - (NSString *)printCode
 {
     return [NSString stringWithFormat:@"%@(%d)", _code, _player];

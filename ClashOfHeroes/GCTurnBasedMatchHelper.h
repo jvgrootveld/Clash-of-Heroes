@@ -14,7 +14,8 @@
 @class Player;
 @class Turn;
 
-@interface GCTurnBasedMatchHelper : NSObject <GKTurnBasedMatchmakerViewControllerDelegate> {
+@interface GCTurnBasedMatchHelper : NSObject <GKTurnBasedMatchmakerViewControllerDelegate, GKLeaderboardViewControllerDelegate, GKAchievementViewControllerDelegate>
+{
     BOOL gameCenterAvailable;
     BOOL userAuthenticated;
     UIViewController *presentingViewController;

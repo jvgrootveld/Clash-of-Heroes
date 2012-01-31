@@ -29,9 +29,9 @@
 @interface GameViewController()
 - (void)setPlayerOneLabelsHidden:(BOOL)hidden;
 - (void)setPlayerTwoLabelsHidden:(BOOL)hidden;
-
 - (void)fadeInView:(UIView *)view;
 - (void)fadeOutView:(UIView *)view withDelay:(NSTimeInterval)delay;
+- (UIImage *)imageForUnitName:(NSString *)unitName;
 @end
 
 @implementation GameViewController
@@ -105,7 +105,8 @@
     [alertView show];
 }
 
-- (IBAction)backButtonPressed:(id)sender {
+- (IBAction)backButtonPressed:(id)sender 
+{
     COHAlertViewController *alertView = [[COHAlertViewController alloc] initWithTitle:@"Back to menu" andMessage:@"Are you sure you want to quit? This will revert any moves you have made."];
     
     alertView.view.frame = self.view.frame;
@@ -143,7 +144,10 @@
             [self.gameLayer.currentPhase endPhase];
         }
         else if (alert.tag == 3)
+        {
+            [self.gameLayer removeUnits];
             [self.navigationController popViewControllerAnimated:YES];
+        }
     }
     
     //[self updateLabels];
@@ -239,6 +243,27 @@
     [self.playerTwoDefenseLabel setHidden:hidden];
 }
 
+- (UIImage *)imageForUnitName:(NSString *)unitName
+{
+    UIImage *image = nil;
+    
+    //imager
+    if([unitName isEqualToString:@"Warrior"])
+        image = [UIImage imageNamed:@"rune_warrior.png"];
+    else if([unitName isEqualToString:@"Mage"])
+        image = [UIImage imageNamed:@"rune_mage.png"];
+    else if([unitName isEqualToString:@"Ranger"])
+        image = [UIImage imageNamed:@"rune_ranger.png"];
+    else if([unitName isEqualToString:@"Priest"])
+        image = [UIImage imageNamed:@"rune_priest.png"];
+    else if([unitName isEqualToString:@"Shapeshifter"])
+        image = [UIImage imageNamed:@"rune_shapeshifter.png"];
+    else
+        image = [UIImage imageNamed:@"rune_hero.png"];
+    
+    return image;
+}
+
 - (void)updatePlayerOneUnit:(Unit *)unit
 {
     UIImage *image = nil;
@@ -247,19 +272,7 @@
     {
         [self setPlayerOneLabelsHidden:NO];
         
-        //image
-        if([unit.name isEqualToString:@"Warrior"])
-            image = [UIImage imageNamed:@"rune_warrior.png"];
-        else if([unit.name isEqualToString:@"Mage"])
-            image = [UIImage imageNamed:@"rune_mage.png"];
-        else if([unit.name isEqualToString:@"Ranger"])
-            image = [UIImage imageNamed:@"rune_ranger.png"];
-        else if([unit.name isEqualToString:@"Priest"])
-            image = [UIImage imageNamed:@"rune_priest.png"];
-        else if([unit.name isEqualToString:@"Shapeshifter"])
-            image = [UIImage imageNamed:@"rune_shapeshifter.png"];
-        else
-            image = [UIImage imageNamed:@"rune_hero.png"];
+        image = [self imageForUnitName:unit.name];
         
         [self.playerOneUnitNameLabel setText:unit.name];
         [self.playerOneUnitAttackPowerLabel setText:[NSString stringWithFormat:@"%d", unit.physicalDefense]];
@@ -282,19 +295,7 @@
     {
         [self setPlayerTwoLabelsHidden:NO];
         
-        //image
-        if([unit.name isEqualToString:@"Warrior"])
-            image = [UIImage imageNamed:@"warriorpin.png"];
-        else if([unit.name isEqualToString:@"Mage"])
-            image = [UIImage imageNamed:@"warriorpin.png"];
-        else if([unit.name isEqualToString:@"Ranger"])
-            image = [UIImage imageNamed:@"warriorpin.png"];
-        else if([unit.name isEqualToString:@"Priest"])
-            image = [UIImage imageNamed:@"warriorpin.png"];
-        else if([unit.name isEqualToString:@"Shapeshifter"])
-            image = [UIImage imageNamed:@"warriorpin.png"];
-        else if([unit.name isEqualToString:@"Hero"])
-            image = [UIImage imageNamed:@"warriorpin.png"];
+        image = [self imageForUnitName:unit.name];
         
         [self.playerTwoUnitNameLabel setText:unit.name];
         [self.playerTwoUnitAttackPowerLabel setText:[NSString stringWithFormat:@"%d", unit.physicalDefense]];

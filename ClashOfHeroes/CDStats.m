@@ -18,6 +18,7 @@
 @dynamic totalMetersMoved;
 @dynamic totalDamageDealt;
 @dynamic totalDamageTaken;
+@dynamic gamesWon;
 @dynamic player;
 
 - (NSInteger)totalGamesPlayed
@@ -37,6 +38,7 @@
     [printDictionairy setValue:self.totalMetersMoved forKey:@"totalMetersMoved"];
     [printDictionairy setValue:self.totalDamageDealt forKey:@"totalDamageDealt"];
     [printDictionairy setValue:self.totalDamageTaken forKey:@"totalDamageTaken"];
+    [printDictionairy setValue:self.gamesWon forKey:@"gamesWon"];
     
     return printDictionairy;
 }
