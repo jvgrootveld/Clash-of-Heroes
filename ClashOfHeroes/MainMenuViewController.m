@@ -199,7 +199,7 @@
 
 - (IBAction)aboutButtonPressed:(id)sender
 {
-    COHAboutViewController *aboutView = [[COHAboutViewController alloc] initWithTitle:@"About" andMessage:@"about about about and more about us.." forView:self.view];
+    COHAboutViewController *aboutView = [[COHAboutViewController alloc] initWithTitle:@"About" andMessage:@"Tempest Mobile is a development team based in Rotterdam, the Netherlands. This product was made as a part of an assignment for the Rotterdam University.\n\nIf you have any issues or suggestions for improving this product, use the Feedback-button below to contact us." forView:self.view];
     
     [aboutView setTag:3];
     [aboutView setDelegate:self];
@@ -241,22 +241,6 @@
         achievements.achievementDelegate = self;
         [self presentModalViewController: achievements animated: YES];
     }
-}
-
-- (IBAction)openFeedBack:(id)sender
-{
-    self.mailComposer = [MFMailComposeViewController new];
-    if ([MFMailComposeViewController canSendMail]) {
-        [self.mailComposer setSubject:@"Feedback Clash of Heroes"];
-        [self.mailComposer setMailComposeDelegate:self];
-        [self.mailComposer setToRecipients:[NSArray arrayWithObject:@"info@tempest.nl"]];
-        
-        [self presentModalViewController:self.mailComposer animated:NO];
-    }
-}
-
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error{ 
-    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController;

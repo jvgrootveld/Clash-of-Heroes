@@ -14,6 +14,7 @@
 
 @property (nonatomic, retain) NSString *titleString;
 @property (nonatomic, retain) NSString *messageString;
+@property (nonatomic, retain) MFMailComposeViewController *mailComposer;
 
 - (void)aboutDidFadeOut;
 
@@ -29,6 +30,7 @@
 @synthesize titleString = _titleString;
 @synthesize messageString = _messageString;
 @synthesize tag = _tag;
+@synthesize mailComposer = _mailComposer;
 
 - (id)initWithTitle:(NSString *)title andMessage:(NSString *)message forView:(UIView *)view;
 {
@@ -86,6 +88,7 @@
     [self setDelegate:nil];
     [self setTitleString:nil];
     [self setMessageString:nil];
+    [self setMailComposer:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -105,7 +108,7 @@
     [self.textView release];
     [self.titleString release];
     [self.messageString release];
-
+    [self.mailComposer release];
     [super dealloc];
 }
 
@@ -120,8 +123,19 @@
     [self.delegate aboutView:self wasDismissedWithButtonIndex:((UIButton *)sender).tag];
 }
 
-- (IBAction)feedbackButtonPressed:(id)sender 
+- (IBAction)openFeedBack:(id)sender
 {
-    NSLog(@"Feedback needs implementation");
+    self.mailComposer = [MFMailComposeViewController new];
+    if ([MFMailComposeViewController canSendMail]) {
+        [self.mailComposer setSubject:@"Feedback Clash of Heroes"];
+        [self.mailComposer setMailComposeDelegate:self];
+        [self.mailComposer setToRecipients:[NSArray arrayWithObject:@"info@tempest.nl"]];
+        
+        [self presentModalViewController:self.mailComposer animated:NO];
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error{ 
+    [self dismissModalViewControllerAnimated:YES];
 }
 @end

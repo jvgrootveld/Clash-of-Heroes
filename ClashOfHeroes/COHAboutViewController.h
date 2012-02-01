@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 
 @class COHAboutViewController;
 
@@ -22,7 +23,7 @@
 
 @end
 
-@interface COHAboutViewController : UIViewController
+@interface COHAboutViewController : UIViewController <MFMailComposeViewControllerDelegate>
 
 @property (retain, nonatomic) IBOutlet UIImageView *backgroundImageView;
 @property (retain, nonatomic) IBOutlet UIView *aboutView;
@@ -34,6 +35,5 @@
 - (id)initWithTitle:(NSString *)title andMessage:(NSString *)message forView:(UIView *)view;
 - (void)show;
 - (IBAction)okButtonPressed:(id)sender;
-- (IBAction)feedbackButtonPressed:(id)sender;
 
 @end
