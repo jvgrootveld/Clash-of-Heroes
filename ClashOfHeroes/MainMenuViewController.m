@@ -16,6 +16,7 @@
 #import "AppSpecificValues.h"
 #import "GameCenterManager.h"
 #import "CDPlayer.h"
+#import <MessageUI/MessageUI.h>
 #import "COHAboutViewController.h"
 
 @implementation MainMenuViewController

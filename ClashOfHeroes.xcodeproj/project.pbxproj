@@ -195,6 +195,7 @@
 		F231AFD314D95C0F00A26E4C /* COHAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F231AFD114D95C0F00A26E4C /* COHAboutViewController.m */; };
 		F231AFD414D95C0F00A26E4C /* COHAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F231AFD214D95C0F00A26E4C /* COHAboutViewController.xib */; };
 		F231AFD714D95DDD00A26E4C /* about_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = F231AFD614D95DDD00A26E4C /* about_screen.png */; };
+		F231AFE014D971E200A26E4C /* planes.tmx in Resources */ = {isa = PBXBuildFile; fileRef = F231AFDF14D971E200A26E4C /* planes.tmx */; };
 		F2388B1C14D80732008488D5 /* undo.png in Resources */ = {isa = PBXBuildFile; fileRef = F2388B1B14D80732008488D5 /* undo.png */; };
 		F2388B2014D845E9008488D5 /* background_eldurin.png in Resources */ = {isa = PBXBuildFile; fileRef = F2388B1D14D845E9008488D5 /* background_eldurin.png */; };
 		F2388B2114D845E9008488D5 /* background_galen.png in Resources */ = {isa = PBXBuildFile; fileRef = F2388B1E14D845E9008488D5 /* background_galen.png */; };
@@ -558,6 +559,7 @@
 		F231AFD114D95C0F00A26E4C /* COHAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COHAboutViewController.m; sourceTree = "<group>"; };
 		F231AFD214D95C0F00A26E4C /* COHAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = COHAboutViewController.xib; sourceTree = "<group>"; };
 		F231AFD614D95DDD00A26E4C /* about_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about_screen.png; sourceTree = "<group>"; };
+		F231AFDF14D971E200A26E4C /* planes.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = planes.tmx; sourceTree = "<group>"; };
 		F2388B1B14D80732008488D5 /* undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undo.png; sourceTree = "<group>"; };
 		F2388B1D14D845E9008488D5 /* background_eldurin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_eldurin.png; sourceTree = "<group>"; };
 		F2388B1E14D845E9008488D5 /* background_galen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_galen.png; sourceTree = "<group>"; };
@@ -818,6 +820,7 @@
 		83714762147BE0770091C992 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F231AFDF14D971E200A26E4C /* planes.tmx */,
 				F231AFD614D95DDD00A26E4C /* about_screen.png */,
 				F2388B1B14D80732008488D5 /* undo.png */,
 				83C2D33214D6DEEC00B620DB /* message_dialog.png */,
@@ -1362,6 +1365,7 @@
 				F2388B2414D84978008488D5 /* hero_overlay.png in Resources */,
 				F231AFD414D95C0F00A26E4C /* COHAboutViewController.xib in Resources */,
 				F231AFD714D95DDD00A26E4C /* about_screen.png in Resources */,
+				F231AFE014D971E200A26E4C /* planes.tmx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

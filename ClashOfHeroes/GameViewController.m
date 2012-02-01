@@ -118,10 +118,7 @@
 }
 
 - (IBAction)undoButtonPressed:(id)sender 
-{
-    [StatsController addGamesPlayedEldurin:5 forPlayer:[GKLocalPlayer localPlayer].playerID];
-    //[self presentMessage:@"test message"];
-    
+{   
     [_gameLayer setCurrentPhase:_gameLayer.movementPhase];
     [_gameLayer.movementPhase setRemainingMoves:3];
     [_gameLayer loadUnitLocations];
