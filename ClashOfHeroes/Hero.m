@@ -59,6 +59,14 @@
     [heroDict setValue:self.abilityThree forKey:@"abilityThree"];
     [heroDict setValue:self.abilityFour forKey:@"abilityFour"];
     
+    [heroDict setValue:[NSNumber numberWithInteger:self.bonusRange] forKey:@"bonusRange"];
+    [heroDict setValue:[NSNumber numberWithInteger:self.bonusPhysicalDefensePower] forKey:@"bonusPhysicalDefensePower"];
+    [heroDict setValue:[NSNumber numberWithInteger:self.bonusPhysicalAttackPower] forKey:@"bonusPhysicalAttackPower"];
+    [heroDict setValue:[NSNumber numberWithInteger:self.bonusMovement] forKey:@"bonusMovement"];
+    [heroDict setValue:[NSNumber numberWithInteger:self.bonusMagicalDefensePower] forKey:@"bonusMagicalDefensePower"];
+    [heroDict setValue:[NSNumber numberWithInteger:self.bonusMagicalAttackPower] forKey:@"bonusMagicalAttackPower"];
+    [heroDict setValue:[NSNumber numberWithInteger:self.bonusHealthPoints] forKey:@"bonusHealthPoints"];
+    
     return heroDict;
 }
 
