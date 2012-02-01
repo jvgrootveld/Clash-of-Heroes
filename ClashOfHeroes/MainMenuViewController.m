@@ -65,7 +65,7 @@
     {
         if([layer isKindOfClass:[GameLayer class]]) [(GameLayer *)layer loadUnitLocations];
     }
-    
+
     [self.navigationController pushViewController:self.gameViewController animated:NO];
 }
 

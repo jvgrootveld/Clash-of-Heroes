@@ -87,19 +87,6 @@
     [self.AbilityDescriptionField setText:@"Tap on an ability to find out what it does and to select it. You can only select 4 abilities.\n\nYou can tap on an selected ability button to deselect."];
     
     _abilityCounter = 0;
-    
-    if (![[GCTurnBasedMatchHelper sharedInstance] localPlayerIsCurrentParticipant])
-    {
-        COHAlertViewController *alertView = [[COHAlertViewController alloc] initWithTitle:@"Waiting for opponent" andMessage:@"Clash of Heroes is waiting for your opponent to select his hero."];
-        
-        alertView.view.frame = self.view.frame;
-        alertView.view.center = self.view.center;
-        [alertView setTag:1];
-        [alertView setDelegate:self];
-        [self.view addSubview:alertView.view];
-        [alertView show];
-    }
-
 }
 
 - (void)viewDidUnload
@@ -121,6 +108,11 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
 - (IBAction)GarrickSelectedEvent:(id)sender 
@@ -315,6 +307,8 @@
     {
         if (buttonIndex == 2)
         {
+            [self.PlayButton setEnabled:NO];
+            
             Hero *selectedHero = [Hero new];
             [selectedHero setHeroName:self.chosenHero];
             
@@ -355,6 +349,7 @@
 }
 
 - (IBAction)backButtonPressed:(id)sender {
+    [self.PlayButton setEnabled:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

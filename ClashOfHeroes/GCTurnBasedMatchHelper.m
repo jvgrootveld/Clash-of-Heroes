@@ -225,15 +225,29 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
         
         if (dataDictionary) [self synchronizeMatchData:dataDictionary];
              
-        if(self.currentMatch.currentParticipant.lastTurnDate)
+        if ([[GCTurnBasedMatchHelper sharedInstance] localPlayerIsCurrentParticipant])
         {
-            NSLog(@"Load game");
-            [self.mainMenu presentGameView];
+            if(self.currentMatch.currentParticipant.lastTurnDate)
+            {
+                NSLog(@"Load game");
+                [self.mainMenu presentGameView];
+            }
+            else
+            {
+                NSLog(@"new game");
+                [self.mainMenu presentNewGameView];
+            }
         }
         else
         {
-            NSLog(@"new game");
-            [self.mainMenu presentNewGameView];
+            COHAlertViewController *alertView = [[COHAlertViewController alloc] initWithTitle:@"Waiting for player" andMessage:@"Waiting for your opponent to make his move."];
+            
+            alertView.view.frame = self.mainMenu.view.frame;
+            alertView.view.center = self.mainMenu.view.center;
+            [alertView setTag:1];
+            [alertView setDelegate:self];
+            [self.mainMenu.view addSubview:alertView.view];
+            [alertView show];
         }
     }];
 }
@@ -392,6 +406,30 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                                    }];
 }
 
+- (void)endMatchWithOutcome:(GKTurnBasedMatchOutcome)outcome
+{
+    Player *localPlayer = [self playerForLocalPlayer];
+    
+    localPlayer.turnNumber += 1;
+    
+    MatchData *matchData = [MatchData new];
+    [matchData setPlayerOne:localPlayer];
+    [matchData setPlayerTwo:[self playerForEnemyPlayer]];    
+    
+    NSData *compressedData = [NSKeyedArchiver archivedDataWithRootObject:[matchData toDictionary]];
+    
+    for (GKTurnBasedParticipant *part in currentMatch.participants) {
+        if (part.playerID == localPlayer.gameCenterInfo.playerID) part.matchOutcome = outcome;
+        else part.matchOutcome = GKTurnBasedMatchOutcomeLost;
+    }
+    [currentMatch endMatchInTurnWithMatchData:compressedData 
+                            completionHandler:^(NSError *error) {
+                                if (error) {
+                                    NSLog(@"%@", error);
+                                }
+                            }];
+}
+
 #pragma mark - GameCenterManagerDelegate
 - (void)achievementSubmitted:(GKAchievement*)ach error:(NSError*)error
 {
@@ -431,6 +469,13 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
     {
         NSLog(@"error submitting to Leaderboard: %@", [error localizedDescription]);
     }
+}
+
+#pragma mark - COHAlertView delegate
+
+- (void)alertView:(COHAlertViewController *)alert wasDismissedWithButtonIndex:(NSInteger)buttonIndex;
+{
+
 }
 
 @end
