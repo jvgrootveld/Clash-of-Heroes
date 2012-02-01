@@ -198,6 +198,9 @@
 		F231AFD414D95C0F00A26E4C /* COHAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F231AFD214D95C0F00A26E4C /* COHAboutViewController.xib */; };
 		F231AFD714D95DDD00A26E4C /* about_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = F231AFD614D95DDD00A26E4C /* about_screen.png */; };
 		F231AFE014D971E200A26E4C /* planes.tmx in Resources */ = {isa = PBXBuildFile; fileRef = F231AFDF14D971E200A26E4C /* planes.tmx */; };
+		F231AFE414D97A5A00A26E4C /* rune_hero_eldurin.png in Resources */ = {isa = PBXBuildFile; fileRef = F231AFE114D97A5A00A26E4C /* rune_hero_eldurin.png */; };
+		F231AFE514D97A5A00A26E4C /* rune_hero_galen.png in Resources */ = {isa = PBXBuildFile; fileRef = F231AFE214D97A5A00A26E4C /* rune_hero_galen.png */; };
+		F231AFE614D97A5A00A26E4C /* rune_hero_garrick.png in Resources */ = {isa = PBXBuildFile; fileRef = F231AFE314D97A5A00A26E4C /* rune_hero_garrick.png */; };
 		F2388B1C14D80732008488D5 /* undo.png in Resources */ = {isa = PBXBuildFile; fileRef = F2388B1B14D80732008488D5 /* undo.png */; };
 		F2388B2014D845E9008488D5 /* background_eldurin.png in Resources */ = {isa = PBXBuildFile; fileRef = F2388B1D14D845E9008488D5 /* background_eldurin.png */; };
 		F2388B2114D845E9008488D5 /* background_galen.png in Resources */ = {isa = PBXBuildFile; fileRef = F2388B1E14D845E9008488D5 /* background_galen.png */; };
@@ -564,6 +567,9 @@
 		F231AFD214D95C0F00A26E4C /* COHAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = COHAboutViewController.xib; sourceTree = "<group>"; };
 		F231AFD614D95DDD00A26E4C /* about_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = about_screen.png; sourceTree = "<group>"; };
 		F231AFDF14D971E200A26E4C /* planes.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = planes.tmx; sourceTree = "<group>"; };
+		F231AFE114D97A5A00A26E4C /* rune_hero_eldurin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rune_hero_eldurin.png; sourceTree = "<group>"; };
+		F231AFE214D97A5A00A26E4C /* rune_hero_galen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rune_hero_galen.png; sourceTree = "<group>"; };
+		F231AFE314D97A5A00A26E4C /* rune_hero_garrick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rune_hero_garrick.png; sourceTree = "<group>"; };
 		F2388B1B14D80732008488D5 /* undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undo.png; sourceTree = "<group>"; };
 		F2388B1D14D845E9008488D5 /* background_eldurin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_eldurin.png; sourceTree = "<group>"; };
 		F2388B1E14D845E9008488D5 /* background_galen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_galen.png; sourceTree = "<group>"; };
@@ -836,6 +842,9 @@
 				F2E72B6514D61A99001268EC /* rune_mage.png */,
 				F2E72B6614D61A9A001268EC /* rune_shapeshifter.png */,
 				F2E72B6C14D61B77001268EC /* rune_hero.png */,
+				F231AFE114D97A5A00A26E4C /* rune_hero_eldurin.png */,
+				F231AFE214D97A5A00A26E4C /* rune_hero_galen.png */,
+				F231AFE314D97A5A00A26E4C /* rune_hero_garrick.png */,
 				F2E72B5B14D5DB01001268EC /* stats_screen.png */,
 				F2D10D4614D2C2340047ABB2 /* alert.png */,
 				F2D10D4414D2BE600047ABB2 /* frame.png */,
