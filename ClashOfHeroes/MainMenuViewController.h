@@ -14,7 +14,7 @@
 @class GameViewController;
 @class CDStats;
 
-@interface MainMenuViewController : UIViewController <GKLeaderboardViewControllerDelegate, GKAchievementViewControllerDelegate, MFMailComposeViewControllerDelegate>
+@interface MainMenuViewController : UIViewController <GKLeaderboardViewControllerDelegate, GKAchievementViewControllerDelegate, MFMailComposeViewControllerDelegate, COHAboutViewControllerDelegate>
 {
     IBOutlet UILabel *playerNameLabel;
     IBOutlet UILabel *gamesWonLabel;
