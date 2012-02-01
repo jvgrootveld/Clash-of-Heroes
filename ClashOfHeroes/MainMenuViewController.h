@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 #import "GameCenterManager.h"
+#import "COHAboutViewController.h"
 
 @class GameViewController;
 @class CDStats;
@@ -34,6 +35,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *FeedbackButton;
 
 - (IBAction)startGameButtonClicked:(id)sender;
+- (IBAction)aboutButtonPressed:(id)sender;
 - (void)presentGameView;
 - (void)presentNewGameView;
 - (void)updateStatsWithName:(NSString *)playerName andStats:(CDStats *)stats;

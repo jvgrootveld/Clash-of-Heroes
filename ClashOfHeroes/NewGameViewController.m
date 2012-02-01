@@ -70,7 +70,7 @@
     [super viewDidLoad];
     
     // UI instellingen doorvoeren
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"wood_background_texture.png"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_garrick.png"]];
     [self.view setOpaque:NO];
     [[self.view layer] setOpaque:NO];
     
@@ -123,9 +123,12 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (IBAction)GarrickSelectedEvent:(id)sender {
+- (IBAction)GarrickSelectedEvent:(id)sender 
+{
     self.chosenHeroDictionary = [self.heroes objectForKey:@"Garrick"];
     [self.DescriptionField setText:[self.chosenHeroDictionary valueForKey:@"subtitle"]];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_garrick.png"]];
     
     self.chosenHero = @"Garrick";    
     [self.AbilityDescriptionField setText:@""];
@@ -138,9 +141,14 @@
     
 }
 
-- (IBAction)GalenSelectedEvent:(id)sender {
+- (IBAction)GalenSelectedEvent:(id)sender 
+{
     self.chosenHeroDictionary = [self.heroes objectForKey:@"Galen"];
     [self.DescriptionField setText:[self.chosenHeroDictionary valueForKey:@"subtitle"]];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_galen.png"]];
+    
+    [self.DescriptionField setText:@"Galen earned his nickname 'the Spellslinger' to years of practicing and sharpening his ability with the elemental and arcane powers. As such, he has become a master in the use of Fire, Lightning, Ice and Arcane magics."];
     
     self.chosenHero = @"Galen";
     [self.AbilityDescriptionField setText:@""];
@@ -155,6 +163,10 @@
 - (IBAction)EldurinSelectedEvent:(id)sender {
     self.chosenHeroDictionary = [self.heroes objectForKey:@"Eldurin"];
     [self.DescriptionField setText:[self.chosenHeroDictionary valueForKey:@"subtitle"]];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background_eldurin.png"]];
+    
+    [self.DescriptionField setText:@"Eldurin was abandoned when she was young and roamed the streets. It didn't take long before she was adopted by the Church, and learned the ways of the Holy Light. She studied it rigorously, resulting in her title 'the Enlightened'."];
     
     self.chosenHero = @"Eldurin";
     [self.AbilityDescriptionField setText:@""];

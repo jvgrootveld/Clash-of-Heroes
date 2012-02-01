@@ -75,7 +75,7 @@
         
 		self.isTouchEnabled = YES;
         
-		self.map = [CCTMXTiledMap tiledMapWithTMXFile:@"small.tmx"];
+		self.map = [CCTMXTiledMap tiledMapWithTMXFile:@"planes.tmx"];
         [self.map setPosition:CGPointMake(5,5)];
 		[self addChild:self.map z:0 tag:2];
         
