@@ -16,6 +16,7 @@
 #import "AppSpecificValues.h"
 #import "GameCenterManager.h"
 #import "CDPlayer.h"
+#import <MessageUI/MessageUI.h>
 
 @implementation MainMenuViewController
 @synthesize startButton;
@@ -26,6 +27,7 @@
 @synthesize currentLeaderBoard = _currentLeaderBoard;
 @synthesize achievementsButton;
 @synthesize LeaderboardButton;
+@synthesize FeedbackButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -108,6 +110,7 @@
     gamesWonLabel = nil;
     [self setAchievementsButton:nil];
     [self setLeaderboardButton:nil];
+    [self setFeedbackButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -176,6 +179,7 @@
     [self.currentLeaderBoard release];
     [achievementsButton release];
     [LeaderboardButton release];
+    [FeedbackButton release];
     [super dealloc];
 }
 
@@ -211,6 +215,19 @@
     {
         achievements.achievementDelegate = self;
         [self presentModalViewController: achievements animated: YES];
+    }
+}
+
+- (IBAction)openFeedBack:(id)sender
+{
+    MFMailComposeViewController *mailComposer = [MFMailComposeViewController new];
+    if ([MFMailComposeViewController canSendMail]) {
+        [mailComposer setSubject:@"Feedback Clash of Heroes"];
+        [mailComposer setToRecipients:[NSArray arrayWithObject:@"info@tempest.nl"]];
+        [mailComposer setMessageBody:@"Message body" isHTML:(NO)];
+                                    
+    } else { 
+        [[[UIAlertView alloc] initWithTitle:@"No email account found" message:@"Please check you email settings" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
     }
 }
 

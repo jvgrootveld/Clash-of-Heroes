@@ -30,6 +30,7 @@
 @property (nonatomic, retain) NSString* currentLeaderBoard;
 @property (retain, nonatomic) IBOutlet UIButton *achievementsButton;
 @property (retain, nonatomic) IBOutlet UIButton *LeaderboardButton;
+@property (retain, nonatomic) IBOutlet UIButton *FeedbackButton;
 
 - (IBAction)startGameButtonClicked:(id)sender;
 - (void)presentGameView;
@@ -37,5 +38,6 @@
 - (void)updateStatsWithName:(NSString *)playerName andStats:(CDStats *)stats;
 - (IBAction)showLeaderboard:(id)sender;
 - (IBAction)showAchievements:(id)sender;
+- (IBAction)openFeedBack:(id)sender;
 
 @end
