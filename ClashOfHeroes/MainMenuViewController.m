@@ -18,6 +18,12 @@
 #import "CDPlayer.h"
 #import <MessageUI/MessageUI.h>
 
+@interface MainMenuViewController()
+
+@property (nonatomic, strong) MFMailComposeViewController *mailComposer;
+
+@end
+
 @implementation MainMenuViewController
 @synthesize startButton;
 @synthesize continueButton;
@@ -28,6 +34,7 @@
 @synthesize achievementsButton;
 @synthesize LeaderboardButton;
 @synthesize FeedbackButton;
+@synthesize mailComposer = _mailComposer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -180,6 +187,7 @@
     [achievementsButton release];
     [LeaderboardButton release];
     [FeedbackButton release];
+    [self.mailComposer release];
     [super dealloc];
 }
 
@@ -220,15 +228,18 @@
 
 - (IBAction)openFeedBack:(id)sender
 {
-    MFMailComposeViewController *mailComposer = [MFMailComposeViewController new];
+    self.mailComposer = [MFMailComposeViewController new];
     if ([MFMailComposeViewController canSendMail]) {
-        [mailComposer setSubject:@"Feedback Clash of Heroes"];
-        [mailComposer setToRecipients:[NSArray arrayWithObject:@"info@tempest.nl"]];
-        [mailComposer setMessageBody:@"Message body" isHTML:(NO)];
-                                    
-    } else { 
-        [[[UIAlertView alloc] initWithTitle:@"No email account found" message:@"Please check you email settings" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
+        [self.mailComposer setSubject:@"Feedback Clash of Heroes"];
+        [self.mailComposer setMailComposeDelegate:self];
+        [self.mailComposer setToRecipients:[NSArray arrayWithObject:@"info@tempest.nl"]];
+        
+        [self presentModalViewController:self.mailComposer animated:NO];
     }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error{ 
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)achievementViewControllerDidFinish:(GKAchievementViewController *)viewController;

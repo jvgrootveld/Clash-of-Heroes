@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 #import "GameCenterManager.h"
 
 @class GameViewController;
 @class CDStats;
 
-@interface MainMenuViewController : UIViewController <GKLeaderboardViewControllerDelegate, GKAchievementViewControllerDelegate>
+@interface MainMenuViewController : UIViewController <GKLeaderboardViewControllerDelegate, GKAchievementViewControllerDelegate, MFMailComposeViewControllerDelegate>
 {
     IBOutlet UILabel *playerNameLabel;
     IBOutlet UILabel *gamesWonLabel;
