@@ -192,7 +192,7 @@
         self.abilityCounter--;
         
     } else {
-        NSLog(@"Teveel gekozen!");
+        NSLog(@"Teveel gekozen dus!");
     }
     
 }
@@ -307,10 +307,17 @@
             [selectedHero setHeroName:self.chosenHero];
             
             NSArray *keys = [self.chosenAbilities allKeys];
-            [selectedHero setAbilityOne:[keys objectAtIndex:0]];
-            [selectedHero setAbilityTwo:[keys objectAtIndex:1]];
-            [selectedHero setAbilityThree:[keys objectAtIndex:2]];
-            [selectedHero setAbilityFour:[keys objectAtIndex:3]];
+            for (NSString *abilityName in keys)
+            {
+                NSDictionary *abilityDict = [[self.chosenHeroDictionary objectForKey:@"abilities"] objectForKey:abilityName];
+                selectedHero.bonusHealthPoints += [[abilityDict valueForKey:@"bonusHealthPoints"] integerValue];
+                selectedHero.bonusMagicalAttackPower += [[abilityDict valueForKey:@"bonusMagicalAttackPower"] integerValue];
+                selectedHero.bonusMagicalDefensePower += [[abilityDict valueForKey:@"bonusMagicalDefensePower"] integerValue];
+                selectedHero.bonusMovement += [[abilityDict valueForKey:@"bonusMovement"] integerValue];
+                selectedHero.bonusPhysicalAttackPower += [[abilityDict valueForKey:@"bonusPhysicalAttackPower"] integerValue];
+                selectedHero.bonusPhysicalDefensePower += [[abilityDict valueForKey:@"bonusPhysicalDefensePower"] integerValue];
+                selectedHero.bonusRange += [[abilityDict valueForKey:@"bonusRange"] integerValue];
+            }
             
             GCTurnBasedMatchHelper *helper = [GCTurnBasedMatchHelper sharedInstance];
             Player *localPlayer = [helper playerForLocalPlayer];

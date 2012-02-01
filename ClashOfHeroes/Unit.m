@@ -9,6 +9,7 @@
 #import "Unit.h"
 #import "NoUpgrade.h"
 #import "Player.h"
+#import "Hero.h"
 #import "GameLayer.h"
 #import <GameKit/GameKit.h>
 #include <stdlib.h>
@@ -50,37 +51,37 @@
 
 - (NSInteger)physicalAttackPower
 {
-    return _basePhysicalAttackPower + [_upgrade physicalAttackPower];
+    return _basePhysicalAttackPower + [_upgrade physicalAttackPower] + self.player.hero.bonusPhysicalAttackPower;
 }
 
 - (NSInteger)magicalAttackPower
 {
-    return _baseMagicalAttackPower + [_upgrade magicalAttackPower];
+    return _baseMagicalAttackPower + [_upgrade magicalAttackPower] + self.player.hero.bonusMagicalAttackPower;
 }
 
 - (NSInteger)physicalDefense
 {
-    return _basePhysicalDefense + [_upgrade physicalDefense];
+    return _basePhysicalDefense + [_upgrade physicalDefense] + self.player.hero.bonusPhysicalDefensePower;
 }
 
 - (NSInteger)magicalDefense
 {
-    return _baseMagicalDefense + [_upgrade magicalDefense];
+    return _baseMagicalDefense + [_upgrade magicalDefense] + self.player.hero.bonusMagicalAttackPower;
 }
 
 - (NSInteger)healthPoints
 {
-    return (_baseHealthPoints + [_upgrade healthPoints]) - _recievedDamage;
+    return (_baseHealthPoints + [_upgrade healthPoints] + self.player.hero.healthPoints) - _recievedDamage;
 }
 
 - (NSInteger)range
 {
-    return _baseRange + [_upgrade range];
+    return _baseRange + [_upgrade range] + self.player.hero.bonusRange;
 }
 
 - (NSInteger)movement
 {
-    return _baseMovement + [_upgrade movement];
+    return _baseMovement + [_upgrade movement] + self.player.hero.bonusRange;
 }
 
 - (void)setCode:(NSString *)code

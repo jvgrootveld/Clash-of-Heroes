@@ -119,7 +119,8 @@
 
 - (IBAction)undoButtonPressed:(id)sender 
 {
-    [StatsController addGamesWon:1 forPlayer:[GKLocalPlayer localPlayer].playerID];
+    [StatsController addGamesPlayedEldurin:5 forPlayer:[GKLocalPlayer localPlayer].playerID];
+    //[self presentMessage:@"test message"];
     
     [_gameLayer setCurrentPhase:_gameLayer.movementPhase];
     [_gameLayer.movementPhase setRemainingMoves:3];
@@ -320,7 +321,8 @@
 - (void)presentMessage:(NSString *)message
 {
     [self.messageLabel setText:message];
-    [self fadeInView:self.messageView];    
+    
+    [self fadeInView:self.messageView]; 
 }
 
 - (void)fadeInView:(UIView *)view

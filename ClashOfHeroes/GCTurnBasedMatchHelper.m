@@ -195,6 +195,8 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 
 - (void)loadPlayerDataWithMatchData:(NSDictionary *)dataDictionary
 {
+    NSLog(@"%s: %@", __PRETTY_FUNCTION__, dataDictionary);
+    
     NSMutableArray *identifiers = [NSMutableArray array];
     
     for (GKTurnBasedParticipant *participant in self.currentMatch.participants)
@@ -263,6 +265,14 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
                 [heroUnit setAbilityTwo:[heroDict valueForKey:@"abilityTwo"]];
                 [heroUnit setAbilityThree:[heroDict valueForKey:@"abilityThree"]];
                 [heroUnit setAbilityFour:[heroDict valueForKey:@"abilityFour"]];
+                
+                [heroUnit setBonusRange:[[heroDict valueForKey:@"bonusRange"] integerValue]];
+                [heroUnit setBonusPhysicalDefensePower:[[heroDict valueForKey:@"bonusPhysicalDefensePower"] integerValue]];
+                [heroUnit setBonusPhysicalAttackPower:[[heroDict valueForKey:@"bonusPhysicalAttackPower"] integerValue]];
+                [heroUnit setBonusMovement:[[heroDict valueForKey:@"bonusMovement"] integerValue]];
+                [heroUnit setBonusMagicalDefensePower:[[heroDict valueForKey:@"bonusMagicalDefensePower"] integerValue]];
+                [heroUnit setBonusMagicalAttackPower:[[heroDict valueForKey:@"bonusMagicalAttackPower"] integerValue]];
+                [heroUnit setBonusHealthPoints:[[heroDict valueForKey:@"bonusHealthPoints"] integerValue]];
                 
                 [player setHero:heroUnit];
             }
@@ -387,19 +397,23 @@ static GCTurnBasedMatchHelper *sharedHelper = nil;
 {
     if(!error && ach)
     {
-        NSMutableDictionary *achievementDescriptions = [[NSMutableDictionary alloc] init];
+        
         [GKAchievementDescription loadAchievementDescriptionsWithCompletionHandler:^(NSArray *descriptions, NSError *error) {
             if (error != nil) {
                 NSLog(@"Error getting achievement descriptions: %@", error);
             }
-            for (GKAchievementDescription *achievementDescription in descriptions) {
+            
+            NSMutableDictionary *achievementDescriptions = [NSMutableDictionary new];
+            
+            for (GKAchievementDescription *achievementDescription in descriptions) 
+            {
                 [achievementDescriptions setObject:achievementDescription forKey:achievementDescription.identifier];
             }
+            
+            GKAchievementDescription *achievementDescription = [achievementDescriptions objectForKey:ach.identifier];
+            NSLog(@"You have earned an achievement: %@(%d)!", achievementDescription.title, achievementDescription.maximumPoints);
+            [self.gameViewController presentMessage:[NSString stringWithFormat:@"You have earned an achievement: %@(%d)!", achievementDescription.title, achievementDescription.maximumPoints]];
         }];
-        
-        GKAchievementDescription *achievementDescription = [achievementDescriptions objectForKey:ach.identifier];
-        
-#warning HIER MESSAGE in gamelayer
     }
     else
     {
