@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "GameCenterManager.h"
+#import "COHAboutViewController.h"
 
 @class GameViewController;
 @class CDStats;
 
-@interface MainMenuViewController : UIViewController <GKLeaderboardViewControllerDelegate, GKAchievementViewControllerDelegate>
+@interface MainMenuViewController : UIViewController <GKLeaderboardViewControllerDelegate, GKAchievementViewControllerDelegate, COHAboutViewControllerDelegate>
 {
     IBOutlet UILabel *playerNameLabel;
     IBOutlet UILabel *gamesWonLabel;
@@ -32,6 +33,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *LeaderboardButton;
 
 - (IBAction)startGameButtonClicked:(id)sender;
+- (IBAction)aboutButtonPressed:(id)sender;
 - (void)presentGameView;
 - (void)presentNewGameView;
 - (void)updateStatsWithName:(NSString *)playerName andStats:(CDStats *)stats;

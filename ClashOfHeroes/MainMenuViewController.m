@@ -16,6 +16,7 @@
 #import "AppSpecificValues.h"
 #import "GameCenterManager.h"
 #import "CDPlayer.h"
+#import "COHAboutViewController.h"
 
 @implementation MainMenuViewController
 @synthesize startButton;
@@ -182,6 +183,22 @@
 - (IBAction)startGameButtonClicked:(id)sender
 {
     [[GCTurnBasedMatchHelper sharedInstance] findMatchWithMinPlayers:2 maxPlayers:2 viewController:self];
+}
+
+- (IBAction)aboutButtonPressed:(id)sender
+{
+    COHAboutViewController *aboutView = [[COHAboutViewController alloc] initWithTitle:@"About" andMessage:@"about about about and more about us.." forView:self.view];
+    
+    [aboutView setTag:3];
+    [aboutView setDelegate:self];
+    [self.view addSubview:aboutView.view];
+    [aboutView show];
+}
+
+#pragma mark - AboutViewController Delegate
+- (void)aboutView:(COHAboutViewController *)about wasDismissedWithButtonIndex:(NSInteger)buttonIndex
+{
+    
 }
 
 #pragma mark - Leaderboard delegate
