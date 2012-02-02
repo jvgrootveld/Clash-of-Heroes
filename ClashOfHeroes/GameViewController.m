@@ -174,7 +174,7 @@
                 COHAlertViewController *alertView = [[COHAlertViewController alloc] initWithTitle:@"Congratulations!" andMessage:@"You have won the battle!"];
                 alertView.view.frame = self.view.frame;
                 alertView.view.center = self.view.center;
-                [alertView setTag:nil];
+                [alertView setTag:0];
                 [alertView setDelegate:self];
                 [self.view addSubview:alertView.view];
                 [alertView show];

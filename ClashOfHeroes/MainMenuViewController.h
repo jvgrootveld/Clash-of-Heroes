@@ -41,6 +41,5 @@
 - (void)updateStatsWithName:(NSString *)playerName andStats:(CDStats *)stats;
 - (IBAction)showLeaderboard:(id)sender;
 - (IBAction)showAchievements:(id)sender;
-- (IBAction)openFeedBack:(id)sender;
 
 @end
