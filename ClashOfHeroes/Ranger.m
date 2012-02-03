@@ -37,8 +37,8 @@
                                rect:spriteLocation]
         )
     {
-        [self setMoveDirection: FORWARD | LEFT | RIGHT];
-        [self setAttackDirection: FORWARD | LEFT | RIGHT];
+        [self setMoveDirection: FORWARD | LEFT | RIGHT | BACKWARD];
+        [self setAttackDirection: FORWARD | LEFT | RIGHT | BACKWARD];
     }
     
     return self;
