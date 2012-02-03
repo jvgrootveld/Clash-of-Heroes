@@ -59,6 +59,7 @@
         self.gameViewController = [[GameViewController new] autorelease];
     }
     
+    [self.gameViewController setButtonsEnabled:YES];    
     [self.gameViewController.gameLayer.movementPhase setRemainingMoves:3];
     [self.gameViewController.gameLayer setCurrentPhase:self.gameViewController.gameLayer.movementPhase];
     

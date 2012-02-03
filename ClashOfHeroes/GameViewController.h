@@ -48,6 +48,7 @@
 @property (nonatomic, strong) GameLayer *gameLayer;
 
 - (void)updateLabels;
+- (void)setButtonsEnabled:(BOOL)enabled;
 - (void)updatePlayerOneUnit:(Unit *)unit;
 - (void)updatePlayerTwoUnit:(Unit *)unit;
 - (void)hidePlayerLabels;

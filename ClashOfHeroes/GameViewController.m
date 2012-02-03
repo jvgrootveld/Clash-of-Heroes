@@ -106,12 +106,14 @@
     
 }
 
-- (IBAction)endTurn:(id)sender {    
-    [self.endTurnButton setEnabled:NO];
-    [self.endPhaseButton setEnabled:NO];
-    [self.undoButton setEnabled:NO];
-    self.turnEnded = YES;
-    
+- (void)setButtonsEnabled:(BOOL)enabled
+{
+    [self.endTurnButton setEnabled:enabled];
+    [self.endPhaseButton setEnabled:enabled];
+    [self.undoButton setEnabled:enabled];
+}
+
+- (IBAction)endTurn:(id)sender {        
     COHAlertViewController *alertView = [[COHAlertViewController alloc] initWithTitle:@"End turn" andMessage:@"Are you sure you want to end this turn? This will cancel any remaining moves."];
     
     alertView.view.frame = self.view.frame;
@@ -164,6 +166,8 @@
         if (alert.tag == 1)
         {
             NSLog(@"turn: %@", _gameLayer.turn);
+            [self setButtonsEnabled:NO];
+            self.turnEnded = YES;
             
             [StatsController addTotalMetersMoved:_gameLayer.turn.totalMetersMoved forPlayer:[GKLocalPlayer localPlayer].playerID];
             [StatsController addTotalDamageDealt:_gameLayer.turn.totalDamageDealt forPlayer:[GKLocalPlayer localPlayer].playerID];
@@ -188,9 +192,7 @@
         }
         else if (alert.tag == 3)
         {
-            [self.endTurnButton setEnabled:YES];
-            [self.endPhaseButton setEnabled:YES];
-            [self.undoButton setEnabled:YES];
+            [self setButtonsEnabled:YES];
             [self setTurnEnded:NO];
             
             [_gameLayer setCurrentPhase:_gameLayer.movementPhase];
