@@ -19,6 +19,7 @@
 #import "GCTurnBasedMatchHelper.h"
 #import "Turn.h"
 #import "Player.h"
+#import "Hero.h"
 #import "COHAlertViewController.h"
 #import "Phase.h"
 #import "MovementPhase.h"
@@ -27,11 +28,15 @@
 #import "UIView+AlertAnimations.h"
 
 @interface GameViewController()
+
+@property (nonatomic, assign) BOOL turnEnded;
+
 - (void)setPlayerOneLabelsHidden:(BOOL)hidden;
 - (void)setPlayerTwoLabelsHidden:(BOOL)hidden;
 - (void)fadeInView:(UIView *)view;
 - (void)fadeOutView:(UIView *)view withDelay:(NSTimeInterval)delay;
 - (UIImage *)imageForUnitName:(NSString *)unitName;
+
 @end
 
 @implementation GameViewController
@@ -53,11 +58,15 @@
 @synthesize playerTwoHealthLabel;
 @synthesize playerTwoAttackLabel;
 @synthesize playerTwoDefenseLabel;
+@synthesize endPhaseButton;
+@synthesize endTurnButton;
+@synthesize undoButton;
 @synthesize phaseLabel;
 @synthesize movesLabel;
 @synthesize messageView;
 @synthesize messageLabel;
 @synthesize gameLayer = _gameLayer;
+@synthesize turnEnded = _turnEnded;
 
 - (void)setupCocos2D 
 {
@@ -76,15 +85,33 @@
     Player *playerOne = [[GCTurnBasedMatchHelper sharedInstance] playerForLocalPlayer];
     Player *playerTwo = [[GCTurnBasedMatchHelper sharedInstance] playerForEnemyPlayer];
     
-    if(playerOne) [playerOneLabel setText:playerOne.gameCenterInfo.alias];
-    if(playerTwo) [playerOneLabel setText:playerTwo.gameCenterInfo.alias];
+    if(playerOne)
+    {
+        [playerOneLabel setText:playerOne.gameCenterInfo.alias];
+        [self.playerOneUnitImageView setImage:
+         [UIImage imageNamed:
+          [NSString stringWithFormat:@"rune_hero_%@_", playerOne.hero.heroName]]];
+    }
+    
+    if (playerTwo)
+    {
+        [playerTwoLabel setText:playerTwo.gameCenterInfo.alias];
+        [self.playerTwoUnitImageView setImage:
+         [UIImage imageNamed:
+          [NSString stringWithFormat:@"rune_hero_%@_", playerTwo.hero.heroName]]];
+    }
     
     [phaseLabel setText:[self.gameLayer.currentPhase description]];
     [movesLabel setText:[NSString stringWithFormat:@"Remaining moves: %d", self.gameLayer.currentPhase.remainingMoves]];
     
 }
 
-- (IBAction)endTurn:(id)sender {
+- (IBAction)endTurn:(id)sender {    
+    [self.endTurnButton setEnabled:NO];
+    [self.endPhaseButton setEnabled:NO];
+    [self.undoButton setEnabled:NO];
+    self.turnEnded = YES;
+    
     COHAlertViewController *alertView = [[COHAlertViewController alloc] initWithTitle:@"End turn" andMessage:@"Are you sure you want to end this turn? This will cancel any remaining moves."];
     
     alertView.view.frame = self.view.frame;
@@ -107,14 +134,18 @@
 
 - (IBAction)backButtonPressed:(id)sender 
 {
-    COHAlertViewController *alertView = [[COHAlertViewController alloc] initWithTitle:@"Back to menu" andMessage:@"Are you sure you want to quit? This will revert any moves you have made."];
-    
-    alertView.view.frame = self.view.frame;
-    alertView.view.center = self.view.center;
-    [alertView setTag:3];
-    [alertView setDelegate:self];
-    [self.view addSubview:alertView.view];
-    [alertView show];
+    if (!self.turnEnded)
+    {
+        COHAlertViewController *alertView = [[COHAlertViewController alloc] initWithTitle:@"Back to menu" andMessage:@"Are you sure you want to quit? This will revert any moves you have made."];
+        
+        alertView.view.frame = self.view.frame;
+        alertView.view.center = self.view.center;
+        [alertView setTag:3];
+        [alertView setDelegate:self];
+        [self.view addSubview:alertView.view];
+        [alertView show];
+    }
+    else [self.navigationController popViewControllerAnimated:YES];    
 }
 
 - (IBAction)undoButtonPressed:(id)sender 
@@ -137,7 +168,19 @@
             [StatsController addTotalMetersMoved:_gameLayer.turn.totalMetersMoved forPlayer:[GKLocalPlayer localPlayer].playerID];
             [StatsController addTotalDamageDealt:_gameLayer.turn.totalDamageDealt forPlayer:[GKLocalPlayer localPlayer].playerID];
             
-            [[GCTurnBasedMatchHelper sharedInstance] endTurn:nil];
+            if ([[GCTurnBasedMatchHelper sharedInstance] playerForEnemyPlayer].units.count != 0) [[GCTurnBasedMatchHelper sharedInstance] endTurn:nil];
+            else
+            {
+                COHAlertViewController *alertView = [[COHAlertViewController alloc] initWithTitle:@"Congratulations!" andMessage:@"You have won the battle!"];
+                alertView.view.frame = self.view.frame;
+                alertView.view.center = self.view.center;
+                [alertView setTag:0];
+                [alertView setDelegate:self];
+                [self.view addSubview:alertView.view];
+                [alertView show];
+                
+                [[GCTurnBasedMatchHelper sharedInstance] endMatchWithOutcome:GKTurnBasedMatchOutcomeWon];
+            }
         }
         else if (alert.tag == 2)
         {
@@ -145,6 +188,13 @@
         }
         else if (alert.tag == 3)
         {
+            [self.endTurnButton setEnabled:YES];
+            [self.endPhaseButton setEnabled:YES];
+            [self.undoButton setEnabled:YES];
+            [self setTurnEnded:NO];
+            
+            [_gameLayer setCurrentPhase:_gameLayer.movementPhase];
+            [_gameLayer.movementPhase setRemainingMoves:3];
             [self.gameLayer resetBoard];
             [self.navigationController popViewControllerAnimated:YES];
         }
@@ -163,23 +213,23 @@
 
 - (void)viewDidLoad 
 {
-    [super viewDidLoad];    
+    [super viewDidLoad];
     [self setupCocos2D];
     
     [[GCTurnBasedMatchHelper sharedInstance] setGameViewController:self];
     [self updateLabels];
     
-    if (![[GCTurnBasedMatchHelper sharedInstance] localPlayerIsCurrentParticipant])
-    {
-        COHAlertViewController *alertView = [[COHAlertViewController alloc] initWithTitle:@"Waiting for player" andMessage:@"Waiting for your opponent to make his move."];
-        
-        alertView.view.frame = self.view.frame;
-        alertView.view.center = self.view.center;
-        [alertView setTag:3];
-        [alertView setDelegate:self];
-        [self.view addSubview:alertView.view];
-        [alertView show];
-    }
+//    if (![[GCTurnBasedMatchHelper sharedInstance] localPlayerIsCurrentParticipant])
+//    {
+//        COHAlertViewController *alertView = [[COHAlertViewController alloc] initWithTitle:@"Waiting for player" andMessage:@"Waiting for your opponent to make his move."];
+//        
+//        alertView.view.frame = self.view.frame;
+//        alertView.view.center = self.view.center;
+//        [alertView setTag:3];
+//        [alertView setDelegate:self];
+//        [self.view addSubview:alertView.view];
+//        [alertView show];
+//    }
 }
 
 - (void)didReceiveMemoryWarning 
@@ -213,6 +263,9 @@
     [self setPlayerTwoDefenseLabel:nil];
     [self setMessageLabel:nil];
     [self setMessageView:nil];
+    [self setEndPhaseButton:nil];
+    [self setEndTurnButton:nil];
+    [self setUndoButton:nil];
     [super viewDidUnload];
     
     [[CCDirector sharedDirector] end];
@@ -220,7 +273,7 @@
 
 - (void)setPlayerOneLabelsHidden:(BOOL)hidden
 {
-    [self.playerOneUnitImageView setHidden:hidden];
+    //[self.playerOneUnitImageView setHidden:hidden];
     [self.playerOneUnitNameLabel setHidden:hidden];
     [self.playerOneUnitAttackPowerLabel setHidden:hidden];
     [self.playerOneUnitDefenseLabel setHidden:hidden];
@@ -232,7 +285,7 @@
 
 - (void)setPlayerTwoLabelsHidden:(BOOL)hidden
 {
-    [self.playerTwoUnitImageView setHidden:hidden];
+//  [self.playerTwoUnitImageView setHidden:hidden];
     [self.playerTwoUnitNameLabel setHidden:hidden];
     [self.playerTwoUnitAttackPowerLabel setHidden:hidden];
     [self.playerTwoUnitDefenseLabel setHidden:hidden];
@@ -280,6 +333,7 @@
     }
     else
     {
+       image = [UIImage imageNamed:[NSString stringWithFormat:@"rune_hero_%@_", [[GCTurnBasedMatchHelper sharedInstance] playerForLocalPlayer].hero.heroName]];
         [self setPlayerOneLabelsHidden:YES];
     }
     
@@ -303,6 +357,7 @@
     }
     else
     {
+        image = [UIImage imageNamed:[NSString stringWithFormat:@"rune_hero_%@_", [[GCTurnBasedMatchHelper sharedInstance] playerForEnemyPlayer].hero.heroName]];
         [self setPlayerTwoLabelsHidden:YES];
     }
     
@@ -365,6 +420,9 @@
     [playerTwoDefenseLabel release];
     [messageLabel release];
     [messageView release];
+    [endPhaseButton release];
+    [endTurnButton release];
+    [undoButton release];
     [super dealloc];
 }
 

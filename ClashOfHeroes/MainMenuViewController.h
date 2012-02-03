@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
 #import "GameCenterManager.h"
 #import "COHAboutViewController.h"
 
 @class GameViewController;
 @class CDStats;
 
-@interface MainMenuViewController : UIViewController <GKLeaderboardViewControllerDelegate, GKAchievementViewControllerDelegate, COHAboutViewControllerDelegate>
+@interface MainMenuViewController : UIViewController <GKLeaderboardViewControllerDelegate, GKAchievementViewControllerDelegate, MFMailComposeViewControllerDelegate, COHAboutViewControllerDelegate>
 {
     IBOutlet UILabel *playerNameLabel;
     IBOutlet UILabel *gamesWonLabel;
@@ -40,6 +41,5 @@
 - (void)updateStatsWithName:(NSString *)playerName andStats:(CDStats *)stats;
 - (IBAction)showLeaderboard:(id)sender;
 - (IBAction)showAchievements:(id)sender;
-- (IBAction)openFeedBack:(id)sender;
 
 @end

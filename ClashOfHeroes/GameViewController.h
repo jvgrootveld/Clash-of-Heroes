@@ -37,6 +37,10 @@
 @property (retain, nonatomic) IBOutlet UILabel *playerTwoAttackLabel;
 @property (retain, nonatomic) IBOutlet UILabel *playerTwoDefenseLabel;
 
+@property (retain, nonatomic) IBOutlet UIButton *endPhaseButton;
+@property (retain, nonatomic) IBOutlet UIButton *endTurnButton;
+@property (retain, nonatomic) IBOutlet UIButton *undoButton;
+
 @property (retain, nonatomic) IBOutlet UILabel *phaseLabel;
 @property (retain, nonatomic) IBOutlet UILabel *movesLabel;
 @property (retain, nonatomic) IBOutlet UIView *messageView;

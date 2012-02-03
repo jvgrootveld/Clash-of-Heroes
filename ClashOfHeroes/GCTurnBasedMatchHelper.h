@@ -9,13 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
 #import "GameCenterManager.h"
+#import "COHAlertViewController.h"
 
 @class MainMenuViewController;
 @class GameViewController;
 @class Player;
 @class Turn;
 
-@interface GCTurnBasedMatchHelper : NSObject <GKTurnBasedMatchmakerViewControllerDelegate, GameCenterManagerDelegate>
+@interface GCTurnBasedMatchHelper : NSObject <GKTurnBasedMatchmakerViewControllerDelegate, GameCenterManagerDelegate, COHAlertViewDelegate>
 {
     BOOL gameCenterAvailable;
     BOOL userAuthenticated;
@@ -35,6 +36,7 @@
 - (Player *)playerForLocalPlayer;
 - (Player *)playerForEnemyPlayer;
 - (void)endTurn:(Turn *)turn;
+- (void)endMatchWithOutcome:(GKTurnBasedMatchOutcome)outcome;
 - (BOOL)localPlayerIsCurrentParticipant;
 
 @end

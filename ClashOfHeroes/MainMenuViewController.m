@@ -19,6 +19,12 @@
 #import <MessageUI/MessageUI.h>
 #import "COHAboutViewController.h"
 
+@interface MainMenuViewController()
+
+@property (nonatomic, strong) MFMailComposeViewController *mailComposer;
+
+@end
+
 @implementation MainMenuViewController
 @synthesize startButton;
 @synthesize continueButton;
@@ -29,6 +35,7 @@
 @synthesize achievementsButton;
 @synthesize LeaderboardButton;
 @synthesize FeedbackButton;
+@synthesize mailComposer = _mailComposer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,6 +57,8 @@
     if (_gameViewController == nil)
     {
         self.gameViewController = [[GameViewController new] autorelease];
+        [self.gameViewController.gameLayer.movementPhase setRemainingMoves:3];
+        [self.gameViewController.gameLayer setCurrentPhase:self.gameViewController.gameLayer.movementPhase];
     }
     
     CCScene *scene = [CCDirector sharedDirector].runningScene;
@@ -58,7 +67,7 @@
     {
         if([layer isKindOfClass:[GameLayer class]]) [(GameLayer *)layer loadUnitLocations];
     }
-    
+
     [self.navigationController pushViewController:self.gameViewController animated:NO];
 }
 
@@ -181,6 +190,7 @@
     [achievementsButton release];
     [LeaderboardButton release];
     [FeedbackButton release];
+    [self.mailComposer release];
     [super dealloc];
 }
 
@@ -191,7 +201,7 @@
 
 - (IBAction)aboutButtonPressed:(id)sender
 {
-    COHAboutViewController *aboutView = [[COHAboutViewController alloc] initWithTitle:@"About" andMessage:@"about about about and more about us.." forView:self.view];
+    COHAboutViewController *aboutView = [[COHAboutViewController alloc] initWithTitle:@"About" andMessage:@"Tempest Mobile is a development team based in Rotterdam, the Netherlands. This product was made as a part of an assignment for the Rotterdam University.\n\nIf you have any issues or suggestions for improving this product, use the Feedback-button below to contact us." forView:self.view];
     
     [aboutView setTag:3];
     [aboutView setDelegate:self];
@@ -232,19 +242,6 @@
     {
         achievements.achievementDelegate = self;
         [self presentModalViewController: achievements animated: YES];
-    }
-}
-
-- (IBAction)openFeedBack:(id)sender
-{
-    MFMailComposeViewController *mailComposer = [MFMailComposeViewController new];
-    if ([MFMailComposeViewController canSendMail]) {
-        [mailComposer setSubject:@"Feedback Clash of Heroes"];
-        [mailComposer setToRecipients:[NSArray arrayWithObject:@"info@tempest.nl"]];
-        [mailComposer setMessageBody:@"Message body" isHTML:(NO)];
-                                    
-    } else { 
-        [[[UIAlertView alloc] initWithTitle:@"No email account found" message:@"Please check you email settings" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil] show];
     }
 }
 
