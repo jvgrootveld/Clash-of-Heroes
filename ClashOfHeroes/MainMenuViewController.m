@@ -57,9 +57,10 @@
     if (_gameViewController == nil)
     {
         self.gameViewController = [[GameViewController new] autorelease];
-        [self.gameViewController.gameLayer.movementPhase setRemainingMoves:3];
-        [self.gameViewController.gameLayer setCurrentPhase:self.gameViewController.gameLayer.movementPhase];
     }
+    
+    [self.gameViewController.gameLayer.movementPhase setRemainingMoves:3];
+    [self.gameViewController.gameLayer setCurrentPhase:self.gameViewController.gameLayer.movementPhase];
     
     CCScene *scene = [CCDirector sharedDirector].runningScene;
     

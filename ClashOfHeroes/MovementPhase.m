@@ -149,6 +149,7 @@ NSInteger const MAXMOVES = 3;
     [_gameLayer setCurrentPhase:_gameLayer.combatPhase];
     self.remainingMoves = MAXMOVES;
     
+    [self.gameLayer.gameViewController.endPhaseButton setEnabled:NO];
     [_gameLayer.gameViewController updateLabels];
 }
 
