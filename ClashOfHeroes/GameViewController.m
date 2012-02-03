@@ -154,6 +154,8 @@
 {   
     [_gameLayer setCurrentPhase:_gameLayer.movementPhase];
     [_gameLayer.movementPhase setRemainingMoves:3];
+    [_gameLayer.combatPhase setRemainingMoves:3];
+    [self setButtonsEnabled:YES];
     [_gameLayer loadUnitLocations];
 }
 
