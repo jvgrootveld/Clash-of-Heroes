@@ -61,13 +61,18 @@
     
     [self.gameViewController setButtonsEnabled:YES];    
     [self.gameViewController.gameLayer.movementPhase setRemainingMoves:3];
+    [self.gameViewController.gameLayer.combatPhase setRemainingMoves:3];
     [self.gameViewController.gameLayer setCurrentPhase:self.gameViewController.gameLayer.movementPhase];
     
     CCScene *scene = [CCDirector sharedDirector].runningScene;
     
     for(CCLayer *layer in scene.children)
     {
-        if([layer isKindOfClass:[GameLayer class]]) [(GameLayer *)layer loadUnitLocations];
+        if([layer isKindOfClass:[GameLayer class]])
+        {
+            [(GameLayer *)layer resetBoard];
+            [(GameLayer *)layer loadUnitLocations];
+        }
     }
 
     [self.navigationController pushViewController:self.gameViewController animated:NO];

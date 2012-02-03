@@ -422,10 +422,10 @@
     
     for(CCSprite *sprite in self.children)
     {
-        if([sprite isKindOfClass:[Unit class]])
+        if([sprite isKindOfClass:[CCSprite class]])
         {
             //NSLog(@"remove: %@ at %@", ((Unit *)sprite).name, NSStringFromCGPoint( ((Unit *)sprite).location));
-            [self removeChild:sprite cleanup:YES];
+            if (sprite.tag != 1) [self removeChild:sprite cleanup:YES];
         }
     }
 }
