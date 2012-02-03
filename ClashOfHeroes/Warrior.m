@@ -10,10 +10,19 @@
 
 @implementation Warrior
 
-#define spriteLocation CGRectMake(13, 472, 26, 62)
+#define spriteLocationSelf CGRectMake(13, 472, 26, 62)
+#define spriteLocationEnemy CGRectMake(172, 833, 25, 62)
 
 - (id)initForPlayer:(Player *)player withTag:(NSInteger)tag
-{
+{   
+    CGRect spriteLocation = spriteLocationEnemy;
+    
+    //if unit is for local player
+    if([[[GCTurnBasedMatchHelper sharedInstance] playerForLocalPlayer].gameCenterInfo.playerID isEqualToString:player.gameCenterInfo.playerID])
+    {
+        spriteLocation = spriteLocationSelf;
+    }
+    
     if (self == [super initWithName:@"Warrior" 
                              player:player
     andBaseStatsPhysicalAttackPower:20

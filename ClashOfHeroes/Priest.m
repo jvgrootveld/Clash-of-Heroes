@@ -10,10 +10,19 @@
 
 @implementation Priest
 
-#define spriteLocation CGRectMake(14, 756, 26, 62)
+#define spriteLocationSelf CGRectMake(14, 756, 26, 62)
+#define spriteLocationEnemy CGRectMake(12, 562, 24, 58)
 
 - (id)initForPlayer:(Player *)player withTag:(NSInteger)tag
 {
+    CGRect spriteLocation = spriteLocationEnemy;
+    
+    //if unit is for local player
+    if([[[GCTurnBasedMatchHelper sharedInstance] playerForLocalPlayer].gameCenterInfo.playerID isEqualToString:player.gameCenterInfo.playerID])
+    {
+        spriteLocation = spriteLocationSelf;
+    }
+    
     if (self == [super initWithName:@"Priest" 
                              player:player
     andBaseStatsPhysicalAttackPower:10

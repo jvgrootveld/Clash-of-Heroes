@@ -10,10 +10,19 @@
 
 @implementation Shapeshifter
 
-#define spriteLocation CGRectMake(633, 477, 26, 62)
+#define spriteLocationSelf CGRectMake(633, 477, 26, 62)
+#define spriteLocationEnemy CGRectMake(628, 285, 25, 59)
 
 - (id)initForPlayer:(Player *)player withTag:(NSInteger)tag
 {
+    CGRect spriteLocation = spriteLocationEnemy;
+    
+    //if unit is for local player
+    if([[[GCTurnBasedMatchHelper sharedInstance] playerForLocalPlayer].gameCenterInfo.playerID isEqualToString:player.gameCenterInfo.playerID])
+    {
+        spriteLocation = spriteLocationSelf;
+    }
+    
     if (self == [super initWithName:@"Shapeshifter" 
                              player:player
     andBaseStatsPhysicalAttackPower:8

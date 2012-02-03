@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GCTurnBasedMatchHelper.h"
+#import "Player.h"
 
 @class Upgrade;
 @class Player;
